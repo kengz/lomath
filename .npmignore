@@ -1,13 +1,3 @@
-# ignore all '.js' files, everywhere
-*.js
-# and every folder
-./*
-# ...except the .js file that I want to include
-# un-ignore that, so it gets included.
-!./lib/mything/main.js
-# and also include my dependencies
-!./deps/*
-
 # ignore everything unless selected
 ./*
 

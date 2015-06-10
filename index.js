@@ -8,7 +8,7 @@ var _ = require('lodash').runInContext();
 // Export lodash and the math extension as _
 module.exports = _.mixin({
     AUTHOR: "kengz",
-    VERSION: "0.0.4",
+    VERSION: "0.0.5",
 
     //////////////////////////////
     // Function builder backend //

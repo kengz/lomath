@@ -1,0 +1,31 @@
+{
+  "name": "lomath",
+  "version": "0.0.4",
+  "description": "A high performance, professional math module built on lodash.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kengz/lomath.git"
+  },
+  "dependencies": {
+    "lodash": "^3.9.3"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "lomath",
+    "lodash",
+    "math",
+    "R",
+    "javascript",
+    "js"
+  ],
+  "author": "kengz <kengzwl@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kengz/lomath/issues"
+  },
+  "homepage": "https://github.com/kengz/lomath"
+}

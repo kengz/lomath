@@ -15,7 +15,7 @@ module.exports = _.mixin({
     //////////////////////////////
 
     // We employ clearer terminologies to distinguish the "depth" or the "dimension" of the objects. In general, we call generic array of depth-N a "N-tensor" or "rank-N tensor". A scalar is "0-tensor"; a simple array/vector is "1-tensor", matrix (array of arrays) is "2-tensor", and so on.
-    // A generic function that operates over tensor is built from an atomic function fn taking two scalar arguments. 
+    // A generic function that operates over tensor is built from an atomic function fn taking two scalar arguments.
     // Applying a function into depths of tensor is done via distribution, and evaluating a multi-argument function is done via associativity.
 
     // distribute a unary function over every scalar in tensor Y;
@@ -65,7 +65,7 @@ module.exports = _.mixin({
             return res;
         } else throw "Cannot distribute arrays of different dimensions.";
     },
-    // Generic Distribute: Distribute fn between left tensor X and right tensor Y, while preserving the argument-ordering (vital for non-commutative functions). 
+    // Generic Distribute: Distribute fn between left tensor X and right tensor Y, while preserving the argument-ordering (vital for non-commutative functions).
     // This pairs up the tensors term-wise while descending down the depths recursively, until finding a scalar to distributeLeft/Right.
     // Method is at its fastest, and assuming the data depth isn't too deep (otherwise JS will have troubles with it)
     distribute: function(fn, X, Y) {
@@ -214,7 +214,7 @@ module.exports = _.mixin({
     ////////////////////
     // Basic checkers //
     ////////////////////
-    
+
     // check if x is an integer
     isInteger: function(x) {
         return x == Math.floor(x);
@@ -518,7 +518,7 @@ module.exports = _.mixin({
             return _.cloneDeep(M[i]);
         });
     },
-    // return a copy with sub rows from matrix M 
+    // return a copy with sub rows from matrix M
     cbind: function(M, indArr) {
         return _.map(M, function(row) {
             return _.map(indArr, function(i) {
@@ -794,4 +794,3 @@ module.exports = _.mixin({
         return this.expRate(v[len - 1], v[len - 1 - t], t);
     }
 })
-

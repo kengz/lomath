@@ -4,7 +4,7 @@
   "description": "A high performance, professional math module built on lodash.",
   "main": "index.js",
   "scripts": {
-    "test": "node -v"
+    "test": ""
   },
   "repository": {
     "type": "git",

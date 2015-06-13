@@ -1,4 +1,5 @@
 # lomath
+[![Build Status](https://travis-ci.org/kengz/lomath.svg?branch=master)](https://travis-ci.org/kengz/lomath)
 A high performance, professional math module extending lodash.
 
 **Installation**: `npm install lomath`

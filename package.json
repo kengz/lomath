@@ -4,17 +4,18 @@
   "description": "A high performance, professional math module built on lodash.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --reporter list"
+    "test": "./node_modules/.bin/mocha -u tdd -R spec"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/kengz/lomath.git"
   },
   "dependencies": {
-    "lodash": "^3.9.3",
-    "mocha": "*"
+    "lodash": "^3.9.3"
   },
   "devDependencies": {
+    "chai": "^3.0.0",
+    "mocha": "^2.2.5"
   },
   "keywords": [
     "lomath",

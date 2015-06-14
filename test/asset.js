@@ -19,7 +19,11 @@ var A = {
   reWord: /[a-zA-Z]+/,
   str: 'Pi314159',
   strNum: '314159',
-  strWord: 'Pi'
+  strWord: 'Pi',
+  B: [
+    [[1,1,1,1],[2,2,2,2],[3,3,3,3]],
+    [[4,4,4,4],[5,5,5,5],[6,6,6,6]]
+  ]
 }
 
 module.exports = A;

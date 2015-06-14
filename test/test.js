@@ -770,7 +770,6 @@ suite('Simple functions generalized with assodist for tensor', function() {
 })
 
 
-
 //==============================================
 suite('Simple signature checkers for tensors', function() {
 
@@ -822,7 +821,6 @@ suite('Simple JS Math functions for tensors', function() {
 })
 
 
-
 //==============================================
 suite('Regex functions', function() {
 
@@ -863,6 +861,130 @@ suite('Regex functions', function() {
     })
 
 })
+
+
+
+//==============================================
+suite('Array creation', function() {
+
+  //----------------------------------------------
+  suite('seq', function(){
+    var fn;
+    before(function(){
+      fn = _.seq
+    })
+
+    test('(to)', function(){
+      fn(3).should.deep.equal([1,2,3])
+    })
+    test('(from,to)', function(){
+      fn(0,2).should.deep.equal([0,1,2])
+      fn(-2,2).should.deep.equal([-2,-1,0,1,2])
+    })
+    test('(from,to,diff)', function(){
+      fn(-4,4,2).should.deep.equal([-4,-2,0,2,4])
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('numeric', function(){
+    var fn;
+    before(function(){
+      fn = _.numeric
+    })
+
+    test('(len)', function(){
+      fn(3).should.deep.equal([0,0,0])
+    })
+    test('(len,val)', function(){
+      fn(3,'a').should.deep.equal(['a','a','a'])
+    })
+
+  })
+
+})
+
+
+
+//==============================================
+suite('Tensor properties', function() {
+
+  //----------------------------------------------
+  suite('depth', function(){
+    var fn;
+    before(function(){
+      fn = _.depth
+    })
+
+    test('(T)', function(){
+      fn(A.T).should.equal(0)
+      fn(A.B).should.equal(3)
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('volume', function(){
+    var fn;
+    before(function(){
+      fn = _.volume
+    })
+
+    test('(T)', function(){
+      fn(A.T).should.equal(0)
+      fn(A.B).should.equal(4*3*2)
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('dim', function(){
+    var fn;
+    before(function(){
+      fn = _.dim
+    })
+
+    test('(T)', function(){
+      fn(A.T).should.deep.equal([])
+      fn(A.B).should.deep.equal([2,3,4])
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('isFlat', function(){
+    var fn;
+    before(function(){
+      fn = _.isFlat
+    })
+
+    test('(T)', function(){
+      fn(A.S).should.be.true
+      fn(A.V).should.be.true
+      fn(A.M).should.be.false
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('maxDeepestLength', function(){
+    var fn;
+    before(function(){
+      fn = _.maxDeepestLength
+    })
+
+    test('(T)', function(){
+      fn(A.T).should.equal(0)
+      fn(A.V).should.equal(3)
+      fn(A.M).should.equal(2)
+    })
+
+  })
+
+})
+
+
 
 
 

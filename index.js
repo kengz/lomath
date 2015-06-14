@@ -414,18 +414,19 @@ var lomath = _.mixin({
     var t = T,
       d = 0;
     while (t.length) {
-      d += t.length;
+      d ++;
       t = t[0];
     }
     return d;
   },
 
   // return the size of a tensor (total number of scalar entries)
-  size: function(T) {
+  // return 0 for scalar
+  volume: function(T) {
     return _.flattenDeep(T).length;
   },
 
-  // Get the dimension of a tensor by _.flattenDeep, assume rectangular
+  // Get the dimension of a (non-scalar) tensor by _.flattenDeep, assume rectangular
   dim: function(T) {
     var dim = [],
       ptr = T;
@@ -443,12 +444,12 @@ var lomath = _.mixin({
       flat *= !(T[len] instanceof Array);
       if (!flat) break;
     }
-    return flat;
+    return Boolean(flat);
   },
 
-
-  // get the maximum length of the deepest array in tensor T.
+  // get the maximum length of the deepest array in (non-scalar) tensor T.
   maxDeepestLength: function(T) {
+    if (!(T instanceof Array)) return 0;
     var stack = [],
       sizes = [];
     stack.push(T);
@@ -794,7 +795,3 @@ var lomath = _.mixin({
 
 // Export lomath as _
 module.exports = lomath;
-
-
-console.log('meh', lomath.reWrap(/[0-9]/))
-console.log('meh', lomath.reAnd(/[0-9]/,/[a-zA-Z]/))

@@ -1,5 +1,6 @@
 // chai assertation library
 var chai = require('chai'),
+
   // assert = chai.assert,
   expect = chai.expect,
   should = chai.should()
@@ -7,7 +8,6 @@ var chai = require('chai'),
 // a separate test asset for convenience
 var A = require(__dirname + '/asset.js')
 var _ = A._
-
 
 //==============================================
 suite('Function builder backend', function() {
@@ -21,15 +21,12 @@ suite('Function builder backend', function() {
       beforeEach(function() {
         fn = _.distributeSingle;
       })
-
       test('scalar', function() {
         fn(A.lone, A.S).should.equal('*a')
       })
-
       test('vector', function() {
         fn(A.lone, A.V).should.deep.equal(['*1', '*2', '*3'])
       })
-
       test('matrix', function() {
         fn(A.lone, A.M).should.deep.equal([
           ['*1', '*2'],
@@ -37,7 +34,6 @@ suite('Function builder backend', function() {
           ['*5', '*6']
         ])
       })
-
     })
 
     //----------------------------------------------
@@ -46,11 +42,9 @@ suite('Function builder backend', function() {
       before(function() {
         fn = _.distributeLeft
       })
-
       test('vector * scalar', function() {
         fn(A.pair, A.V, A.S).should.deep.equal(['1*a', '2*a', '3*a'])
       })
-
       test('matrix * scalar', function() {
         fn(A.pair, A.M, A.S).should.deep.equal([
           ['1*a', '2*a'],
@@ -58,7 +52,6 @@ suite('Function builder backend', function() {
           ['5*a', '6*a']
         ])
       })
-
     })
 
     //----------------------------------------------
@@ -67,11 +60,9 @@ suite('Function builder backend', function() {
       before(function() {
         fn = _.distributeRight
       })
-
       test('scalar * vector', function() {
         fn(A.pair, A.S, A.V).should.deep.equal(['a*1', 'a*2', 'a*3'])
       })
-
       test('scalar * matrix', function() {
         fn(A.pair, A.S, A.M).should.deep.equal([
           ['a*1', 'a*2'],
@@ -79,20 +70,17 @@ suite('Function builder backend', function() {
           ['a*5', 'a*6']
         ])
       })
-
     })
 
     //----------------------------------------------
-    suite('distributeBoth', function() {
+    suite('distributeBoth(X, Y)', function() {
       var fn;
       before(function() {
         fn = _.distributeBoth
       })
-
       test('vector * vector', function() {
         fn(A.pair, A.U, A.R).should.deep.equal(['a*3', 'b*2', 'c*1'])
       })
-
       test('vector * matrix', function() {
         fn(A.pair, A.U, A.M).should.deep.equal([
           ['a*1', 'a*2'],
@@ -100,7 +88,6 @@ suite('Function builder backend', function() {
           ['c*5', 'c*6']
         ])
       })
-
       test('matrix * matrix', function() {
         fn(A.pair, A.L, A.M).should.deep.equal([
           ['a*1', 'b*2'],
@@ -108,11 +95,9 @@ suite('Function builder backend', function() {
           ['e*5', 'f*6']
         ])
       })
-
       test('non-commutative: order-preserving', function() {
         fn(A.pair, A.U, A.R).should.not.deep.equal(fn(A.pair, A.R, A.U))
       })
-
       test('vector * longer vector', function() {
         fn(A.pair, A.U, A.VV).should.deep.equal(['a*1', 'b*2', 'c*3', 'a*4', 'b*5', 'c*6'])
       })
@@ -121,7 +106,6 @@ suite('Function builder backend', function() {
           return fn(A.pair, A.V, [1, 2])
         }).should.throw(/different dimensions/)
       })
-
       test('longer vector * matrix', function() {
         fn(A.pair, A.UU, A.M).should.deep.equal([
           ['a*1', 'a*2'],
@@ -132,24 +116,20 @@ suite('Function builder backend', function() {
           ['f*5', 'f*6']
         ])
       })
-
     })
 
     //----------------------------------------------
-    suite('distribute', function() {
+    suite('distribute(X, Y)', function() {
       var fn;
       before(function() {
         fn = _.distribute
       })
-
       test('scalar * scalar', function() {
         fn(A.pair, A.S, A.T).should.deep.equal('a*0')
       })
-
       test('scalar * vector', function() {
         fn(A.pair, A.S, A.V).should.deep.equal(['a*1', 'a*2', 'a*3'])
       })
-
       test('scalar * matrix', function() {
         fn(A.pair, A.S, A.M).should.deep.equal([
           ['a*1', 'a*2'],
@@ -157,11 +137,9 @@ suite('Function builder backend', function() {
           ['a*5', 'a*6']
         ])
       })
-
       test('vector * vector', function() {
         fn(A.pair, A.U, A.R).should.deep.equal(['a*3', 'b*2', 'c*1'])
       })
-
       test('vector * matrix', function() {
         fn(A.pair, A.U, A.M).should.deep.equal([
           ['a*1', 'a*2'],
@@ -169,7 +147,6 @@ suite('Function builder backend', function() {
           ['c*5', 'c*6']
         ])
       })
-
       test('matrix * matrix', function() {
         fn(A.pair, A.L, A.M).should.deep.equal([
           ['a*1', 'b*2'],
@@ -177,15 +154,12 @@ suite('Function builder backend', function() {
           ['e*5', 'f*6']
         ])
       })
-
       test('non-commutative: order-preserving', function() {
         fn(A.pair, A.U, A.R).should.not.deep.equal(fn(A.pair, A.R, A.U))
       })
-
       test('vector * longer vector', function() {
         fn(A.pair, A.U, A.VV).should.deep.equal(['a*1', 'b*2', 'c*3', 'a*4', 'b*5', 'c*6'])
       })
-
       test('longer vector * matrix', function() {
         fn(A.pair, A.UU, A.M).should.deep.equal([
           ['a*1', 'a*2'],
@@ -196,17 +170,14 @@ suite('Function builder backend', function() {
           ['f*5', 'f*6']
         ])
       })
-
     })
-
   })
-
 
   //==============================================
   suite('Associate', function() {
 
     //----------------------------------------------
-    suite('asso', function() {
+    suite('asso(fn, argObj)', function() {
       var fn, wrapfn;
       before(function() {
         fn = _.asso
@@ -214,19 +185,16 @@ suite('Function builder backend', function() {
           return fn(A.pair, arguments)
         }
       })
-
       test('apply in order', function() {
         wrapfn('a', 'b', 'c').should.equal('a*b*c');
       })
-
       test('applicable to single array', function() {
         fn(A.pair, ['a', 'b', 'c']).should.equal('a*b*c');
       })
-
     })
 
     //----------------------------------------------
-    suite('assodist', function() {
+    suite('assodist(fn, argObj)', function() {
       var fn, wrapfn;
       before(function() {
         fn = _.assodist
@@ -234,138 +202,109 @@ suite('Function builder backend', function() {
           return fn(A.pair, arguments)
         }
       })
-
       test('apply in order, distribute while can', function() {
         wrapfn('a', A.V, 'b').should.deep.equal(['a*1*b', 'a*2*b', 'a*3*b']);
       })
-
     })
-
   })
-
 })
-
-
-
-
 
 //==============================================
 suite('Simple functions generalized with assodist for tensor', function() {
 
   //----------------------------------------------
-  suite('c', function() {
+  suite('c()', function() {
     var fn;
     before(function() {
       fn = _.c
     })
-
     test('concat scalars', function() {
       fn('a', 'b', 'c').should.deep.equal(['a', 'b', 'c'])
     })
-
     test('concat vector', function() {
       fn(A.V).should.deep.equal(A.V)
     })
-
     test('concat matrix', function() {
       fn(A.M).should.deep.equal([1, 2, 3, 4, 5, 6])
     })
-
     test('concat tensors', function() {
       fn(A.S, A.V, A.U, A.M).should.deep.equal(['a', 1, 2, 3, 'a', 'b', 'c', 1, 2, 3, 4, 5, 6])
     })
-
   })
 
-
   //----------------------------------------------
-  suite('a_sum', function() {
+  suite('a_sum(T)', function() {
     var fn;
     before(function() {
       fn = _.a_sum
     })
-
     test('atomic sum single tensor', function() {
       fn(A.M).should.equal(1 + 2 + 3 + 4 + 5 + 6)
     })
-
   })
 
   //----------------------------------------------
-  suite('sum', function() {
+  suite('sum()', function() {
     var fn;
     before(function() {
       fn = _.sum
     })
-
     test('sum tensors', function() {
       fn(A.T, A.V, A.M).should.equal(0 + 1 + 2 + 3 + 1 + 2 + 3 + 4 + 5 + 6)
     })
-
   })
 
   //----------------------------------------------
-  suite('a_prod', function() {
+  suite('a_prod(T)', function() {
     var fn;
     before(function() {
       fn = _.a_prod
     })
-
     test('atomic product single tensor', function() {
       fn(A.M).should.equal(1 * 2 * 3 * 4 * 5 * 6)
     })
-
   })
 
   //----------------------------------------------
-  suite('prod', function() {
+  suite('prod()', function() {
     var fn;
     before(function() {
       fn = _.prod
     })
-
     test('prod tensors', function() {
       fn(A.T, A.V, A.M).should.equal(0 * 1 * 2 * 3 * 1 * 2 * 3 * 4 * 5 * 6)
     })
-
   })
 
   //----------------------------------------------
-  suite('a_add', function() {
+  suite('a_add(x,y)', function() {
     var fn;
     before(function() {
       fn = _.a_add
     })
-
     test('atomic add scalars', function() {
       fn(1, 2).should.equal(1 + 2)
     })
-
   })
 
   //----------------------------------------------
-  suite('add', function() {
+  suite('add()', function() {
     var fn;
     before(function() {
       fn = _.add
     })
-
     test('scalars', function() {
       fn(1, 2, 3).should.equal(1 + 2 + 3)
     })
-
     test('scalar and vector', function() {
       fn(A.T, A.V).should.deep.equal(A.V)
     })
-
     test('scalar and matrix', function() {
       fn(A.T, A.M).should.deep.equal(A.M)
     })
-
     test('vector and vector', function() {
       fn(A.V, A.N).should.deep.equal([0, 0, 0])
     })
-
     test('vector and matrix', function() {
       fn(A.V, A.M).should.deep.equal([
         [1 + 1, 1 + 2],
@@ -373,7 +312,6 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [3 + 5, 3 + 6]
       ])
     })
-
     test('matrix and matrix', function() {
       fn(A.K, A.M).should.deep.equal([
         [0, 0],
@@ -381,11 +319,9 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [0, 0]
       ])
     })
-
     test('vectors of unequal lengths', function() {
       fn(A.V, A.VV).should.deep.equal([1 + 1, 2 + 2, 3 + 3, 1 + 4, 2 + 5, 3 + 6])
     })
-
     test('tensors of unequal lengths', function() {
       fn(A.VV, A.M).should.deep.equal([
         [1 + 1, 1 + 2],
@@ -396,7 +332,6 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [6 + 5, 6 + 6]
       ])
     })
-
     test('multiple tensors', function() {
       fn(A.V, A.M, A.R).should.deep.equal([
         [1 + 1 + 3, 1 + 2 + 3],
@@ -404,47 +339,37 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [3 + 5 + 1, 3 + 6 + 1]
       ])
     })
-
   })
 
-
   //----------------------------------------------
-  suite('a_subtract', function() {
+  suite('a_subtract(x,y)', function() {
     var fn;
     before(function() {
       fn = _.a_subtract
     })
-
     test('atomic subtract scalars', function() {
       fn(1, 2).should.equal(1 - 2)
     })
-
   })
 
-
   //----------------------------------------------
-  suite('subtract', function() {
+  suite('subtract()', function() {
     var fn;
     before(function() {
       fn = _.subtract
     })
-
     test('scalars', function() {
       fn(1, 2, 3).should.equal(1 - 2 - 3)
     })
-
     test('scalar and vector', function() {
       fn(A.T, A.V).should.deep.equal(A.N)
     })
-
     test('scalar and matrix', function() {
       fn(A.T, A.M).should.deep.equal(A.K)
     })
-
     test('vector and vector', function() {
       fn(A.V, A.V).should.deep.equal([0, 0, 0])
     })
-
     test('vector and matrix', function() {
       fn(A.V, A.M).should.deep.equal([
         [1 - 1, 1 - 2],
@@ -452,7 +377,6 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [3 - 5, 3 - 6]
       ])
     })
-
     test('matrix and matrix', function() {
       fn(A.M, A.M).should.deep.equal([
         [0, 0],
@@ -460,11 +384,9 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [0, 0]
       ])
     })
-
     test('vectors of unequal lengths', function() {
       fn(A.V, A.VV).should.deep.equal([1 - 1, 2 - 2, 3 - 3, 1 - 4, 2 - 5, 3 - 6])
     })
-
     test('tensors of unequal lengths', function() {
       fn(A.VV, A.M).should.deep.equal([
         [1 - 1, 1 - 2],
@@ -475,7 +397,6 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [6 - 5, 6 - 6]
       ])
     })
-
     test('multiple tensors', function() {
       fn(A.V, A.M, A.R).should.deep.equal([
         [1 - 1 - 3, 1 - 2 - 3],
@@ -483,40 +404,31 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [3 - 5 - 1, 3 - 6 - 1]
       ])
     })
-
   })
 
-
-
   //----------------------------------------------
-  suite('a_multiply', function() {
+  suite('a_multiply(x,y)', function() {
     var fn;
     before(function() {
       fn = _.a_multiply
     })
-
     test('atomic multiply scalars', function() {
       fn(1, 2).should.equal(1 * 2)
     })
-
   })
 
-
   //----------------------------------------------
-  suite('multiply', function() {
+  suite('multiply()', function() {
     var fn;
     before(function() {
       fn = _.multiply
     })
-
     test('scalars', function() {
       fn(1, 2, 3).should.equal(1 * 2 * 3)
     })
-
     test('scalar and vector', function() {
       fn(A.T, A.V).should.deep.equal([0, 0, 0])
     })
-
     test('scalar and matrix', function() {
       fn(A.T, A.M).should.deep.equal([
         [0, 0],
@@ -524,11 +436,9 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [0, 0]
       ])
     })
-
     test('vector and vector', function() {
       fn(A.V, A.V).should.deep.equal([1 * 1, 2 * 2, 3 * 3])
     })
-
     test('vector and matrix', function() {
       fn(A.V, A.M).should.deep.equal([
         [1 * 1, 1 * 2],
@@ -536,7 +446,6 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [3 * 5, 3 * 6]
       ])
     })
-
     test('matrix and matrix', function() {
       fn(A.M, A.M).should.deep.equal([
         [1 * 1, 2 * 2],
@@ -544,11 +453,9 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [5 * 5, 6 * 6]
       ])
     })
-
     test('vectors of unequal lengths', function() {
       fn(A.V, A.VV).should.deep.equal([1 * 1, 2 * 2, 3 * 3, 1 * 4, 2 * 5, 3 * 6])
     })
-
     test('tensors of unequal lengths', function() {
       fn(A.VV, A.M).should.deep.equal([
         [1 * 1, 1 * 2],
@@ -559,7 +466,6 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [6 * 5, 6 * 6]
       ])
     })
-
     test('multiple tensors', function() {
       fn(A.V, A.M, A.R).should.deep.equal([
         [1 * 1 * 3, 1 * 2 * 3],
@@ -567,40 +473,31 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [3 * 5 * 1, 3 * 6 * 1]
       ])
     })
-
   })
 
-
-
   //----------------------------------------------
-  suite('a_divide', function() {
+  suite('a_divide(x,y)', function() {
     var fn;
     before(function() {
       fn = _.a_divide
     })
-
     test('atomic divide scalars', function() {
       fn(1, 2).should.equal(1 / 2)
     })
-
   })
 
-
   //----------------------------------------------
-  suite('divide', function() {
+  suite('divide()', function() {
     var fn;
     before(function() {
       fn = _.divide
     })
-
     test('scalars', function() {
       fn(1, 2, 3).should.equal(1 / 2 / 3)
     })
-
     test('scalar and vector', function() {
       fn(A.T, A.V).should.deep.equal([0, 0, 0])
     })
-
     test('scalar and matrix', function() {
       fn(A.T, A.M).should.deep.equal([
         [0, 0],
@@ -608,11 +505,9 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [0, 0]
       ])
     })
-
     test('vector and vector', function() {
       fn(A.V, A.V).should.deep.equal([1 / 1, 2 / 2, 3 / 3])
     })
-
     test('vector and matrix', function() {
       fn(A.V, A.M).should.deep.equal([
         [1 / 1, 1 / 2],
@@ -620,7 +515,6 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [3 / 5, 3 / 6]
       ])
     })
-
     test('matrix and matrix', function() {
       fn(A.M, A.M).should.deep.equal([
         [1 / 1, 2 / 2],
@@ -628,11 +522,9 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [5 / 5, 6 / 6]
       ])
     })
-
     test('vectors of unequal lengths', function() {
       fn(A.V, A.VV).should.deep.equal([1 / 1, 2 / 2, 3 / 3, 1 / 4, 2 / 5, 3 / 6])
     })
-
     test('tensors of unequal lengths', function() {
       fn(A.VV, A.M).should.deep.equal([
         [1 / 1, 1 / 2],
@@ -643,7 +535,6 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [6 / 5, 6 / 6]
       ])
     })
-
     test('multiple tensors', function() {
       fn(A.V, A.M, A.R).should.deep.equal([
         [1 / 1 / 3, 1 / 2 / 3],
@@ -651,132 +542,105 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [3 / 5 / 1, 3 / 6 / 1]
       ])
     })
-
   })
 
-
   //----------------------------------------------
-  suite('a_log', function() {
+  suite('a_log(x, base)', function() {
     var fn;
     before(function() {
       fn = _.a_log
     })
-
     test('atomic log, base e default', function() {
       fn(Math.E).should.equal(1);
     })
-
     test('base specified', function() {
       fn(8, 2).should.equal(3);
     })
-
     test('log(0)', function() {
       fn(0).should.equal(-Infinity);
     })
-
     test('log(Infinity)', function() {
       fn(-1).should.deep.equal(NaN);
     })
-
   })
 
   //----------------------------------------------
-  suite('log', function() {
+  suite('log(T, base)', function() {
     var fn;
     before(function() {
       fn = _.log
     })
-
     test('tensor', function() {
       fn(A.V).should.deep.equal([_.a_log(1), _.a_log(2), _.a_log(3)])
     })
-
   })
 
-
   //----------------------------------------------
-  suite('a_square', function() {
+  suite('a_square(x)', function() {
     var fn;
     before(function() {
       fn = _.a_square
     })
-
     test('atomic square', function() {
       fn(2).should.equal(4)
     })
-
   })
 
   //----------------------------------------------
-  suite('square', function() {
+  suite('square(T)', function() {
     var fn;
     before(function() {
       fn = _.square
     })
-
     test('tensor', function() {
       fn(A.V).should.deep.equal([_.a_square(1), _.a_square(2), _.a_square(3)])
     })
-
   })
 
-
   //----------------------------------------------
-  suite('a_root', function() {
+  suite('a_root(x)', function() {
     var fn;
     before(function() {
       fn = _.a_root
     })
-
     test('atomic root, base 2 default', function() {
       fn(4).should.equal(2);
     })
-
     test('base specified', function() {
       fn(8, 3).should.equal(2);
     })
-
     test('negative with even base', function() {
       fn(-4, 2).should.deep.equal(NaN);
     })
-
     test('negative with odd base', function() {
       fn(-8, 3).should.equal(-2);
     })
-
     test('base == 0', function() {
       fn(4, 0).should.deep.equal(Infinity);
     })
-
   })
 
   //----------------------------------------------
-  suite('root', function() {
+  suite('root(T)', function() {
     var fn;
     before(function() {
       fn = _.root
     })
-
     test('tensor', function() {
       fn(A.V).should.deep.equal([_.a_root(1), _.a_root(2), _.a_root(3)])
     })
-
   })
-
 })
-
 
 //==============================================
 suite('Simple signature checkers for tensors', function() {
 
-
   //----------------------------------------------
-  suite('ternary fn inRange', function() {
+  suite('inRange(left, right, x)', function() {
     var fn;
     before(function() {
       fn = _.inRange
     })
-
     test('is in range', function() {
       fn(0, 3, 2).should.be.true
     })
@@ -789,16 +653,14 @@ suite('Simple signature checkers for tensors', function() {
     test('right boundary', function() {
       fn(0, 3, 3).should.be.true
     })
-
   })
 
   //----------------------------------------------
-  suite('sameSig', function() {
+  suite('sameSig(T, sigFn), sigFn:', function() {
     var fn;
     before(function() {
       fn = _.sameSig
     })
-
     test('isInteger', function() {
       fn(A.V, _.isInteger).should.be.true
     })
@@ -820,15 +682,11 @@ suite('Simple signature checkers for tensors', function() {
     test('nonZero', function() {
       fn(A.V, _.nonZero).should.be.true
     })
-
   })
-
 })
-
 
 //==============================================
 suite('Simple JS Math functions for tensors', function() {
-
   var fn;
   beforeEach(function() {
     fn = _.distributeSingle;
@@ -836,63 +694,60 @@ suite('Simple JS Math functions for tensors', function() {
   test('tests implied from Function builder backend', function() {
     fn(A.lone, A.S).should.equal('*a')
   })
-
 })
-
 
 //==============================================
 suite('Regex functions', function() {
-
-  test('reMatch', function() {
+  test('reMatch(regex)', function() {
     _.reMatch(A.reWord)(A.strWord).should.be.true
     _.reMatch(A.reWord)(A.strNum).should.be.false
     _.reMatch(A.reNum)(A.strNum).should.be.true
     _.reMatch(A.reNum)(A.strWord).should.be.false
   })
-  test('reNotMatch', function() {
+  test('reNotMatch(regex)', function() {
     _.reNotMatch(A.reWord)(A.strWord).should.be.false
     _.reNotMatch(A.reWord)(A.strNum).should.be.true
     _.reNotMatch(A.reNum)(A.strNum).should.be.false
     _.reNotMatch(A.reNum)(A.strWord).should.be.true
   })
-  test('reGet', function() {
+  test('reGet(regex)', function() {
     _.reGet(A.reWord)(A.str).should.equal(A.strWord)
     _.reGet(A.reNum)(A.str).should.equal(A.strNum)
     expect(_.reGet(A.reWord)(A.strNum)).to.be.null
   })
-  test('reAnd', function() {
+  test('reWrap(reg)', function() {
+    _.reWrap(A.reWord).should.be.a('string')
+    _.reWrap(A.reWord).should.equal('(?=.*[a-zA-Z]+)')
+  })
+  test('reAnd()', function() {
     _.reAnd(A.reWord, A.reNum).should.be.an.instanceof(RegExp)
     _.reAnd(A.reWord, A.reNum).should.deep.equal(/(?=.*[a-zA-Z]+)(?=.*[0-9]+)/)
   })
-  test('reAndMatch', function() {
+  test('reAndMatch()', function() {
     _.reAndMatch(A.reWord, A.reNum)(A.str).should.be.true
     _.reAndMatch(A.reWord, A.reNum)(A.strWord).should.be.false
     _.reAndMatch(A.reWord, A.reNum)(A.strNum).should.be.false
   })
-  test('reOr', function() {
+  test('reOr()', function() {
     _.reOr(A.reWord, A.reNum).should.be.an.instanceof(RegExp)
     _.reOr(A.reWord, A.reNum).should.deep.equal(/(?=.*[a-zA-Z]+)|(?=.*[0-9]+)/)
   })
-  test('reAndMatch', function() {
+  test('reAndMatch()', function() {
     _.reOrMatch(A.reWord, A.reNum)(A.str).should.be.true
     _.reOrMatch(A.reWord, A.reNum)(A.strWord).should.be.true
     _.reOrMatch(A.reWord, A.reNum)(A.strNum).should.be.true
   })
-
 })
-
-
 
 //==============================================
 suite('Array creation', function() {
 
   //----------------------------------------------
-  suite('seq', function() {
+  suite('seq([start], stop, [step])', function() {
     var fn;
     before(function() {
       fn = _.seq
     })
-
     test('(to)', function() {
       fn(3).should.deep.equal([1, 2, 3])
     })
@@ -903,134 +758,111 @@ suite('Array creation', function() {
     test('(from,to,diff)', function() {
       fn(-4, 4, 2).should.deep.equal([-4, -2, 0, 2, 4])
     })
-
   })
 
   //----------------------------------------------
-  suite('numeric', function() {
+  suite('numeric(N, [val])', function() {
     var fn;
     before(function() {
       fn = _.numeric
     })
-
     test('(len)', function() {
       fn(3).should.deep.equal([0, 0, 0])
     })
     test('(len,val)', function() {
       fn(3, 'a').should.deep.equal(['a', 'a', 'a'])
     })
-
   })
-
 })
-
-
 
 //==============================================
 suite('Tensor properties', function() {
 
   //----------------------------------------------
-  suite('depth', function() {
+  suite('depth(T)', function() {
     var fn;
     before(function() {
       fn = _.depth
     })
-
     test('(T)', function() {
       fn(A.T).should.equal(0)
       fn(A.B).should.equal(3)
     })
-
   })
 
   //----------------------------------------------
-  suite('volume', function() {
+  suite('volume(T)', function() {
     var fn;
     before(function() {
       fn = _.volume
     })
-
     test('(T)', function() {
       fn(A.T).should.equal(0)
       fn(A.B).should.equal(4 * 3 * 2)
     })
-
   })
 
   //----------------------------------------------
-  suite('dim', function() {
+  suite('dim(T)', function() {
     var fn;
     before(function() {
       fn = _.dim
     })
-
     test('(T)', function() {
       fn(A.T).should.deep.equal([])
       fn(A.B).should.deep.equal([2, 3, 4])
     })
-
   })
 
   //----------------------------------------------
-  suite('isFlat', function() {
+  suite('isFlat(T)', function() {
     var fn;
     before(function() {
       fn = _.isFlat
     })
-
     test('(T)', function() {
       fn(A.S).should.be.true
       fn(A.V).should.be.true
       fn(A.M).should.be.false
     })
-
   })
 
   //----------------------------------------------
-  suite('maxDeepestLength', function() {
+  suite('maxDeepestLength(T)', function() {
     var fn;
     before(function() {
       fn = _.maxDeepestLength
     })
-
     test('(T)', function() {
       fn(A.T).should.equal(0)
       fn(A.V).should.equal(3)
       fn(A.M).should.equal(2)
     })
-
   })
-
 })
-
-
-
 
 //==============================================
 suite('Tensor transformation', function() {
 
   //----------------------------------------------
-  suite('swap; mutates', function() {
+  suite('swap(arr, i, j); mutates', function() {
     var fn, v;
     before(function() {
       fn = _.swap
       v = [1, 2, 3]
     })
-
     test('(V,i,j); mutates', function() {
       fn(v, 0, 2).should.deep.equal(A.R)
       v.should.deep.equal(A.R)
     })
-
   })
 
   //----------------------------------------------
-  suite('reverse', function() {
+  suite('reverse(arr, [i, [j]])', function() {
     var fn;
     before(function() {
       fn = _.reverse
     })
-
     test('reverse all (V)', function() {
       fn(A.VZ).should.deep.equal([5, 4, 3, 2, 1, 0])
     })
@@ -1043,17 +875,15 @@ suite('Tensor transformation', function() {
     test('reverse from to (V,i,j)', function() {
       fn(A.VZ, 2, 4).should.deep.equal([0, 1, 4, 3, 2, 5])
     })
-
   })
 
   //----------------------------------------------
-  suite('extend; mutates', function() {
+  suite('extend(arr, toLen, [val]); mutates', function() {
     var fn, v;
     beforeEach(function() {
       fn = _.extend
       v = A.V.slice(0)
     })
-
     test('(V, toLen) default val == 0', function() {
       fn(v, 6).should.deep.equal([1, 2, 3, 0, 0, 0])
     })
@@ -1065,16 +895,14 @@ suite('Tensor transformation', function() {
         return fn(v, 0)
       }).should.throw(/Array longer/)
     })
-
   })
 
   //----------------------------------------------
-  suite('batchIndexOf', function() {
+  suite('batchIndexOf(arr, fieldArr)', function() {
     var fn;
     before(function() {
       fn = _.batchIndexOf
     })
-
     test('none valid', function() {
       fn(A.UU, [1, 2, 3]).should.deep.equal([-1, -1, -1])
     })
@@ -1090,16 +918,14 @@ suite('Tensor transformation', function() {
     test('repeated', function() {
       fn(A.UU, ['a', 'a', 'a']).should.deep.equal([0, 0, 0])
     })
-
   })
 
   //----------------------------------------------
-  suite('validInds', function() {
+  suite('validInds(indArr, maxLen)', function() {
     var fn;
     before(function() {
       fn = _.validInds
     })
-
     test('none valid', function() {
       fn([-2, -1], 2).should.deep.equal([])
     })
@@ -1112,17 +938,14 @@ suite('Tensor transformation', function() {
     test('repeated', function() {
       fn([-2, 4, 0, 2, 0], 2).should.deep.equal([0, 2, 0])
     })
-
   })
 
-
   //----------------------------------------------
-  suite('rbind', function() {
+  suite('rbind(M, indArr)', function() {
     var fn;
     before(function() {
       fn = _.rbind
     })
-
     test('none valid', function() {
       fn(A.C, [-1, -2, 100]).should.deep.equal([])
     })
@@ -1150,16 +973,14 @@ suite('Tensor transformation', function() {
         [4, 5, 6]
       ])
     })
-
   })
 
   //----------------------------------------------
-  suite('cbind', function() {
+  suite('cbind(M, indArr)', function() {
     var fn;
     before(function() {
       fn = _.cbind
     })
-
     test('none valid', function() {
       fn(A.D, [-1, -2, 100]).should.deep.equal([])
     })
@@ -1191,16 +1012,14 @@ suite('Tensor transformation', function() {
         [-1, -1]
       ])
     })
-
   })
 
   //----------------------------------------------
-  suite('cbindByField', function() {
+  suite('cbindByField(M, fieldArr)', function() {
     var fn;
     before(function() {
       fn = _.cbindByField
     })
-
     test('none valid', function() {
       fn(A.D, [1, 2, 3]).should.deep.equal([])
     })
@@ -1232,17 +1051,14 @@ suite('Tensor transformation', function() {
         [-1, -1]
       ])
     })
-
   })
 
-
   //----------------------------------------------
-  suite('transpose', function() {
+  suite('transpose(M)', function() {
     var fn;
     before(function() {
       fn = _.transpose
     })
-
     test('square', function() {
       fn(A.C).should.deep.equal([
         [1, 4, 7],
@@ -1256,11 +1072,10 @@ suite('Tensor transformation', function() {
         [2, 4, 6]
       ])
     })
-
   })
 
   //----------------------------------------------
-  suite('rectangularize; mutates', function() {
+  suite('rectangularize(T, val); mutates', function() {
     var fn, Q, R;
     beforeEach(function() {
       fn = _.rectangularize
@@ -1273,7 +1088,6 @@ suite('Tensor transformation', function() {
         [4, 5, 6]
       ]
     })
-
     test('non-rectangular, default', function() {
       fn(Q).should.deep.equal([
         [1, 2, 3],
@@ -1292,19 +1106,16 @@ suite('Tensor transformation', function() {
         [4, 5, 6]
       ])
     })
-
   })
 
-
   //----------------------------------------------
-  suite('reshape', function() {
+  suite('reshape(arr, dimArr)', function() {
     var fn, Q, R;
     before(function() {
       fn = _.reshape
       Q = [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6]
       R = [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6]
     })
-
     test('used with _.c and _.dim', function() {
       fn(_.c(A.B), _.dim(A.B)).should.deep.equal(A.B)
     })
@@ -1325,23 +1136,18 @@ suite('Tensor transformation', function() {
         ]
       ])
     })
-
   })
-
 })
-
-
 
 //==============================================
 suite('Subsets and combinatorics', function() {
 
   //----------------------------------------------
-  suite('genAry', function() {
+  suite('genAry(length, n)', function() {
     var fn;
     before(function() {
       fn = _.genAry
     })
-
     test('binary', function() {
       fn(1, 2).should.deep.equal(['0', '1'])
       fn(2, 2).should.deep.equal(['00', '01', '10', '11'])
@@ -1352,16 +1158,14 @@ suite('Subsets and combinatorics', function() {
     test('ternary', function() {
       fn(2, 3).should.deep.equal(['00', '01', '02', '10', '11', '12', '20', '21', '22'])
     })
-
   })
 
   //----------------------------------------------
-  suite('toNumArr', function() {
+  suite('toNumArr(strArr)', function() {
     var fn;
     before(function() {
       fn = _.toNumArr
     })
-
     test('binary', function() {
       fn(['00', '01', '10', '11']).should.deep.equal([
         [0, 0],
@@ -1370,35 +1174,29 @@ suite('Subsets and combinatorics', function() {
         [1, 1]
       ])
     })
-
   })
 
   //----------------------------------------------
-  suite('pSubset', function() {
+  suite('pSubset(n)', function() {
     var fn;
     before(function() {
       fn = _.pSubset
     })
-
     test('3 elements', function() {
       fn(3).should.deep.equal([
         ['0', '1', '2'],
         ['01', '02', '10', '12', '20', '21'],
         ['012', '021', '102', '120', '201', '210']
-
       ])
     })
-
   })
 
-
   //----------------------------------------------
-  suite('subset', function() {
+  suite('subset(n)', function() {
     var fn;
     before(function() {
       fn = _.subset
     })
-
     test('3 elements', function() {
       fn(3).should.deep.equal([
         ['0', '1', '2'],
@@ -1406,64 +1204,53 @@ suite('Subsets and combinatorics', function() {
         ['012']
       ])
     })
-
   })
 
   //----------------------------------------------
-  suite('permList', function() {
+  suite('permList(n)', function() {
     var fn;
     before(function() {
       fn = _.permList
     })
-
     test('3 elements, with _.toNumArr', function() {
       fn(3, 1).should.deep.equal(_.toNumArr(['0', '1', '2']))
       fn(3, 2).should.deep.equal(_.toNumArr(['01', '02', '10', '12', '20', '21']))
       fn(3, 3).should.deep.equal(_.toNumArr(['012', '021', '102', '120', '201', '210']))
-
     })
-
   })
 
-
   //----------------------------------------------
-  suite('subset', function() {
+  suite('subset(n)', function() {
     var fn;
     before(function() {
       fn = _.combList
     })
-
     test('3 elements, with _.toNumArr', function() {
       fn(3, 1).should.deep.equal(_.toNumArr(['0', '1', '2']))
       fn(3, 2).should.deep.equal(_.toNumArr(['01', '02', '12']))
       fn(3, 3).should.deep.equal(_.toNumArr(['012']))
     })
-
   })
 
-
   //----------------------------------------------
-  suite('permute', function() {
+  suite('permute(n)', function() {
     var fn;
     before(function() {
       fn = _.permute
     })
-
     test('n elements', function() {
       fn(2).should.deep.equal(_.permList(2, 2))
       fn(3).should.deep.equal(_.permList(3, 3))
       fn(4).should.deep.equal(_.permList(4, 4))
     })
-
   })
 
   //----------------------------------------------
-  suite('factorial', function() {
+  suite('factorial(n)', function() {
     var fn;
     before(function() {
       fn = _.factorial
     })
-
     test('normal', function() {
       fn(5).should.equal(120)
     })
@@ -1478,17 +1265,14 @@ suite('Subsets and combinatorics', function() {
     test('big, without stackoverflow', function() {
       fn(1000).should.deep.equal(Infinity)
     })
-
   })
 
-
   //----------------------------------------------
-  suite('permutation', function() {
+  suite('permutation(n,r)', function() {
     var fn;
     before(function() {
       fn = _.permutation
     })
-
     test('normal', function() {
       fn(5, 1).should.deep.equal(5)
       fn(5, 5).should.deep.equal(120)
@@ -1505,16 +1289,14 @@ suite('Subsets and combinatorics', function() {
     test('big, without stackoverflow', function() {
       fn(1000, 1000).should.deep.equal(Infinity)
     })
-
   })
 
   //----------------------------------------------
-  suite('combination', function() {
+  suite('combination(n,r)', function() {
     var fn;
     before(function() {
       fn = _.combination
     })
-
     test('normal', function() {
       fn(5, 1).should.deep.equal(5)
       fn(5, 5).should.deep.equal(1)
@@ -1532,38 +1314,32 @@ suite('Subsets and combinatorics', function() {
     test('big, without stackoverflow', function() {
       fn(1000, 500).should.deep.equal(NaN)
     })
-
   })
-
 })
-
 
 //==============================================
 suite('vectorial', function() {
 
   //----------------------------------------------
-  suite('dot', function() {
+  suite('dot(X, Y)', function() {
     var fn;
     before(function() {
       fn = _.dot
     })
-
     test('normal', function() {
       fn(A.V, A.V).should.deep.equal(1 + 4 + 9)
     })
     test('length mismatch, recycle', function() {
       fn(A.V, A.VV).should.deep.equal(fn(_.c(A.V, A.V), A.VV))
     })
-
   })
 
   //----------------------------------------------
-  suite('powSum', function() {
+  suite('powSum(T, [n])', function() {
     var fn;
     before(function() {
       fn = _.powSum
     })
-
     test('(V) vector, default to 2', function() {
       fn(A.V).should.deep.equal(1 + 4 + 9)
     })
@@ -1573,83 +1349,71 @@ suite('vectorial', function() {
     test('(T, n) tensor', function() {
       fn(A.M).should.deep.equal(1 + 4 + 9 + 16 + 25 + 36)
     })
-
   })
 
   //----------------------------------------------
-  suite('norm', function() {
+  suite('norm(v, [n])', function() {
     var fn;
     before(function() {
       fn = _.norm
     })
-
     test('default to L-2 norm', function() {
       fn([3, 4]).should.deep.equal(5)
     })
     test('specify L-n norm', function() {
       fn([3, 4], 1).should.deep.equal(7)
     })
-
   })
 
   //----------------------------------------------
-  suite('normalize', function() {
+  suite('normalize(v, [n])', function() {
     var fn;
     before(function() {
       fn = _.normalize
     })
-
     test('default to L-2 norm', function() {
       fn([3, 4]).should.deep.equal([3 / 5, 4 / 5])
     })
     test('specify to L-n norm', function() {
       fn([3, 4], 1).should.deep.equal([3 / 7, 4 / 7])
     })
-
   })
 
   //----------------------------------------------
-  suite('rescale', function() {
+  suite('rescale(v)', function() {
     var fn;
     before(function() {
       fn = _.rescale
     })
-
     test('simply L-1 norm', function() {
       fn([3, 4]).should.deep.equal([3 / 7, 4 / 7])
     })
-
   })
-
 })
 
-
 //==============================================
-suite('vectorial', function() {
+suite('trend', function() {
 
   //----------------------------------------------
-  suite('stairs', function() {
+  suite('stairs(v)', function() {
     var fn;
     before(function() {
       fn = _.stairs
     })
-
     test('length be 1 less', function() {
       fn(A.V).length.should.equal(A.V.length - 1)
     })
     test('next - current index', function() {
       fn([1, 2, 3, 5, 8]).should.deep.equal([1, 1, 2, 3])
     })
-
   })
 
   //----------------------------------------------
-  suite('stairsTrend', function() {
+  suite('stairsTrend(v, sigFn)', function() {
     var fn;
     before(function() {
       fn = _.stairsTrend
     })
-
     test('specify stairs sign, collapsed', function() {
       fn(A.V, _.isPositive).should.be.true
     })
@@ -1665,51 +1429,41 @@ suite('vectorial', function() {
     test('nonIncreasing', function() {
       _.nonIncreasing([3, 2, 1, 1]).should.be.true
     })
-
   })
-
-
 })
-
-
-
 
 //==============================================
 suite('statistical', function() {
 
   //----------------------------------------------
-  suite('mean', function() {
+  suite('mean(v)', function() {
     var fn;
     before(function() {
       fn = _.mean
     })
-
     test('0 mean', function() {
       fn([-2, -1, 0, 1, 2]).should.equal(0)
     })
-
   })
 
   //----------------------------------------------
-  suite('expVal', function() {
+  suite('expVal(pV, xV, [fn])', function() {
     var fn, p, v;
     before(function() {
       fn = _.expVal
       p = [0.1, 0.2, 0.3, 0.4]
       v = [-1, 0, 1, 2]
     })
-
     test('default function: identity', function() {
       fn(p, v).should.equal((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
     })
     test('specified atomic function: square', function() {
       fn(p, v, _.a_square).should.equal(1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)
     })
-
   })
 
   //----------------------------------------------
-  suite('variance', function() {
+  suite('variance(pV, xV, [fn])', function() {
     var fn, p, v;
     before(function() {
       fn = _.variance
@@ -1727,47 +1481,37 @@ suite('statistical', function() {
         (1 * 0.1 + 0 + 1 * 0.3 + 16 * 0.4) -
         _.a_square(1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4), 0.0001)
     })
-
   })
 
   //----------------------------------------------
-  suite('stdev', function() {
-
+  suite('stdev(pV, xV, [fn])', function() {
     test('trvial sqrt of variance', function() {
       Math.sqrt(4).should.equal(2)
     })
-
   })
 
   //----------------------------------------------
-  suite('expGRate', function() {
+  suite('expGRate(m_f, m_i, t)', function() {
     var fn;
     before(function() {
       fn = _.expGRate
     })
-
     test('rate of expGrowth return', function() {
       fn(8, 2, 2).should.equal(100)
     })
-
   })
 
   //----------------------------------------------
-  suite('trailExpGRate', function() {
+  suite('trailExpGRate(v, t)', function() {
     var fn, v;
     before(function() {
       fn = _.trailExpGRate
       v = [1, 2, 4, 8]
     })
-
     test('trailing expGRate', function() {
       fn(v, 1).should.equal(100)
       fn(v, 2).should.equal(100)
       fn(v, 3).should.equal(100)
     })
-
   })
-
-
-
 })

@@ -1,5 +1,6 @@
+// lomath import
 var _ = require(__dirname+'/../index.js')
-
+// Asset for export
 var A = {
   _: _,
   lone: function(x){return ['',x].join('*')},
@@ -28,8 +29,5 @@ var A = {
   C: [[1,2,3],[4,5,6],[7,8,9]],
   D: [['a','b','c'],[1,2,3],[-1,-2,-3]]
 }
-
+// export asset
 module.exports = A;
-
-
-// console.log(_.distributeBoth(A.pair, A.V, A.W));

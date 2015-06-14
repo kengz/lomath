@@ -101,7 +101,6 @@ var lomath = _.mixin({
   // Future:
   // cross and wedge, need index summation too, matrix mult.
 
-
   /////////////////////
   // Basic functions //
   /////////////////////
@@ -207,7 +206,6 @@ var lomath = _.mixin({
     return lomath.distribute(lomath.a_root, T, n);
   },
 
-
   ////////////////////
   // Basic checkers //
   ////////////////////
@@ -247,8 +245,6 @@ var lomath = _.mixin({
   sameSig: function(T, sigFn) {
     return Boolean(lomath.prod(lomath.distributeSingle(sigFn, T)));
   },
-
-
 
   //////////////////////////////////////////
   // Unary functions from JS Math object, //
@@ -328,8 +324,6 @@ var lomath = _.mixin({
     return lomath.distributeSingle(Math.trunc, T);
   },
 
-
-
   /////////////////////
   // Regex functions //
   /////////////////////
@@ -379,7 +373,6 @@ var lomath = _.mixin({
     return lomath.reMatch(lomath.reOr.apply(null, arguments));
   },
 
-
   ////////////////////
   // Array creation //
   ////////////////////
@@ -405,7 +398,6 @@ var lomath = _.mixin({
   numeric: function(N, val) {
     return val == undefined ? _.fill(Array(N), 0) : _.fill(Array(N), val);
   },
-
 
   ///////////////////////
   // Tensor properties //
@@ -468,7 +460,6 @@ var lomath = _.mixin({
     }
     return _.max(sizes);
   },
-
 
   ///////////////////////////
   // Tensor transformation //
@@ -571,8 +562,6 @@ var lomath = _.mixin({
       tensor = _.chunk(tensor, dimArr[len]);
     return tensor;
   },
-
-
 
   ///////////////////////////////
   // Subsets and combinatorics //
@@ -697,7 +686,6 @@ var lomath = _.mixin({
     return lomath.permutation(n, l) / lomath.factorial(l);
   },
 
-
   /////////////////////
   // Handy vectorial //
   /////////////////////
@@ -726,7 +714,6 @@ var lomath = _.mixin({
     return lomath.normalize(v, 1);
   },
 
-
   //////////////////
   // handy Matrix //
   //////////////////
@@ -734,7 +721,6 @@ var lomath = _.mixin({
   // Matrix ops
   // Matrix ops
   // Matrix ops
-
 
   /////////////////
   // Handy trend //
@@ -770,11 +756,9 @@ var lomath = _.mixin({
     return lomath.stairsTrend(v, lomath.nonPositive);
   },
 
-
   ///////////////////////
   // Handy statistical //
   ///////////////////////
-
 
   // return the average of a vector
   mean: function(v) {
@@ -793,15 +777,13 @@ var lomath = _.mixin({
   // alias Var
   variance: function(pV, xV, fn) {
     return fn == undefined ?
-    lomath.expVal(pV, xV, lomath.a_square) - lomath.a_square(lomath.expVal(pV, xV)) :
-    lomath.expVal(pV, xV, _.flow(fn, lomath.a_square)) - lomath.a_square(lomath.expVal(pV, xV, fn));
+      lomath.expVal(pV, xV, lomath.a_square) - lomath.a_square(lomath.expVal(pV, xV)) :
+      lomath.expVal(pV, xV, _.flow(fn, lomath.a_square)) - lomath.a_square(lomath.expVal(pV, xV, fn));
   },
   // return the variance, given probability and value vectors
-  stdev: function(pV, xV) {
-    return Math.sqrt(lomath.variance(pV, xV));
+  stdev: function(pV, xV, fn) {
+    return Math.sqrt(lomath.variance(pV, xV, fn));
   },
-
-
 
   // Calculate the rate of return r in % of an exp growth, given final value m_f, initial value m_i, and time interval t
   expGRate: function(m_f, m_i, t) {
@@ -813,7 +795,6 @@ var lomath = _.mixin({
     return lomath.expGRate(v[len - 1], v[len - 1 - t], t);
   }
 })
-
 
 // Export lomath as _
 module.exports = lomath;

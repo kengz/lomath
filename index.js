@@ -661,7 +661,7 @@ var lomath = _.mixin({
         return t > range[k];
       });
       lomath.swap(range, k, l);
-      lomath.reverse(range, k + 1, null);
+      range = lomath.reverse(range, k + 1, null);
     }
     return res;
   },
@@ -669,6 +669,8 @@ var lomath = _.mixin({
   // return factorial(n)
   // alias: fact
   factorial: function(n) {
+    if (n==0) return 1;
+    if (n < 0) throw "Negative factorial not defined"
     var count = n,
       res = n;
     while (--count)
@@ -678,6 +680,8 @@ var lomath = _.mixin({
   // return n-permute-r
   // alias: perm
   permutation: function(n, r) {
+    if (r==0) return 1;
+    if (n < 0 || r < 0) throw "Negative permutation not defined"
     var count = r,
       term = n;
     res = n;
@@ -688,7 +692,9 @@ var lomath = _.mixin({
   // return n-choose-r
   // alias: comb
   combination: function(n, r) {
-    return lomath.permutation(n, r) / lomath.factorial(r);
+    var l = (r > n/2) ? n-r : r;
+    if (n < 0 || l < 0) throw "Negative combination not defined"
+    return lomath.permutation(n, l) / lomath.factorial(l);
   },
 
 

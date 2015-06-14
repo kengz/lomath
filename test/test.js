@@ -1246,53 +1246,59 @@ suite('Tensor transformation', function() {
 
 
   //----------------------------------------------
-  suite('transpose', function(){
+  suite('transpose', function() {
     var fn;
-    before(function(){
+    before(function() {
       fn = _.transpose
     })
 
-    test('square', function(){
+    test('square', function() {
       fn(A.C).should.deep.equal([
-        [1,4,7],
-        [2,5,8],
-        [3,6,9]
+        [1, 4, 7],
+        [2, 5, 8],
+        [3, 6, 9]
       ])
     })
-    test('non-square', function(){
+    test('non-square', function() {
       fn(A.M).should.deep.equal([
-        [1,3,5],
-        [2,4,6]
+        [1, 3, 5],
+        [2, 4, 6]
       ])
     })
 
   })
 
   //----------------------------------------------
-  suite('rectangularize; mutates', function(){
+  suite('rectangularize; mutates', function() {
     var fn, Q, R;
-    beforeEach(function(){
+    beforeEach(function() {
       fn = _.rectangularize
-      Q = [[1,2,3],[4]]
-      R = [[1,2,3],[4,5,6]]
+      Q = [
+        [1, 2, 3],
+        [4]
+      ]
+      R = [
+        [1, 2, 3],
+        [4, 5, 6]
+      ]
     })
 
-    test('non-rectangular, default', function(){
+    test('non-rectangular, default', function() {
       fn(Q).should.deep.equal([
-        [1,2,3],
-        [4,0,0]
+        [1, 2, 3],
+        [4, 0, 0]
       ])
     })
-    test('non-rectangular, val', function(){
+    test('non-rectangular, val', function() {
       fn(Q, -1).should.deep.equal([
-        [1,2,3],
-        [4,-1,-1]
+        [1, 2, 3],
+        [4, -1, -1]
       ])
     })
-    test('rectangular, no change', function(){
+    test('rectangular, no change', function() {
       fn(R).should.deep.equal([
-        [1,2,3],
-        [4,5,6]
+        [1, 2, 3],
+        [4, 5, 6]
       ])
     })
 
@@ -1300,25 +1306,234 @@ suite('Tensor transformation', function() {
 
 
   //----------------------------------------------
-  suite('reshape', function(){
+  suite('reshape', function() {
     var fn, Q, R;
-    before(function(){
+    before(function() {
       fn = _.reshape
-      Q = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6]
-      R = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6]
+      Q = [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6]
+      R = [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6]
     })
 
-    test('used with _.c and _.dim', function(){
+    test('used with _.c and _.dim', function() {
       fn(_.c(A.B), _.dim(A.B)).should.deep.equal(A.B)
     })
-    test('rectangular', function(){
-      fn(R, [2,3,4]).should.deep.equal(A.B)
+    test('rectangular', function() {
+      fn(R, [2, 3, 4]).should.deep.equal(A.B)
     })
-    test('non-rectangular', function(){
-      fn(Q, [2,3,4]).should.deep.equal([
-        [[1,1,1,1],[2,2,2,2],[3,3,3,3]],
-        [[4,4,4,4],[5,5,5,5],[6,6]]
+    test('non-rectangular', function() {
+      fn(Q, [2, 3, 4]).should.deep.equal([
+        [
+          [1, 1, 1, 1],
+          [2, 2, 2, 2],
+          [3, 3, 3, 3]
+        ],
+        [
+          [4, 4, 4, 4],
+          [5, 5, 5, 5],
+          [6, 6]
+        ]
       ])
+    })
+
+  })
+
+})
+
+
+
+//==============================================
+suite('Subsets and combinatorics', function() {
+
+  //----------------------------------------------
+  suite('genAry', function() {
+    var fn;
+    before(function() {
+      fn = _.genAry
+    })
+
+    test('binary', function() {
+      fn(1, 2).should.deep.equal(['0', '1'])
+      fn(2, 2).should.deep.equal(['00', '01', '10', '11'])
+      fn(3, 2).should.deep.equal(
+        ['000', '001', '010', '011', '100', '101', '110', '111']
+      )
+    })
+    test('ternary', function() {
+      fn(2, 3).should.deep.equal(['00', '01', '02', '10', '11', '12', '20', '21', '22'])
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('toNumArr', function() {
+    var fn;
+    before(function() {
+      fn = _.toNumArr
+    })
+
+    test('binary', function() {
+      fn(['00', '01', '10', '11']).should.deep.equal([
+        [0, 0],
+        [0, 1],
+        [1, 0],
+        [1, 1]
+      ])
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('pSubset', function() {
+    var fn;
+    before(function() {
+      fn = _.pSubset
+    })
+
+    test('3 elements', function() {
+      fn(3).should.deep.equal([
+        ['0', '1', '2'],
+        ['01','02','10','12','20','21'],
+        ['012','021','102','120','201','210']
+
+      ])
+    })
+
+  })
+
+
+  //----------------------------------------------
+  suite('subset', function(){
+    var fn;
+    before(function(){
+      fn = _.subset
+    })
+
+    test('3 elements', function() {
+      fn(3).should.deep.equal([
+        ['0', '1', '2'],
+        ['01','02','12'],
+        ['012']
+      ])
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('permList', function() {
+    var fn;
+    before(function() {
+      fn = _.permList
+    })
+
+    test('3 elements, with _.toNumArr', function() {
+      fn(3,1).should.deep.equal(_.toNumArr(['0', '1', '2']))
+      fn(3,2).should.deep.equal(_.toNumArr(['01','02','10','12','20','21']))
+      fn(3,3).should.deep.equal(_.toNumArr(['012','021','102','120','201','210']))
+
+    })
+
+  })
+
+
+  //----------------------------------------------
+  suite('subset', function(){
+    var fn;
+    before(function(){
+      fn = _.combList
+    })
+
+    test('3 elements, with _.toNumArr', function() {
+      fn(3,1).should.deep.equal(_.toNumArr(['0', '1', '2']))
+      fn(3,2).should.deep.equal(_.toNumArr(['01','02','12']))
+      fn(3,3).should.deep.equal(_.toNumArr(['012']))
+    })
+
+  })
+
+
+  //----------------------------------------------
+  suite('permute', function(){
+    var fn;
+    before(function(){
+      fn = _.permute
+    })
+
+    test('n elements', function(){
+      fn(2).should.deep.equal(_.permList(2,2))
+      fn(3).should.deep.equal(_.permList(3,3))
+      fn(4).should.deep.equal(_.permList(4,4))
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('factorial', function(){
+    var fn;
+    before(function(){
+      fn = _.factorial
+    })
+
+    test('normal', function(){
+      fn(5).should.equal(120)
+    })
+    test('0', function(){
+      fn(0).should.equal(1)
+    })
+    test('-1 throw error', function(){
+      (function(){return fn(-1)}).should.throw(/Negative factorial not defined/)
+    })
+    test('big, without stackoverflow', function(){
+      fn(1000).should.deep.equal(Infinity)
+    })
+
+  })
+
+
+  //----------------------------------------------
+  suite('permutation', function(){
+    var fn;
+    before(function(){
+      fn = _.permutation
+    })
+
+    test('normal', function(){
+      fn(5,1).should.deep.equal(5)
+      fn(5,5).should.deep.equal(120)
+      fn(1000,1).should.deep.equal(1000)
+    })
+    test('0', function(){
+      fn(5,0).should.deep.equal(1)
+    })
+    test('-1 throw error', function(){
+      (function(){return fn(5,-1)}).should.throw(/Negative permutation not defined/)
+    })
+    test('big, without stackoverflow', function(){
+      fn(1000,1000).should.deep.equal(Infinity)
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('combination', function(){
+    var fn;
+    before(function(){
+      fn = _.combination
+    })
+
+    test('normal', function(){
+      fn(5,1).should.deep.equal(5)
+      fn(5,5).should.deep.equal(1)
+      fn(1000,1).should.deep.equal(1000)
+      fn(1000,1000).should.deep.equal(1)
+    })
+    test('0', function(){
+      fn(5,0).should.deep.equal(1)
+    })
+    test('-1 throw error', function(){
+      (function(){return fn(5,-1)}).should.throw(/Negative combination not defined/)
+    })
+    test('big, without stackoverflow', function(){
+      fn(1000,500).should.deep.equal(NaN)
     })
 
   })
@@ -1330,11 +1545,7 @@ suite('Tensor transformation', function() {
 
 
 
-
-
-
-
-// The "TDD" interface provides suite(), test(), suiteSetup(), suiteTeardown(), setup(), and teardown()
+// The 'TDD' interface provides suite(), test(), suiteSetup(), suiteTeardown(), setup(), and teardown()
 //
 // suite('Array', function() {
 //   setup(function() {
@@ -1349,7 +1560,7 @@ suite('Tensor transformation', function() {
 // })
 
 // BDD
-// The "BDD" interface provides describe(), context(), it(), before(), after(), beforeEach(), and afterEach():
+// The 'BDD' interface provides describe(), context(), it(), before(), after(), beforeEach(), and afterEach():
 
 // context() is just an alias for describe(), and behaves the same way; it just provides a way to keep tests easier to read and organized
 // describe('Array', function(){

@@ -17,6 +17,7 @@ describe('Array', function() {
 })
 
 
+//==============================================
 suite('Distribute', function() {
 
   //----------------------------------------------
@@ -84,6 +85,7 @@ suite('Distribute', function() {
         ])
     })
 
+
   })
 
   //----------------------------------------------
@@ -97,20 +99,28 @@ suite('Distribute', function() {
       fn(A.pair, A.U, A.R).should.deep.equal(['a*3', 'b*2', 'c*1'])
     })
 
-    test('vector * longer vector', function(){
-      fn(A.pair, A.U, A.VV).should.deep.equal(['a*1', 'b*2', 'c*3','a*4', 'b*5', 'c*6'])
-    })
-
-    test('longer * vector !== longer * vector', function(){
-      fn(A.pair, A.VV, A.U).should.not.deep.equal(fn(A.pair, A.U, A.VV))
-    })
-
-    test('vector * matrix equal length', function(){
+    test('vector * matrix', function(){
       fn(A.pair, A.U, A.M).should.deep.equal([
         ['a*1', 'a*2'],
         ['b*3', 'b*4'],
         ['c*5', 'c*6']
       ])
+    })
+
+    test('matrix * matrix', function(){
+      fn(A.pair, A.L, A.M).should.deep.equal([
+        ['a*1', 'b*2'],
+        ['c*3', 'd*4'],
+        ['e*5', 'f*6']
+      ])
+    })
+
+    test('non-commutative: order-preserving', function(){
+      fn(A.pair, A.U, A.R).should.not.deep.equal(fn(A.pair, A.R, A.U))
+    })
+
+    test('vector * longer vector', function(){
+      fn(A.pair, A.U, A.VV).should.deep.equal(['a*1', 'b*2', 'c*3','a*4', 'b*5', 'c*6'])
     })
 
     test('longer vector * matrix', function(){
@@ -124,15 +134,95 @@ suite('Distribute', function() {
       ])
     })
 
-    // test('matrix', function(){
-    //   fn(args).should.deep.equal(expectation)
-    // })
+  })
+
+  //----------------------------------------------
+  suite('distribute', function(){
+    var fn;
+    before(function(){
+      fn = _.distribute
+    })
+
+    test('scalar * scalar', function() {
+      fn(A.pair, A.S, A.T).should.deep.equal('a*0')
+    })
+
+    test('scalar * vector', function() {
+      fn(A.pair, A.S, A.V).should.deep.equal(['a*1', 'a*2', 'a*3'])
+    })
+
+    test('scalar * matrix', function() {
+      fn(A.pair, A.S, A.M).should.deep.equal([
+          ['a*1', 'a*2'],
+          ['a*3', 'a*4'],
+          ['a*5', 'a*6']
+        ])
+    })
+
+    test('vector * vector', function(){
+      fn(A.pair, A.U, A.R).should.deep.equal(['a*3', 'b*2', 'c*1'])
+    })
+
+    test('vector * matrix', function(){
+      fn(A.pair, A.U, A.M).should.deep.equal([
+        ['a*1', 'a*2'],
+        ['b*3', 'b*4'],
+        ['c*5', 'c*6']
+      ])
+    })
+
+    test('matrix * matrix', function(){
+      fn(A.pair, A.L, A.M).should.deep.equal([
+        ['a*1', 'b*2'],
+        ['c*3', 'd*4'],
+        ['e*5', 'f*6']
+      ])
+    })
+
+    test('non-commutative: order-preserving', function(){
+      fn(A.pair, A.U, A.R).should.not.deep.equal(fn(A.pair, A.R, A.U))
+    })
+
+    test('vector * longer vector', function(){
+      fn(A.pair, A.U, A.VV).should.deep.equal(['a*1', 'b*2', 'c*3','a*4', 'b*5', 'c*6'])
+    })
+
+    test('longer vector * matrix', function(){
+      fn(A.pair, A.UU, A.M).should.deep.equal([
+        ['a*1', 'a*2'],
+        ['b*3', 'b*4'],
+        ['c*5', 'c*6'],
+        ['d*1', 'd*2'],
+        ['e*3', 'e*4'],
+        ['f*5', 'f*6']
+      ])
+    })
 
   })
 
 
 
 })
+
+
+//==============================================
+suite('Associate', function(){
+
+    //----------------------------------------------
+    suite('asso', function(){
+      var fn;
+      before(function(){
+        fn = _.asso
+      })
+
+      test('desc', function(){
+        fn(result).should.equal(expectation)
+      })
+
+    })
+
+})
+
 
 
 

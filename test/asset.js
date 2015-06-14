@@ -1,12 +1,21 @@
 var _ = require(__dirname+'/../index.js')
 
-module.exports = {
+var A = {
   _: _,
-  lone: function(x){return ['e',x].join('*')},
+  lone: function(x){return ['',x].join('*')},
   pair: function(x,y){return [x,y].join('*')},
-  S: 0,
-  V: [0,1,2],
-  R: [2,1,0],
-  W: [0,1,2,3,4,5],
-  M: [[10,20],[30,40],[50,60]]
+  S: 'a',
+  T: 0,
+  U: ['a','b','c'],
+  UU: ['a','b','c','d','e','f'],
+  V: [1,2,3],
+  VV: [1,2,3,4,5,6],
+  N: [-1,-2,-3],
+  R: [3,2,1],
+  M: [[1,2],[3,4],[5,6]]
 }
+
+module.exports = A;
+
+
+// console.log(_.distributeBoth(A.pair, A.V, A.W));

@@ -5,8 +5,8 @@
 // Prepare lodash for extension and export
 var _ = require('lodash').runInContext();
 
-// Export lodash and the math extension as _
-module.exports = _.mixin({
+// the module: lodash extended with math mixins
+var lomath = _.mixin({
     AUTHOR: "kengz",
     VERSION: "0.0.5",
 
@@ -24,15 +24,7 @@ module.exports = _.mixin({
         var len = Y.length,
             res = Array(len);
         while (len--) res[len] = Y[len] instanceof Array ?
-            this.distributeSingle(fn, Y[len]) : fn(Y[len])
-        return res;
-    },
-    // Distribute fn with left scalar x over right tensor Y.
-    distributeRight: function(fn, x, Y) {
-        var len = Y.length,
-            res = Array(len);
-        while (len--) res[len] = Y[len] instanceof Array ?
-            this.distributeRight(fn, x, Y[len]) : fn(x, Y[len])
+            lomath.distributeSingle(fn, Y[len]) : fn(Y[len])
         return res;
     },
     // Distribute fn with left tensor X over right scalar y.
@@ -40,7 +32,15 @@ module.exports = _.mixin({
         var len = X.length,
             res = Array(len);
         while (len--) res[len] = X[len] instanceof Array ?
-            this.distributeLeft(fn, X[len], y) : fn(X[len], y)
+            lomath.distributeLeft(fn, X[len], y) : fn(X[len], y)
+        return res;
+    },
+    // Distribute fn with left scalar x over right tensor Y.
+    distributeRight: function(fn, x, Y) {
+        var len = Y.length,
+            res = Array(len);
+        while (len--) res[len] = Y[len] instanceof Array ?
+            lomath.distributeRight(fn, x, Y[len]) : fn(x, Y[len])
         return res;
     },
 
@@ -50,31 +50,27 @@ module.exports = _.mixin({
         var Xlen = X.length,
             Ylen = Y.length;
         if (Xlen % Ylen == 0 || Ylen % Xlen == 0) {
-            var L, S;
+            var res;
             if (Xlen > Ylen) {
-                L = X;
-                S = Y;
+              res = Array(Xlen);
+              while (Xlen--) res[Xlen] = lomath.distribute(fn, X[Xlen], Y[Xlen % Ylen]);
             } else {
-                L = Y;
-                S = X;
+              res = Array(Ylen);
+              while (Ylen--) res[Ylen] = lomath.distribute(fn, X[Ylen % Xlen], Y[Ylen]);
             }
-            var Llen = L.length,
-                Slen = S.length,
-                res = Array(Llen);
-            while (Llen--) res[Llen] = this.distribute(fn, S[Llen % Slen], L[Llen]);
             return res;
         } else throw "Cannot distribute arrays of different dimensions.";
     },
     // Generic Distribute: Distribute fn between left tensor X and right tensor Y, while preserving the argument-ordering (vital for non-commutative functions).
-    // This pairs up the tensors term-wise while descending down the depths recursively, until finding a scalar to distributeLeft/Right.
+    // lomath pairs up the tensors term-wise while descending down the depths recursively, until finding a scalar to distributeLeft/Right.
     // Method is at its fastest, and assuming the data depth isn't too deep (otherwise JS will have troubles with it)
     distribute: function(fn, X, Y) {
         if (X instanceof Array)
             return Y instanceof Array ?
-                this.distributeBoth(fn, X, Y) : this.distributeLeft(fn, X, Y);
+                lomath.distributeBoth(fn, X, Y) : lomath.distributeLeft(fn, X, Y);
         else
             return Y instanceof Array ?
-                this.distributeRight(fn, X, Y) : fn(X, Y);
+                lomath.distributeRight(fn, X, Y) : fn(X, Y);
     },
 
     // Generic associate: take the arguments object or array and apply atomic fn (non-tensor) from left to right
@@ -95,8 +91,8 @@ module.exports = _.mixin({
             i = 0;
         // optimize arg form based on length or argObj
         var args = len < 3 ? argObj : _.toArray(argObj),
-            res = this.distribute(fn, args[i++], args[i++]);
-        while (i < len) res = this.distribute(fn, res, args[i++]);
+            res = lomath.distribute(fn, args[i++], args[i++]);
+        while (i < len) res = lomath.distribute(fn, res, args[i++]);
         return res;
     },
 
@@ -120,7 +116,7 @@ module.exports = _.mixin({
         var total = 0,
             len = T.length;
         while (len--) total += (T[len] instanceof Array ?
-            this.a_sum(T[len], 0) : T[len])
+            lomath.a_sum(T[len], 0) : T[len])
         return total;
     },
     // sum all values in all arguments
@@ -128,7 +124,7 @@ module.exports = _.mixin({
         var res = 0;
         var len = arguments.length;
         while (len--) res += (arguments[len] instanceof Array ?
-            this.a_sum(arguments[len]) : arguments[len])
+            lomath.a_sum(arguments[len]) : arguments[len])
         return res;
     },
     // atomic prod, analogue to a_sum. Multiply all values in a tensor
@@ -137,7 +133,7 @@ module.exports = _.mixin({
         var total = 1,
             len = T.length;
         while (len--) total *= (T[len] instanceof Array ?
-            this.a_prod(T[len], 1) : T[len])
+            lomath.a_prod(T[len], 1) : T[len])
         return total;
     },
     // product of all values in all arguments
@@ -145,7 +141,7 @@ module.exports = _.mixin({
         var res = 1,
             len = arguments.length;
         while (len--) res *= (arguments[len] instanceof Array ?
-            this.a_prod(arguments[len]) : arguments[len])
+            lomath.a_prod(arguments[len]) : arguments[len])
         return res;
     },
 
@@ -156,7 +152,7 @@ module.exports = _.mixin({
     // add all tensor arguments element-wise/distributively and associatively
     add: function() {
         // sample call pattern: pass whole args
-        return this.assodist(this.a_add, arguments);
+        return lomath.assodist(lomath.a_add, arguments);
     },
     // atomic subtract
     a_subtract: function(x, y) {
@@ -164,16 +160,16 @@ module.exports = _.mixin({
     },
     // subtract all tensor arguments element-wise/distributively and associatively
     subtract: function() {
-        return this.assodist(this.a_subtract, arguments);
+        return lomath.assodist(lomath.a_subtract, arguments);
     },
     // atomic multiply
     a_multiply: function(x, y) {
         return x * y;
     },
     // multiply all tensor arguments element-wise/distributively and associatively
-    // Note: This is generic; is different from matrix multiplication
+    // Note: lomath is generic; is different from matrix multiplication
     multiply: function() {
-        return this.assodist(this.a_multiply, arguments);
+        return lomath.assodist(lomath.a_multiply, arguments);
     },
     // atomic divide
     a_divide: function(x, y) {
@@ -181,7 +177,7 @@ module.exports = _.mixin({
     },
     // divide all tensor arguments element-wise/distributively and associatively
     divide: function() {
-        return this.assodist(this.a_divide, arguments);
+        return lomath.assodist(lomath.a_divide, arguments);
     },
     // atomic log. Use base e by default
     a_log: function(x, base) {
@@ -189,14 +185,14 @@ module.exports = _.mixin({
     },
     // take the log of tensor T to the n element-wise
     log: function(T, base) {
-        return this.distribute(this.a_log, T, base);
+        return lomath.distribute(lomath.a_log, T, base);
     },
     // atomic square
     a_square: function(x) {
         return x * x;
     },
     square: function(T) {
-        return this.distributeSingle(this.a_square, T);
+        return lomath.distributeSingle(lomath.a_square, T);
     },
     // atomic root
     a_root: function(x, n) {
@@ -207,7 +203,7 @@ module.exports = _.mixin({
     },
     // take the n-th root of tensor T element-wise
     root: function(T, n) {
-        return this.distribute(this.a_root, T, n);
+        return lomath.distribute(lomath.a_root, T, n);
     },
 
 
@@ -250,76 +246,76 @@ module.exports = _.mixin({
     // wrapped to function with generic tensor
 
     abs: function(T) {
-        return this.distributeSingle(Math.abs, T);
+        return lomath.distributeSingle(Math.abs, T);
     },
     acos: function(T) {
-        return this.distributeSingle(Math.acos, T);
+        return lomath.distributeSingle(Math.acos, T);
     },
     acosh: function(T) {
-        return this.distributeSingle(Math.acosh, T);
+        return lomath.distributeSingle(Math.acosh, T);
     },
     asin: function(T) {
-        return this.distributeSingle(Math.asin, T);
+        return lomath.distributeSingle(Math.asin, T);
     },
     asinh: function(T) {
-        return this.distributeSingle(Math.asinh, T);
+        return lomath.distributeSingle(Math.asinh, T);
     },
     atan: function(T) {
-        return this.distributeSingle(Math.atan, T);
+        return lomath.distributeSingle(Math.atan, T);
     },
     atanh: function(T) {
-        return this.distributeSingle(Math.atanh, T);
+        return lomath.distributeSingle(Math.atanh, T);
     },
     ceil: function(T) {
-        return this.distributeSingle(Math.ceil, T);
+        return lomath.distributeSingle(Math.ceil, T);
     },
     cos: function(T) {
-        return this.distributeSingle(Math.cos, T);
+        return lomath.distributeSingle(Math.cos, T);
     },
     cosh: function(T) {
-        return this.distributeSingle(Math.cosh, T);
+        return lomath.distributeSingle(Math.cosh, T);
     },
     exp: function(T) {
-        return this.distributeSingle(Math.exp, T);
+        return lomath.distributeSingle(Math.exp, T);
     },
     floor: function(T) {
-        return this.distributeSingle(Math.floor, T);
+        return lomath.distributeSingle(Math.floor, T);
     },
     log10: function(T) {
-        return this.distributeSingle(Math.log10, T);
+        return lomath.distributeSingle(Math.log10, T);
     },
     log1p: function(T) {
-        return this.distributeSingle(Math.log1p, T);
+        return lomath.distributeSingle(Math.log1p, T);
     },
     log2: function(T) {
-        return this.distributeSingle(Math.log2, T);
+        return lomath.distributeSingle(Math.log2, T);
     },
     round: function(T) {
-        return this.distributeSingle(Math.round, T);
+        return lomath.distributeSingle(Math.round, T);
     },
     pow: function(T, n) {
-        return this.distribute(Math.pow, T, n);
+        return lomath.distribute(Math.pow, T, n);
     },
     sign: function(T) {
-        return this.distributeSingle(Math.sign, T);
+        return lomath.distributeSingle(Math.sign, T);
     },
     sin: function(T) {
-        return this.distributeSingle(Math.sin, T);
+        return lomath.distributeSingle(Math.sin, T);
     },
     sinh: function(T) {
-        return this.distributeSingle(Math.sinh, T);
+        return lomath.distributeSingle(Math.sinh, T);
     },
     sqrt: function(T) {
-        return this.distributeSingle(Math.sqrt, T);
+        return lomath.distributeSingle(Math.sqrt, T);
     },
     tan: function(T) {
-        return this.distributeSingle(Math.tan, T);
+        return lomath.distributeSingle(Math.tan, T);
     },
     tanh: function(T) {
-        return this.distributeSingle(Math.tanh, T);
+        return lomath.distributeSingle(Math.tanh, T);
     },
     trunc: function(T) {
-        return this.distributeSingle(Math.trunc, T);
+        return lomath.distributeSingle(Math.trunc, T);
     },
 
 
@@ -359,7 +355,7 @@ module.exports = _.mixin({
     },
     // return a function that matches all(AND) of the regexs
     reAndMatch: function() {
-        return this.reMatch(this.reAnd.apply(null, arguments));
+        return lomath.reMatch(lomath.reAnd.apply(null, arguments));
     },
     // return a single regex as the "OR" of all arg regex's
     reOr: function() {
@@ -370,7 +366,7 @@ module.exports = _.mixin({
     },
     // return a function that matches at least one(OR) of the regexs
     reOrMatch: function() {
-        return this.reMatch(this.reOr.apply(null, arguments));
+        return lomath.reMatch(lomath.reOr.apply(null, arguments));
     },
 
 
@@ -453,7 +449,7 @@ module.exports = _.mixin({
         while (stack.length) {
             var curr = stack.pop(),
                 len = curr.length;
-            if (this.isFlat(curr))
+            if (lomath.isFlat(curr))
                 sizes.push(len);
             else
                 while (len--)
@@ -485,7 +481,7 @@ module.exports = _.mixin({
         var j = l == undefined ? arr.length - 1 : l;
         var mid = Math.ceil((i + j) / 2);
         while (i < mid)
-            this.swap(arr, i++, j--);
+            lomath.swap(arr, i++, j--);
         return arr;
     },
 
@@ -509,8 +505,8 @@ module.exports = _.mixin({
     rbindByField: function(M, fieldArr) {
         // assuming header is first row of matrix
         var header = M[0],
-        fieldInds = this.batchIndexOf(header, fieldArr);
-        return this.rbind(M, fieldInds);
+        fieldInds = lomath.batchIndexOf(header, fieldArr);
+        return lomath.rbind(M, fieldInds);
     },
     // return a copy with sub rows from matrix M
     rbind: function(M, indArr) {
@@ -533,13 +529,13 @@ module.exports = _.mixin({
     // make a tensor rectangular by filling with val, defaulted to 0.
     // mutates the tensor.
     rectangularize: function(T, val) {
-        var toLen = this.maxDeepestLength(T),
+        var toLen = lomath.maxDeepestLength(T),
             stack = [];
         stack.push(T);
         while (stack.length) {
             var curr = stack.pop();
-            if (this.isFlat(curr))
-                this.extendArray(curr, val, toLen);
+            if (lomath.isFlat(curr))
+                lomath.extendArray(curr, val, toLen);
             else
                 _.each(curr, function(c) {
                     stack.push(c);
@@ -569,7 +565,7 @@ module.exports = _.mixin({
             it = length;
         while (--it) {
             tmp = _.flattenDeep(_.map(range, function(x) {
-                return this.distributeRight(this.a_add, x, tmp)
+                return lomath.distributeRight(lomath.a_add, x, tmp)
             }));
         }
         return tmp;
@@ -625,11 +621,11 @@ module.exports = _.mixin({
 
     // generate the indices of n-perm-r
     permList: function(n, r) {
-        return this.toNumArr(this.pSubset(n)[r - 1]);
+        return lomath.toNumArr(lomath.pSubset(n)[r - 1]);
     },
     // generate the indices of n-choose-r
     combList: function(n, r) {
-        return this.toNumArr(this.subset(n)[r - 1]);
+        return lomath.toNumArr(lomath.subset(n)[r - 1]);
     },
 
     // generate all permutations of n items
@@ -639,13 +635,13 @@ module.exports = _.mixin({
             diffs, k = 0;
         while (k != -1) {
             res.push(range.slice(0));
-            diffs = this.stairs(range),
-                k = _.findLastIndex(diffs, this.isPositive);
+            diffs = lomath.stairs(range),
+                k = _.findLastIndex(diffs, lomath.isPositive);
             var l = _.findLastIndex(range, function(t) {
                 return t > range[k];
             });
-            this.swap(range, k, l);
-            this.reverse(range, k + 1, null);
+            lomath.swap(range, k, l);
+            lomath.reverse(range, k + 1, null);
         }
         return res;
     },
@@ -672,7 +668,7 @@ module.exports = _.mixin({
     // return n-choose-r
     // alias: comb
     combination: function(n, r) {
-        return this.permutation(n, r) / this.factorial(r);
+        return lomath.permutation(n, r) / lomath.factorial(r);
     },
 
 
@@ -682,25 +678,25 @@ module.exports = _.mixin({
 
     // return the dot product of two vectors
     dot: function(X, Y) {
-        return _.sum(this.multiply(X, Y));
+        return _.sum(lomath.multiply(X, Y));
     },
     // return the sum of n-powers of a tensor, default to n = 2
     powSum: function(T, n) {
         var L = n == undefined ? 2 : n;
-        return _.sum(this.pow(T, L));
+        return _.sum(lomath.pow(T, L));
     },
     // return the L-n norm of a vector, default to L-2
     norm: function(v, n) {
         var L = n == undefined ? 2 : n;
-        return this.a_root(this.powSum(v, L), L);
+        return lomath.a_root(lomath.powSum(v, L), L);
     },
     // normalize a vector(tensor) by L-n norm, default to n=2
     normalize: function(v, n) {
-        return this.divide(v, this.norm(v, n));
+        return lomath.divide(v, lomath.norm(v, n));
     },
     // rescale a vector to unit length
     rescale: function(v) {
-        return this.normalize(v, 1);
+        return lomath.normalize(v, 1);
     },
 
 
@@ -729,28 +725,28 @@ module.exports = _.mixin({
 
     // check if all tensor entries are of the same sign, with the specified sign function
     sameSign: function(T, signFn) {
-        return Boolean(this.prod(this.distributeSingle(signFn, T)));
+        return Boolean(lomath.prod(lomath.distributeSingle(signFn, T)));
     },
 
     // check the trend of vector v using sign-function
     stairsTrend: function(v, signFn) {
-        return this.sameSign(this.stairs(v), signFn);
+        return lomath.sameSign(lomath.stairs(v), signFn);
     },
     // check if vector v is increasing
     increasing: function(v) {
-        return this.stairsTrend(v, this.isPositive);
+        return lomath.stairsTrend(v, lomath.isPositive);
     },
     // check is vector v is non-decreasing
     nonDecreasing: function(v) {
-        return this.stairsTrend(v, this.nonNegative);
+        return lomath.stairsTrend(v, lomath.nonNegative);
     },
     // check is vector v is decreasing
     decreasing: function(v) {
-        return this.stairsTrend(v, this.isNegative);
+        return lomath.stairsTrend(v, lomath.isNegative);
     },
     // check is vector v is non-increasing
     nonIncreasing: function(v) {
-        return this.stairsTrend(v, this.nonPositive);
+        return lomath.stairsTrend(v, lomath.nonPositive);
     },
 
 
@@ -769,17 +765,17 @@ module.exports = _.mixin({
     // alias E
     expVal: function(pV, xV, fn) {
         if (fn != undefined)
-            return this.dot(pV, this.distributeSingle(fn, xV));
-        return this.dot(pV, xV);
+            return lomath.dot(pV, lomath.distributeSingle(fn, xV));
+        return lomath.dot(pV, xV);
     },
     // return the variance, given probability and value vectors
     // alias Var
     variance: function(pV, xV) {
-        return this.expVal(pV, xV, this.a_square) - this.a_square(this.expVal(pV, xV));
+        return lomath.expVal(pV, xV, lomath.a_square) - lomath.a_square(lomath.expVal(pV, xV));
     },
     // return the variance, given probability and value vectors
     stdev: function(pV, xV) {
-        return Math.sqrt(this.variance(pV, xV));
+        return Math.sqrt(lomath.variance(pV, xV));
     },
 
 
@@ -791,6 +787,10 @@ module.exports = _.mixin({
     // Calculate the trailing exp rate of return in the last t years given a vector v
     trailExpGRate: function(v, t) {
         var len = arr.length;
-        return this.expRate(v[len - 1], v[len - 1 - t], t);
+        return lomath.expRate(v[len - 1], v[len - 1 - t], t);
     }
 })
+
+
+// Export lomath as _
+module.exports = lomath;

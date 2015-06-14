@@ -1,8 +1,12 @@
 // var _ = require(__dirname+'/../index.js')
 var A = require(__dirname + '/asset.js')
 var _ = A._
-// var assert = require('assert')
-var assert = require('chai').assert
+  // var assert = require('assert')
+var chai = require('chai'),
+  assert = chai.assert,
+  expect = chai.expect,
+  should = chai.should()
+
 
 describe('Array', function() {
   describe('_.range', function() {
@@ -15,16 +19,118 @@ describe('Array', function() {
 
 suite('Distribute', function() {
 
+  //----------------------------------------------
   suite('distributeSingle(fn, Y)', function() {
-		var fn = _.distributeSingle;
-    test('should return', function() {
-      assert.equal('e*0', fn(A.lone, A.S))
+    var fn;
+    beforeEach(function() {
+      fn = _.distributeSingle;
     })
-		test('should do', function(){
-		  assert.deepEqual(['e*0', 'e*1', 'e*2'], fn(A.lone, A.V))
-		})
+
+    test('scalar', function() {
+      fn(A.lone, A.S).should.equal('*a')
+    })
+
+    test('vector', function() {
+      fn(A.lone, A.V).should.deep.equal(['*1', '*2', '*3'])
+    })
+
+    test('matrix', function() {
+      fn(A.lone, A.M).should.deep.equal([
+          ['*1', '*2'],
+          ['*3', '*4'],
+          ['*5', '*6']
+        ])
+    })
 
   })
+
+  //----------------------------------------------
+  suite('distributeLeft(fn, X, y)', function() {
+    var fn;
+    before(function() {
+      fn = _.distributeLeft
+    })
+
+    test('vector * scalar', function() {
+      fn(A.pair, A.V, A.S).should.deep.equal(['1*a', '2*a', '3*a'])
+    })
+
+    test('matrix * scalar', function() {
+      fn(A.pair, A.M, A.S).should.deep.equal([
+          ['1*a', '2*a'],
+          ['3*a', '4*a'],
+          ['5*a', '6*a']
+        ])
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('distributeRight(fn, x, Y)', function() {
+    var fn;
+    before(function() {
+      fn = _.distributeRight
+    })
+
+    test('scalar * vector', function() {
+      fn(A.pair, A.S, A.V).should.deep.equal(['a*1', 'a*2', 'a*3'])
+    })
+
+    test('scalar * matrix', function() {
+      fn(A.pair, A.S, A.M).should.deep.equal([
+          ['a*1', 'a*2'],
+          ['a*3', 'a*4'],
+          ['a*5', 'a*6']
+        ])
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('distributeBoth', function(){
+    var fn;
+    before(function(){
+      fn = _.distributeBoth
+    })
+
+    test('vector * vector', function(){
+      fn(A.pair, A.U, A.R).should.deep.equal(['a*3', 'b*2', 'c*1'])
+    })
+
+    test('vector * longer vector', function(){
+      fn(A.pair, A.U, A.VV).should.deep.equal(['a*1', 'b*2', 'c*3','a*4', 'b*5', 'c*6'])
+    })
+
+    test('longer * vector !== longer * vector', function(){
+      fn(A.pair, A.VV, A.U).should.not.deep.equal(fn(A.pair, A.U, A.VV))
+    })
+
+    test('vector * matrix equal length', function(){
+      fn(A.pair, A.U, A.M).should.deep.equal([
+        ['a*1', 'a*2'],
+        ['b*3', 'b*4'],
+        ['c*5', 'c*6']
+      ])
+    })
+
+    test('longer vector * matrix', function(){
+      fn(A.pair, A.UU, A.M).should.deep.equal([
+        ['a*1', 'a*2'],
+        ['b*3', 'b*4'],
+        ['c*5', 'c*6'],
+        ['d*1', 'd*2'],
+        ['e*3', 'e*4'],
+        ['f*5', 'f*6']
+      ])
+    })
+
+    // test('matrix', function(){
+    //   fn(args).should.deep.equal(expectation)
+    // })
+
+  })
+
+
 
 })
 

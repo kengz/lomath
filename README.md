@@ -22,6 +22,7 @@ console.log(_.functions(_)) // all the functions in lodash, prepended with lomat
 Docs and tests coming soon.
 
 ## Roadmap
+- add aliases
 - sample usage
 - docs
 - tests

@@ -3,8 +3,8 @@ var A = require(__dirname + '/asset.js')
 var _ = A._
   // chai assertation library
 var chai = require('chai'),
-  // assert = chai.assert,
-  // expect = chai.expect,
+  assert = chai.assert,
+  expect = chai.expect,
   should = chai.should()
 
 
@@ -18,7 +18,7 @@ var chai = require('chai'),
 
 
 
-//##############################################
+//==============================================
 suite('Function builder backend', function() {
 
   //==============================================
@@ -88,7 +88,6 @@ suite('Function builder backend', function() {
           ['a*5', 'a*6']
         ])
       })
-
 
     })
 
@@ -204,8 +203,6 @@ suite('Function builder backend', function() {
 
     })
 
-
-
   })
 
 
@@ -248,11 +245,625 @@ suite('Function builder backend', function() {
 
     })
 
+  })
+
+})
+
+
+
+
+
+//==============================================
+suite('Simple functions generalized with assodist for tensor', function() {
+
+  //----------------------------------------------
+  suite('c', function() {
+    var fn;
+    before(function() {
+      fn = _.c
+    })
+
+    test('concat scalars', function() {
+      fn('a', 'b', 'c').should.deep.equal(['a', 'b', 'c'])
+    })
+
+    test('concat vector', function() {
+      fn(A.V).should.deep.equal(A.V)
+    })
+
+    test('concat matrix', function() {
+      fn(A.M).should.deep.equal([1, 2, 3, 4, 5, 6])
+    })
+
+    test('concat tensors', function() {
+      fn(A.S, A.V, A.U, A.M).should.deep.equal(['a', 1, 2, 3, 'a', 'b', 'c', 1, 2, 3, 4, 5, 6])
+    })
 
   })
 
 
+  //----------------------------------------------
+  suite('a_sum', function() {
+    var fn;
+    before(function() {
+      fn = _.a_sum
+    })
+
+    test('atomic sum single tensor', function() {
+      fn(A.M).should.equal(1 + 2 + 3 + 4 + 5 + 6)
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('sum', function() {
+    var fn;
+    before(function() {
+      fn = _.sum
+    })
+
+    test('sum tensors', function() {
+      fn(A.T, A.V, A.M).should.equal(0 + 1 + 2 + 3 + 1 + 2 + 3 + 4 + 5 + 6)
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('a_prod', function() {
+    var fn;
+    before(function() {
+      fn = _.a_prod
+    })
+
+    test('atomic product single tensor', function() {
+      fn(A.M).should.equal(1 * 2 * 3 * 4 * 5 * 6)
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('prod', function() {
+    var fn;
+    before(function() {
+      fn = _.prod
+    })
+
+    test('prod tensors', function() {
+      fn(A.T, A.V, A.M).should.equal(0 * 1 * 2 * 3 * 1 * 2 * 3 * 4 * 5 * 6)
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('a_add', function() {
+    var fn;
+    before(function() {
+      fn = _.a_add
+    })
+
+    test('atomic add scalars', function() {
+      fn(1, 2).should.equal(1 + 2)
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('add', function() {
+    var fn;
+    before(function() {
+      fn = _.add
+    })
+
+    test('scalars', function() {
+      fn(1, 2, 3).should.equal(1 + 2 + 3)
+    })
+
+    test('scalar and vector', function() {
+      fn(A.T, A.V).should.deep.equal(A.V)
+    })
+
+    test('scalar and matrix', function() {
+      fn(A.T, A.M).should.deep.equal(A.M)
+    })
+
+    test('vector and vector', function() {
+      fn(A.V, A.N).should.deep.equal([0, 0, 0])
+    })
+
+    test('vector and matrix', function() {
+      fn(A.V, A.M).should.deep.equal([
+        [1 + 1, 1 + 2],
+        [2 + 3, 2 + 4],
+        [3 + 5, 3 + 6]
+      ])
+    })
+
+    test('matrix and matrix', function() {
+      fn(A.K, A.M).should.deep.equal([
+        [0, 0],
+        [0, 0],
+        [0, 0]
+      ])
+    })
+
+    test('vectors of unequal lengths', function() {
+      fn(A.V, A.VV).should.deep.equal([1 + 1, 2 + 2, 3 + 3, 1 + 4, 2 + 5, 3 + 6])
+    })
+
+    test('tensors of unequal lengths', function() {
+      fn(A.VV, A.M).should.deep.equal([
+        [1 + 1, 1 + 2],
+        [2 + 3, 2 + 4],
+        [3 + 5, 3 + 6],
+        [4 + 1, 4 + 2],
+        [5 + 3, 5 + 4],
+        [6 + 5, 6 + 6]
+      ])
+    })
+
+    test('multiple tensors', function() {
+      fn(A.V, A.M, A.R).should.deep.equal([
+        [1 + 1 + 3, 1 + 2 + 3],
+        [2 + 3 + 2, 2 + 4 + 2],
+        [3 + 5 + 1, 3 + 6 + 1]
+      ])
+    })
+
+  })
+
+
+  //----------------------------------------------
+  suite('a_subtract', function() {
+    var fn;
+    before(function() {
+      fn = _.a_subtract
+    })
+
+    test('atomic subtract scalars', function() {
+      fn(1, 2).should.equal(1 - 2)
+    })
+
+  })
+
+
+  //----------------------------------------------
+  suite('subtract', function() {
+    var fn;
+    before(function() {
+      fn = _.subtract
+    })
+
+    test('scalars', function() {
+      fn(1, 2, 3).should.equal(1 - 2 - 3)
+    })
+
+    test('scalar and vector', function() {
+      fn(A.T, A.V).should.deep.equal(A.N)
+    })
+
+    test('scalar and matrix', function() {
+      fn(A.T, A.M).should.deep.equal(A.K)
+    })
+
+    test('vector and vector', function() {
+      fn(A.V, A.V).should.deep.equal([0, 0, 0])
+    })
+
+    test('vector and matrix', function() {
+      fn(A.V, A.M).should.deep.equal([
+        [1 - 1, 1 - 2],
+        [2 - 3, 2 - 4],
+        [3 - 5, 3 - 6]
+      ])
+    })
+
+    test('matrix and matrix', function() {
+      fn(A.M, A.M).should.deep.equal([
+        [0, 0],
+        [0, 0],
+        [0, 0]
+      ])
+    })
+
+    test('vectors of unequal lengths', function() {
+      fn(A.V, A.VV).should.deep.equal([1 - 1, 2 - 2, 3 - 3, 1 - 4, 2 - 5, 3 - 6])
+    })
+
+    test('tensors of unequal lengths', function() {
+      fn(A.VV, A.M).should.deep.equal([
+        [1 - 1, 1 - 2],
+        [2 - 3, 2 - 4],
+        [3 - 5, 3 - 6],
+        [4 - 1, 4 - 2],
+        [5 - 3, 5 - 4],
+        [6 - 5, 6 - 6]
+      ])
+    })
+
+    test('multiple tensors', function() {
+      fn(A.V, A.M, A.R).should.deep.equal([
+        [1 - 1 - 3, 1 - 2 - 3],
+        [2 - 3 - 2, 2 - 4 - 2],
+        [3 - 5 - 1, 3 - 6 - 1]
+      ])
+    })
+
+  })
+
+
+
+  //----------------------------------------------
+  suite('a_multiply', function() {
+    var fn;
+    before(function() {
+      fn = _.a_multiply
+    })
+
+    test('atomic multiply scalars', function() {
+      fn(1, 2).should.equal(1 * 2)
+    })
+
+  })
+
+
+  //----------------------------------------------
+  suite('multiply', function() {
+    var fn;
+    before(function() {
+      fn = _.multiply
+    })
+
+    test('scalars', function() {
+      fn(1, 2, 3).should.equal(1 * 2 * 3)
+    })
+
+    test('scalar and vector', function() {
+      fn(A.T, A.V).should.deep.equal([0, 0, 0])
+    })
+
+    test('scalar and matrix', function() {
+      fn(A.T, A.M).should.deep.equal([
+        [0, 0],
+        [0, 0],
+        [0, 0]
+      ])
+    })
+
+    test('vector and vector', function() {
+      fn(A.V, A.V).should.deep.equal([1 * 1, 2 * 2, 3 * 3])
+    })
+
+    test('vector and matrix', function() {
+      fn(A.V, A.M).should.deep.equal([
+        [1 * 1, 1 * 2],
+        [2 * 3, 2 * 4],
+        [3 * 5, 3 * 6]
+      ])
+    })
+
+    test('matrix and matrix', function() {
+      fn(A.M, A.M).should.deep.equal([
+        [1 * 1, 2 * 2],
+        [3 * 3, 4 * 4],
+        [5 * 5, 6 * 6]
+      ])
+    })
+
+    test('vectors of unequal lengths', function() {
+      fn(A.V, A.VV).should.deep.equal([1 * 1, 2 * 2, 3 * 3, 1 * 4, 2 * 5, 3 * 6])
+    })
+
+    test('tensors of unequal lengths', function() {
+      fn(A.VV, A.M).should.deep.equal([
+        [1 * 1, 1 * 2],
+        [2 * 3, 2 * 4],
+        [3 * 5, 3 * 6],
+        [4 * 1, 4 * 2],
+        [5 * 3, 5 * 4],
+        [6 * 5, 6 * 6]
+      ])
+    })
+
+    test('multiple tensors', function() {
+      fn(A.V, A.M, A.R).should.deep.equal([
+        [1 * 1 * 3, 1 * 2 * 3],
+        [2 * 3 * 2, 2 * 4 * 2],
+        [3 * 5 * 1, 3 * 6 * 1]
+      ])
+    })
+
+  })
+
+
+
+  //----------------------------------------------
+  suite('a_divide', function() {
+    var fn;
+    before(function() {
+      fn = _.a_divide
+    })
+
+    test('atomic divide scalars', function() {
+      fn(1, 2).should.equal(1 / 2)
+    })
+
+  })
+
+
+  //----------------------------------------------
+  suite('divide', function() {
+    var fn;
+    before(function() {
+      fn = _.divide
+    })
+
+    test('scalars', function() {
+      fn(1, 2, 3).should.equal(1 / 2 / 3)
+    })
+
+    test('scalar and vector', function() {
+      fn(A.T, A.V).should.deep.equal([0, 0, 0])
+    })
+
+    test('scalar and matrix', function() {
+      fn(A.T, A.M).should.deep.equal([
+        [0, 0],
+        [0, 0],
+        [0, 0]
+      ])
+    })
+
+    test('vector and vector', function() {
+      fn(A.V, A.V).should.deep.equal([1 / 1, 2 / 2, 3 / 3])
+    })
+
+    test('vector and matrix', function() {
+      fn(A.V, A.M).should.deep.equal([
+        [1 / 1, 1 / 2],
+        [2 / 3, 2 / 4],
+        [3 / 5, 3 / 6]
+      ])
+    })
+
+    test('matrix and matrix', function() {
+      fn(A.M, A.M).should.deep.equal([
+        [1 / 1, 2 / 2],
+        [3 / 3, 4 / 4],
+        [5 / 5, 6 / 6]
+      ])
+    })
+
+    test('vectors of unequal lengths', function() {
+      fn(A.V, A.VV).should.deep.equal([1 / 1, 2 / 2, 3 / 3, 1 / 4, 2 / 5, 3 / 6])
+    })
+
+    test('tensors of unequal lengths', function() {
+      fn(A.VV, A.M).should.deep.equal([
+        [1 / 1, 1 / 2],
+        [2 / 3, 2 / 4],
+        [3 / 5, 3 / 6],
+        [4 / 1, 4 / 2],
+        [5 / 3, 5 / 4],
+        [6 / 5, 6 / 6]
+      ])
+    })
+
+    test('multiple tensors', function() {
+      fn(A.V, A.M, A.R).should.deep.equal([
+        [1 / 1 / 3, 1 / 2 / 3],
+        [2 / 3 / 2, 2 / 4 / 2],
+        [3 / 5 / 1, 3 / 6 / 1]
+      ])
+    })
+
+  })
+
+
+  //----------------------------------------------
+  suite('a_log', function() {
+    var fn;
+    before(function() {
+      fn = _.a_log
+    })
+
+    test('atomic log, base e default', function() {
+      fn(Math.E).should.equal(1);
+    })
+
+    test('base specified', function() {
+      fn(8, 2).should.equal(3);
+    })
+
+    test('log(0)', function() {
+      fn(0).should.equal(-Infinity);
+    })
+
+    test('log(Infinity)', function() {
+      fn(-1).should.deep.equal(NaN);
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('log', function() {
+    var fn;
+    before(function() {
+      fn = _.log
+    })
+
+    test('tensor', function() {
+      fn(A.V).should.deep.equal([_.a_log(1), _.a_log(2), _.a_log(3)])
+    })
+
+  })
+
+
+  //----------------------------------------------
+  suite('a_square', function() {
+    var fn;
+    before(function() {
+      fn = _.a_square
+    })
+
+    test('atomic square', function() {
+      fn(2).should.equal(4)
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('square', function() {
+    var fn;
+    before(function() {
+      fn = _.square
+    })
+
+    test('tensor', function() {
+      fn(A.V).should.deep.equal([_.a_square(1), _.a_square(2), _.a_square(3)])
+    })
+
+  })
+
+
+  //----------------------------------------------
+  suite('a_root', function() {
+    var fn;
+    before(function() {
+      fn = _.a_root
+    })
+
+    test('atomic root, base 2 default', function() {
+      fn(4).should.equal(2);
+    })
+
+    test('base specified', function() {
+      fn(8, 3).should.equal(2);
+    })
+
+    test('negative with even base', function() {
+      fn(-4, 2).should.deep.equal(NaN);
+    })
+
+    test('negative with odd base', function() {
+      fn(-8, 3).should.equal(-2);
+    })
+
+    test('base == 0', function() {
+      fn(4, 0).should.deep.equal(Infinity);
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('root', function() {
+    var fn;
+    before(function() {
+      fn = _.root
+    })
+
+    test('tensor', function() {
+      fn(A.V).should.deep.equal([_.a_root(1), _.a_root(2), _.a_root(3)])
+    })
+
+  })
+
 })
+
+
+
+//==============================================
+suite('Simple signature checkers for tensors', function() {
+
+  //----------------------------------------------
+  suite('sameSig', function() {
+    var fn;
+    before(function() {
+      fn = _.sameSig
+    })
+
+    test('isInteger', function() {
+      fn(A.V, _.isInteger).should.be.true
+    })
+    test('isDouble', function() {
+      fn([0.1, 0.2], _.isDouble).should.be.true
+    })
+    test('isPositive', function() {
+      fn(A.V, _.isPositive).should.be.true
+    })
+    test('nonPositive', function() {
+      fn([0, -1, -2], _.nonPositive).should.be.true
+    })
+    test('isNegative', function() {
+      fn(A.N, _.isNegative).should.be.true
+    })
+    test('nonNegative', function() {
+      fn([0, 1, 2], _.nonNegative).should.be.true
+    })
+    test('nonZero', function() {
+      fn(A.V, _.nonZero).should.be.true
+    })
+
+  })
+
+})
+
+
+//==============================================
+suite('Simple JS Math functions for tensors', function() {
+
+  var fn;
+  beforeEach(function() {
+    fn = _.distributeSingle;
+  })
+  test('tests implied from Function builder backend', function() {
+    fn(A.lone, A.S).should.equal('*a')
+  })
+
+})
+
+
+
+//==============================================
+suite('Regex functions', function() {
+
+    test('reMatch', function(){
+      _.reMatch(A.reWord)(A.strWord).should.be.true
+      _.reMatch(A.reWord)(A.strNum).should.be.false
+      _.reMatch(A.reNum)(A.strNum).should.be.true
+      _.reMatch(A.reNum)(A.strWord).should.be.false
+    })
+    test('reNotMatch', function(){
+      _.reNotMatch(A.reWord)(A.strWord).should.be.false
+      _.reNotMatch(A.reWord)(A.strNum).should.be.true
+      _.reNotMatch(A.reNum)(A.strNum).should.be.false
+      _.reNotMatch(A.reNum)(A.strWord).should.be.true
+    })
+    test('reGet', function(){
+      _.reGet(A.reWord)(A.str).should.equal(A.strWord)
+      _.reGet(A.reNum)(A.str).should.equal(A.strNum)
+      expect(_.reGet(A.reWord)(A.strNum)).to.be.null
+    })
+    test('reAnd', function(){
+      _.reAnd(A.reWord, A.reNum).should.be.an.instanceof(RegExp)
+      _.reAnd(A.reWord, A.reNum).should.deep.equal(/(?=.*[a-zA-Z]+)(?=.*[0-9]+)/)
+    })
+    test('reAndMatch', function(){
+      _.reAndMatch(A.reWord, A.reNum)(A.str).should.be.true
+      _.reAndMatch(A.reWord, A.reNum)(A.strWord).should.be.false
+      _.reAndMatch(A.reWord, A.reNum)(A.strNum).should.be.false
+    })
+    test('reOr', function(){
+      _.reOr(A.reWord, A.reNum).should.be.an.instanceof(RegExp)
+      _.reOr(A.reWord, A.reNum).should.deep.equal(/(?=.*[a-zA-Z]+)|(?=.*[0-9]+)/)
+    })
+    test('reAndMatch', function(){
+      _.reOrMatch(A.reWord, A.reNum)(A.str).should.be.true
+      _.reOrMatch(A.reWord, A.reNum)(A.strWord).should.be.true
+      _.reOrMatch(A.reWord, A.reNum)(A.strNum).should.be.true
+    })
+
+})
+
 
 
 

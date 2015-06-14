@@ -213,8 +213,8 @@ var lomath = _.mixin({
   ////////////////////
 
   // check if x is in range set by left, right
-  inRange: function(left,right,x) {
-    return left-1 < x && x < right+1;
+  inRange: function(left, right, x) {
+    return left - 1 < x && x < right + 1;
   },
   // check if x is an integer
   isInteger: function(x) {
@@ -669,7 +669,7 @@ var lomath = _.mixin({
   // return factorial(n)
   // alias: fact
   factorial: function(n) {
-    if (n==0) return 1;
+    if (n == 0) return 1;
     if (n < 0) throw "Negative factorial not defined"
     var count = n,
       res = n;
@@ -680,7 +680,7 @@ var lomath = _.mixin({
   // return n-permute-r
   // alias: perm
   permutation: function(n, r) {
-    if (r==0) return 1;
+    if (r == 0) return 1;
     if (n < 0 || r < 0) throw "Negative permutation not defined"
     var count = r,
       term = n;
@@ -692,7 +692,7 @@ var lomath = _.mixin({
   // return n-choose-r
   // alias: comb
   combination: function(n, r) {
-    var l = (r > n/2) ? n-r : r;
+    var l = (r > n / 2) ? n - r : r;
     if (n < 0 || l < 0) throw "Negative combination not defined"
     return lomath.permutation(n, l) / lomath.factorial(l);
   },
@@ -703,6 +703,7 @@ var lomath = _.mixin({
   /////////////////////
 
   // return the dot product of two vectors
+  // recyle if lengths mismatch
   dot: function(X, Y) {
     return _.sum(lomath.multiply(X, Y));
   },
@@ -790,8 +791,10 @@ var lomath = _.mixin({
   },
   // return the variance, given probability and value vectors
   // alias Var
-  variance: function(pV, xV) {
-    return lomath.expVal(pV, xV, lomath.a_square) - lomath.a_square(lomath.expVal(pV, xV));
+  variance: function(pV, xV, fn) {
+    return fn == undefined ?
+    lomath.expVal(pV, xV, lomath.a_square) - lomath.a_square(lomath.expVal(pV, xV)) :
+    lomath.expVal(pV, xV, _.flow(fn, lomath.a_square)) - lomath.a_square(lomath.expVal(pV, xV, fn));
   },
   // return the variance, given probability and value vectors
   stdev: function(pV, xV) {
@@ -806,8 +809,8 @@ var lomath = _.mixin({
   },
   // Calculate the trailing exp rate of return in the last t years given a vector v
   trailExpGRate: function(v, t) {
-    var len = arr.length;
-    return lomath.expRate(v[len - 1], v[len - 1 - t], t);
+    var len = v.length;
+    return lomath.expGRate(v[len - 1], v[len - 1 - t], t);
   }
 })
 

@@ -1,21 +1,12 @@
-// assets for convenience
-var A = require(__dirname + '/asset.js')
-var _ = A._
-  // chai assertation library
+// chai assertation library
 var chai = require('chai'),
-  assert = chai.assert,
+  // assert = chai.assert,
   expect = chai.expect,
   should = chai.should()
 
-
-// describe('Array', function() {
-//   describe('_.range', function() {
-//     it('should start from 0 by default', function() {
-//       assert.equal(0, _.range(3)[0]);
-//     })
-//   })
-// })
-
+// a separate test asset for convenience
+var A = require(__dirname + '/asset.js')
+var _ = A._
 
 
 //==============================================
@@ -1392,8 +1383,8 @@ suite('Subsets and combinatorics', function() {
     test('3 elements', function() {
       fn(3).should.deep.equal([
         ['0', '1', '2'],
-        ['01','02','10','12','20','21'],
-        ['012','021','102','120','201','210']
+        ['01', '02', '10', '12', '20', '21'],
+        ['012', '021', '102', '120', '201', '210']
 
       ])
     })
@@ -1402,16 +1393,16 @@ suite('Subsets and combinatorics', function() {
 
 
   //----------------------------------------------
-  suite('subset', function(){
+  suite('subset', function() {
     var fn;
-    before(function(){
+    before(function() {
       fn = _.subset
     })
 
     test('3 elements', function() {
       fn(3).should.deep.equal([
         ['0', '1', '2'],
-        ['01','02','12'],
+        ['01', '02', '12'],
         ['012']
       ])
     })
@@ -1426,9 +1417,9 @@ suite('Subsets and combinatorics', function() {
     })
 
     test('3 elements, with _.toNumArr', function() {
-      fn(3,1).should.deep.equal(_.toNumArr(['0', '1', '2']))
-      fn(3,2).should.deep.equal(_.toNumArr(['01','02','10','12','20','21']))
-      fn(3,3).should.deep.equal(_.toNumArr(['012','021','102','120','201','210']))
+      fn(3, 1).should.deep.equal(_.toNumArr(['0', '1', '2']))
+      fn(3, 2).should.deep.equal(_.toNumArr(['01', '02', '10', '12', '20', '21']))
+      fn(3, 3).should.deep.equal(_.toNumArr(['012', '021', '102', '120', '201', '210']))
 
     })
 
@@ -1436,53 +1427,55 @@ suite('Subsets and combinatorics', function() {
 
 
   //----------------------------------------------
-  suite('subset', function(){
+  suite('subset', function() {
     var fn;
-    before(function(){
+    before(function() {
       fn = _.combList
     })
 
     test('3 elements, with _.toNumArr', function() {
-      fn(3,1).should.deep.equal(_.toNumArr(['0', '1', '2']))
-      fn(3,2).should.deep.equal(_.toNumArr(['01','02','12']))
-      fn(3,3).should.deep.equal(_.toNumArr(['012']))
+      fn(3, 1).should.deep.equal(_.toNumArr(['0', '1', '2']))
+      fn(3, 2).should.deep.equal(_.toNumArr(['01', '02', '12']))
+      fn(3, 3).should.deep.equal(_.toNumArr(['012']))
     })
 
   })
 
 
   //----------------------------------------------
-  suite('permute', function(){
+  suite('permute', function() {
     var fn;
-    before(function(){
+    before(function() {
       fn = _.permute
     })
 
-    test('n elements', function(){
-      fn(2).should.deep.equal(_.permList(2,2))
-      fn(3).should.deep.equal(_.permList(3,3))
-      fn(4).should.deep.equal(_.permList(4,4))
+    test('n elements', function() {
+      fn(2).should.deep.equal(_.permList(2, 2))
+      fn(3).should.deep.equal(_.permList(3, 3))
+      fn(4).should.deep.equal(_.permList(4, 4))
     })
 
   })
 
   //----------------------------------------------
-  suite('factorial', function(){
+  suite('factorial', function() {
     var fn;
-    before(function(){
+    before(function() {
       fn = _.factorial
     })
 
-    test('normal', function(){
+    test('normal', function() {
       fn(5).should.equal(120)
     })
-    test('0', function(){
+    test('0', function() {
       fn(0).should.equal(1)
     })
-    test('-1 throw error', function(){
-      (function(){return fn(-1)}).should.throw(/Negative factorial not defined/)
+    test('-1 throw error', function() {
+      (function() {
+        return fn(-1)
+      }).should.throw(/Negative factorial not defined/)
     })
-    test('big, without stackoverflow', function(){
+    test('big, without stackoverflow', function() {
       fn(1000).should.deep.equal(Infinity)
     })
 
@@ -1490,50 +1483,54 @@ suite('Subsets and combinatorics', function() {
 
 
   //----------------------------------------------
-  suite('permutation', function(){
+  suite('permutation', function() {
     var fn;
-    before(function(){
+    before(function() {
       fn = _.permutation
     })
 
-    test('normal', function(){
-      fn(5,1).should.deep.equal(5)
-      fn(5,5).should.deep.equal(120)
-      fn(1000,1).should.deep.equal(1000)
+    test('normal', function() {
+      fn(5, 1).should.deep.equal(5)
+      fn(5, 5).should.deep.equal(120)
+      fn(1000, 1).should.deep.equal(1000)
     })
-    test('0', function(){
-      fn(5,0).should.deep.equal(1)
+    test('0', function() {
+      fn(5, 0).should.deep.equal(1)
     })
-    test('-1 throw error', function(){
-      (function(){return fn(5,-1)}).should.throw(/Negative permutation not defined/)
+    test('-1 throw error', function() {
+      (function() {
+        return fn(5, -1)
+      }).should.throw(/Negative permutation not defined/)
     })
-    test('big, without stackoverflow', function(){
-      fn(1000,1000).should.deep.equal(Infinity)
+    test('big, without stackoverflow', function() {
+      fn(1000, 1000).should.deep.equal(Infinity)
     })
 
   })
 
   //----------------------------------------------
-  suite('combination', function(){
+  suite('combination', function() {
     var fn;
-    before(function(){
+    before(function() {
       fn = _.combination
     })
 
-    test('normal', function(){
-      fn(5,1).should.deep.equal(5)
-      fn(5,5).should.deep.equal(1)
-      fn(1000,1).should.deep.equal(1000)
-      fn(1000,1000).should.deep.equal(1)
+    test('normal', function() {
+      fn(5, 1).should.deep.equal(5)
+      fn(5, 5).should.deep.equal(1)
+      fn(1000, 1).should.deep.equal(1000)
+      fn(1000, 1000).should.deep.equal(1)
     })
-    test('0', function(){
-      fn(5,0).should.deep.equal(1)
+    test('0', function() {
+      fn(5, 0).should.deep.equal(1)
     })
-    test('-1 throw error', function(){
-      (function(){return fn(5,-1)}).should.throw(/Negative combination not defined/)
+    test('-1 throw error', function() {
+      (function() {
+        return fn(5, -1)
+      }).should.throw(/Negative combination not defined/)
     })
-    test('big, without stackoverflow', function(){
-      fn(1000,500).should.deep.equal(NaN)
+    test('big, without stackoverflow', function() {
+      fn(1000, 500).should.deep.equal(NaN)
     })
 
   })
@@ -1541,73 +1538,236 @@ suite('Subsets and combinatorics', function() {
 })
 
 
+//==============================================
+suite('vectorial', function() {
+
+  //----------------------------------------------
+  suite('dot', function() {
+    var fn;
+    before(function() {
+      fn = _.dot
+    })
+
+    test('normal', function() {
+      fn(A.V, A.V).should.deep.equal(1 + 4 + 9)
+    })
+    test('length mismatch, recycle', function() {
+      fn(A.V, A.VV).should.deep.equal(fn(_.c(A.V, A.V), A.VV))
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('powSum', function() {
+    var fn;
+    before(function() {
+      fn = _.powSum
+    })
+
+    test('(V) vector, default to 2', function() {
+      fn(A.V).should.deep.equal(1 + 4 + 9)
+    })
+    test('(V, n)', function() {
+      fn(A.V, 3).should.deep.equal(1 + 8 + 27)
+    })
+    test('(T, n) tensor', function() {
+      fn(A.M).should.deep.equal(1 + 4 + 9 + 16 + 25 + 36)
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('norm', function() {
+    var fn;
+    before(function() {
+      fn = _.norm
+    })
+
+    test('default to L-2 norm', function() {
+      fn([3, 4]).should.deep.equal(5)
+    })
+    test('specify L-n norm', function() {
+      fn([3, 4], 1).should.deep.equal(7)
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('normalize', function() {
+    var fn;
+    before(function() {
+      fn = _.normalize
+    })
+
+    test('default to L-2 norm', function() {
+      fn([3, 4]).should.deep.equal([3 / 5, 4 / 5])
+    })
+    test('specify to L-n norm', function() {
+      fn([3, 4], 1).should.deep.equal([3 / 7, 4 / 7])
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('rescale', function() {
+    var fn;
+    before(function() {
+      fn = _.rescale
+    })
+
+    test('simply L-1 norm', function() {
+      fn([3, 4]).should.deep.equal([3 / 7, 4 / 7])
+    })
+
+  })
+
+})
+
+
+//==============================================
+suite('vectorial', function() {
+
+  //----------------------------------------------
+  suite('stairs', function() {
+    var fn;
+    before(function() {
+      fn = _.stairs
+    })
+
+    test('length be 1 less', function() {
+      fn(A.V).length.should.equal(A.V.length - 1)
+    })
+    test('next - current index', function() {
+      fn([1, 2, 3, 5, 8]).should.deep.equal([1, 1, 2, 3])
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('stairsTrend', function() {
+    var fn;
+    before(function() {
+      fn = _.stairsTrend
+    })
+
+    test('specify stairs sign, collapsed', function() {
+      fn(A.V, _.isPositive).should.be.true
+    })
+    test('increasing', function() {
+      _.increasing(A.V).should.be.true
+    })
+    test('nonDecreasing', function() {
+      _.nonDecreasing([1, 1, 2, 3]).should.be.true
+    })
+    test('decreasing', function() {
+      _.decreasing(A.R).should.be.true
+    })
+    test('nonIncreasing', function() {
+      _.nonIncreasing([3, 2, 1, 1]).should.be.true
+    })
+
+  })
+
+
+})
 
 
 
 
-// The 'TDD' interface provides suite(), test(), suiteSetup(), suiteTeardown(), setup(), and teardown()
-//
-// suite('Array', function() {
-//   setup(function() {
-//     // ...
-//   });
-//
-//   suite('#indexOf()', function() {
-//     test('should return -1 when not present', function() {
-//       assert.equal(-1, [1, 2, 3].indexOf(4));
-//     });
-//   });
-// })
+//==============================================
+suite('statistical', function() {
 
-// BDD
-// The 'BDD' interface provides describe(), context(), it(), before(), after(), beforeEach(), and afterEach():
+  //----------------------------------------------
+  suite('mean', function() {
+    var fn;
+    before(function() {
+      fn = _.mean
+    })
 
-// context() is just an alias for describe(), and behaves the same way; it just provides a way to keep tests easier to read and organized
-// describe('Array', function(){
-//   before(function(){
-//     // ...
-//   });
-//
-//   describe('#indexOf()', function(){
-//     context('when not present', function(){
-//       it('should not throw an error', function(){
-//         (function(){
-//           [1,2,3].indexOf(4);
-//         }).should.not.throw();
-//       });
-//       it('should return -1', function(){
-//         [1,2,3].indexOf(4).should.equal(-1);
-//       });
-//     });
-//     context('when present', function(){
-//       it('should return the index where the element first appears in the array', function(){
-//         [1,2,3].indexOf(3).should.equal(2);
-//       });
-//     });
-//   });
-// })
+    test('0 mean', function() {
+      fn([-2, -1, 0, 1, 2]).should.equal(0)
+    })
 
-// QUnit
-// function ok(expr, msg) {
-//   if (!expr) throw new Error(msg);
-// }
-//
-// suite('Array');
-//
-// test('#length', function(){
-//   var arr = [1,2,3];
-//   ok(arr.length == 3);
-// });
-//
-// test('#indexOf()', function(){
-//   var arr = [1,2,3];
-//   ok(arr.indexOf(1) == 0);
-//   ok(arr.indexOf(2) == 1);
-//   ok(arr.indexOf(3) == 2);
-// });
-//
-// suite('String');
-//
-// test('#length', function(){
-//   ok('foo'.length == 3);
-// });
+  })
+
+  //----------------------------------------------
+  suite('expVal', function() {
+    var fn, p, v;
+    before(function() {
+      fn = _.expVal
+      p = [0.1, 0.2, 0.3, 0.4]
+      v = [-1, 0, 1, 2]
+    })
+
+    test('default function: identity', function() {
+      fn(p, v).should.equal((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
+    })
+    test('specified atomic function: square', function() {
+      fn(p, v, _.a_square).should.equal(1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('variance', function() {
+    var fn, p, v;
+    before(function() {
+      fn = _.variance
+      p = [0.1, 0.2, 0.3, 0.4]
+      v = [-1, 0, 1, 2]
+    })
+    test('default function: identity', function() {
+      fn(p, v).should.equal(
+        (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4) -
+        _.a_square((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
+      )
+    })
+    test('specified atomic function: square', function() {
+      fn(p, v, _.a_square).should.be.closeTo(
+        (1 * 0.1 + 0 + 1 * 0.3 + 16 * 0.4) -
+        _.a_square(1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4), 0.0001)
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('stdev', function() {
+
+    test('trvial sqrt of variance', function() {
+      Math.sqrt(4).should.equal(2)
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('expGRate', function() {
+    var fn;
+    before(function() {
+      fn = _.expGRate
+    })
+
+    test('rate of expGrowth return', function() {
+      fn(8, 2, 2).should.equal(100)
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('trailExpGRate', function() {
+    var fn, v;
+    before(function() {
+      fn = _.trailExpGRate
+      v = [1, 2, 4, 8]
+    })
+
+    test('trailing expGRate', function() {
+      fn(v, 1).should.equal(100)
+      fn(v, 2).should.equal(100)
+      fn(v, 3).should.equal(100)
+    })
+
+  })
+
+
+
+})

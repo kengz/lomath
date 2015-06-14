@@ -212,6 +212,10 @@ var lomath = _.mixin({
   // Basic checkers //
   ////////////////////
 
+  // check if x is in range set by left, right
+  inRange: function(left,right,x) {
+    return left-1 < x && x < right+1;
+  },
   // check if x is an integer
   isInteger: function(x) {
     return x == Math.floor(x);
@@ -350,7 +354,7 @@ var lomath = _.mixin({
     return function(str) {
       if (str != undefined) {
         var matched = str.match(regex);
-        return matched == null ? null: matched[0];
+        return matched == null ? null : matched[0];
       }
     }
   },
@@ -360,7 +364,7 @@ var lomath = _.mixin({
   },
   // return a single regex as the "AND" of all arg regex's
   reAnd: function() {
-    return new RegExp(_.map(_.toArray(arguments),lomath.reWrap).join(''));
+    return new RegExp(_.map(_.toArray(arguments), lomath.reWrap).join(''));
   },
   // return a function that matches all(AND) of the regexs
   reAndMatch: function() {
@@ -414,7 +418,7 @@ var lomath = _.mixin({
     var t = T,
       d = 0;
     while (t.length) {
-      d ++;
+      d++;
       t = t[0];
     }
     return d;
@@ -475,66 +479,75 @@ var lomath = _.mixin({
   // _.flatten, _.flattenDeep
 
   // swap at index i, j
-  // mutates the array
+  // Mutates the array
   swap: function(arr, i, j) {
     arr[i] = arr.splice(j, 1, arr[i])[0];
     return arr;
   },
 
-  // reverse arr from index k to l inclusive
-  // mutates the array
+  // return a copy of reversed arr from index k to l inclusive
   reverse: function(arr, k, l) {
+    var vec = arr.slice(0);
     var i = k == undefined ? 0 : k;
     var j = l == undefined ? arr.length - 1 : l;
     var mid = Math.ceil((i + j) / 2);
     while (i < mid)
-      lomath.swap(arr, i++, j--);
-    return arr;
+      lomath.swap(vec, i++, j--);
+    return vec;
   },
 
-  // extend an array till toLen, filled with val defaulted to 0.
-  extendArray: function(arr, val, toLen) {
+  // return a copy: extend an array till toLen, filled with val defaulted to 0.
+  // Mutates the array
+  extend: function(arr, toLen, val) {
     var lendiff = toLen - arr.length,
-      repVal = val == undefined ? 0 : val;
+      repVal = (val == undefined ? 0 : val);
     if (lendiff < 0)
-      throw "Array longer than the length to extend to"
+      throw new Error("Array longer than the length to extend to")
     while (lendiff--)
       arr.push(repVal);
     return arr;
   },
-  // applying _.indexOf in batch
+  // applying _.indexOf in batch; returns -1 for field if not found
   batchIndexOf: function(arr, fieldArr) {
     return _.map(fieldArr, function(t) {
       return _.indexOf(arr, t)
     });
   },
-  // Assuming matrix has header, rbind by header fields instead of indices
-  rbindByField: function(M, fieldArr) {
-    // assuming header is first row of matrix
-    var header = M[0],
-      fieldInds = lomath.batchIndexOf(header, fieldArr);
-    return lomath.rbind(M, fieldInds);
+  // return valid indices from indArr, i.e. in range 0 to maxLen
+  validInds: function(indArr, maxLen) {
+    return _.filter(indArr, lomath.inRange.bind(null, 0, maxLen));
   },
   // return a copy with sub rows from matrix M
   rbind: function(M, indArr) {
+    indArr = lomath.validInds(indArr, M.length);
+    if (indArr.length == 0) return [];
     return _.map(indArr, function(i) {
       return _.cloneDeep(M[i]);
     });
   },
   // return a copy with sub rows from matrix M
   cbind: function(M, indArr) {
+    indArr = lomath.validInds(indArr, M[0].length)
+    if (indArr.length == 0) return [];
     return _.map(M, function(row) {
       return _.map(indArr, function(i) {
         return row[i];
       });
     });
   },
+  // Assuming matrix has header, rbind by header fields instead of indices
+  cbindByField: function(M, fieldArr) {
+    // assuming header is first row of matrix
+    var header = M[0],
+      fieldInds = lomath.batchIndexOf(header, fieldArr);
+    return lomath.cbind(M, fieldInds);
+  },
   // transpose a matrix
   transpose: function(M) {
     return _.zip.apply(null, M);
   },
   // make a tensor rectangular by filling with val, defaulted to 0.
-  // mutates the tensor.
+  // mutates the tensor
   rectangularize: function(T, val) {
     var toLen = lomath.maxDeepestLength(T),
       stack = [];
@@ -542,7 +555,7 @@ var lomath = _.mixin({
     while (stack.length) {
       var curr = stack.pop();
       if (lomath.isFlat(curr))
-        lomath.extendArray(curr, val, toLen);
+        lomath.extend(curr, toLen, val);
       else
         _.each(curr, function(c) {
           stack.push(c);

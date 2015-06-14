@@ -125,6 +125,11 @@ suite('Function builder backend', function() {
       test('vector * longer vector', function() {
         fn(A.pair, A.U, A.VV).should.deep.equal(['a*1', 'b*2', 'c*3', 'a*4', 'b*5', 'c*6'])
       })
+      test('mismatch vector length', function() {
+        (function() {
+          return fn(A.pair, A.V, [1, 2])
+        }).should.throw(/different dimensions/)
+      })
 
       test('longer vector * matrix', function() {
         fn(A.pair, A.UU, A.M).should.deep.equal([
@@ -773,6 +778,29 @@ suite('Simple functions generalized with assodist for tensor', function() {
 //==============================================
 suite('Simple signature checkers for tensors', function() {
 
+
+  //----------------------------------------------
+  suite('ternary fn inRange', function() {
+    var fn;
+    before(function() {
+      fn = _.inRange
+    })
+
+    test('is in range', function() {
+      fn(0, 3, 2).should.be.true
+    })
+    test('out of range', function() {
+      fn(0, 3, -2).should.be.false
+    })
+    test('left boundary', function() {
+      fn(0, 3, 0).should.be.true
+    })
+    test('right boundary', function() {
+      fn(0, 3, 3).should.be.true
+    })
+
+  })
+
   //----------------------------------------------
   suite('sameSig', function() {
     var fn;
@@ -824,41 +852,41 @@ suite('Simple JS Math functions for tensors', function() {
 //==============================================
 suite('Regex functions', function() {
 
-    test('reMatch', function(){
-      _.reMatch(A.reWord)(A.strWord).should.be.true
-      _.reMatch(A.reWord)(A.strNum).should.be.false
-      _.reMatch(A.reNum)(A.strNum).should.be.true
-      _.reMatch(A.reNum)(A.strWord).should.be.false
-    })
-    test('reNotMatch', function(){
-      _.reNotMatch(A.reWord)(A.strWord).should.be.false
-      _.reNotMatch(A.reWord)(A.strNum).should.be.true
-      _.reNotMatch(A.reNum)(A.strNum).should.be.false
-      _.reNotMatch(A.reNum)(A.strWord).should.be.true
-    })
-    test('reGet', function(){
-      _.reGet(A.reWord)(A.str).should.equal(A.strWord)
-      _.reGet(A.reNum)(A.str).should.equal(A.strNum)
-      expect(_.reGet(A.reWord)(A.strNum)).to.be.null
-    })
-    test('reAnd', function(){
-      _.reAnd(A.reWord, A.reNum).should.be.an.instanceof(RegExp)
-      _.reAnd(A.reWord, A.reNum).should.deep.equal(/(?=.*[a-zA-Z]+)(?=.*[0-9]+)/)
-    })
-    test('reAndMatch', function(){
-      _.reAndMatch(A.reWord, A.reNum)(A.str).should.be.true
-      _.reAndMatch(A.reWord, A.reNum)(A.strWord).should.be.false
-      _.reAndMatch(A.reWord, A.reNum)(A.strNum).should.be.false
-    })
-    test('reOr', function(){
-      _.reOr(A.reWord, A.reNum).should.be.an.instanceof(RegExp)
-      _.reOr(A.reWord, A.reNum).should.deep.equal(/(?=.*[a-zA-Z]+)|(?=.*[0-9]+)/)
-    })
-    test('reAndMatch', function(){
-      _.reOrMatch(A.reWord, A.reNum)(A.str).should.be.true
-      _.reOrMatch(A.reWord, A.reNum)(A.strWord).should.be.true
-      _.reOrMatch(A.reWord, A.reNum)(A.strNum).should.be.true
-    })
+  test('reMatch', function() {
+    _.reMatch(A.reWord)(A.strWord).should.be.true
+    _.reMatch(A.reWord)(A.strNum).should.be.false
+    _.reMatch(A.reNum)(A.strNum).should.be.true
+    _.reMatch(A.reNum)(A.strWord).should.be.false
+  })
+  test('reNotMatch', function() {
+    _.reNotMatch(A.reWord)(A.strWord).should.be.false
+    _.reNotMatch(A.reWord)(A.strNum).should.be.true
+    _.reNotMatch(A.reNum)(A.strNum).should.be.false
+    _.reNotMatch(A.reNum)(A.strWord).should.be.true
+  })
+  test('reGet', function() {
+    _.reGet(A.reWord)(A.str).should.equal(A.strWord)
+    _.reGet(A.reNum)(A.str).should.equal(A.strNum)
+    expect(_.reGet(A.reWord)(A.strNum)).to.be.null
+  })
+  test('reAnd', function() {
+    _.reAnd(A.reWord, A.reNum).should.be.an.instanceof(RegExp)
+    _.reAnd(A.reWord, A.reNum).should.deep.equal(/(?=.*[a-zA-Z]+)(?=.*[0-9]+)/)
+  })
+  test('reAndMatch', function() {
+    _.reAndMatch(A.reWord, A.reNum)(A.str).should.be.true
+    _.reAndMatch(A.reWord, A.reNum)(A.strWord).should.be.false
+    _.reAndMatch(A.reWord, A.reNum)(A.strNum).should.be.false
+  })
+  test('reOr', function() {
+    _.reOr(A.reWord, A.reNum).should.be.an.instanceof(RegExp)
+    _.reOr(A.reWord, A.reNum).should.deep.equal(/(?=.*[a-zA-Z]+)|(?=.*[0-9]+)/)
+  })
+  test('reAndMatch', function() {
+    _.reOrMatch(A.reWord, A.reNum)(A.str).should.be.true
+    _.reOrMatch(A.reWord, A.reNum)(A.strWord).should.be.true
+    _.reOrMatch(A.reWord, A.reNum)(A.strNum).should.be.true
+  })
 
 })
 
@@ -868,37 +896,37 @@ suite('Regex functions', function() {
 suite('Array creation', function() {
 
   //----------------------------------------------
-  suite('seq', function(){
+  suite('seq', function() {
     var fn;
-    before(function(){
+    before(function() {
       fn = _.seq
     })
 
-    test('(to)', function(){
-      fn(3).should.deep.equal([1,2,3])
+    test('(to)', function() {
+      fn(3).should.deep.equal([1, 2, 3])
     })
-    test('(from,to)', function(){
-      fn(0,2).should.deep.equal([0,1,2])
-      fn(-2,2).should.deep.equal([-2,-1,0,1,2])
+    test('(from,to)', function() {
+      fn(0, 2).should.deep.equal([0, 1, 2])
+      fn(-2, 2).should.deep.equal([-2, -1, 0, 1, 2])
     })
-    test('(from,to,diff)', function(){
-      fn(-4,4,2).should.deep.equal([-4,-2,0,2,4])
+    test('(from,to,diff)', function() {
+      fn(-4, 4, 2).should.deep.equal([-4, -2, 0, 2, 4])
     })
 
   })
 
   //----------------------------------------------
-  suite('numeric', function(){
+  suite('numeric', function() {
     var fn;
-    before(function(){
+    before(function() {
       fn = _.numeric
     })
 
-    test('(len)', function(){
-      fn(3).should.deep.equal([0,0,0])
+    test('(len)', function() {
+      fn(3).should.deep.equal([0, 0, 0])
     })
-    test('(len,val)', function(){
-      fn(3,'a').should.deep.equal(['a','a','a'])
+    test('(len,val)', function() {
+      fn(3, 'a').should.deep.equal(['a', 'a', 'a'])
     })
 
   })
@@ -911,13 +939,13 @@ suite('Array creation', function() {
 suite('Tensor properties', function() {
 
   //----------------------------------------------
-  suite('depth', function(){
+  suite('depth', function() {
     var fn;
-    before(function(){
+    before(function() {
       fn = _.depth
     })
 
-    test('(T)', function(){
+    test('(T)', function() {
       fn(A.T).should.equal(0)
       fn(A.B).should.equal(3)
     })
@@ -925,41 +953,41 @@ suite('Tensor properties', function() {
   })
 
   //----------------------------------------------
-  suite('volume', function(){
+  suite('volume', function() {
     var fn;
-    before(function(){
+    before(function() {
       fn = _.volume
     })
 
-    test('(T)', function(){
+    test('(T)', function() {
       fn(A.T).should.equal(0)
-      fn(A.B).should.equal(4*3*2)
+      fn(A.B).should.equal(4 * 3 * 2)
     })
 
   })
 
   //----------------------------------------------
-  suite('dim', function(){
+  suite('dim', function() {
     var fn;
-    before(function(){
+    before(function() {
       fn = _.dim
     })
 
-    test('(T)', function(){
+    test('(T)', function() {
       fn(A.T).should.deep.equal([])
-      fn(A.B).should.deep.equal([2,3,4])
+      fn(A.B).should.deep.equal([2, 3, 4])
     })
 
   })
 
   //----------------------------------------------
-  suite('isFlat', function(){
+  suite('isFlat', function() {
     var fn;
-    before(function(){
+    before(function() {
       fn = _.isFlat
     })
 
-    test('(T)', function(){
+    test('(T)', function() {
       fn(A.S).should.be.true
       fn(A.V).should.be.true
       fn(A.M).should.be.false
@@ -968,13 +996,13 @@ suite('Tensor properties', function() {
   })
 
   //----------------------------------------------
-  suite('maxDeepestLength', function(){
+  suite('maxDeepestLength', function() {
     var fn;
-    before(function(){
+    before(function() {
       fn = _.maxDeepestLength
     })
 
-    test('(T)', function(){
+    test('(T)', function() {
       fn(A.T).should.equal(0)
       fn(A.V).should.equal(3)
       fn(A.M).should.equal(2)
@@ -983,6 +1011,322 @@ suite('Tensor properties', function() {
   })
 
 })
+
+
+
+
+//==============================================
+suite('Tensor transformation', function() {
+
+  //----------------------------------------------
+  suite('swap; mutates', function() {
+    var fn, v;
+    before(function() {
+      fn = _.swap
+      v = [1, 2, 3]
+    })
+
+    test('(V,i,j); mutates', function() {
+      fn(v, 0, 2).should.deep.equal(A.R)
+      v.should.deep.equal(A.R)
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('reverse', function() {
+    var fn;
+    before(function() {
+      fn = _.reverse
+    })
+
+    test('reverse all (V)', function() {
+      fn(A.VZ).should.deep.equal([5, 4, 3, 2, 1, 0])
+    })
+    test('reverse from (V,i)', function() {
+      fn(A.VZ, 2).should.deep.equal([0, 1, 5, 4, 3, 2])
+    })
+    test('reverse till (V,null,j)', function() {
+      fn(A.VZ, null, 2).should.deep.equal([2, 1, 0, 3, 4, 5])
+    })
+    test('reverse from to (V,i,j)', function() {
+      fn(A.VZ, 2, 4).should.deep.equal([0, 1, 4, 3, 2, 5])
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('extend; mutates', function() {
+    var fn, v;
+    beforeEach(function() {
+      fn = _.extend
+      v = A.V.slice(0)
+    })
+
+    test('(V, toLen) default val == 0', function() {
+      fn(v, 6).should.deep.equal([1, 2, 3, 0, 0, 0])
+    })
+    test('(V, toLen, val)', function() {
+      fn(v, 6, 'a').should.deep.equal([1, 2, 3, 'a', 'a', 'a'])
+    })
+    test('shorter (V,0)', function() {
+      (function() {
+        return fn(v, 0)
+      }).should.throw(/Array longer/)
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('batchIndexOf', function() {
+    var fn;
+    before(function() {
+      fn = _.batchIndexOf
+    })
+
+    test('none valid', function() {
+      fn(A.UU, [1, 2, 3]).should.deep.equal([-1, -1, -1])
+    })
+    test('some valid', function() {
+      fn(A.UU, [1, 'a', 3]).should.deep.equal([-1, 0, -1])
+    })
+    test('all valid', function() {
+      fn(A.UU, A.U).should.deep.equal([0, 1, 2])
+    })
+    test('shuffled', function() {
+      fn(A.UU, ['c', 'b', 'a']).should.deep.equal([2, 1, 0])
+    })
+    test('repeated', function() {
+      fn(A.UU, ['a', 'a', 'a']).should.deep.equal([0, 0, 0])
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('validInds', function() {
+    var fn;
+    before(function() {
+      fn = _.validInds
+    })
+
+    test('none valid', function() {
+      fn([-2, -1], 2).should.deep.equal([])
+    })
+    test('some valid', function() {
+      fn([-2, 0, 2, 4], 2).should.deep.equal([0, 2])
+    })
+    test('shuffled', function() {
+      fn([-2, 4, 2, 0], 2).should.deep.equal([2, 0])
+    })
+    test('repeated', function() {
+      fn([-2, 4, 0, 2, 0], 2).should.deep.equal([0, 2, 0])
+    })
+
+  })
+
+
+  //----------------------------------------------
+  suite('rbind', function() {
+    var fn;
+    before(function() {
+      fn = _.rbind
+    })
+
+    test('none valid', function() {
+      fn(A.C, [-1, -2, 100]).should.deep.equal([])
+    })
+    test('some valid', function() {
+      fn(A.C, [-1, 0, 1]).should.deep.equal([
+        [1, 2, 3],
+        [4, 5, 6]
+      ])
+    })
+    test('all valid', function() {
+      fn(A.C, [0, 1]).should.deep.equal([
+        [1, 2, 3],
+        [4, 5, 6]
+      ])
+    })
+    test('shuffled', function() {
+      fn(A.C, [1, 0]).should.deep.equal([
+        [4, 5, 6],
+        [1, 2, 3]
+      ])
+    })
+    test('repeated', function() {
+      fn(A.C, [1, 1]).should.deep.equal([
+        [4, 5, 6],
+        [4, 5, 6]
+      ])
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('cbind', function() {
+    var fn;
+    before(function() {
+      fn = _.cbind
+    })
+
+    test('none valid', function() {
+      fn(A.D, [-1, -2, 100]).should.deep.equal([])
+    })
+    test('some valid', function() {
+      fn(A.D, [-1, 0, 100]).should.deep.equal([
+        ['a'],
+        [1],
+        [-1]
+      ])
+    })
+    test('all valid', function() {
+      fn(A.D, [0, 2]).should.deep.equal([
+        ['a', 'c'],
+        [1, 3],
+        [-1, -3]
+      ])
+    })
+    test('shuffled', function() {
+      fn(A.D, [2, 1, 0]).should.deep.equal([
+        ['c', 'b', 'a'],
+        [3, 2, 1],
+        [-3, -2, -1]
+      ])
+    })
+    test('repeated', function() {
+      fn(A.D, [0, 0]).should.deep.equal([
+        ['a', 'a'],
+        [1, 1],
+        [-1, -1]
+      ])
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('cbindByField', function() {
+    var fn;
+    before(function() {
+      fn = _.cbindByField
+    })
+
+    test('none valid', function() {
+      fn(A.D, [1, 2, 3]).should.deep.equal([])
+    })
+    test('some valid', function() {
+      fn(A.D, [1, 'a', 3]).should.deep.equal([
+        ['a'],
+        [1],
+        [-1]
+      ])
+    })
+    test('all valid', function() {
+      fn(A.D, ['a', 'c']).should.deep.equal([
+        ['a', 'c'],
+        [1, 3],
+        [-1, -3]
+      ])
+    })
+    test('shuffled', function() {
+      fn(A.D, ['c', 'b', 'a']).should.deep.equal([
+        ['c', 'b', 'a'],
+        [3, 2, 1],
+        [-3, -2, -1]
+      ])
+    })
+    test('repeated', function() {
+      fn(A.D, ['a', 'a']).should.deep.equal([
+        ['a', 'a'],
+        [1, 1],
+        [-1, -1]
+      ])
+    })
+
+  })
+
+
+  //----------------------------------------------
+  suite('transpose', function(){
+    var fn;
+    before(function(){
+      fn = _.transpose
+    })
+
+    test('square', function(){
+      fn(A.C).should.deep.equal([
+        [1,4,7],
+        [2,5,8],
+        [3,6,9]
+      ])
+    })
+    test('non-square', function(){
+      fn(A.M).should.deep.equal([
+        [1,3,5],
+        [2,4,6]
+      ])
+    })
+
+  })
+
+  //----------------------------------------------
+  suite('rectangularize; mutates', function(){
+    var fn, Q, R;
+    beforeEach(function(){
+      fn = _.rectangularize
+      Q = [[1,2,3],[4]]
+      R = [[1,2,3],[4,5,6]]
+    })
+
+    test('non-rectangular, default', function(){
+      fn(Q).should.deep.equal([
+        [1,2,3],
+        [4,0,0]
+      ])
+    })
+    test('non-rectangular, val', function(){
+      fn(Q, -1).should.deep.equal([
+        [1,2,3],
+        [4,-1,-1]
+      ])
+    })
+    test('rectangular, no change', function(){
+      fn(R).should.deep.equal([
+        [1,2,3],
+        [4,5,6]
+      ])
+    })
+
+  })
+
+
+  //----------------------------------------------
+  suite('reshape', function(){
+    var fn, Q, R;
+    before(function(){
+      fn = _.reshape
+      Q = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6]
+      R = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6]
+    })
+
+    test('used with _.c and _.dim', function(){
+      fn(_.c(A.B), _.dim(A.B)).should.deep.equal(A.B)
+    })
+    test('rectangular', function(){
+      fn(R, [2,3,4]).should.deep.equal(A.B)
+    })
+    test('non-rectangular', function(){
+      fn(Q, [2,3,4]).should.deep.equal([
+        [[1,1,1,1],[2,2,2,2],[3,3,3,3]],
+        [[4,4,4,4],[5,5,5,5],[6,6]]
+      ])
+    })
+
+  })
+
+})
+
+
+
 
 
 

@@ -1,5 +1,6 @@
 # lomath
 [![Build Status](https://travis-ci.org/kengz/lomath.svg?branch=master)](https://travis-ci.org/kengz/lomath)
+[![Coverage Status](https://coveralls.io/repos/kengz/lomath/badge.svg)](https://coveralls.io/r/kengz/lomath)
 
 A high performance, professional math module extending lodash.
 

@@ -693,6 +693,30 @@ suite('Simple JS Math functions for tensors', function() {
   })
   test('tests implied from Function builder backend', function() {
     fn(A.lone, A.S).should.equal('*a')
+    _.abs(-1).should.equal(Math.abs(-1))
+    _.acos(1).should.equal(Math.acos(1))
+    _.acosh(1).should.equal(Math.acosh(1))
+    _.asin(1).should.equal(Math.asin(1))
+    _.asinh(1).should.equal(Math.asinh(1))
+    _.atan(1).should.equal(Math.atan(1))
+    _.atanh(1).should.equal(Math.atanh(1))
+    _.ceil(1).should.equal(Math.ceil(1))
+    _.cos(1).should.equal(Math.cos(1))
+    _.cosh(1).should.equal(Math.cosh(1))
+    _.exp(1).should.equal(Math.exp(1))
+    _.floor(1).should.equal(Math.floor(1))
+    _.log10(2).should.equal(Math.log10(2))
+    _.log1p(2).should.equal(Math.log1p(2))
+    _.log2(2).should.equal(Math.log2(2))
+    _.round(1).should.equal(Math.round(1))
+    _.pow(1,1).should.equal(Math.pow(1,1))
+    _.sign(1).should.equal(Math.sign(1))
+    _.sin(1).should.equal(Math.sin(1))
+    _.sinh(1).should.equal(Math.sinh(1))
+    _.sqrt(1).should.equal(Math.sqrt(1))
+    _.tan(1).should.equal(Math.tan(1))
+    _.tanh(1).should.equal(Math.tanh(1))
+    _.trunc(1).should.equal(Math.trunc(1))
   })
 })
 
@@ -1485,8 +1509,19 @@ suite('statistical', function() {
 
   //----------------------------------------------
   suite('stdev(pV, xV, [fn])', function() {
+    var fn, p, v;
+    before(function() {
+      fn = _.variance
+      p = [0.1, 0.2, 0.3, 0.4]
+      v = [-1, 0, 1, 2]
+    })
     test('trvial sqrt of variance', function() {
-      Math.sqrt(4).should.equal(2)
+      _.stdev(p,v).should.equal(
+        Math.sqrt(
+          (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4) -
+          _.a_square((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
+        )
+      )
     })
   })
 

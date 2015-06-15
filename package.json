@@ -11,7 +11,9 @@
     "url": "https://github.com/kengz/lomath.git"
   },
   "dependencies": {
-    "lodash": "^3.9.3"
+    "coveralls": "^2.11.2",
+    "lodash": "^3.9.3",
+    "mocha-lcov-reporter": "0.0.2"
   },
   "devDependencies": {
     "chai": "^3.0.0",

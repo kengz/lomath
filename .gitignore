@@ -3,6 +3,7 @@ bin/
 bin-debug/
 bin-release/
 node_modules/
+coverage/
 
 # Other files and folders
 .settings/

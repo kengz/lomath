@@ -12,16 +12,14 @@ hc.plot(
         name: "square",
         data: _.square(_.range(10))
     }],
-    "test0"
+    "Title 1"
     )
 hc.plot(
     [{
-        name: "linear",
-        data: _.range(20)
-    }, {
-        name: "square",
+        name: "log",
         data: _.log(_.range(20))
-    }]
+    }],
+    "Title 2"
     )
 
 // finally, render all the enumerate plots

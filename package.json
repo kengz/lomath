@@ -1,6 +1,6 @@
 {
   "name": "lomath",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A high performance, professional math module built on lodash.",
   "main": "index.js",
   "scripts": {

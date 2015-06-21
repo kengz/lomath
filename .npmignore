@@ -4,3 +4,6 @@
 # un-ignore
 !./index.js
 !./LICENSE
+# visualizer
+!./chart
+!./gulpfile.js

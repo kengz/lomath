@@ -1,7 +1,7 @@
 {
   "name": "lomath",
-  "version": "0.0.7",
-  "description": "A high performance, professional math module built on lodash.",
+  "version": "0.0.8",
+  "description": "A high performance, professional math module extending lodash; comes with plotting module based on highcharts.",
   "main": "index.js",
   "scripts": {
     "start": "node demo/demo.js",
@@ -33,6 +33,15 @@
     "lomath",
     "lodash",
     "math",
+    "data",
+    "visualization",
+    "plot",
+    "graph",
+    "graphing",
+    "chart",
+    "highcharts",
+    "live",
+    "preview",
     "R",
     "javascript",
     "js"

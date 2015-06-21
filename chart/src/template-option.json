@@ -1,0 +1,35 @@
+{
+    "chart": {
+        "renderTo": "hchart"
+    },
+    "title": {
+        "text": "My title"
+    },
+    "subtitle": {
+        "text": ""
+    },
+    "xAxis": {
+        "title": {
+            "text": "x-values"
+        },
+        "min": 0
+    },
+    "yAxis": {
+        "title": {
+            "text": "y-values"
+        },
+        "min": 0
+    },
+    "series": [{
+        "name": "Series 1",
+        "data": "to be injected",
+        "pointStart": 0,
+        "pointInterval": 1
+    }],
+    "tooltip": {
+        "borderRadius": 0,
+        "borderWidth": 1,
+        "crosshairs": [false, false]
+    },
+    "credits": false
+}

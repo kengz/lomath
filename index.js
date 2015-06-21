@@ -793,6 +793,15 @@ var lomath = _.mixin({
   trailExpGRate: function(v, t) {
     var len = v.length;
     return lomath.expGRate(v[len - 1], v[len - 1 - t], t);
+  },
+
+  //////////////////////////////////////////
+  // Plotting modules: normal and dynamic //
+  //////////////////////////////////////////
+  // hc: require(__dirname+'/chart/plot.js').hc
+  hc: function() {
+    var p = require(__dirname+'/chart/plot.js').p;
+    return new p();
   }
 })
 

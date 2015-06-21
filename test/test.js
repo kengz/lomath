@@ -1550,3 +1550,10 @@ suite('statistical', function() {
     })
   })
 })
+
+//==============================================
+suite('plotter', function() {
+  test('call constructor', function(){
+    _.hc().should.not.equal(0)
+  })
+})

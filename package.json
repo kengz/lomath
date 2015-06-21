@@ -4,8 +4,8 @@
   "description": "A high performance, professional math module built on lodash.",
   "main": "index.js",
   "scripts": {
-    "start": "gulp",
-    "test": "istanbul cover ./node_modules/.bin/_mocha -- -u tdd -R spec"
+    "start": "node demo/demo.js",
+    "test": "istanbul cover ./node_modules/.bin/_mocha -x **/chart/** -- -u tdd -R spec"
   },
   "repository": {
     "type": "git",

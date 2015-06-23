@@ -1,6 +1,5 @@
 # lomath
 
-[![Join the chat at https://gitter.im/kengz/lomath](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kengz/lomath?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![npm version](https://badge.fury.io/js/lomath.svg)](http://badge.fury.io/js/lomath) [![Build Status](https://travis-ci.org/kengz/lomath.svg?branch=master)](https://travis-ci.org/kengz/lomath) [![Coverage Status](https://coveralls.io/repos/kengz/lomath/badge.svg?branch=master)](https://coveralls.io/r/kengz/lomath?branch=master) [![Dependency Status](https://gemnasium.com/kengz/lomath.svg)](https://gemnasium.com/kengz/lomath)
 
 [**Lomath**](https://github.com/kengz/lomath) is the data analysts' module in `Node JS` - data analysis and visualization in `Node` is now possible with `lomath`. 
@@ -8,6 +7,10 @@
 It is the mathematical extension of `lodash` with many high performance functions, generalized and applicable to tensors (multi-arrays). It comes with a standalone plotting module that using `HighCharts` and `BrowserSync`.
 
 See the [API documentation](http://kengz.github.io/lomath/).
+
+## Community
+
+[![Join the chat at https://gitter.im/kengz/lomath](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kengz/lomath?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Installation
 

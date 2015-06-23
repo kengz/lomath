@@ -1,7 +1,11 @@
 # lomath
 [![npm version](https://badge.fury.io/js/lomath.svg)](http://badge.fury.io/js/lomath) [![Build Status](https://travis-ci.org/kengz/lomath.svg?branch=master)](https://travis-ci.org/kengz/lomath) [![Coverage Status](https://coveralls.io/repos/kengz/lomath/badge.svg?branch=master)](https://coveralls.io/r/kengz/lomath?branch=master) [![Dependency Status](https://gemnasium.com/kengz/lomath.svg)](https://gemnasium.com/kengz/lomath)
 
-A high performance, professional math module extending lodash;  comes with plotting module based on `highcharts`.
+[**Lomath**](https://github.com/kengz/lomath) is the data analysts' module in `Node JS` - data analysis and visualization in `Node` is now possible with `lomath`. 
+
+It is the mathematical extension of `lodash` with many high performance functions, generalized and applicable to tensors (multi-arrays). It comes with a standalone plotting module that using `HighCharts` and `BrowserSync`.
+
+See the [API documentation](http://kengz.github.io/lomath/).
 
 ## Installation
 
@@ -16,7 +20,9 @@ npm install
 
 ## Usage
 
-Lomath is the extension of `lodash` with many math functions, generalized to be applicable to tensors while keeping a high performance. See the API documentation for examples.
+See the [API documentation](http://kengz.github.io/lomath/) for example usage.
+
+**Lomath** comes with the latest version of `lodash`, and more. Use it as you would normally use `lodash` or `underscore`, and it has many math functions familiar to users of the `R` language.
 
 For clearer terminology, we call `tensors` the generic data structures:
 

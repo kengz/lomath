@@ -199,52 +199,96 @@
     <div>
       
 <p><a href="http://badge.fury.io/js/lomath"><img src="https://badge.fury.io/js/lomath.svg" alt="npm version"></a> <a href="https://travis-ci.org/kengz/lomath"><img src="https://travis-ci.org/kengz/lomath.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/r/kengz/lomath?branch=master"><img src="https://coveralls.io/repos/kengz/lomath/badge.svg?branch=master" alt="Coverage Status"></a> <a href="https://gemnasium.com/kengz/lomath"><img src="https://gemnasium.com/kengz/lomath.svg" alt="Dependency Status"></a></p>
-<p>A high performance, professional math module extending lodash;  comes with plotting module based on highcharts.</p>
+<p>A high performance, professional math module extending lodash;  comes with plotting module based on <code>highcharts</code>.</p>
+<h2 id="installation">Installation</h2>
 <p><strong>Installation</strong>: <code>npm install lomath</code></p>
-<p>To use the plotting module, go into your node_modules/lomath and run <code>npm install</code> from there; it requires the dev modules in lomath.</p>
-<p>testrun: see <code>demo/demo.js</code> for magic.
-&lt;!&#x2014; 
-```Javascript
-var _ = require(&#x2018;lomath&#x2019;);</p>
-<p>// use lodash as usual
-var v = _.range(10);</p>
-<p>// lomath: generalized math functions applicable to multi-array
-var vv = _.square(v);</p>
-<p>console.log(v);
-console.log(vv);</p>
-<p>// prints all the functions
-// console.log(<em>.functions(</em>));</p>
-<p>// data visualization: highcharts plotter
-// call contructor of highcharts plotter. Note the ()
-var hc = _.hc();</p>
-<p>// first, enum plots
+<p>To use the plotting module, do:</p>
+<pre><code><span class="hljs-comment">// in the terminal at your project&apos;s root, do:</span>
+cd node_modules/lomath
+npm install
+</code></pre><h2 id="usage">Usage</h2>
+<p>Lomath is the extension of <code>lodash</code> with many math functions, generalized to be applicable to tensors while keeping a high performance. See the API documentation for examples.</p>
+<p>For clearer terminology, we call <code>tensors</code> the generic data structures:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">data structure</th>
+<th style="text-align:left">terminology</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left">scalar = rank-0 tensor</td>
+</tr>
+<tr>
+<td style="text-align:left">[1, 2, 3]</td>
+<td style="text-align:left">vector = rank-1 tensor</td>
+</tr>
+<tr>
+<td style="text-align:left">[ [1, 2], [3,4] ]</td>
+<td style="text-align:left">matrix = rank-2 tensor</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x2026;and so on</td>
+<td style="text-align:left">rank-n tensor</td>
+</tr>
+</tbody>
+</table>
+<p>You can also extend <code>lomath</code> and define your own function that applies to tensors, using the function composition module such as <code>_.distribute, _.asso</code>, etc.</p>
+<h2 id="plotting-module">Plotting Module</h2>
+<p><code>lomath</code> comes with a standalone plotting module that using <code>HighCharts</code> and <code>BrowserSync</code>. Just run your JS file normally when you plot (example below), and it will automatically pull up a browser showing you the charts; you can save them!</p>
+<p><strong>Demo</strong>: see <code>demo/demo.js</code> for magic.</p>
+<pre><code><span class="hljs-keyword">var</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;lomath&apos;</span>);
+
+<span class="hljs-comment">// use lodash as usual</span>
+<span class="hljs-keyword">var</span> v = _.range(<span class="hljs-number">10</span>);
+
+<span class="hljs-comment">// lomath: generalized math functions applicable to multi-array</span>
+<span class="hljs-keyword">var</span> vv = _.square(v);
+
+<span class="hljs-built_in">console</span>.log(v);
+<span class="hljs-built_in">console</span>.log(vv);
+
+<span class="hljs-comment">// prints all the functions in lomath</span>
+<span class="hljs-comment">// console.log(_.functions(_));</span>
+
+
+<span class="hljs-comment">// data visualization: highcharts plotter</span>
+<span class="hljs-comment">// call contructor of highcharts plotter. Note the ()</span>
+<span class="hljs-keyword">var</span> hc = _.hc();
+
+<span class="hljs-comment">// first, list all you wish to plot.</span>
 hc.plot(
     [{
-        name: &#x201C;linear&#x201D;,
+        name: <span class="hljs-string">&quot;linear&quot;</span>,
         data: v
     }, {
-        name: &#x201C;square&#x201D;,
+        name: <span class="hljs-string">&quot;square&quot;</span>,
         data: vv
     }],
-    &#x201C;Title 1&#x201D;
-    )</p>
-<p>hc.plot(
+    <span class="hljs-string">&quot;Title 1&quot;</span>
+    )
+
+hc.plot(
     [{
-        name: &#x201C;log&#x201D;,
-        data: <em>.log(</em>.range(20))
+        name: <span class="hljs-string">&quot;log&quot;</span>,
+        data: _.log(v)
     }],
-    &#x201C;Title 2&#x201D;
-    )</p>
-<p>// Magic here! pulls up a browser (default to chrome for better support) with the plotted charts automatically.
-hc.render();</p>
-<p>``` &#x2014;&gt;</p>
-<p>Docs and tests coming soon.</p>
-<h2 id="roadmap">Roadmap</h2>
+    <span class="hljs-string">&quot;Title 2&quot;</span>
+    )
+
+<span class="hljs-comment">// Magic here! Finally, the command to render all the plots above.</span>
+<span class="hljs-comment">// Pulls up a browser (default to chrome for better support) with the charts.</span>
+<span class="hljs-comment">// calling hc.render(true) will autosave all plots to your downloads folder.</span>
+hc.render();
+</code></pre><h2 id="roadmap">Roadmap</h2>
 <ul>
-<li>instruction for using plot</li>
+<li>Add a demo gif</li>
+<li>&#x2713;instruction for using plot</li>
 <li>add aliases</li>
 <li>&#x2713;sample usage</li>
-<li>docs</li>
+<li>&#x2713;docs</li>
 <li>&#x2713;tests</li>
 <li>performance benchmark</li>
 <li>&#x2713;data visualization</li>
@@ -1202,7 +1246,7 @@ _.seq(<span class="hljs-number">1</span>, <span class="hljs-number">9</span>, <s
 <h2 id="-plotting-methods-"><code>&#x201C;plotting&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-hc-a-hc-"><a id="hc"></a><code>hc()</code></h3>
-<p><a href="#hc">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2036" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#hc">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2037" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>The plotting module constructor.
 Uses <code>HighCharts</code> to plot and <code>browserSync</code>. Pulls up browser directly showing your charts like magic!
 To use this, go into <code>node_modules/lomath</code> and do <code>npm install</code> there to install the dev dependencies.</p>
@@ -1242,7 +1286,8 @@ hc.plot(
        )
 
 <span class="hljs-comment">// Finally, the command to render all the plots above.</span>
-<span class="hljs-comment">// Pulls up a browser (default to chrome for better support) with the plotted charts.</span>
+<span class="hljs-comment">// Pulls up a browser (default to chrome for better support) with the charts.</span>
+<span class="hljs-comment">// calling hc.render(true) will autosave all plots to your downloads folder.</span>
 hc.render();
 
 <span class="hljs-comment">// Magical, eh?</span>

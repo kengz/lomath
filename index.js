@@ -2226,7 +2226,8 @@ var lomath = _.mixin({
        )
    *
    * // Finally, the command to render all the plots above.
-   * // Pulls up a browser (default to chrome for better support) with the plotted charts.
+   * // Pulls up a browser (default to chrome for better support) with the charts.
+   * // calling hc.render(true) will autosave all plots to your downloads folder.
    * hc.render();
    *
    * // Magical, eh?

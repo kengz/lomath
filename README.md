@@ -1469,7 +1469,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="hc"></a>`hc()`
-<a href="#hc">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2036 "View in source") [&#x24C9;][1]
+<a href="#hc">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2037 "View in source") [&#x24C9;][1]
 
 The plotting module constructor.
 Uses `HighCharts` to plot and `browserSync`. Pulls up browser directly showing your charts like magic!
@@ -1513,7 +1513,8 @@ hc.plot(
        )
 
 // Finally, the command to render all the plots above.
-// Pulls up a browser (default to chrome for better support) with the plotted charts.
+// Pulls up a browser (default to chrome for better support) with the charts.
+// calling hc.render(true) will autosave all plots to your downloads folder.
 hc.render();
 
 // Magical, eh?

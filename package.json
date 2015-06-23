@@ -1,7 +1,7 @@
 {
   "name": "lomath",
-  "version": "0.0.8",
-  "description": "A high performance, professional math module extending lodash; comes with plotting module based on highcharts.",
+  "version": "0.1.0",
+  "description": "Lomath is the data analysts’ module in Node JS - data analysis and visualization in Node is now possible with lomath.",
   "main": "index.js",
   "scripts": {
     "start": "node demo/demo.js",

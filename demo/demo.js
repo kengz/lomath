@@ -1,4 +1,4 @@
-// import as usual: 
+// import as usual:
 var _ = require(__dirname+'/../index.js')
 
 // use lodash as usual
@@ -18,27 +18,29 @@ console.log(vv);
 // data visualization: highcharts plotter //
 ////////////////////////////////////////////
 // call contructor of highcharts plotter. Note the ()
-var hc = _.hc();
+// var hc = _.hc();
 
-// first, enum plots
-hc.plot(
-    [{
-        name: "linear",
-        data: v
-    }, {
-        name: "square",
-        data: vv
-    }],
-    "Title 1"
-    )
-hc.plot(
-    [{
-        name: "log",
-        data: _.log(_.range(20))
-    }],
-    "Title 2"
-    )
+// // first, list all you wish to plot.
+// hc.plot(
+//     [{
+//         name: "linear",
+//         data: v
+//     }, {
+//         name: "square",
+//         data: vv
+//     }],
+//     "Title 1"
+//     )
+// hc.plot(
+//     [{
+//         name: "log",
+//         data: _.log(v)
+//     }],
+//     "Title 2"
+//     )
 
-// finally, render all the enumerate plots
-// pulls up a browser (default to chrome for better support) with the plotted charts
-hc.render();
+// // finally, render all the enumerate plots
+// // pulls up a browser (default to chrome for better support) with the plotted charts
+// hc.render();
+
+// Magical, eh?

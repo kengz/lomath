@@ -5,8 +5,10 @@ A high performance, professional math module extending lodash;  comes with plott
 
 **Installation**: `npm install lomath`
 
-testrun: see `demo/demo.js` for magic.
+To use the plotting module, go into your node_modules/lomath and run `npm install` from there; it requires the dev modules in lomath.
 
+testrun: see `demo/demo.js` for magic.
+<!-- 
 ```Javascript
 var _ = require('lomath');
 
@@ -50,12 +52,13 @@ hc.plot(
 // Magic here! pulls up a browser (default to chrome for better support) with the plotted charts automatically.
 hc.render();
 
-```
+``` -->
 
 Docs and tests coming soon.
 
 
 ## Roadmap
+- instruction for using plot
 - add aliases
 - ✓sample usage
 - docs

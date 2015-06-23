@@ -207,3 +207,54 @@ exports.gulpplot = gulpplot;
 
 
 
+
+gulp.task('doc', ['rebuild','reload2', 'docwatch']);
+
+gulp.task('docwatch', function(){
+    gulp.watch('./index.js', ['rebuild', 'reload2']);
+})
+var cp = require('child_process');
+
+gulp.task('rebuild', function(){
+  return cp.exec('./node_modules/dokker/bin/dokker', function(error, stdout, stderr) {
+      if (error !== null) {
+          console.log('exec error: ' + error);
+      }
+        return gulp.src('./*.js')
+  })
+
+})
+// Reloading browserSync
+gulp.task('reload2', ['rebuild'], reload2);
+
+// reload browserSync
+function reload2() {
+    var defer = q.defer();
+    setTimeout(function () {
+
+    if (browserSync.active) {
+        browserSync.reload();
+        defer.resolve();
+    } else
+    startServer2().then(defer.resolve);
+
+  }, 1000);
+    return defer.promise;
+}
+
+// start a browserSync server to index.html directly
+function startServer2() {
+    var defer = q.defer();
+
+    var serverConfig = {
+        server: {
+            baseDir: 'docs',
+            directory: true
+        },
+        startPath: 'index.html',
+        logPrefix: 'SERVER'
+    };
+    browserSync.init(serverConfig, defer.resolve);
+
+    return defer.promise;
+}

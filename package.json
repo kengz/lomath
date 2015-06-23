@@ -19,6 +19,7 @@
     "browserify": "^10.2.4",
     "chai": "^3.0.0",
     "coveralls": "^2.11.2",
+    "dokker": "^0.1.0",
     "glob": "^5.0.10",
     "gulp": "^3.9.0",
     "gulp-inject": "^1.3.1",

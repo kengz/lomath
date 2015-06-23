@@ -16,6 +16,17 @@ suite('Function builder backend', function() {
   suite('Distribute', function() {
 
     //----------------------------------------------
+    suite('op(x, y)', function() {
+      var fn;
+      beforeEach(function() {
+        fn = _.op;
+      })
+      test('order-preserving function composition', function() {
+        fn('a', 'b').should.equal('a*b')
+      })
+    })
+
+    //----------------------------------------------
     suite('distributeSingle(fn, Y)', function() {
       var fn;
       beforeEach(function() {
@@ -741,11 +752,11 @@ suite('Regex functions', function() {
   })
   test('reWrap(reg)', function() {
     _.reWrap(A.reWord).should.be.a('string')
-    _.reWrap(A.reWord).should.equal('(?=.*[a-zA-Z]+)')
+    _.reWrap(A.reWord).should.equal('(?:[a-zA-Z]+)')
   })
   test('reAnd()', function() {
     _.reAnd(A.reWord, A.reNum).should.be.an.instanceof(RegExp)
-    _.reAnd(A.reWord, A.reNum).should.deep.equal(/(?=.*[a-zA-Z]+)(?=.*[0-9]+)/)
+    _.reAnd(A.reWord, A.reNum).should.deep.equal(/(?:[a-zA-Z]+)(?:[0-9]+)/)
   })
   test('reAndMatch()', function() {
     _.reAndMatch(A.reWord, A.reNum)(A.str).should.be.true
@@ -754,7 +765,7 @@ suite('Regex functions', function() {
   })
   test('reOr()', function() {
     _.reOr(A.reWord, A.reNum).should.be.an.instanceof(RegExp)
-    _.reOr(A.reWord, A.reNum).should.deep.equal(/(?=.*[a-zA-Z]+)|(?=.*[0-9]+)/)
+    _.reOr(A.reWord, A.reNum).should.deep.equal(/(?:[a-zA-Z]+)|(?:[0-9]+)/)
   })
   test('reAndMatch()', function() {
     _.reOrMatch(A.reWord, A.reNum)(A.str).should.be.true

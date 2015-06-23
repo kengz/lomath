@@ -1,0 +1,2232 @@
+<!DOCTYPE html>
+<html lang="en" id="docs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>lomath.js</title>
+  <link rel="stylesheet" href="styles.css" media="all">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+</head>
+<body>
+  <div class="toc-container">
+    <h2><code><a href="http://dokkerjs.com/">lomath.js</a></code></h2>
+    <ul>
+      <li><a href="#">Introduction</a></li>
+      <li><a href="https://github.com/oceanhouse21/dokker">Github Repository</a></li>
+      <li><a href="tests.html">Test suite</a></li>
+      <li><a href="docs/annotated/dokker.html">Annotated Source</a></li>
+    </ul>
+    
+<div>
+<h2 id="-basics-"><code>basics</code></h2>
+<ul>
+<li><a href="#add"><code>add</code></a></li>
+<li><a href="#c"><code>c</code></a></li>
+<li><a href="#divide"><code>divide</code></a></li>
+<li><a href="#log"><code>log</code></a></li>
+<li><a href="#multiply"><code>multiply</code></a></li>
+<li><a href="#prod"><code>prod</code></a></li>
+<li><a href="#root"><code>root</code></a></li>
+<li><a href="#square"><code>square</code></a></li>
+<li><a href="#subtract"><code>subtract</code></a></li>
+<li><a href="#sum"><code>sum</code></a></li>
+</ul>
+</div>
+<div>
+<h2 id="-combinatorics-"><code>combinatorics</code></h2>
+<ul>
+<li><a href="#combList"><code>combList</code></a></li>
+<li><a href="#combination"><code>combination</code></a></li>
+<li><a href="#factorial"><code>factorial</code></a></li>
+<li><a href="#genAry"><code>genAry</code></a></li>
+<li><a href="#pSubset"><code>pSubset</code></a></li>
+<li><a href="#permList"><code>permList</code></a></li>
+<li><a href="#permutation"><code>permutation</code></a></li>
+<li><a href="#permute"><code>permute</code></a></li>
+<li><a href="#subset"><code>subset</code></a></li>
+<li><a href="#toNumArr"><code>toNumArr</code></a></li>
+</ul>
+</div>
+<div>
+<h2 id="-composition-"><code>composition</code></h2>
+<ul>
+<li><a href="#asso"><code>asso</code></a></li>
+<li><a href="#assodist"><code>assodist</code></a></li>
+<li><a href="#distribute"><code>distribute</code></a></li>
+<li><a href="#distributeBoth"><code>distributeBoth</code></a></li>
+<li><a href="#distributeLeft"><code>distributeLeft</code></a></li>
+<li><a href="#distributeRight"><code>distributeRight</code></a></li>
+<li><a href="#distributeSingle"><code>distributeSingle</code></a></li>
+<li><a href="#op"><code>op</code></a></li>
+</ul>
+</div>
+<div>
+<h2 id="-initialization-"><code>initialization</code></h2>
+<ul>
+<li><a href="#numeric"><code>numeric</code></a></li>
+<li><a href="#seq"><code>seq</code></a></li>
+</ul>
+</div>
+<div>
+<h2 id="-native-math-"><code>native-Math</code></h2>
+<ul>
+<li><a href="#abs"><code>abs</code></a></li>
+<li><a href="#acos"><code>acos</code></a></li>
+<li><a href="#acosh"><code>acosh</code></a></li>
+<li><a href="#asin"><code>asin</code></a></li>
+<li><a href="#asinh"><code>asinh</code></a></li>
+<li><a href="#atan"><code>atan</code></a></li>
+<li><a href="#atanh"><code>atanh</code></a></li>
+<li><a href="#ceil"><code>ceil</code></a></li>
+<li><a href="#cos"><code>cos</code></a></li>
+<li><a href="#cosh"><code>cosh</code></a></li>
+<li><a href="#exp"><code>exp</code></a></li>
+<li><a href="#floor"><code>floor</code></a></li>
+<li><a href="#log10"><code>log10</code></a></li>
+<li><a href="#log1p"><code>log1p</code></a></li>
+<li><a href="#log2"><code>log2</code></a></li>
+<li><a href="#pow"><code>pow</code></a></li>
+<li><a href="#round"><code>round</code></a></li>
+<li><a href="#sign"><code>sign</code></a></li>
+<li><a href="#sin"><code>sin</code></a></li>
+<li><a href="#sinh"><code>sinh</code></a></li>
+<li><a href="#sqrt"><code>sqrt</code></a></li>
+<li><a href="#tan"><code>tan</code></a></li>
+<li><a href="#tanh"><code>tanh</code></a></li>
+<li><a href="#trunc"><code>trunc</code></a></li>
+</ul>
+</div>
+<div>
+<h2 id="-plotting-"><code>plotting</code></h2>
+<ul>
+<li><a href="#hc"><code>hc</code></a></li>
+</ul>
+</div>
+<div>
+<h2 id="-properties-"><code>properties</code></h2>
+<ul>
+<li><a href="#depth"><code>depth</code></a></li>
+<li><a href="#dim"><code>dim</code></a></li>
+<li><a href="#isFlat"><code>isFlat</code></a></li>
+<li><a href="#maxDeepestLength"><code>maxDeepestLength</code></a></li>
+<li><a href="#volume"><code>volume</code></a></li>
+</ul>
+</div>
+<div>
+<h2 id="-regexp-"><code>regexp</code></h2>
+<ul>
+<li><a href="#reAnd"><code>reAnd</code></a></li>
+<li><a href="#reAndMatch"><code>reAndMatch</code></a></li>
+<li><a href="#reGet"><code>reGet</code></a></li>
+<li><a href="#reMatch"><code>reMatch</code></a></li>
+<li><a href="#reNotMatch"><code>reNotMatch</code></a></li>
+<li><a href="#reOr"><code>reOr</code></a></li>
+<li><a href="#reOrMatch"><code>reOrMatch</code></a></li>
+<li><a href="#reWrap"><code>reWrap</code></a></li>
+</ul>
+</div>
+<div>
+<h2 id="-signature-"><code>signature</code></h2>
+<ul>
+<li><a href="#inRange"><code>inRange</code></a></li>
+<li><a href="#isDouble"><code>isDouble</code></a></li>
+<li><a href="#isInteger"><code>isInteger</code></a></li>
+<li><a href="#isNegative"><code>isNegative</code></a></li>
+<li><a href="#isPositive"><code>isPositive</code></a></li>
+<li><a href="#nonNegative"><code>nonNegative</code></a></li>
+<li><a href="#nonPositive"><code>nonPositive</code></a></li>
+<li><a href="#nonZero"><code>nonZero</code></a></li>
+<li><a href="#sameSig"><code>sameSig</code></a></li>
+</ul>
+</div>
+<div>
+<h2 id="-statistics-"><code>statistics</code></h2>
+<ul>
+<li><a href="#expGRate"><code>expGRate</code></a></li>
+<li><a href="#expVal"><code>expVal</code></a></li>
+<li><a href="#mean"><code>mean</code></a></li>
+<li><a href="#stdev"><code>stdev</code></a></li>
+<li><a href="#trailExpGRate"><code>trailExpGRate</code></a></li>
+<li><a href="#variance"><code>variance</code></a></li>
+</ul>
+</div>
+<div>
+<h2 id="-transformation-"><code>transformation</code></h2>
+<ul>
+<li><a href="#batchIndexOf"><code>batchIndexOf</code></a></li>
+<li><a href="#cbind"><code>cbind</code></a></li>
+<li><a href="#cbindByField"><code>cbindByField</code></a></li>
+<li><a href="#extend"><code>extend</code></a></li>
+<li><a href="#rbind"><code>rbind</code></a></li>
+<li><a href="#rectangularize"><code>rectangularize</code></a></li>
+<li><a href="#reshape"><code>reshape</code></a></li>
+<li><a href="#reverse"><code>reverse</code></a></li>
+<li><a href="#swap"><code>swap</code></a></li>
+<li><a href="#transpose"><code>transpose</code></a></li>
+<li><a href="#validInds"><code>validInds</code></a></li>
+</ul>
+</div>
+<div>
+<h2 id="-trend-"><code>trend</code></h2>
+<ul>
+<li><a href="#decreasing"><code>decreasing</code></a></li>
+<li><a href="#increasing"><code>increasing</code></a></li>
+<li><a href="#nonDecreasing"><code>nonDecreasing</code></a></li>
+<li><a href="#nonIncreasing"><code>nonIncreasing</code></a></li>
+<li><a href="#stairs"><code>stairs</code></a></li>
+<li><a href="#stairsTrend"><code>stairsTrend</code></a></li>
+</ul>
+</div>
+<div>
+<h2 id="-vector-"><code>vector</code></h2>
+<ul>
+<li><a href="#dot"><code>dot</code></a></li>
+<li><a href="#norm"><code>norm</code></a></li>
+<li><a href="#normalize"><code>normalize</code></a></li>
+<li><a href="#powSum"><code>powSum</code></a></li>
+<li><a href="#rescale"><code>rescale</code></a></li>
+</ul>
+</div>
+<div>
+<h2 id="-methods-"><code>Methods</code></h2>
+</div>
+<div>
+<h2 id="-properties-"><code>Properties</code></h2>
+</div>
+
+  </div>
+  <div class="doc-container">
+    <div>
+      
+<p><a href="http://badge.fury.io/js/lomath"><img src="https://badge.fury.io/js/lomath.svg" alt="npm version"></a> <a href="https://travis-ci.org/kengz/lomath"><img src="https://travis-ci.org/kengz/lomath.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/r/kengz/lomath?branch=master"><img src="https://coveralls.io/repos/kengz/lomath/badge.svg?branch=master" alt="Coverage Status"></a> <a href="https://gemnasium.com/kengz/lomath"><img src="https://gemnasium.com/kengz/lomath.svg" alt="Dependency Status"></a></p>
+<p>A high performance, professional math module extending lodash;  comes with plotting module based on highcharts.</p>
+<p><strong>Installation</strong>: <code>npm install lomath</code></p>
+<p>To use the plotting module, go into your node_modules/lomath and run <code>npm install</code> from there; it requires the dev modules in lomath.</p>
+<p>testrun: see <code>demo/demo.js</code> for magic.
+&lt;!&#x2014; 
+```Javascript
+var _ = require(&#x2018;lomath&#x2019;);</p>
+<p>// use lodash as usual
+var v = _.range(10);</p>
+<p>// lomath: generalized math functions applicable to multi-array
+var vv = _.square(v);</p>
+<p>console.log(v);
+console.log(vv);</p>
+<p>// prints all the functions
+// console.log(<em>.functions(</em>));</p>
+<p>// data visualization: highcharts plotter
+// call contructor of highcharts plotter. Note the ()
+var hc = _.hc();</p>
+<p>// first, enum plots
+hc.plot(
+    [{
+        name: &#x201C;linear&#x201D;,
+        data: v
+    }, {
+        name: &#x201C;square&#x201D;,
+        data: vv
+    }],
+    &#x201C;Title 1&#x201D;
+    )</p>
+<p>hc.plot(
+    [{
+        name: &#x201C;log&#x201D;,
+        data: <em>.log(</em>.range(20))
+    }],
+    &#x201C;Title 2&#x201D;
+    )</p>
+<p>// Magic here! pulls up a browser (default to chrome for better support) with the plotted charts automatically.
+hc.render();</p>
+<p>``` &#x2014;&gt;</p>
+<p>Docs and tests coming soon.</p>
+<h2 id="roadmap">Roadmap</h2>
+<ul>
+<li>instruction for using plot</li>
+<li>add aliases</li>
+<li>&#x2713;sample usage</li>
+<li>docs</li>
+<li>&#x2713;tests</li>
+<li>performance benchmark</li>
+<li>&#x2713;data visualization</li>
+</ul>
+
+      <h2>API documentation</h2>
+      
+<div>
+<h2 id="-basics-methods-"><code>&#x201C;basics&#x201D; Methods</code></h2>
+<div>
+<h3 id="-a-id-add-a-add-x-"><a id="add"></a><code>add([...X])</code></h3>
+<p><a href="#add">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L332" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Adds tensors using <code>_.assodist</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>[...X]</code> <em>(&#x2026;tensors)</em>: tensors.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  A tensor.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.add(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+<span class="hljs-comment">// &#x2192; 6</span>
+
+_.add(<span class="hljs-number">1</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-comment">// &#x2192; [2, 3, 4]</span>
+
+_.add(<span class="hljs-number">1</span>, [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
+<span class="hljs-comment">// &#x2192; [[2, 3], [4, 5]]</span>
+
+_.add([<span class="hljs-number">10</span>, <span class="hljs-number">20</span>], [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
+<span class="hljs-comment">// &#x2192; [[11, 12], [23, 24]]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-c-a-c-x-"><a id="c"></a><code>c([...X])</code></h3>
+<p><a href="#c">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L244" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Concatenates all arguments into single vector by <code>_.flattenDeep</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>[...X]</code> <em>(&#x2026;tensors)</em>: tensors.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(vector)</em>:  A vector with the scalars from all tensors.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.c(<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>)
+<span class="hljs-comment">// &#x2192; [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]</span>
+
+_.c(<span class="hljs-number">1</span>, [<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>], <span class="hljs-number">2</span>)
+<span class="hljs-comment">// &#x2192; [1, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, 2]</span>
+
+_.c([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+<span class="hljs-comment">// &#x2192; [1, 2, 3, 4]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-divide-a-divide-x-"><a id="divide"></a><code>divide([...X])</code></h3>
+<p><a href="#divide">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L413" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Divides tensors using <code>_.assodist</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>[...X]</code> <em>(&#x2026;tensors)</em>: tensors.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  A tensor.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.divide(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>)
+<span class="hljs-comment">// &#x2192; 1.5</span>
+
+_.divide([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <span class="hljs-number">2</span>)
+<span class="hljs-comment">// &#x2192; [0.5, 1, 1.5]</span>
+
+_.divide([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]], <span class="hljs-number">2</span>)
+<span class="hljs-comment">// &#x2192; [[0.5, 1], [1.5, 2]]</span>
+
+_.divide([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>])
+<span class="hljs-comment">// &#x2192; [[1, 2], [1.5, 2]]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-log-a-log-t-n-e-"><a id="log"></a><code>log(T, [n=e])</code></h3>
+<p><a href="#log">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L432" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Takes the log of tensor T to base n (defaulted to e) element-wise using <code>_.distribute</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+<li><code>[n=e]</code> <em>(number)</em>: The optional base; defaulted to e.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  A tensor.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.log([<span class="hljs-number">1</span>, <span class="hljs-built_in">Math</span>.E])
+<span class="hljs-comment">// &#x2192; [0, 1]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-multiply-a-multiply-x-"><a id="multiply"></a><code>multiply([...X])</code></h3>
+<p><a href="#multiply">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L386" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Multiplies tensors using <code>_.assodist</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>[...X]</code> <em>(&#x2026;tensors)</em>: tensors.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  A tensor.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.multiply(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+<span class="hljs-comment">// &#x2192; 6</span>
+
+_.multiply(<span class="hljs-number">1</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-comment">// &#x2192; [1, 2, 3]</span>
+
+_.multiply(<span class="hljs-number">1</span>, [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
+<span class="hljs-comment">// &#x2192; [[1, 2], [3, 4]]</span>
+
+_.multiply([<span class="hljs-number">10</span>, <span class="hljs-number">20</span>], [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
+<span class="hljs-comment">// &#x2192; [[10, 20], [60, 80]]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-prod-a-prod-x-"><a id="prod"></a><code>prod([...X])</code></h3>
+<p><a href="#prod">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L301" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Multiplies together all scalars in all argument tensors.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>[...X]</code> <em>(&#x2026;tensors)</em>: tensors.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(scalar)</em>:  A product scalar from all scalars in the tensors.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.prod(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+<span class="hljs-comment">// &#x2192; 6</span>
+
+_.prod([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-comment">// &#x2192; 6</span>
+
+_.prod(<span class="hljs-number">1</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
+<span class="hljs-comment">// &#x2192; 144</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-root-a-root-t-n-2-"><a id="root"></a><code>root(T, [n=2])</code></h3>
+<p><a href="#root">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L475" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Takes the n-th root (defaulted to 2) of tensor T element-wise using <code>_.distribute</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+<li><code>[n=2]</code> <em>(number)</em>: The optional base; defaulted to <code>2</code> for squareroot.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  A tensor.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.root([<span class="hljs-number">1</span>, <span class="hljs-number">4</span>])
+<span class="hljs-comment">// &#x2192; [1, 2]</span>
+
+_.root([-<span class="hljs-number">1</span>, -<span class="hljs-number">8</span>], <span class="hljs-number">3</span>)
+<span class="hljs-comment">// &#x2192; [-1, -2]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-square-a-square-t-"><a id="square"></a><code>square(T)</code></h3>
+<p><a href="#square">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L450" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Squares a tensor element-wise using <code>_.distributeSingle</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  A tensor.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.square([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>])
+<span class="hljs-comment">// &#x2192; [1, 4]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-subtract-a-subtract-x-"><a id="subtract"></a><code>subtract([...X])</code></h3>
+<p><a href="#subtract">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L359" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Subtracts tensors using <code>_.assodist</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>[...X]</code> <em>(&#x2026;tensors)</em>: tensors.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  A tensor.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.subtract(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+<span class="hljs-comment">// &#x2192; -5</span>
+
+_.subtract(<span class="hljs-number">1</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-comment">// &#x2192; [0, -1, -2]</span>
+
+_.subtract(<span class="hljs-number">1</span>, [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
+<span class="hljs-comment">// &#x2192; [[0, -1], [-2, -3]]</span>
+
+_.subtract([<span class="hljs-number">10</span>, <span class="hljs-number">20</span>], [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
+<span class="hljs-comment">// &#x2192; [[9, 8], [17, 16]]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-sum-a-sum-x-"><a id="sum"></a><code>sum([...X])</code></h3>
+<p><a href="#sum">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L269" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Sums all scalars in all argument tensors.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>[...X]</code> <em>(&#x2026;tensors)</em>: tensors.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(scalar)</em>:  A scalar summed from all scalars in the tensors.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.sum(<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>)
+<span class="hljs-comment">// &#x2192; &apos;abc&apos;</span>
+
+_.sum(<span class="hljs-number">0</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+<span class="hljs-comment">// &#x2192; 16</span>
+</code></pre>
+<hr>
+</div>
+</div>
+<div>
+<h2 id="-combinatorics-methods-"><code>&#x201C;combinatorics&#x201D; Methods</code></h2>
+<div>
+<h3 id="-a-id-comblist-a-comblist-n-r-"><a id="combList"></a><code>combList(n, r)</code></h3>
+<p><a href="#combList">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1573" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generates the indices of n-choose-r. Calls <code>_.subset</code> internally, chooses the array with string length r, and converts to numbers.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>n</code> <em>(number)</em>: The number of items to choose.</li>
+<li><code>r</code> <em>(number)</em>: The number of items chosen.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Array)</em>:  T The array of index arrays specifying the subset indices.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.combList(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>)
+<span class="hljs-comment">// &#x2192; [ [ 0, 1 ], [ 0, 2 ], [ 1, 2 ] ]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-combination-a-combination-n-r-"><a id="combination"></a><code>combination(n, r)</code></h3>
+<p><a href="#combination">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1677" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns n-choose-r.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>n</code> <em>(number)</em>: The integer.</li>
+<li><code>r</code> <em>(number)</em>: The integer.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(number)</em>:  nCr</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.combination(<span class="hljs-number">1000</span>, <span class="hljs-number">1</span>)
+<span class="hljs-comment">// &#x2192; 1000</span>
+
+_.combination(<span class="hljs-number">1000</span>, <span class="hljs-number">1000</span>) <span class="hljs-comment">// No integer overflow; uses symmetry.</span>
+<span class="hljs-comment">// &#x2192; 1</span>
+
+_.combination(<span class="hljs-number">1000</span>, <span class="hljs-number">500</span>) <span class="hljs-comment">// Inevitable overflow.</span>
+<span class="hljs-comment">// &#x2192; NaN</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-factorial-a-factorial-n-"><a id="factorial"></a><code>factorial(n)</code></h3>
+<p><a href="#factorial">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1623" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns n!.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>n</code> <em>(number)</em>: The integer.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(number)</em>:  n!</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.factorial(<span class="hljs-number">5</span>)
+<span class="hljs-comment">// &#x2192; 120</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-genary-a-genary-length-n-"><a id="genAry"></a><code>genAry(length, N)</code></h3>
+<p><a href="#genAry">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1448" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generates all the strings of N-nary numbers up to length.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>length</code> <em>(number)</em>: The length of the N-nary numbers.</li>
+<li><code>N</code> <em>(number)</em>: The number base.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Array)</em>:  T The array of strings of the N-nary numbers.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.genAry(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>) <span class="hljs-comment">// binary, length 3</span>
+<span class="hljs-comment">// &#x2192; [&apos;000&apos;, &apos;001&apos;, &apos;010&apos;, &apos;011&apos;, &apos;100&apos;, &apos;101&apos;, &apos;110&apos;, &apos;111&apos;]</span>
+
+_.genAry(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// ternary, length 2</span>
+<span class="hljs-comment">// &#x2192; [&apos;00&apos;, &apos;01&apos;, &apos;02&apos;, &apos;10&apos;, &apos;11&apos;, &apos;12&apos;, &apos;20&apos;, &apos;21&apos;, &apos;22&apos;]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-psubset-a-psubset-n-"><a id="pSubset"></a><code>pSubset(n)</code></h3>
+<p><a href="#pSubset">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1495" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generates all the permutation subset indices of n items.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>n</code> <em>(number)</em>: The number of items to permute.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Array)</em>:  T The array of strings of length n, specifying the permutation indices.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.pSubset(<span class="hljs-number">3</span>)
+<span class="hljs-comment">// &#x2192; [</span>
+<span class="hljs-comment">// [&apos;0&apos;, &apos;1&apos;, &apos;2&apos;],</span>
+<span class="hljs-comment">// [&apos;01&apos;, &apos;02&apos;, &apos;10&apos;, &apos;12&apos;, &apos;20&apos;, &apos;21&apos;],</span>
+<span class="hljs-comment">// [&apos;012&apos;, &apos;021&apos;, &apos;102&apos;, &apos;120&apos;, &apos;201&apos;, &apos;210&apos;]</span>
+<span class="hljs-comment">// ]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-permlist-a-permlist-n-r-"><a id="permList"></a><code>permList(n, r)</code></h3>
+<p><a href="#permList">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1557" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generates the indices of n-permute-r. Calls <code>_.pSubset</code> internally, chooses the array with string length r, and converts to numbers.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>n</code> <em>(number)</em>: The number of items to permute.</li>
+<li><code>r</code> <em>(number)</em>: The number of items chosen.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Array)</em>:  T The array of index arrays specifying the permutation indices.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.permList(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>)
+<span class="hljs-comment">// &#x2192; [ [ 0, 1 ], [ 0, 2 ], [ 1, 0 ], [ 1, 2 ], [ 2, 0 ], [ 2, 1 ] ]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-permutation-a-permutation-n-r-"><a id="permutation"></a><code>permutation(n, r)</code></h3>
+<p><a href="#permutation">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1648" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns n-permute-r.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>n</code> <em>(number)</em>: The integer.</li>
+<li><code>r</code> <em>(number)</em>: The integer.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(number)</em>:  nPr</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.permutation(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>)
+<span class="hljs-comment">// &#x2192; 120</span>
+
+_.permutation(<span class="hljs-number">1000</span>, <span class="hljs-number">1</span>)
+<span class="hljs-comment">// &#x2192; 1000</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-permute-a-permute-n-"><a id="permute"></a><code>permute(n)</code></h3>
+<p><a href="#permute">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1595" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generates the permutation indices of n items in lexicographical order.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>n</code> <em>(number)</em>: The number of items to permute.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Array)</em>:  T The array of index arrays specifying the permutation indices.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.permute(<span class="hljs-number">3</span>)
+<span class="hljs-comment">// &#x2192; [</span>
+<span class="hljs-comment">// [ 0, 1, 2 ],</span>
+<span class="hljs-comment">// [ 0, 2, 1 ],</span>
+<span class="hljs-comment">// [ 1, 0, 2 ],</span>
+<span class="hljs-comment">// [ 1, 2, 0 ],</span>
+<span class="hljs-comment">// [ 2, 0, 1 ],</span>
+<span class="hljs-comment">// [ 2, 1, 0 ]</span>
+<span class="hljs-comment">// ]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-subset-a-subset-n-"><a id="subset"></a><code>subset(n)</code></h3>
+<p><a href="#subset">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1528" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generates all the (combination) subset indices of n items.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>n</code> <em>(number)</em>: The number of items to choose.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Array)</em>:  T The array of strings of length n, specifying the subset indices.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.subset(<span class="hljs-number">3</span>)
+<span class="hljs-comment">// &#x2192; [</span>
+<span class="hljs-comment">// [&apos;0&apos;, &apos;1&apos;, &apos;2&apos;],</span>
+<span class="hljs-comment">// [&apos;01&apos;, &apos;02&apos;, &apos;12&apos;],</span>
+<span class="hljs-comment">// [&apos;012&apos;]</span>
+<span class="hljs-comment">// ]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-tonumarr-a-tonumarr-strings-"><a id="toNumArr"></a><code>toNumArr(strings)</code></h3>
+<p><a href="#toNumArr">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1472" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Converts an array of strings to array of array of numbers.
+Used with <code>_.genAry</code> and related number/subset-generating functions.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>strings</code> <em>(Array)</em>: The strings of numbers to convert into arrays.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Array)</em>:  T The array of array of numbers from the strings.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.toNumArr([<span class="hljs-string">&apos;00&apos;</span>, <span class="hljs-string">&apos;01&apos;</span>, <span class="hljs-string">&apos;10&apos;</span>, <span class="hljs-string">&apos;11&apos;</span>]) <span class="hljs-comment">// binary, length 2</span>
+<span class="hljs-comment">// &#x2192; [[0, 0], [0, 1], [1, 0], [1, 1]]</span>
+</code></pre>
+<hr>
+</div>
+</div>
+<div>
+<h2 id="-composition-methods-"><code>&#x201C;composition&#x201D; Methods</code></h2>
+<div>
+<h3 id="-a-id-asso-a-asso-fn-x-"><a id="asso"></a><code>asso(fn, [...x])</code></h3>
+<p><a href="#asso">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L185" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generic association: take the arguments object or array and apply atomic function (with scalar arguments) from left to right.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>fn</code> <em>(Function)</em>: An atomic binary function <em>(both arguments must be scalars)</em>.</li>
+<li><code>[...x]</code> <em>(&#x2026;number)</em>: Scalars; can be grouped in a single array.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(number)</em>:  A scalar from the function applied to all arguments in order.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.asso(_.op, <span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>)
+<span class="hljs-comment">// where _.op is used to show the order of composition</span>
+<span class="hljs-comment">// &#x2192; &apos;a*b*c&apos;</span>
+
+_.asso(_.op, [<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>])
+<span class="hljs-comment">// &#x2192; &apos;a*b*c&apos;</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-assodist-a-assodist-fn-x-"><a id="assodist"></a><code>assodist(fn, [...X])</code></h3>
+<p><a href="#assodist">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L217" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generic association with distributivity: Similar to <code>_.asso</code> but is for tensor functions; apply atomic fn distributively in order using <code>_.distribute</code>.
+Usage: for applying fn on tensors element-wise if they have compatible dimensions.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>fn</code> <em>(Function)</em>: An atomic binary function <em>(both arguments must be scalars)</em>.</li>
+<li><code>[...X]</code> <em>(&#x2026;tensors)</em>: tensors.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  A tensor from the function applied to all arguments in order.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.assodist(_.op, <span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>)
+<span class="hljs-comment">// where _.op is used to show the order of composition</span>
+<span class="hljs-comment">// &#x2192; &apos;a*b*c&apos;</span>
+
+_.assodist(_.op, <span class="hljs-string">&apos;a&apos;</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <span class="hljs-string">&apos;b&apos;</span>)
+<span class="hljs-comment">// &#x2192; [&apos;a*1*b&apos;, &apos;a*2*b&apos;, &apos;a*3*b&apos;]</span>
+
+_.assodist(_.op, <span class="hljs-string">&apos;a&apos;</span>, [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
+<span class="hljs-comment">// &#x2192; [[&apos;a*1&apos;, &apos;a*2&apos;], [&apos;a*3&apos;, &apos;a*4&apos;]]</span>
+
+_.assodist(_.op, [<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>], [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
+<span class="hljs-comment">// &#x2192; [[&apos;a*1&apos;, &apos;a*2&apos;], [&apos;b*3&apos;, &apos;b*4&apos;]]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-distribute-a-distribute-fn-x-y-"><a id="distribute"></a><code>distribute(fn, X, Y)</code></h3>
+<p><a href="#distribute">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L160" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generic Distribution: Distribute fn between left tensor X and right tensor Y, while preserving the argument-ordering (vital for non-commutative functions).
+Pairs up the tensors term-wise while descending down the depths recursively using <code>_.distributeBoth</code>, until finding a scalar to <code>_.distributeLeft/Right</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>fn</code> <em>(Function)</em>: A binary function.</li>
+<li><code>X</code> <em>(tensor)</em>: A tensor.</li>
+<li><code>Y</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  A tensor from the function applied element-wise between X and Y.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.distribute(_.op, <span class="hljs-string">&apos;a&apos;</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-comment">// where _.op is used to show the order of composition</span>
+<span class="hljs-comment">// &#x2192; [&apos;a*1&apos;, &apos;a*2&apos;, &apos;a*3&apos;]</span>
+
+_.distribute(_.op, <span class="hljs-string">&apos;a&apos;</span>, [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+<span class="hljs-comment">// &#x2192; [ [ &apos;a*1&apos;, &apos;a*2&apos; ], [ &apos;a*3&apos;, &apos;a*4&apos; ] ]</span>
+
+_.distribute(_.op, [<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-comment">// &#x2192; [ &apos;a*1&apos;, &apos;b*2&apos;, &apos;c*3&apos; ]</span>
+
+_.distribute(_.op, [<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>])
+<span class="hljs-comment">// &#x2192; [ &apos;a*1&apos;, &apos;b*2&apos;, &apos;c*3&apos; , &apos;a*4&apos;, &apos;b*5&apos;, &apos;c*6&apos;]</span>
+
+_.distribute(_.op, [<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>], [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>], [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>]])
+<span class="hljs-comment">// &#x2192; [ [ &apos;a*1&apos;, &apos;a*2&apos; ], [ &apos;b*3&apos;, &apos;b*4&apos; ], [ &apos;c*5&apos;, &apos;c*6&apos; ] ]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-distributeboth-a-distributeboth-fn-x-y-"><a id="distributeBoth"></a><code>distributeBoth(fn, X, Y)</code></h3>
+<p><a href="#distributeBoth">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L117" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Distributes a binary function between non-scalar tensors X, Y: pair them up term-wise and calling <code>_.distribute</code> recursively. Perserves the order of arguments.
+If at any depth X and Y have different lengths, recycle if the mod of lengths is 0.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>fn</code> <em>(Function)</em>: A binary function.</li>
+<li><code>X</code> <em>(tensor)</em>: A non-scalar tensor.</li>
+<li><code>Y</code> <em>(tensor)</em>: A non-scalar tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  A tensor from the function applied element-wise between X and Y.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.distributeBoth(_.op, [<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-comment">// where _.op is used to show the order of composition</span>
+<span class="hljs-comment">// &#x2192; [ &apos;a*1&apos;, &apos;b*2&apos;, &apos;c*3&apos; ]</span>
+
+_.distributeBoth(_.op, [<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>])
+<span class="hljs-comment">// &#x2192; [ &apos;a*1&apos;, &apos;b*2&apos;, &apos;c*3&apos; , &apos;a*4&apos;, &apos;b*5&apos;, &apos;c*6&apos;]</span>
+
+_.distributeBoth(_.op, [<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>], [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>], [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>]])
+<span class="hljs-comment">// &#x2192; [ [ &apos;a*1&apos;, &apos;a*2&apos; ], [ &apos;b*3&apos;, &apos;b*4&apos; ], [ &apos;c*5&apos;, &apos;c*6&apos; ] ]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-distributeleft-a-distributeleft-fn-x-y-"><a id="distributeLeft"></a><code>distributeLeft(fn, X, y)</code></h3>
+<p><a href="#distributeLeft">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L63" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Distributes a binary function with left tensor X over right scalar y. Preserves the order of arguments.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>fn</code> <em>(Function)</em>: A binary function.</li>
+<li><code>X</code> <em>(tensor)</em>: A non-scalar tensor.</li>
+<li><code>y</code> <em>(number)</em>: A scalar.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  A tensor from the function applied element-wise between X and y.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.distributeLeft(_.op([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], <span class="hljs-number">5</span>))
+<span class="hljs-comment">// where _.op is used to show the order of composition</span>
+<span class="hljs-comment">// &#x2192; [ &apos;1*5&apos;, &apos;2*5&apos;, &apos;3*5&apos;, &apos;4*5&apos; ]</span>
+
+_.distributeLeft(_.op, [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]], <span class="hljs-number">5</span>)
+<span class="hljs-comment">// &#x2192; [ [ &apos;1*5&apos;, &apos;2*5&apos; ], [ &apos;3*5&apos;, &apos;4*5&apos; ] ]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-distributeright-a-distributeright-fn-x-y-"><a id="distributeRight"></a><code>distributeRight(fn, x, Y)</code></h3>
+<p><a href="#distributeRight">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L88" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Distributes a binary function with left scalar x over right tensor Y. Preserves the order of arguments.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>fn</code> <em>(Function)</em>: A binary function.</li>
+<li><code>x</code> <em>(number)</em>: A scalar.</li>
+<li><code>Y</code> <em>(tensor)</em>: A non-scalar tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  A tensor from the function applied element-wise between x and Y.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.distributeRight(_.op, <span class="hljs-number">5</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+<span class="hljs-comment">// where _.op is used to show the order of composition</span>
+<span class="hljs-comment">// &#x2192; [ &apos;5*1&apos;, &apos;5*2&apos;, &apos;5*3&apos;, &apos;5*4&apos; ]</span>
+
+_.distributeRight(_.op, <span class="hljs-number">5</span>, [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
+<span class="hljs-comment">// &#x2192; [ [ &apos;5*1&apos;, &apos;5*2&apos; ], [ &apos;5*3&apos;, &apos;5*4&apos; ] ]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-distributesingle-a-distributesingle-fn-y-"><a id="distributeSingle"></a><code>distributeSingle(fn, Y)</code></h3>
+<p><a href="#distributeSingle">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L37" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Distributes a unary function over every scalar in tensor Y.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>fn</code> <em>(Function)</em>: A unary function.</li>
+<li><code>Y</code> <em>(tensor)</em>: A non-scalar tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  A tensor from the function applied element-wise to Y.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.distributeSingle(_.square, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+<span class="hljs-comment">// &#x2192; [ 1, 4, 9, 16 ]</span>
+
+_.distributeSingle(_.square, [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
+<span class="hljs-comment">// &#x2192; [ [ 1, 4 ], [ 9, 16 ] ]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-op-a-op-x-y-"><a id="op"></a><code>op(x, y)</code></h3>
+<p><a href="#op">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L18" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Sample operation to demonstrate function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>x</code> <em>(*)</em>: An argument.</li>
+<li><code>y</code> <em>(*)</em>: An argument.</li>
+</ol>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.op(<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>)
+<span class="hljs-comment">// &#x2192; &apos;a*b&apos;</span>
+</code></pre>
+<hr>
+</div>
+</div>
+<div>
+<h2 id="-initialization-methods-"><code>&#x201C;initialization&#x201D; Methods</code></h2>
+<div>
+<h3 id="-a-id-numeric-a-numeric-n-val-0-"><a id="numeric"></a><code>numeric(N, [val=0])</code></h3>
+<p><a href="#numeric">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1020" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns an initialized array of length N filled with the value (defaulted to 0). Reminiscent of <code>numeric()</code> of <code>R</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>N</code> <em>(number)</em>: The length of array.</li>
+<li><code>[val=0]</code> <em>(*)</em>: The value to fill array with.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Array)</em>:  filled An array initialized to the value.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.numeric(<span class="hljs-number">3</span>)
+<span class="hljs-comment">// &#x2192; [0, 0, 0]</span>
+
+_.numeric(<span class="hljs-number">3</span>, <span class="hljs-string">&apos;a&apos;</span>)
+<span class="hljs-comment">// &#x2192; [&apos;a&apos;, &apos;a&apos;, &apos;a&apos;]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-seq-a-seq-start-0-end-step-1-"><a id="seq"></a><code>seq([start=0], end, [step=1])</code></h3>
+<p><a href="#seq">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L990" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns a sequence of numbers from start to end, with interval. Similar to lodash&#x2019;s <code>_.range</code> but the default starts from 1; this is for <code>R</code> users who are familiar with <code>seq()</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>[start=0]</code> <em>(number)</em>: The start value.</li>
+<li><code>end</code> <em>(number)</em>: The end value.</li>
+<li><code>[step=1]</code> <em>(number)</em>: The interval step.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Array)</em>:  seq An array initialized to the sequence.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.seq(<span class="hljs-number">3</span>)
+<span class="hljs-comment">// &#x2192; [1, 2, 3]</span>
+
+_.seq(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>)
+<span class="hljs-comment">// &#x2192; [2, 3, 4]</span>
+
+_.seq(<span class="hljs-number">1</span>, <span class="hljs-number">9</span>, <span class="hljs-number">2</span>)
+[ <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span> ]
+</code></pre>
+<hr>
+</div>
+</div>
+<div>
+<h2 id="-native-math-methods-"><code>&#x201C;native-Math&#x201D; Methods</code></h2>
+<div>
+<h3 id="-a-id-abs-a-abs-t-"><a id="abs"></a><code>abs(T)</code></h3>
+<p><a href="#abs">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L595" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.abs([-<span class="hljs-number">1</span>, -<span class="hljs-number">2</span>, -<span class="hljs-number">3</span>])
+<span class="hljs-comment">// &#x2192; [1, 2, 3]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-acos-a-acos-t-"><a id="acos"></a><code>acos(T)</code></h3>
+<p><a href="#acos">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L604" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-acosh-a-acosh-t-"><a id="acosh"></a><code>acosh(T)</code></h3>
+<p><a href="#acosh">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L613" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-asin-a-asin-t-"><a id="asin"></a><code>asin(T)</code></h3>
+<p><a href="#asin">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L622" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-asinh-a-asinh-t-"><a id="asinh"></a><code>asinh(T)</code></h3>
+<p><a href="#asinh">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L631" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-atan-a-atan-t-"><a id="atan"></a><code>atan(T)</code></h3>
+<p><a href="#atan">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L640" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-atanh-a-atanh-t-"><a id="atanh"></a><code>atanh(T)</code></h3>
+<p><a href="#atanh">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L649" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-ceil-a-ceil-t-"><a id="ceil"></a><code>ceil(T)</code></h3>
+<p><a href="#ceil">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L658" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-cos-a-cos-t-"><a id="cos"></a><code>cos(T)</code></h3>
+<p><a href="#cos">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L667" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-cosh-a-cosh-t-"><a id="cosh"></a><code>cosh(T)</code></h3>
+<p><a href="#cosh">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L676" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-exp-a-exp-t-"><a id="exp"></a><code>exp(T)</code></h3>
+<p><a href="#exp">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L685" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-floor-a-floor-t-"><a id="floor"></a><code>floor(T)</code></h3>
+<p><a href="#floor">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L694" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-log10-a-log10-t-"><a id="log10"></a><code>log10(T)</code></h3>
+<p><a href="#log10">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L703" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-log1p-a-log1p-t-"><a id="log1p"></a><code>log1p(T)</code></h3>
+<p><a href="#log1p">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L712" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-log2-a-log2-t-"><a id="log2"></a><code>log2(T)</code></h3>
+<p><a href="#log2">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L721" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-pow-a-pow-t-"><a id="pow"></a><code>pow(T)</code></h3>
+<p><a href="#pow">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L739" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-round-a-round-t-"><a id="round"></a><code>round(T)</code></h3>
+<p><a href="#round">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L730" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-sign-a-sign-t-"><a id="sign"></a><code>sign(T)</code></h3>
+<p><a href="#sign">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L748" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-sin-a-sin-t-"><a id="sin"></a><code>sin(T)</code></h3>
+<p><a href="#sin">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L757" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-sinh-a-sinh-t-"><a id="sinh"></a><code>sinh(T)</code></h3>
+<p><a href="#sinh">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L766" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-sqrt-a-sqrt-t-"><a id="sqrt"></a><code>sqrt(T)</code></h3>
+<p><a href="#sqrt">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L775" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-tan-a-tan-t-"><a id="tan"></a><code>tan(T)</code></h3>
+<p><a href="#tan">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L784" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-tanh-a-tanh-t-"><a id="tanh"></a><code>tanh(T)</code></h3>
+<p><a href="#tanh">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L793" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-trunc-a-trunc-t-"><a id="trunc"></a><code>trunc(T)</code></h3>
+<p><a href="#trunc">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L802" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Generalized JS Math applicable to tensor using function composition.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T A tensor.</p>
+<hr>
+</div>
+</div>
+<div>
+<h2 id="-plotting-methods-"><code>&#x201C;plotting&#x201D; Methods</code></h2>
+<div>
+<h3 id="-a-id-hc-a-hc-"><a id="hc"></a><code>hc()</code></h3>
+<p><a href="#hc">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2036" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>The plotting module constructor.
+Uses <code>HighCharts</code> to plot and <code>browserSync</code>. Pulls up browser directly showing your charts like magic!
+To use this, go into <code>node_modules/lomath</code> and do <code>npm install</code> there to install the dev dependencies.</p>
+<h4 id="returns">Returns</h4>
+<p><em>(Object)</em>:  hc The plotting module of lomath.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js"><span class="hljs-comment">// in the terminal at your project&apos;s root, do:</span>
+cd node_modules/lomath
+npm install
+
+<span class="hljs-comment">// Go back to your project .js file</span>
+<span class="hljs-keyword">var</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;lomath&apos;</span>);
+
+<span class="hljs-keyword">var</span> v = _.range(<span class="hljs-number">10</span>);
+<span class="hljs-keyword">var</span> vv = _.square(v);
+
+<span class="hljs-comment">// Construct the plotting modules</span>
+<span class="hljs-keyword">var</span> hc = _.hc();
+
+<span class="hljs-comment">// first, list all you wish to plot.</span>
+hc.plot(
+       [{
+           name: <span class="hljs-string">&quot;linear&quot;</span>,
+           data: v
+       }, {
+           name: <span class="hljs-string">&quot;square&quot;</span>,
+           data: vv
+       }],
+       <span class="hljs-string">&quot;Title 1&quot;</span>
+       )
+hc.plot(
+       [{
+           name: <span class="hljs-string">&quot;log&quot;</span>,
+           data: _.log(v)
+       }],
+       <span class="hljs-string">&quot;Title 2&quot;</span>
+       )
+
+<span class="hljs-comment">// Finally, the command to render all the plots above.</span>
+<span class="hljs-comment">// Pulls up a browser (default to chrome for better support) with the plotted charts.</span>
+hc.render();
+
+<span class="hljs-comment">// Magical, eh?</span>
+</code></pre>
+<hr>
+</div>
+</div>
+<div>
+<h2 id="-properties-methods-"><code>&#x201C;properties&#x201D; Methods</code></h2>
+<div>
+<h3 id="-a-id-depth-a-depth-t-"><a id="depth"></a><code>depth(T)</code></h3>
+<p><a href="#depth">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1044" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns the depth of an (nested) array, i.e. the rank of a tensor.
+Scalar = rank-0, vector = rank-1, matrix = rank-2, &#x2026; so on.
+Note that a tensor has homogenous depth, that is, there cannot tensors of different ranks in the same vector, e.g. [1, [2,3], 4] is prohibited.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: The tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(number)</em>:  depth The depth of the array.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.depth(<span class="hljs-number">0</span>)
+<span class="hljs-comment">// &#x2192; 0</span>
+
+_.depth([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-comment">// &#x2192; 1</span>
+
+_.depth([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
+<span class="hljs-comment">// &#x2192; 2</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-dim-a-dim-t-"><a id="dim"></a><code>dim(T)</code></h3>
+<p><a href="#dim">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1101" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns the &#x201C;dimension&#x201D; of a tensor.
+Note that a tensor has homogenous depth, that is, there cannot tensors of different ranks in the same vector, e.g. [1, [2,3], 4] is prohibited.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: The tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Array)</em>:  dim The dimension the tensor.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.dim(<span class="hljs-number">0</span>)
+<span class="hljs-comment">// &#x2192; []</span>
+
+_.dim([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-comment">// &#x2192; [3]</span>
+
+_.dim([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]])
+<span class="hljs-comment">// &#x2192; [2, 3]</span>
+
+_.dim([
+     [[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>],[<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>],[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>]],
+     [[<span class="hljs-number">4</span>,<span class="hljs-number">4</span>,<span class="hljs-number">4</span>,<span class="hljs-number">4</span>],[<span class="hljs-number">5</span>,<span class="hljs-number">5</span>,<span class="hljs-number">5</span>,<span class="hljs-number">5</span>],[<span class="hljs-number">6</span>,<span class="hljs-number">6</span>,<span class="hljs-number">6</span>,<span class="hljs-number">6</span>]]
+   ])
+<span class="hljs-comment">// &#x2192; [2, 3, 4]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-isflat-a-isflat-t-"><a id="isFlat"></a><code>isFlat(T)</code></h3>
+<p><a href="#isFlat">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1128" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Checks if a tensor is &#x201C;flat&#x201D;, i.e. all entries are scalars.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: The tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(boolean)</em>:  true If tensor is flat.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.isFlat(<span class="hljs-number">0</span>)
+<span class="hljs-comment">// &#x2192; true</span>
+
+_.isFlat([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-comment">// &#x2192; true</span>
+
+_.isFlat([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
+<span class="hljs-comment">// &#x2192; false</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-maxdeepestlength-a-maxdeepestlength-t-"><a id="maxDeepestLength"></a><code>maxDeepestLength(T)</code></h3>
+<p><a href="#maxDeepestLength">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1156" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns the maximum length of the deepest array in (non-scalar) tensor T.
+Useful for probing the data structure and ensuring tensor is rectangular.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: The tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(number)</em>:  length The maximum length of the deepest array in T.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.maxDeepestLength(<span class="hljs-number">0</span>)
+<span class="hljs-comment">// &#x2192; 0</span>
+
+_.maxDeepestLength([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-comment">// &#x2192; 3</span>
+
+_.maxDeepestLength([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
+<span class="hljs-comment">// &#x2192; 2</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-volume-a-volume-t-"><a id="volume"></a><code>volume(T)</code></h3>
+<p><a href="#volume">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1072" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns the &#x201C;volume&#x201D; of a tensor, i.e. the totaly number of scalars in it.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: The tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(number)</em>:  volume The number of scalar entries in the tensor.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.volume(<span class="hljs-number">0</span>)
+<span class="hljs-comment">// &#x2192; 0</span>
+
+_.volume([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-comment">// &#x2192; 3</span>
+
+_.volume([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
+<span class="hljs-comment">// &#x2192; 4</span>
+</code></pre>
+<hr>
+</div>
+</div>
+<div>
+<h2 id="-regexp-methods-"><code>&#x201C;regexp&#x201D; Methods</code></h2>
+<div>
+<h3 id="-a-id-reand-a-reand-regexs-"><a id="reAnd"></a><code>reAnd(regexs)</code></h3>
+<p><a href="#reAnd">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L909" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns a single regex as the &#x201C;AND&#x201D; conjunction of all input regexs. This picks up as MANY adjacent substrings that satisfy all the regexs in order.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>regexs</code> <em>(&#x2026;RegExp)</em>: All the regexs to conjunct together.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(RegExp)</em>:  regex The conjuncted regex of the form <code>(?:re1)...(?:reN)</code></p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> reg1 = _.reAnd(<span class="hljs-string">&apos;foo&apos;</span>, <span class="hljs-regexp">/\d+/</span>)
+<span class="hljs-comment">// &#x2192; /(?:foo)(?:\d+)/</span>
+_.reGet(reg1)(<span class="hljs-string">&apos;Mayfoo1995&apos;</span>)
+<span class="hljs-comment">// &#x2192; &apos;foo1995&apos;</span>
+
+<span class="hljs-keyword">var</span> reg2 = _.reAnd(<span class="hljs-regexp">/\d+/</span>, <span class="hljs-string">&apos;foo&apos;</span>) <span class="hljs-comment">// order matters here</span>
+<span class="hljs-comment">// &#x2192; /(?:\d+)(?:foo)/</span>
+_.reGet(reg2)(<span class="hljs-string">&apos;Mayfoo1995&apos;</span>)
+<span class="hljs-comment">// &#x2192; null</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-reandmatch-a-reandmatch-regexs-"><a id="reAndMatch"></a><code>reAndMatch(regexs)</code></h3>
+<p><a href="#reAndMatch">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L927" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns a boolean function that matches all the regexs conjuncted in the specified order.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>regexs</code> <em>(&#x2026;RegExp)</em>: All the regexs to conjunct together.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Function)</em>:  fn A boolean function used for matching the conjuncted regexs.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.reAndMatch(<span class="hljs-string">&apos;foo&apos;</span>, <span class="hljs-regexp">/\d+/</span>)(<span class="hljs-string">&apos;Mayfoo1995&apos;</span>)
+<span class="hljs-comment">// &#x2192; true</span>
+
+_.reAndMatch(<span class="hljs-regexp">/\d+/</span>, <span class="hljs-string">&apos;foo&apos;</span>)(<span class="hljs-string">&apos;Mayfoo1995&apos;</span>) <span class="hljs-comment">// order matters</span>
+<span class="hljs-comment">// &#x2192; false</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-reget-a-reget-regex-"><a id="reGet"></a><code>reGet(regex)</code></h3>
+<p><a href="#reGet">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L868" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns a function that returns the first string portion matching the regex.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>regex</code> <em>(RegExp)</em>: A RegExp to match.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Function)</em>:  fn A function that returns the string matching the regex.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> getBar = _.reGet(<span class="hljs-string">&apos;bar&apos;</span>) <span class="hljs-comment">// using a string</span>
+getBar(<span class="hljs-string">&apos;foobarbaz&apos;</span>)
+<span class="hljs-comment">// &#x2192; &apos;bar&apos;</span>
+
+<span class="hljs-keyword">var</span> getNum = _.reGet(<span class="hljs-regexp">/\d+/</span>) <span class="hljs-comment">// using a regex</span>
+getNum(<span class="hljs-string">&apos;May 1995&apos;</span>)
+<span class="hljs-comment">// &#x2192; &apos;1995&apos;</span>
+getNum(<span class="hljs-string">&apos;May&apos;</span>)
+<span class="hljs-comment">// &#x2192; null</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-rematch-a-rematch-regex-"><a id="reMatch"></a><code>reMatch(regex)</code></h3>
+<p><a href="#reMatch">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L822" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns a boolean function that matches the regex.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>regex</code> <em>(RegExp)</em>: A RegExp.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Function)</em>:  fn A boolean function used for matching the regex.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> matcher1 = _.reMatch(<span class="hljs-string">&apos;foo&apos;</span>) <span class="hljs-comment">// using a string</span>
+matcher1(<span class="hljs-string">&apos;foobarbaz&apos;</span>)
+<span class="hljs-comment">// &#x2192; true</span>
+
+<span class="hljs-keyword">var</span> matcher2 = _.reMatch(<span class="hljs-regexp">/\d+/</span>) <span class="hljs-comment">// using a regexp</span>
+matcher2(<span class="hljs-string">&apos;May 1995&apos;</span>)
+<span class="hljs-comment">// &#x2192; true</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-renotmatch-a-renotmatch-regex-"><a id="reNotMatch"></a><code>reNotMatch(regex)</code></h3>
+<p><a href="#reNotMatch">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L844" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns a boolean function that dis-matches the regex.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>regex</code> <em>(RegExp)</em>: A RegExp to NOT match.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Function)</em>:  fn A boolean function used for dis-matching the regex.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> matcher1 = _.reNotMatch(<span class="hljs-string">&apos;foo&apos;</span>) <span class="hljs-comment">// using a string</span>
+matcher1(<span class="hljs-string">&apos;barbaz&apos;</span>)
+<span class="hljs-comment">// &#x2192; true</span>
+
+<span class="hljs-keyword">var</span> matcher2 = _.reNotMatch(<span class="hljs-regexp">/\d+/</span>) <span class="hljs-comment">// using a regexp</span>
+matcher2(<span class="hljs-string">&apos;foobar&apos;</span>)
+<span class="hljs-comment">// &#x2192; true</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-reor-a-reor-regexs-"><a id="reOr"></a><code>reOr(regexs)</code></h3>
+<p><a href="#reOr">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L948" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns a single regex as the &#x201C;OR&#x201D; union of all input regexs. This picks up the FIRST substring that satisfies any of the regexs in any order.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>regexs</code> <em>(&#x2026;RegExp)</em>: All the regexs to union together.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(RegExp)</em>:  regex The unioned regex of the form <code>(?:re1)|...|(?:reN)</code></p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> reg1 = _.reOr(<span class="hljs-string">&apos;foo&apos;</span>, <span class="hljs-regexp">/\d+/</span>)
+<span class="hljs-comment">// &#x2192; /(?:foo)|(?:\d+)/</span>
+_.reGet(reg1)(<span class="hljs-string">&apos;Mayfoo1995&apos;</span>)
+<span class="hljs-comment">// &#x2192; &apos;foo&apos;</span>
+
+<span class="hljs-keyword">var</span> reg2 = _.reOr(<span class="hljs-regexp">/\d+/</span>, <span class="hljs-string">&apos;foo&apos;</span>) <span class="hljs-comment">// order doesn&apos;t matter here</span>
+<span class="hljs-comment">// &#x2192; /(?:\d+)|(?:foo)/</span>
+_.reGet(reg2)(<span class="hljs-string">&apos;Mayfoo1995&apos;</span>)
+<span class="hljs-comment">// &#x2192; &apos;foo&apos;</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-reormatch-a-reormatch-regexs-"><a id="reOrMatch"></a><code>reOrMatch(regexs)</code></h3>
+<p><a href="#reOrMatch">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L966" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns a boolean function that matches any of the regexs in any order.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>regexs</code> <em>(&#x2026;RegExp)</em>: All the regexs to try to match.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Function)</em>:  fn A boolean function used for matching the regexs.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.reOrMatch(&apos;foo&apos;, /\d+/)(&apos;Mayfoo1995&apos;)
+// &#x2192; true
+
+_.reOrMatch(\d+/, &apos;foo&apos;)(&apos;Mayfoo1995&apos;) // order doesn&apos;t matter
+// &#x2192; true
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-rewrap-a-rewrap-regex-"><a id="reWrap"></a><code>reWrap(regex)</code></h3>
+<p><a href="#reWrap">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L888" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Wraps a regex into string for regex set operation.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>regex</code> <em>(RegExp)</em>: A RegExp to wrap.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(string)</em>:  wrapped The regex wrapped into the form <code>(?:regex)</code></p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.reWrap(<span class="hljs-string">&apos;foo&apos;</span>)
+<span class="hljs-comment">// &#x2192; &apos;(?:foo)&apos;</span>
+</code></pre>
+<hr>
+</div>
+</div>
+<div>
+<h2 id="-signature-methods-"><code>&#x201C;signature&#x201D; Methods</code></h2>
+<div>
+<h3 id="-a-id-inrange-a-inrange-left-right-x-"><a id="inRange"></a><code>inRange(left, right, x)</code></h3>
+<p><a href="#inRange">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L496" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Checks if <code>x</code> is in range, i.e. <code>left &#x2264; x &#x2264; right</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>left</code> <em>(number)</em>: The lower bound.</li>
+<li><code>right</code> <em>(number)</em>: The upper bound.</li>
+<li><code>x</code> <em>(number)</em>: The value to check.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(boolean)</em>:  true If <code>x</code> is in range.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.inRange(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>)
+<span class="hljs-comment">// &#x2192; true</span>
+
+_.inRange.bind(<span class="hljs-literal">null</span>, <span class="hljs-number">0</span>, <span class="hljs-number">3</span>)(<span class="hljs-number">3</span>)
+<span class="hljs-comment">// &#x2192; true</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-isdouble-a-isdouble-x-"><a id="isDouble"></a><code>isDouble(x)</code></h3>
+<p><a href="#isDouble">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L516" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Checks if <code>x</code> is a double-precision number/non-Integer.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>x</code> <em>(number)</em>: The value to check.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(boolean)</em>:  true If so.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-isinteger-a-isinteger-x-"><a id="isInteger"></a><code>isInteger(x)</code></h3>
+<p><a href="#isInteger">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L506" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Checks if <code>x</code> is an integer.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>x</code> <em>(number)</em>: The value to check.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(boolean)</em>:  true If so.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-isnegative-a-isnegative-x-"><a id="isNegative"></a><code>isNegative(x)</code></h3>
+<p><a href="#isNegative">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L546" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Checks if <code>x &lt; 0</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>x</code> <em>(number)</em>: The value to check.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(boolean)</em>:  true If so.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-ispositive-a-ispositive-x-"><a id="isPositive"></a><code>isPositive(x)</code></h3>
+<p><a href="#isPositive">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L526" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Checks if <code>x &gt; 0</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>x</code> <em>(number)</em>: The value to check.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(boolean)</em>:  true If so.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-nonnegative-a-nonnegative-x-"><a id="nonNegative"></a><code>nonNegative(x)</code></h3>
+<p><a href="#nonNegative">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L556" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Checks if <code>x &#x2265; 0</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>x</code> <em>(number)</em>: The value to check.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(boolean)</em>:  true If so.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-nonpositive-a-nonpositive-x-"><a id="nonPositive"></a><code>nonPositive(x)</code></h3>
+<p><a href="#nonPositive">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L536" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Checks if <code>x &#x2264; 0</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>x</code> <em>(number)</em>: The value to check.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(boolean)</em>:  true If so.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-nonzero-a-nonzero-x-"><a id="nonZero"></a><code>nonZero(x)</code></h3>
+<p><a href="#nonZero">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L566" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Checks if <code>x != 0</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>x</code> <em>(number)</em>: The value to check.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(boolean)</em>:  true If so.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-samesig-a-samesig-t-sigfn-"><a id="sameSig"></a><code>sameSig(T, sigFn)</code></h3>
+<p><a href="#sameSig">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L582" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Checks if signature function is true for all scalars of a tensor.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: The tensor whose values to check.</li>
+<li><code>sigFn</code> <em>(Function)</em>: The signature function.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(boolean)</em>:  true If all scalars of the tensor return true.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.sameSig([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], _.isPositive)
+<span class="hljs-comment">// &#x2192; true</span>
+</code></pre>
+<hr>
+</div>
+</div>
+<div>
+<h2 id="-statistics-methods-"><code>&#x201C;statistics&#x201D; Methods</code></h2>
+<div>
+<h3 id="-a-id-expgrate-a-expgrate-m_f-m_i-t-"><a id="expGRate"></a><code>expGRate(m_f, m_i, t)</code></h3>
+<p><a href="#expGRate">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1962" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns the rate of return r in % of an exponential growth, given final value m_f, initial value m_i, and time interval t.
+Formula: <code>100 * (Math.exp(Math.log(m_f / m_i) / t) - 1)</code></p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>m_f</code> <em>(number)</em>: The final value.</li>
+<li><code>m_i</code> <em>(number)</em>: The initial value.</li>
+<li><code>t</code> <em>(number)</em>: The time interval between m_f, m_i.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(number)</em>:  r The growth rate in %.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.expGRate(<span class="hljs-number">8</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>) <span class="hljs-comment">// 100% growth rate over 2 years</span>
+<span class="hljs-comment">// &#x2192; 100</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-expval-a-expval-pv-xv-fn-identity-"><a id="expVal"></a><code>expVal(pV, xV, [fn=identity])</code></h3>
+<p><a href="#expVal">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1895" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns the expectation value <code>E(fn(X))</code> of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>pV</code> <em>(Array)</em>: The probability vector.</li>
+<li><code>xV</code> <em>(Array)</em>: The corresponding random variable vector.</li>
+<li><code>[fn=identity]</code> <em>(Function)</em>: The random variable function.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(number)</em>:  E(fn(X))</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> P = [<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.4</span>]
+<span class="hljs-keyword">var</span> X = [-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
+_.expVal(P, X) <span class="hljs-comment">// E(X)</span>
+<span class="hljs-comment">// &#x2192; ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)</span>
+
+_.expVal(P, X, _.square) <span class="hljs-comment">// E(X^2)</span>
+<span class="hljs-comment">// &#x2192; (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-mean-a-mean-t-"><a id="mean"></a><code>mean(T)</code></h3>
+<p><a href="#mean">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1873" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns the mean/average of a tensor.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(number)</em>:  mean</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.mean([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-comment">// &#x2192; 2</span>
+
+_.mean([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
+<span class="hljs-comment">// &#x2192; 5</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-stdev-a-stdev-pv-xv-fn-identity-"><a id="stdev"></a><code>stdev(pV, xV, [fn=identity])</code></h3>
+<p><a href="#stdev">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1944" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns the standard deviation <code>sigma(fn(X))</code> of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).
+Simply calles <code>_.variance</code> internally and returns its square root.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>pV</code> <em>(Array)</em>: The probability vector.</li>
+<li><code>xV</code> <em>(Array)</em>: The corresponding random variable vector.</li>
+<li><code>[fn=identity]</code> <em>(Function)</em>: The random variable function.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(number)</em>:  sigma(fn(X))</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> P = [<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.4</span>]
+<span class="hljs-keyword">var</span> X = [-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
+_.stdev(P, X) <span class="hljs-comment">// sigma(X)</span>
+<span class="hljs-comment">// &#x2192; 1</span>
+
+_.stdev(P, X, _.square) <span class="hljs-comment">// sigma(X^2)</span>
+<span class="hljs-comment">// &#x2192; 1.673</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-trailexpgrate-a-trailexpgrate-v-t-"><a id="trailExpGRate"></a><code>trailExpGRate(v, t)</code></h3>
+<p><a href="#trailExpGRate">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1985" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns the trailing exponential rate of return in the last t years given a vector. Calls <code>_.expGRate</code> internally.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>v</code> <em>(Array)</em>: The time series vector.</li>
+<li><code>t</code> <em>(number)</em>: The time interval.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(number)</em>:  r The growth rate in %.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> v = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">8</span>]
+_.trailExpGRate(v, <span class="hljs-number">1</span>)
+<span class="hljs-comment">// &#x2192; 100</span>
+
+_.trailExpGRate(v, <span class="hljs-number">2</span>)
+<span class="hljs-comment">// &#x2192; 100</span>
+
+_.trailExpGRate(v, <span class="hljs-number">3</span>)
+<span class="hljs-comment">// &#x2192; 100</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-variance-a-variance-pv-xv-fn-identity-"><a id="variance"></a><code>variance(pV, xV, [fn=identity])</code></h3>
+<p><a href="#variance">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1919" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns the variance <code>Var(fn(X))</code> of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>pV</code> <em>(Array)</em>: The probability vector.</li>
+<li><code>xV</code> <em>(Array)</em>: The corresponding random variable vector.</li>
+<li><code>[fn=identity]</code> <em>(Function)</em>: The random variable function.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(number)</em>:  Var(fn(X))</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> P = [<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.4</span>]
+<span class="hljs-keyword">var</span> X = [-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
+_.variance(P, X) <span class="hljs-comment">// Var(X)</span>
+<span class="hljs-comment">// &#x2192; 1</span>
+
+_.variance(P, X, _.square) <span class="hljs-comment">// Var(X^2)</span>
+<span class="hljs-comment">// &#x2192; 2.8</span>
+</code></pre>
+<hr>
+</div>
+</div>
+<div>
+<h2 id="-transformation-methods-"><code>&#x201C;transformation&#x201D; Methods</code></h2>
+<div>
+<h3 id="-a-id-batchindexof-a-batchindexof-t-fields-"><a id="batchIndexOf"></a><code>batchIndexOf(T, fields)</code></h3>
+<p><a href="#batchIndexOf">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1265" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Searches the array in batch by applying <code>_.indexOf</code> in batch; returns the indices of the results in order.
+Useful for grabbing the headers in a data set.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(Array)</em>: The array.</li>
+<li><code>fields</code> <em>(Array)</em>: The array of fields to search for in T.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Array)</em>:  inds The indices returned by applying <code>_.indexOf</code> to fields.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.batchIndexOf([<span class="hljs-string">&apos;a&apos;</span>,<span class="hljs-string">&apos;b&apos;</span>,<span class="hljs-string">&apos;c&apos;</span>,<span class="hljs-string">&apos;d&apos;</span>,<span class="hljs-string">&apos;e&apos;</span>,<span class="hljs-string">&apos;f&apos;</span>], [<span class="hljs-number">1</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;a&apos;</span>])
+<span class="hljs-comment">// &#x2192; [-1, 1, 0, 0]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-cbind-a-cbind-m-indarr-"><a id="cbind"></a><code>cbind(M, indArr)</code></h3>
+<p><a href="#cbind">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1327" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns a new matrix with the selected columns from a matrix. Same as <code>cbind()</code> from <code>R</code>.
+Useful for picking columns from a data matrix/tensor with specified header indices.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>M</code> <em>(tensor)</em>: The original matrix.</li>
+<li><code>indArr</code> <em>(Array)</em>: The array of indices specifying the columns of M to pick.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  M&#x2019; The matrix with the selected columns from the indices.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.cbind([[<span class="hljs-string">&apos;a&apos;</span>,<span class="hljs-string">&apos;b&apos;</span>,<span class="hljs-string">&apos;c&apos;</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[-<span class="hljs-number">1</span>,-<span class="hljs-number">2</span>,-<span class="hljs-number">3</span>]], [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>])
+<span class="hljs-comment">// &#x2192; [ [ &apos;b&apos;, &apos;b&apos;, &apos;c&apos; ], [ 2, 2, 3 ], [ -2, -2, -3 ] ]</span>
+
+<span class="hljs-keyword">var</span> M = [[<span class="hljs-string">&apos;a&apos;</span>,<span class="hljs-string">&apos;b&apos;</span>,<span class="hljs-string">&apos;c&apos;</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[-<span class="hljs-number">1</span>,-<span class="hljs-number">2</span>,-<span class="hljs-number">3</span>]]; <span class="hljs-comment">// using on a dataset</span>
+<span class="hljs-keyword">var</span> titles = M[<span class="hljs-number">0</span>];
+_.cbind(M, _.batchIndexOf(titles, [<span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>]))
+<span class="hljs-comment">// &#x2192; [ [ &apos;b&apos;, &apos;b&apos;, &apos;c&apos; ], [ 2, 2, 3 ], [ -2, -2, -3 ] ]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-cbindbyfield-a-cbindbyfield-m-fields-"><a id="cbindByField"></a><code>cbindByField(M, fields)</code></h3>
+<p><a href="#cbindByField">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1351" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns a new matrix with the selected columns from a matrix. Short for <code>_.cbind(M, _.batchIndexOf())</code>
+Useful for picking columns from a data matrix by directly specifying the header titles.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>M</code> <em>(tensor)</em>: The original matrix.</li>
+<li><code>fields</code> <em>(Array)</em>: The array of fields of the columns of M to pick.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  M&#x2019; The matrix with the selected columns from the fields.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> M = [[<span class="hljs-string">&apos;a&apos;</span>,<span class="hljs-string">&apos;b&apos;</span>,<span class="hljs-string">&apos;c&apos;</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[-<span class="hljs-number">1</span>,-<span class="hljs-number">2</span>,-<span class="hljs-number">3</span>]]; <span class="hljs-comment">// using on a dataset</span>
+_.cbindByField(M, [<span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>])
+<span class="hljs-comment">// &#x2192; [ [ &apos;b&apos;, &apos;b&apos;, &apos;c&apos; ], [ 2, 2, 3 ], [ -2, -2, -3 ] ]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-extend-a-extend-t-tolen-val-0-"><a id="extend"></a><code>extend(T, toLen, [val=0])</code></h3>
+<p><a href="#extend">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1242" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Extends an array till <code>toLen</code> by prepending with <code>val</code>.
+Mutates the array.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(Array)</em>: The array.</li>
+<li><code>toLen</code> <em>(number)</em>: The new length of the array. Must be longer than T.length.</li>
+<li><code>[val=0]</code> <em>(number)</em>: The value to prepend with.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Array)</em>:  T The mutated array after extending.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.extend([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <span class="hljs-number">6</span>)
+<span class="hljs-comment">// &#x2192; [1, 2, 3, 0, 0, 0]</span>
+
+_.extend([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <span class="hljs-number">6</span>, <span class="hljs-string">&apos;a&apos;</span>)
+<span class="hljs-comment">// &#x2192; [1, 2, 3, &apos;a&apos;, &apos;a&apos;, &apos;a&apos;]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-rbind-a-rbind-m-indarr-"><a id="rbind"></a><code>rbind(M, indArr)</code></h3>
+<p><a href="#rbind">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1301" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns a new matrix with the selected rows from a matrix. Same as <code>rbind()</code> from <code>R</code>.
+Useful for picking certain rows from a matrix/tensor.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>M</code> <em>(tensor)</em>: The original matrix.</li>
+<li><code>indArr</code> <em>(Array)</em>: The array of indices specifying the rows of M to pick.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  M&#x2019; The matrix with the selected rows from the indices.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.rbind([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>],[<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>]], [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>])
+<span class="hljs-comment">// &#x2192; [[4, 5, 6], [4, 5, 6], [7, 8, 9]]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-rectangularize-a-rectangularize-t-"><a id="rectangularize"></a><code>rectangularize(T)</code></h3>
+<p><a href="#rectangularize">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1393" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Makes a tensor rectangular by filling with val (defaulted to 0).
+Mutates the tensor.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: The original tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T The mutated tensor that is now rectangular.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.rectangularize([
+     [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
+     [<span class="hljs-number">4</span>]
+   ])
+<span class="hljs-comment">// &#x2192; [[ 1, 2, 3 ], [ 4, 0, 0 ]]</span>
+
+_.rectangularize([
+     [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
+     [<span class="hljs-number">4</span>]
+   ], <span class="hljs-string">&apos;a&apos;</span>)
+<span class="hljs-comment">// &#x2192; [[ 1, 2, 3 ], [ 4, &apos;a&apos;, &apos;a&apos; ]]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-reshape-a-reshape-a-dimarr-"><a id="reshape"></a><code>reshape(A, dimArr)</code></h3>
+<p><a href="#reshape">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1424" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Reshapes an array into a multi-dimensional tensor. Applies <code>_.chunk</code> using a dimension array in sequence.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>A</code> <em>(Array)</em>: The original flat array.</li>
+<li><code>dimArr</code> <em>(Array)</em>: The array specifying the dimensions.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T The tensor reshaped from the copied array.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.reshape([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>], [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-comment">// &#x2192; [[ 1, 2, 3 ], [ 4, 5, 6 ]]</span>
+
+_.reshape([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-comment">// &#x2192; [[ 1, 2, 3 ], [ 4 ]]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-reverse-a-reverse-t-i-0-j-t-length-1-"><a id="reverse"></a><code>reverse(T, [i=0], [j=T.length-1])</code></h3>
+<p><a href="#reverse">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1215" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns a copy of the array reversed, optionally from index <code>i</code> to <code>j</code> inclusive.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(Array)</em>: The array.</li>
+<li><code>[i=0]</code> <em>(number)</em>: The from-index.</li>
+<li><code>[j=T.length-1]</code> <em>(number)</em>: The to-index.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Array)</em>:  R The reversed copy of the array.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.reverse([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>])
+<span class="hljs-comment">// &#x2192; [5, 4, 3, 2, 1, 0]</span>
+
+_.reverse([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>], <span class="hljs-number">2</span>) <span class="hljs-comment">// reverse from index 2</span>
+<span class="hljs-comment">// &#x2192; [0, 1, 5, 4, 3, 2]</span>
+
+_.reverse([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>], <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>) <span class="hljs-comment">// reverse to index 2</span>
+<span class="hljs-comment">// &#x2192; [2, 1, 0, 3, 4, 5]</span>
+
+_.reverse([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>], <span class="hljs-number">2</span>, <span class="hljs-number">4</span>) <span class="hljs-comment">// reverse from index 2 to 4</span>
+<span class="hljs-comment">// &#x2192; [0, 1, 4, 3, 2, 5]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-swap-a-swap-t-i-j-"><a id="swap"></a><code>swap(T, i, j)</code></h3>
+<p><a href="#swap">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1188" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Swaps entries at indices <code>i,j</code>.
+Mutates the array.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(Array)</em>: The array.</li>
+<li><code>i</code> <em>(number)</em>: The swap-index.</li>
+<li><code>j</code> <em>(number)</em>: The swap-index.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Array)</em>:  T The mutated array after swapping.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.swap([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <span class="hljs-number">0</span>, <span class="hljs-number">2</span>)
+<span class="hljs-comment">// &#x2192; [3, 2, 1]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-transpose-a-transpose-m-"><a id="transpose"></a><code>transpose(M)</code></h3>
+<p><a href="#transpose">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1368" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns a copy of a matrix transposed.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>M</code> <em>(tensor)</em>: The original matrix.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  M&#x2019; The copy transposed matrix.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.transpose([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
+<span class="hljs-comment">// &#x2192; [[ 1, 3 ], [ 2, 4 ]]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-validinds-a-validinds-t-maxlen-"><a id="validInds"></a><code>validInds(T, maxLen)</code></h3>
+<p><a href="#validInds">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1284" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Filters out the invalid indices (negatives) in an array of indices. Basically keeps <code>x</code> where <code>0 &#x2264; x &#x2264; maxLen</code>.
+Used with <code>_.batchIndexOf</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(Array)</em>: The array of indices, can be from <code>_.batchIndexOf</code>.</li>
+<li><code>maxLen</code> <em>(number)</em>: The max value the indices can have.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Array)</em>:  inds A copy of the array with only valid indices.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.validInds([-<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, -<span class="hljs-number">1</span>], <span class="hljs-number">2</span>)
+<span class="hljs-comment">// &#x2192; [0, 2]</span>
+</code></pre>
+<hr>
+</div>
+</div>
+<div>
+<h2 id="-trend-methods-"><code>&#x201C;trend&#x201D; Methods</code></h2>
+<div>
+<h3 id="-a-id-decreasing-a-decreasing-t-"><a id="decreasing"></a><code>decreasing(T)</code></h3>
+<p><a href="#decreasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1844" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Shorthand for <code>_.stairsTrend</code>. Checks if a vector v is decreasing.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(Array)</em>: An array of values.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(boolean)</em>:  true If stairs of T match the sigFn.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-increasing-a-increasing-t-"><a id="increasing"></a><code>increasing(T)</code></h3>
+<p><a href="#increasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1824" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Shorthand for <code>_.stairsTrend</code>. Checks if a vector v is increasing.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(Array)</em>: An array of values.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(boolean)</em>:  true If stairs of T match the sigFn.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-nondecreasing-a-nondecreasing-t-"><a id="nonDecreasing"></a><code>nonDecreasing(T)</code></h3>
+<p><a href="#nonDecreasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1834" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Shorthand for <code>_.stairsTrend</code>. Checks if a vector v is non-decreasing.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(Array)</em>: An array of values.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(boolean)</em>:  true If stairs of T match the sigFn.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-nonincreasing-a-nonincreasing-t-"><a id="nonIncreasing"></a><code>nonIncreasing(T)</code></h3>
+<p><a href="#nonIncreasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1854" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Shorthand for <code>_.stairsTrend</code>. Checks if a vector v is non-increasing.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(Array)</em>: An array of values.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(boolean)</em>:  true If stairs of T match the sigFn.</p>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-stairs-a-stairs-t-"><a id="stairs"></a><code>stairs(T)</code></h3>
+<p><a href="#stairs">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1793" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns the stair, i.e. the adjacent differences in the vector.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(Array)</em>: An array of values.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Array)</em>:  S The array showing adjacent differences.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.stairs([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>])
+<span class="hljs-comment">// &#x2192; [1, 1, 2, 3]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-stairstrend-a-stairstrend-t-sigfn-"><a id="stairsTrend"></a><code>stairsTrend(T, sigFn)</code></h3>
+<p><a href="#stairsTrend">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1814" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Check the trend of the array using a signature function.
+Useful for checking if array entries are increasing.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(Array)</em>: An array of values.</li>
+<li><code>sigFn</code> <em>(Function)</em>: A signature function.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(boolean)</em>:  true If stairs of T match the sigFn.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.stairsTrend([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>], _.isPositive) <span class="hljs-comment">// Array increasing</span>
+<span class="hljs-comment">// &#x2192; true</span>
+</code></pre>
+<hr>
+</div>
+</div>
+<div>
+<h2 id="-vector-methods-"><code>&#x201C;vector&#x201D; Methods</code></h2>
+<div>
+<h3 id="-a-id-dot-a-dot-x-y-"><a id="dot"></a><code>dot(X, Y)</code></h3>
+<p><a href="#dot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1699" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns the dot product between two vectors. If lengths mismatch, recycles the shorter vector.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>X</code> <em>(Array)</em>: A flat array.</li>
+<li><code>Y</code> <em>(Array)</em>: A flat array.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(number)</em>:  X.Y The dot product.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.dot([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-comment">// &#x2192; 14</span>
+
+_.dot([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]) <span class="hljs-comment">// recycle</span>
+<span class="hljs-comment">// &#x2192; 46</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-norm-a-norm-t-n-2-"><a id="norm"></a><code>norm(T, [n=2])</code></h3>
+<p><a href="#norm">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1742" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns the L-n norm of a vector, default to L-2 (Euclidean) metric.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+<li><code>[n=2]</code> <em>(number)</em>: The metric.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(number)</em>:  num The norm in L-n metric space.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.norm([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]) <span class="hljs-comment">// Euclidean triangle</span>
+<span class="hljs-comment">// &#x2192; 5</span>
+
+_.norm([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>], <span class="hljs-number">1</span>) <span class="hljs-comment">// taxicab metric</span>
+<span class="hljs-comment">// &#x2192; 7</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-normalize-a-normalize-t-n-2-"><a id="normalize"></a><code>normalize(T, [n=2])</code></h3>
+<p><a href="#normalize">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1762" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns a copy of the vector normalized using L-n metric (defaulted to L-2).</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+<li><code>[n=2]</code> <em>(number)</em>: The metric.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T&#x2019; The normalized tensor.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.normalize([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]) <span class="hljs-comment">// Euclidean triangle</span>
+<span class="hljs-comment">// &#x2192; [0.6, 0.8]</span>
+
+_.normalize([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>], <span class="hljs-number">1</span>) <span class="hljs-comment">// taxicab metric</span>
+<span class="hljs-comment">// &#x2192; [3/7, 4/7]</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-powsum-a-powsum-t-n-2-"><a id="powSum"></a><code>powSum(T, [n=2])</code></h3>
+<p><a href="#powSum">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1722" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns the sums of n-powers (defaulted to 2) of a tensor, i.e. the square of the generalized hypotenuse of a tensor.
+Useful for doing sums of squares/other L-n metrics.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+<li><code>[n=2]</code> <em>(number)</em>: The power base.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(number)</em>:  num The power sum.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.powSum([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-comment">// &#x2192; 14</span>
+
+_.powSum([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <span class="hljs-number">3</span>)
+<span class="hljs-comment">// &#x2192; 36</span>
+
+_.dot([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]], <span class="hljs-number">3</span>) <span class="hljs-comment">// applicable to a tensor</span>
+<span class="hljs-comment">// &#x2192; 100</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-rescale-a-rescale-t-"><a id="rescale"></a><code>rescale(T)</code></h3>
+<p><a href="#rescale">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1777" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns a copy of the vector rescaled to unit length; is the shorthand for <code>_.normalize(v, 1)</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>T</code> <em>(tensor)</em>: A tensor.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(tensor)</em>:  T&#x2019; The rescaled tensor.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.rescale([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+<span class="hljs-comment">// &#x2192; [3/7, 4/7]</span>
+</code></pre>
+<hr>
+</div>
+</div>
+<div>
+<h2 id="-methods-"><code>Methods</code></h2>
+</div>
+<div>
+<h2 id="-properties-"><code>Properties</code></h2>
+</div>
+
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+</body>
+</html>

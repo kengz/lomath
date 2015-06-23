@@ -8,6 +8,8 @@ chart/build/
 
 # Other files and folders
 .settings/
+.tmp/
+fonts/
 
 # System files
 .DS_Store

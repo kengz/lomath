@@ -1,0 +1,21 @@
+{
+  "dir": "docs",
+  "literate": {
+    "source": "index.js",
+    "dir": "annotated"
+  },
+  "jsdoc": {
+    "title": "lomath.js",
+    "source": "index.js",
+    "markdown": "README.md",
+    "html": "index.html",
+    "readme": "README.md",
+    "template": "templates/index.ejs.html",
+    "github": "https://github.com/kengz/lomath/blob/master/index.js"
+  },
+  "mocha": {
+    "test": "test/test.js",
+    "path": "tests.html",
+    "template": "templates/tests.ejs.html"
+  }
+}

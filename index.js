@@ -1365,11 +1365,11 @@ var lomath = _.mixin({
   // Mutates the array
   extend: function(arr, toLen, val) {
     var lendiff = toLen - arr.length,
-      repVal = (val == undefined ? 0 : val);
+      rePal = (val == undefined ? 0 : val);
     if (lendiff < 0)
       throw new Error("Array longer than the length to extend to")
     while (lendiff--)
-      arr.push(repVal);
+      arr.push(rePal);
     return arr;
   },
   /**
@@ -2060,81 +2060,165 @@ var lomath = _.mixin({
     return _.sum(v) / v.length;
   },
   /**
-   * Returns the expectation value `E(fn(X))` of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).
+   * Returns the expectation value `E(fn(X))` of a random variable vector, optionally with the corresponding probability vector, using the random variable function (defaulted to identity).
    *
    * @category statistics
-   * @param {Array} pV The probability vector.
-   * @param {Array} xV The corresponding random variable vector.
-   * @param {Function} [fn=identity] The random variable function.
+   * @param {Array} X The random variable vector.
+   * @param {Array} [P] The corresponding probability vector.
+   * @param {Function} [fn] The random variable function.
    * @returns {number} E(fn(X))
    *
    * @example
-   * var P = [0.1, 0.2, 0.3, 0.4]
    * var X = [-1, 0, 1, 2]
-   * _.expVal(P, X) // E(X)
+   * var Y = [-1,0,0,1,1,1,2,2,2,2]
+   * var P = [0.1, 0.2, 0.3, 0.4]
+   *
+   * _.expVal(Y) // using a raw data array, E(X)
+   * // → ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
+   * _.expVal(X, P) // equivalent to Y, but using X and P: E(X)
    * // → ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
    *
-   * _.expVal(P, X, _.square) // E(X^2)
+   * _.expVal(Y, _.square) // using raw data array, E(X^2)
+   * // → (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)
+   * _.expVal(X, P, _.square) // equivalent to Y, but using X and P: E(X^2)
    * // → (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)
    *
    */
   // return the expectation value E(fn(x)), given probability and value vectors, and an optional atomic fn, defaulted to identity E(x).
   // Note: fn must be atomic
   // alias E
-  expVal: function(pV, xV, fn) {
-    if (fn != undefined)
-      return lomath.dot(pV, lomath.distributeSingle(fn, xV));
-    return lomath.dot(pV, xV);
+  expVal: function(X, P, fn) {
+    var val, prob, func;
+    // if only X is specified
+    if (arguments.length == 1) {
+      var hist = lomath.histogram(X);
+      val = hist.value,
+      prob = hist.prob;
+    }
+    // if X, P specified (maybe fn too)
+    else if (typeof P === 'object') {
+      val = X;
+      prob = P;
+      func = fn;
+    }
+    // if X, fn specified
+    else if (typeof P === 'function'){
+      var hist = lomath.histogram(X);
+      val = hist.value,
+      prob = hist.prob;
+      func = P;
+    }
+    if (func != undefined)
+      return lomath.dot(lomath.distributeSingle(func, val), prob);
+    return lomath.dot(val, prob);
   },
   /**
    * Returns the variance `Var(fn(X))` of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).
    *
    * @category statistics
-   * @param {Array} pV The probability vector.
-   * @param {Array} xV The corresponding random variable vector.
-   * @param {Function} [fn=identity] The random variable function.
+   * @param {Array} X The random variable vector.
+   * @param {Array} [P] The corresponding probability vector.
+   * @param {Function} [fn] The random variable function.
    * @returns {number} Var(fn(X))
    *
    * @example
-   * var P = [0.1, 0.2, 0.3, 0.4]
    * var X = [-1, 0, 1, 2]
-   * _.variance(P, X) // Var(X)
-   * // → 1
+   * var Y = [-1,0,0,1,1,1,2,2,2,2]
+   * var P = [0.1, 0.2, 0.3, 0.4]
    *
-   * _.variance(P, X, _.square) // Var(X^2)
+   * _.variance(Y) // using a raw data array, Var(X)
+   * // → 1
+   * _.variance(X, P) // equivalent to Y, but using X and P: Var(X)
+   * // → ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
+   *
+   * _.variance(Y, _.square) // using raw data array, Var(X^2)
+   * // → 2.8
+   * _.variance(X, P, _.square) // equivalent to Y, but using X and P: Var(X^2)
    * // → 2.8
    *
    */
   // return the variance, given probability and value vectors
   // alias Var
-  variance: function(pV, xV, fn) {
-    return fn == undefined ?
-      lomath.expVal(pV, xV, lomath.a_square) - lomath.a_square(lomath.expVal(pV, xV)) :
-      lomath.expVal(pV, xV, _.flow(fn, lomath.a_square)) - lomath.a_square(lomath.expVal(pV, xV, fn));
+  variance: function(X, P, fn) {
+    // if only X is specified
+    if (arguments.length == 1) {
+      return lomath.expVal(X, lomath.a_square) - lomath.a_square(lomath.expVal(X))
+    }
+    // if X, P specified (maybe fn too)
+    else if (typeof P === 'object') {
+      return fn == undefined ?
+        lomath.expVal(X, P, lomath.a_square) - lomath.a_square(lomath.expVal(X, P)) :
+        lomath.expVal(X, P, _.flow(fn, lomath.a_square)) - lomath.a_square(lomath.expVal(X, P, fn));
+    }
+    // if X, fn specified
+    else if (typeof P === 'function'){
+      return lomath.expVal(X, _.flow(P, lomath.a_square)) - lomath.a_square(lomath.expVal(X, P));
+    }
   },
   /**
    * Returns the standard deviation `sigma(fn(X))` of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).
    * Simply calles `_.variance` internally and returns its square root.
    *
    * @category statistics
-   * @param {Array} pV The probability vector.
-   * @param {Array} xV The corresponding random variable vector.
-   * @param {Function} [fn=identity] The random variable function.
+   * @param {Array} X The corresponding random variable vector.
+   * @param {Array} [P] The corresponding probability vector.
+   * @param {Function} [fn] The random variable function.
    * @returns {number} sigma(fn(X))
    *
    * @example
-   * var P = [0.1, 0.2, 0.3, 0.4]
    * var X = [-1, 0, 1, 2]
-   * _.stdev(P, X) // sigma(X)
-   * // → 1
+   * var Y = [-1,0,0,1,1,1,2,2,2,2]
+   * var P = [0.1, 0.2, 0.3, 0.4]
    *
-   * _.stdev(P, X, _.square) // sigma(X^2)
+   * _.stdev(Y) // using a raw data array, sigma(X)
+   * // → 1
+   * _.stdev(X, P) // equivalent to Y, but using X and P: sigma(X)
+   * // → ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
+   *
+   * _.stdev(Y, _.square) // using raw data array, sigma(X^2)
+   * // → 1.673
+   * _.stdev(X, P, _.square) // equivalent to Y, but using X and P: sigma(X^2)
    * // → 1.673
    *
    */
   // return the variance, given probability and value vectors
-  stdev: function(pV, xV, fn) {
-    return Math.sqrt(lomath.variance(pV, xV, fn));
+  stdev: function(X, P, fn) {
+    return Math.sqrt(lomath.variance(X, P, fn));
+  },
+  /**
+   * Returns a histogram/distribution from the data. This internally calls `_.countBy` to group data by bins, using the function if specified.
+   * Returns the object containing values, frequencies and probabilities as separate array for ease of using them with the statistics methods.
+   *
+   * @param {Array} data An array of data.
+   * @param {Function} [fn=_.identity] An optional function to group the data by.
+   * @return {Object} histogram {value, freq, prob}.
+   *
+   * @example
+   * var hist = _.histogram(['a', 'b', 'b', 'c', 'c', 'c', 'd', 'd', 'd', 'd']);
+   * hist.value
+   * // → ['a', 'b', 'c', 'd']
+   * hist.freq
+   * // → [1, 2, 3, 4]
+   * hist.prob // normalized freq as probabiltiy distribution
+   * // → [0.1, 0.2, 0.3, 0.4]
+   *
+   * var histfloor = _.histogram([1.1, 2.1, 2.2, 3.1, 3.2, 3.3, 4.1, 4.2, 4.3, 4.4], Math.floor);
+   * histfloor.value
+   * // → [ '1', '2', '3', '4' ] // Note the keys from _.countBy are strings
+   * hist.freq
+   * // → [1, 2, 3, 4]
+   * histfloor.prob
+   * // → [0.1, 0.2, 0.3, 0.4]
+   *
+   */
+  histogram: function(data, fn) {
+    var bin = _.countBy(data, fn),
+    freq = _.values(bin);
+    return {
+      value: _.keys(bin),
+      freq: freq,
+      prob: lomath.rescale(freq)
+    }
   },
   /**
    * Returns the rate of return r in % of an exponential growth, given final value m_f, initial value m_i, and time interval t.
@@ -2236,6 +2320,109 @@ var lomath = _.mixin({
   hc: function() {
     var p = require(__dirname + '/chart/plot.js').p;
     return new p();
+  },
+  /**
+   * Method of the constructed `hc` object.
+   * A simplified wrapper of the HighCharts plot options object.
+   * Allows one to use simple data plot by specifying data sets in objects consisting of data name and data.
+   * The data specified can be array of y-values, or array of x-y values.
+   *
+   * @category plotting
+   * @param {Array} seriesArr The array of data series, i.e. the series objects in the HighCharts options.
+   * @param {string} [title=""] The title of this plot.
+   * @param {string} [yLabel=""] The y-axis label.
+   * @param {string} [xLabel=""] The x-axis label.
+   * @returns {Object} options The options passed, for reference.
+   *
+   * @example
+   * // Plots two data sets using y-values (x-values start from 0).
+   * hc.plot(
+       [{
+           name: "linear",
+           data: [1, 2, 3, 4, 5, 6]
+       }, {
+           name: "square",
+           data: [1, 4, 9, 16, 25, 36]
+       }],
+       "Title 1"
+       )
+
+   * // Plots a data set using x-y values.
+   * hc.plot(
+       [{
+           name: "square",
+           data: [[3, 9], [4, 16], [5, 25], [6, 36]]
+       }],
+       "Title 2"
+       )
+   * // renders the plot
+   * hc.render()
+   */
+  plot: function(seriesArr, title, yLabel, xLabel) {
+    console.log("Please call this method by _.hc.plot");
+    return 0;
+  },
+  /**
+   * Method of the constructed `hc` object.
+   * Advanced plotting for users familiar with HighCharts (see http://www.highcharts.com).
+   * This is a highcharts wrapper; takes in a complete HighCharts plot options object.
+   *
+   * @category plotting
+   * @param {Object} options The HighCharts options object.
+   * @returns {Object} options The options passed, for reference.
+   *
+   * @example
+   * // Plots using the highcharts options
+   * hc.advPlot(
+   chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Monthly Average Rainfall'
+    },
+    subtitle: {
+        text: 'Source: WorldClimate.com'
+    },
+    xAxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Rainfall (mm)'
+        }
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Tokyo',
+        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0]
+
+    }, {
+        name: 'New York',
+        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5]
+
+    }, {
+        name: 'London',
+        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3]
+
+    }, {
+        name: 'Berlin',
+        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5]
+
+    }]
+       )
+   * // renders the plot
+   * hc.render()
+   */
+  advPlot: function(options) {
+    console.log("Please call this method by _.hc.advPlot");
+    return 0;
   }
 })
 

@@ -89,7 +89,9 @@
 <!-- div -->
 
 ## `plotting`
+* <a href="#advPlot">`advPlot`</a>
 * <a href="#hc">`hc`</a>
+* <a href="#plot">`plot`</a>
 
 <!-- /div -->
 
@@ -188,6 +190,7 @@
 <!-- div -->
 
 ## `Methods`
+* <a href="#histogram">`histogram`</a>
 
 <!-- /div -->
 
@@ -1468,8 +1471,77 @@ Generalized JS Math applicable to tensor using function composition.
 
 <!-- div -->
 
+### <a id="advPlot"></a>`advPlot(options)`
+<a href="#advPlot">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2218 "View in source") [&#x24C9;][1]
+
+Method of the constructed `hc` object.
+Advanced plotting for users familiar with HighCharts (see http://www.highcharts.com).
+This is a highcharts wrapper; takes in a complete HighCharts plot options object.
+
+#### Arguments
+1. `options` *(Object)*: The HighCharts options object.
+
+#### Returns
+*(Object)*:  options The options passed, for reference.
+
+#### Example
+```js
+// Plots using the highcharts options
+hc.advPlot(
+   chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Monthly Average Rainfall'
+    },
+    subtitle: {
+        text: 'Source: WorldClimate.com'
+    },
+    xAxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Rainfall (mm)'
+        }
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Tokyo',
+        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0]
+
+    }, {
+        name: 'New York',
+        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5]
+
+    }, {
+        name: 'London',
+        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3]
+
+    }, {
+        name: 'Berlin',
+        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5]
+
+    }]
+       )
+// renders the plot
+hc.render()
+```
+* * *
+
+<!-- /div -->
+
+<!-- div -->
+
 ### <a id="hc"></a>`hc()`
-<a href="#hc">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2037 "View in source") [&#x24C9;][1]
+<a href="#hc">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2115 "View in source") [&#x24C9;][1]
 
 The plotting module constructor.
 Uses `HighCharts` to plot and `browserSync`. Pulls up browser directly showing your charts like magic!
@@ -1518,6 +1590,54 @@ hc.plot(
 hc.render();
 
 // Magical, eh?
+```
+* * *
+
+<!-- /div -->
+
+<!-- div -->
+
+### <a id="plot"></a>`plot(seriesArr, [title=""], [yLabel=""], [xLabel=""])`
+<a href="#plot">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2156 "View in source") [&#x24C9;][1]
+
+Method of the constructed `hc` object.
+A simplified wrapper of the HighCharts plot options object.
+Allows one to use simple data plot by specifying data sets in objects consisting of data name and data.
+The data specified can be array of y-values, or array of x-y values.
+
+#### Arguments
+1. `seriesArr` *(Array)*: The array of data series, i.e. the series objects in the HighCharts options.
+2. `[title=""]` *(string)*: The title of this plot.
+3. `[yLabel=""]` *(string)*: The y-axis label.
+4. `[xLabel=""]` *(string)*: The x-axis label.
+
+#### Returns
+*(Object)*:  options The options passed, for reference.
+
+#### Example
+```js
+// Plots two data sets using y-values (x-values start from 0).
+hc.plot(
+       [{
+           name: "linear",
+           data: [1, 2, 3, 4, 5, 6]
+       }, {
+           name: "square",
+           data: [1, 4, 9, 16, 25, 36]
+       }],
+       "Title 1"
+       )
+
+// Plots a data set using x-y values.
+hc.plot(
+       [{
+           name: "square",
+           data: [[3, 9], [4, 16], [5, 25], [6, 36]]
+       }],
+       "Title 2"
+       )
+// renders the plot
+hc.render()
 ```
 * * *
 
@@ -2082,7 +2202,7 @@ _.sameSig([1, 2, 3], _.isPositive)
 <!-- div -->
 
 ### <a id="expGRate"></a>`expGRate(m_f, m_i, t)`
-<a href="#expGRate">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1962 "View in source") [&#x24C9;][1]
+<a href="#expGRate">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2040 "View in source") [&#x24C9;][1]
 
 Returns the rate of return r in % of an exponential growth, given final value m_f, initial value m_i, and time interval t.
 Formula: `100 * (Math.exp(Math.log(m_f / m_i) / t) - 1)`
@@ -2106,27 +2226,33 @@ _.expGRate(8, 2, 2) // 100% growth rate over 2 years
 
 <!-- div -->
 
-### <a id="expVal"></a>`expVal(pV, xV, [fn=identity])`
-<a href="#expVal">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1895 "View in source") [&#x24C9;][1]
+### <a id="expVal"></a>`expVal(X, [P], [fn])`
+<a href="#expVal">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1901 "View in source") [&#x24C9;][1]
 
-Returns the expectation value `E(fn(X))` of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).
+Returns the expectation value `E(fn(X))` of a random variable vector, optionally with the corresponding probability vector, using the random variable function (defaulted to identity).
 
 #### Arguments
-1. `pV` *(Array)*: The probability vector.
-2. `xV` *(Array)*: The corresponding random variable vector.
-3. `[fn=identity]` *(Function)*: The random variable function.
+1. `X` *(Array)*: The random variable vector.
+2. `[P]` *(Array)*: The corresponding probability vector.
+3. `[fn]` *(Function)*: The random variable function.
 
 #### Returns
 *(number)*:  E(fn(X))
 
 #### Example
 ```js
-var P = [0.1, 0.2, 0.3, 0.4]
 var X = [-1, 0, 1, 2]
-_.expVal(P, X) // E(X)
+var Y = [-1,0,0,1,1,1,2,2,2,2]
+var P = [0.1, 0.2, 0.3, 0.4]
+
+_.expVal(Y) // using a raw data array, E(X)
+// → ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
+_.expVal(X, P) // equivalent to Y, but using X and P: E(X)
 // → ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
 
-_.expVal(P, X, _.square) // E(X^2)
+_.expVal(Y, _.square) // using raw data array, E(X^2)
+// → (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)
+_.expVal(X, P, _.square) // equivalent to Y, but using X and P: E(X^2)
 // → (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)
 ```
 * * *
@@ -2160,28 +2286,34 @@ _.mean([[1, 2], [3, 4]])
 
 <!-- div -->
 
-### <a id="stdev"></a>`stdev(pV, xV, [fn=identity])`
-<a href="#stdev">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1944 "View in source") [&#x24C9;][1]
+### <a id="stdev"></a>`stdev(X, [P], [fn])`
+<a href="#stdev">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1987 "View in source") [&#x24C9;][1]
 
 Returns the standard deviation `sigma(fn(X))` of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).
 Simply calles `_.variance` internally and returns its square root.
 
 #### Arguments
-1. `pV` *(Array)*: The probability vector.
-2. `xV` *(Array)*: The corresponding random variable vector.
-3. `[fn=identity]` *(Function)*: The random variable function.
+1. `X` *(Array)*: The corresponding random variable vector.
+2. `[P]` *(Array)*: The corresponding probability vector.
+3. `[fn]` *(Function)*: The random variable function.
 
 #### Returns
 *(number)*:  sigma(fn(X))
 
 #### Example
 ```js
-var P = [0.1, 0.2, 0.3, 0.4]
 var X = [-1, 0, 1, 2]
-_.stdev(P, X) // sigma(X)
-// → 1
+var Y = [-1,0,0,1,1,1,2,2,2,2]
+var P = [0.1, 0.2, 0.3, 0.4]
 
-_.stdev(P, X, _.square) // sigma(X^2)
+_.stdev(Y) // using a raw data array, sigma(X)
+// → 1
+_.stdev(X, P) // equivalent to Y, but using X and P: sigma(X)
+// → ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
+
+_.stdev(Y, _.square) // using raw data array, sigma(X^2)
+// → 1.673
+_.stdev(X, P, _.square) // equivalent to Y, but using X and P: sigma(X^2)
 // → 1.673
 ```
 * * *
@@ -2191,7 +2323,7 @@ _.stdev(P, X, _.square) // sigma(X^2)
 <!-- div -->
 
 ### <a id="trailExpGRate"></a>`trailExpGRate(v, t)`
-<a href="#trailExpGRate">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1985 "View in source") [&#x24C9;][1]
+<a href="#trailExpGRate">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2063 "View in source") [&#x24C9;][1]
 
 Returns the trailing exponential rate of return in the last t years given a vector. Calls `_.expGRate` internally.
 
@@ -2220,27 +2352,33 @@ _.trailExpGRate(v, 3)
 
 <!-- div -->
 
-### <a id="variance"></a>`variance(pV, xV, [fn=identity])`
-<a href="#variance">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1919 "View in source") [&#x24C9;][1]
+### <a id="variance"></a>`variance(X, [P], [fn])`
+<a href="#variance">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1948 "View in source") [&#x24C9;][1]
 
 Returns the variance `Var(fn(X))` of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).
 
 #### Arguments
-1. `pV` *(Array)*: The probability vector.
-2. `xV` *(Array)*: The corresponding random variable vector.
-3. `[fn=identity]` *(Function)*: The random variable function.
+1. `X` *(Array)*: The random variable vector.
+2. `[P]` *(Array)*: The corresponding probability vector.
+3. `[fn]` *(Function)*: The random variable function.
 
 #### Returns
 *(number)*:  Var(fn(X))
 
 #### Example
 ```js
-var P = [0.1, 0.2, 0.3, 0.4]
 var X = [-1, 0, 1, 2]
-_.variance(P, X) // Var(X)
-// → 1
+var Y = [-1,0,0,1,1,1,2,2,2,2]
+var P = [0.1, 0.2, 0.3, 0.4]
 
-_.variance(P, X, _.square) // Var(X^2)
+_.variance(Y) // using a raw data array, Var(X)
+// → 1
+_.variance(X, P) // equivalent to Y, but using X and P: Var(X)
+// → ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
+
+_.variance(Y, _.square) // using raw data array, Var(X^2)
+// → 2.8
+_.variance(X, P, _.square) // equivalent to Y, but using X and P: Var(X^2)
 // → 2.8
 ```
 * * *
@@ -2806,6 +2944,40 @@ _.rescale([3, 4])
 <!-- div -->
 
 ## `Methods`
+
+<!-- div -->
+
+### <a id="histogram"></a>`histogram(data, [fn=_.identity])`
+<a href="#histogram">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2016 "View in source") [&#x24C9;][1]
+
+Returns a histogram/distribution from the data. This internally calls `_.countBy` to group data by bins, using the function if specified.
+Returns the object containing values, frequencies and probabilities as separate array for ease of using them with the statistics methods.
+
+#### Arguments
+1. `data` *(Array)*: An array of data.
+2. `[fn=_.identity]` *(Function)*: An optional function to group the data by.
+
+#### Example
+```js
+var hist = _.histogram(['a', 'b', 'b', 'c', 'c', 'c', 'd', 'd', 'd', 'd']);
+hist.value
+// → ['a', 'b', 'c', 'd']
+hist.freq
+// → [1, 2, 3, 4]
+hist.prob // normalized freq as probabiltiy distribution
+// → [0.1, 0.2, 0.3, 0.4]
+
+var histfloor = _.histogram([1.1, 2.1, 2.2, 3.1, 3.2, 3.3, 4.1, 4.2, 4.3, 4.4], Math.floor);
+histfloor.value
+// → [ '1', '2', '3', '4' ] // Note the keys from _.countBy are strings
+hist.freq
+// → [1, 2, 3, 4]
+histfloor.prob
+// → [0.1, 0.2, 0.3, 0.4]
+```
+* * *
+
+<!-- /div -->
 
 <!-- /div -->
 

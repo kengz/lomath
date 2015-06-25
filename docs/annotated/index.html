@@ -1350,11 +1350,11 @@ Mutates the array</p>
             
             <div class="content"><div class='highlight'><pre>  extend: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">arr, toLen, val</span>) </span>{
     <span class="hljs-keyword">var</span> lendiff = toLen - arr.length,
-      repVal = (val == <span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : val);
+      rePal = (val == <span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : val);
     <span class="hljs-keyword">if</span> (lendiff &lt; <span class="hljs-number">0</span>)
       <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Array longer than the length to extend to"</span>)
     <span class="hljs-keyword">while</span> (lendiff--)
-      arr.push(repVal);
+      arr.push(rePal);
     <span class="hljs-keyword">return</span> arr;
   },</pre></div></div>
             
@@ -2081,11 +2081,8 @@ alias E</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  expVal: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">pV, xV, fn</span>) </span>{
-    <span class="hljs-keyword">if</span> (fn != <span class="hljs-literal">undefined</span>)
-      <span class="hljs-keyword">return</span> lomath.dot(pV, lomath.distributeSingle(fn, xV));
-    <span class="hljs-keyword">return</span> lomath.dot(pV, xV);
-  },</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  expVal: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">X, P, fn</span>) </span>{
+    <span class="hljs-keyword">var</span> val, prob, func;</pre></div></div>
             
         </li>
         
@@ -2096,16 +2093,15 @@ alias E</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-104">&#182;</a>
               </div>
-              <p>return the variance, given probability and value vectors
-alias Var</p>
+              <p>if only X is specified</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  variance: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">pV, xV, fn</span>) </span>{
-    <span class="hljs-keyword">return</span> fn == <span class="hljs-literal">undefined</span> ?
-      lomath.expVal(pV, xV, lomath.a_square) - lomath.a_square(lomath.expVal(pV, xV)) :
-      lomath.expVal(pV, xV, _.flow(fn, lomath.a_square)) - lomath.a_square(lomath.expVal(pV, xV, fn));
-  },</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length == <span class="hljs-number">1</span>) {
+      <span class="hljs-keyword">var</span> hist = lomath.histogram(X);
+      val = hist.value,
+      prob = hist.prob;
+    }</pre></div></div>
             
         </li>
         
@@ -2116,13 +2112,15 @@ alias Var</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-105">&#182;</a>
               </div>
-              <p>return the variance, given probability and value vectors</p>
+              <p>if X, P specified (maybe fn too)</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  stdev: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">pV, xV, fn</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(lomath.variance(pV, xV, fn));
-  },</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> P === <span class="hljs-string">'object'</span>) {
+      val = X;
+      prob = P;
+      func = fn;
+    }</pre></div></div>
             
         </li>
         
@@ -2132,6 +2130,126 @@ alias Var</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-106">&#182;</a>
+              </div>
+              <p>if X, fn specified</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> P === <span class="hljs-string">'function'</span>){
+      <span class="hljs-keyword">var</span> hist = lomath.histogram(X);
+      val = hist.value,
+      prob = hist.prob;
+      func = P;
+    }
+    <span class="hljs-keyword">if</span> (func != <span class="hljs-literal">undefined</span>)
+      <span class="hljs-keyword">return</span> lomath.dot(lomath.distributeSingle(func, val), prob);
+    <span class="hljs-keyword">return</span> lomath.dot(val, prob);
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-107">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-107">&#182;</a>
+              </div>
+              <p>return the variance, given probability and value vectors
+alias Var</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  variance: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">X, P, fn</span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-108">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-108">&#182;</a>
+              </div>
+              <p>if only X is specified</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length == <span class="hljs-number">1</span>) {
+      <span class="hljs-keyword">return</span> lomath.expVal(X, lomath.a_square) - lomath.a_square(lomath.expVal(X))
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-109">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-109">&#182;</a>
+              </div>
+              <p>if X, P specified (maybe fn too)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> P === <span class="hljs-string">'object'</span>) {
+      <span class="hljs-keyword">return</span> fn == <span class="hljs-literal">undefined</span> ?
+        lomath.expVal(X, P, lomath.a_square) - lomath.a_square(lomath.expVal(X, P)) :
+        lomath.expVal(X, P, _.flow(fn, lomath.a_square)) - lomath.a_square(lomath.expVal(X, P, fn));
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-110">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-110">&#182;</a>
+              </div>
+              <p>if X, fn specified</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> P === <span class="hljs-string">'function'</span>){
+      <span class="hljs-keyword">return</span> lomath.expVal(X, _.flow(P, lomath.a_square)) - lomath.a_square(lomath.expVal(X, P));
+    }
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-111">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-111">&#182;</a>
+              </div>
+              <p>return the variance, given probability and value vectors</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  stdev: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">X, P, fn</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(lomath.variance(X, P, fn));
+  },
+  histogram: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data, fn</span>) </span>{
+    <span class="hljs-keyword">var</span> bin = _.countBy(data, fn),
+    freq = _.values(bin);
+    <span class="hljs-keyword">return</span> {
+      value: _.keys(bin),
+      freq: freq,
+      prob: lomath.rescale(freq)
+    }
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-112">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-112">&#182;</a>
               </div>
               <p>Calculate the rate of return r in % of an exp growth, given final value m_f, initial value m_i, and time interval t</p>
 
@@ -2144,11 +2262,11 @@ alias Var</p>
         </li>
         
         
-        <li id="section-107">
+        <li id="section-113">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-107">&#182;</a>
+                <a class="pilcrow" href="#section-113">&#182;</a>
               </div>
               <p>Calculate the trailing exp rate of return in the last t years given a vector v</p>
 
@@ -2162,11 +2280,11 @@ alias Var</p>
         </li>
         
         
-        <li id="section-108">
+        <li id="section-114">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-108">&#182;</a>
+                <a class="pilcrow" href="#section-114">&#182;</a>
               </div>
               <p>////////////////////////////////////////
 Plotting modules: normal and dynamic //
@@ -2193,11 +2311,11 @@ Plotting modules: normal and dynamic //
         </li>
         
         
-        <li id="section-109">
+        <li id="section-115">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-109">&#182;</a>
+                <a class="pilcrow" href="#section-115">&#182;</a>
               </div>
               <p>hc: require(__dirname+’/chart/plot.js’).hc</p>
 
@@ -2206,17 +2324,83 @@ Plotting modules: normal and dynamic //
             <div class="content"><div class='highlight'><pre>  hc: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">var</span> p = <span class="hljs-built_in">require</span>(__dirname + <span class="hljs-string">'/chart/plot.js'</span>).p;
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> p();
+  },
+       [{
+           name: <span class="hljs-string">"linear"</span>,
+           data: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]
+       }, {
+           name: <span class="hljs-string">"square"</span>,
+           data: [<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">9</span>, <span class="hljs-number">16</span>, <span class="hljs-number">25</span>, <span class="hljs-number">36</span>]
+       }],
+       <span class="hljs-string">"Title 1"</span>
+       )
+       [{
+           name: <span class="hljs-string">"square"</span>,
+           data: [[<span class="hljs-number">3</span>, <span class="hljs-number">9</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">16</span>], [<span class="hljs-number">5</span>, <span class="hljs-number">25</span>], [<span class="hljs-number">6</span>, <span class="hljs-number">36</span>]]
+       }],
+       <span class="hljs-string">"Title 2"</span>
+       )
+  plot: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">seriesArr, title, yLabel, xLabel</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Please call this method by _.hc.plot"</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  },
+   chart: {
+        type: <span class="hljs-string">'column'</span>
+    },
+    title: {
+        text: <span class="hljs-string">'Monthly Average Rainfall'</span>
+    },
+    subtitle: {
+        text: <span class="hljs-string">'Source: WorldClimate.com'</span>
+    },
+    xAxis: {
+        categories: [<span class="hljs-string">'Jan'</span>, <span class="hljs-string">'Feb'</span>, <span class="hljs-string">'Mar'</span>, <span class="hljs-string">'Apr'</span>, <span class="hljs-string">'May'</span>, <span class="hljs-string">'Jun'</span>],
+        crosshair: <span class="hljs-literal">true</span>
+    },
+    yAxis: {
+        min: <span class="hljs-number">0</span>,
+        title: {
+            text: <span class="hljs-string">'Rainfall (mm)'</span>
+        }
+    },
+    plotOptions: {
+        column: {
+            pointPadding: <span class="hljs-number">0.2</span>,
+            borderWidth: <span class="hljs-number">0</span>
+        }
+    },
+    series: [{
+        name: <span class="hljs-string">'Tokyo'</span>,
+        data: [<span class="hljs-number">49.9</span>, <span class="hljs-number">71.5</span>, <span class="hljs-number">106.4</span>, <span class="hljs-number">129.2</span>, <span class="hljs-number">144.0</span>, <span class="hljs-number">176.0</span>]
+
+    }, {
+        name: <span class="hljs-string">'New York'</span>,
+        data: [<span class="hljs-number">83.6</span>, <span class="hljs-number">78.8</span>, <span class="hljs-number">98.5</span>, <span class="hljs-number">93.4</span>, <span class="hljs-number">106.0</span>, <span class="hljs-number">84.5</span>]
+
+    }, {
+        name: <span class="hljs-string">'London'</span>,
+        data: [<span class="hljs-number">48.9</span>, <span class="hljs-number">38.8</span>, <span class="hljs-number">39.3</span>, <span class="hljs-number">41.4</span>, <span class="hljs-number">47.0</span>, <span class="hljs-number">48.3</span>]
+
+    }, {
+        name: <span class="hljs-string">'Berlin'</span>,
+        data: [<span class="hljs-number">42.4</span>, <span class="hljs-number">33.2</span>, <span class="hljs-number">34.5</span>, <span class="hljs-number">39.7</span>, <span class="hljs-number">52.6</span>, <span class="hljs-number">75.5</span>]
+
+    }]
+       )
+  advPlot: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Please call this method by _.hc.advPlot"</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
   }
 })</pre></div></div>
             
         </li>
         
         
-        <li id="section-110">
+        <li id="section-116">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-110">&#182;</a>
+                <a class="pilcrow" href="#section-116">&#182;</a>
               </div>
               <p>Export lomath as _</p>
 

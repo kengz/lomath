@@ -1111,38 +1111,61 @@ fn(1000, 1000).should.deep.equal(1)</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
-          <h1>expVal(pV, xV, [fn])</h1>
+          <h1>expVal(X, P, [fn])</h1>
           <dl>
-            <dt>default function: identity</dt>
-            <dd><pre><code>fn(p, v).should.equal((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)</code></pre></dd>
-            <dt>specified atomic function: square</dt>
-            <dd><pre><code>fn(p, v, _.a_square).should.equal(1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)</code></pre></dd>
+            <dt>if only X is specified</dt>
+            <dd><pre><code>fn(vv).should.equal((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)</code></pre></dd>
+            <dt>if X, P specified; no fn</dt>
+            <dd><pre><code>fn(v, p).should.equal((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)</code></pre></dd>
+            <dt>if X, fn specified; no P</dt>
+            <dd><pre><code>fn(vv, _.a_square).should.equal(1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)</code></pre></dd>
+            <dt>if X, P, fn specified: atomic function: square</dt>
+            <dd><pre><code>fn(v, p, _.a_square).should.equal(1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
-          <h1>variance(pV, xV, [fn])</h1>
+          <h1>variance(P, X, [fn])</h1>
           <dl>
-            <dt>default function: identity</dt>
-            <dd><pre><code>fn(p, v).should.equal(
+            <dt>if only X is specified</dt>
+            <dd><pre><code>fn(vv).should.equal(
   (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4) -
   _.a_square((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
 )</code></pre></dd>
-            <dt>specified atomic function: square</dt>
-            <dd><pre><code>fn(p, v, _.a_square).should.be.closeTo(
+            <dt>if X, P specified; no fn</dt>
+            <dd><pre><code>fn(v, p).should.equal(
+  (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4) -
+  _.a_square((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
+)</code></pre></dd>
+            <dt>if X, fn specified; no P</dt>
+            <dd><pre><code>fn(vv, _.a_square).should.be.closeTo(
+  (1 * 0.1 + 0 + 1 * 0.3 + 16 * 0.4) -
+  _.a_square(1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4), 0.0001)</code></pre></dd>
+            <dt>if X, P, fn specified: atomic function: square</dt>
+            <dd><pre><code>fn(v, p, _.a_square).should.be.closeTo(
   (1 * 0.1 + 0 + 1 * 0.3 + 16 * 0.4) -
   _.a_square(1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4), 0.0001)</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
-          <h1>stdev(pV, xV, [fn])</h1>
+          <h1>stdev(P, X, [fn])</h1>
           <dl>
             <dt>trvial sqrt of variance</dt>
-            <dd><pre><code>_.stdev(p,v).should.equal(
+            <dd><pre><code>_.stdev(v, p).should.equal(
   Math.sqrt(
     (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4) -
     _.a_square((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
   )
 )</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>histogram(data, [fn])</h1>
+          <dl>
+            <dt>rate of expGrowth return</dt>
+            <dd><pre><code>var hist = fn(['a', 'b', 'b', 'c', 'c', 'c', 'd', 'd', 'd', 'd'])
+hist.value.should.deep.equal(['a', 'b', 'c', 'd'])
+hist.freq.should.deep.equal([1, 2, 3, 4])
+hist.prob.should.deep.equal([0.1, 0.2, 0.3, 0.4])</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
@@ -1168,6 +1191,12 @@ fn(v, 3).should.equal(100)</code></pre></dd>
       <dl>
         <dt>call constructor</dt>
         <dd><pre><code>_.hc().should.not.equal(0)</code></pre></dd>
+Please call this method by _.hc.plot
+        <dt>call plot</dt>
+        <dd><pre><code>_.plot().should.equal(0)</code></pre></dd>
+Please call this method by _.hc.advPlot
+        <dt>call advPlot</dt>
+        <dd><pre><code>_.advPlot().should.equal(0)</code></pre></dd>
       </dl>
     </section>
 

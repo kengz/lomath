@@ -1482,57 +1482,90 @@ suite('statistical', function() {
   })
 
   //----------------------------------------------
-  suite('expVal(pV, xV, [fn])', function() {
-    var fn, p, v;
+  suite('expVal(X, P, [fn])', function() {
+    var fn, p, v, vv;
     before(function() {
       fn = _.expVal
-      p = [0.1, 0.2, 0.3, 0.4]
       v = [-1, 0, 1, 2]
+      vv = [-1,0,0,1,1,1,2,2,2,2]
+      p = [0.1, 0.2, 0.3, 0.4]
     })
-    test('default function: identity', function() {
-      fn(p, v).should.equal((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
+    test('if only X is specified', function(){
+      fn(vv).should.equal((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
     })
-    test('specified atomic function: square', function() {
-      fn(p, v, _.a_square).should.equal(1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)
+    test('if X, P specified; no fn', function() {
+      fn(v, p).should.equal((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
+    })
+    test('if X, fn specified; no P', function() {
+      fn(vv, _.a_square).should.equal(1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)
+    })
+    test('if X, P, fn specified: atomic function: square', function() {
+      fn(v, p, _.a_square).should.equal(1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)
     })
   })
 
   //----------------------------------------------
-  suite('variance(pV, xV, [fn])', function() {
-    var fn, p, v;
+  suite('variance(P, X, [fn])', function() {
+    var fn, p, v, vv;
     before(function() {
       fn = _.variance
-      p = [0.1, 0.2, 0.3, 0.4]
       v = [-1, 0, 1, 2]
+      vv = [-1,0,0,1,1,1,2,2,2,2]
+      p = [0.1, 0.2, 0.3, 0.4]
     })
-    test('default function: identity', function() {
-      fn(p, v).should.equal(
+    test('if only X is specified', function() {
+      fn(vv).should.equal(
         (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4) -
         _.a_square((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
       )
     })
-    test('specified atomic function: square', function() {
-      fn(p, v, _.a_square).should.be.closeTo(
+    test('if X, P specified; no fn', function() {
+      fn(v, p).should.equal(
+        (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4) -
+        _.a_square((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
+      )
+    })
+    test('if X, fn specified; no P', function() {
+      fn(vv, _.a_square).should.be.closeTo(
+        (1 * 0.1 + 0 + 1 * 0.3 + 16 * 0.4) -
+        _.a_square(1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4), 0.0001)
+    })
+    test('if X, P, fn specified: atomic function: square', function() {
+      fn(v, p, _.a_square).should.be.closeTo(
         (1 * 0.1 + 0 + 1 * 0.3 + 16 * 0.4) -
         _.a_square(1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4), 0.0001)
     })
   })
 
   //----------------------------------------------
-  suite('stdev(pV, xV, [fn])', function() {
-    var fn, p, v;
+  suite('stdev(P, X, [fn])', function() {
+    var fn, v, p;
     before(function() {
       fn = _.variance
-      p = [0.1, 0.2, 0.3, 0.4]
       v = [-1, 0, 1, 2]
+      p = [0.1, 0.2, 0.3, 0.4]
     })
     test('trvial sqrt of variance', function() {
-      _.stdev(p,v).should.equal(
+      _.stdev(v, p).should.equal(
         Math.sqrt(
           (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4) -
           _.a_square((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
         )
       )
+    })
+  })
+
+  //----------------------------------------------
+  suite('histogram(data, [fn])', function() {
+    var fn;
+    before(function() {
+      fn = _.histogram
+    })
+    test('rate of expGrowth return', function() {
+      var hist = fn(['a', 'b', 'b', 'c', 'c', 'c', 'd', 'd', 'd', 'd'])
+      hist.value.should.deep.equal(['a', 'b', 'c', 'd'])
+      hist.freq.should.deep.equal([1, 2, 3, 4])
+      hist.prob.should.deep.equal([0.1, 0.2, 0.3, 0.4])
     })
   })
 
@@ -1566,5 +1599,11 @@ suite('statistical', function() {
 suite('plotter', function() {
   test('call constructor', function(){
     _.hc().should.not.equal(0)
+  })
+  test('call plot', function(){
+    _.plot().should.equal(0)
+  })
+  test('call advPlot', function(){
+    _.advPlot().should.equal(0)
   })
 })

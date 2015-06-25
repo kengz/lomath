@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="toc-container">
-    <h2><code><a href="https://github.com/kengz/lomath">lomath.js</a></code></h2>
+    <h2><code><a href="http://kengz.github.io/lomath/">lomath.js</a></code></h2>
     <ul>
       <li><a href="#">Introduction</a></li>
       <li><a href="https://github.com/kengz/lomath">Github Repository</a></li>
@@ -99,7 +99,9 @@
 <div>
 <h2 id="-plotting-"><code>plotting</code></h2>
 <ul>
+<li><a href="#advPlot"><code>advPlot</code></a></li>
 <li><a href="#hc"><code>hc</code></a></li>
+<li><a href="#plot"><code>plot</code></a></li>
 </ul>
 </div>
 <div>
@@ -189,6 +191,9 @@
 </div>
 <div>
 <h2 id="-methods-"><code>Methods</code></h2>
+<ul>
+<li><a href="#histogram"><code>histogram</code></a></li>
+</ul>
 </div>
 <div>
 <h2 id="-properties-"><code>Properties</code></h2>
@@ -199,14 +204,15 @@
     <div>
       
 <p><a href="http://badge.fury.io/js/lomath"><img src="https://badge.fury.io/js/lomath.svg" alt="npm version"></a> <a href="https://travis-ci.org/kengz/lomath"><img src="https://travis-ci.org/kengz/lomath.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/r/kengz/lomath?branch=master"><img src="https://coveralls.io/repos/kengz/lomath/badge.svg?branch=master" alt="Coverage Status"></a> <a href="https://gemnasium.com/kengz/lomath"><img src="https://gemnasium.com/kengz/lomath.svg" alt="Dependency Status"></a></p>
-<p><a href="https://github.com/kengz/lomath"><strong>Lomath</strong></a> is the data analysts&#x2019; module in <code>Node JS</code> - data analysis and visualization in <code>Node</code> is now possible with <code>lomath</code>. </p>
+<p><a href="https://github.com/kengz/lomath"><strong>Lomath</strong></a> is the data analysts&#x2019; module in <code>Node JS</code> - data analysis and visualization in <code>Node</code> is now possible with <code>lomath</code>.</p>
 <p>It is the mathematical extension of <code>lodash</code> with many high performance functions, generalized and applicable to tensors (multi-arrays). It comes with a standalone plotting module that using <code>HighCharts</code> and <code>BrowserSync</code>.</p>
 <p>See the <a href="http://kengz.github.io/lomath/">API documentation</a>.</p>
 <h2 id="community">Community</h2>
 <p><a href="https://gitter.im/kengz/lomath?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/kengz/lomath"></a></p>
 <h2 id="installation">Installation</h2>
-<p><strong>Installation</strong>: <code>npm install lomath</code></p>
-<p>To use the plotting module, do:</p>
+<p><strong>Installation</strong>:</p>
+<pre><code>npm install lomath
+</code></pre><p>To use the plotting module, do:</p>
 <pre><code><span class="hljs-comment">// in the terminal at your project&apos;s root, do:</span>
 cd node_modules/lomath
 npm install
@@ -223,15 +229,15 @@ npm install
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">0</td>
+<td style="text-align:left"><code>0</code></td>
 <td style="text-align:left">scalar = rank-0 tensor</td>
 </tr>
 <tr>
-<td style="text-align:left">[1, 2, 3]</td>
+<td style="text-align:left"><code>[1, 2, 3]</code></td>
 <td style="text-align:left">vector = rank-1 tensor</td>
 </tr>
 <tr>
-<td style="text-align:left">[ [1, 2], [3,4] ]</td>
+<td style="text-align:left"><code>[[1, 2], [3, 4]]</code></td>
 <td style="text-align:left">matrix = rank-2 tensor</td>
 </tr>
 <tr>
@@ -242,6 +248,7 @@ npm install
 </table>
 <p>You can also extend <code>lomath</code> and define your own function that applies to tensors, using the function composition module such as <code>_.distribute, _.asso</code>, etc.</p>
 <h2 id="plotting-module">Plotting Module</h2>
+<p><img src="./docs/demo.gif" alt="Sample plot"></p>
 <p><code>lomath</code> comes with a standalone plotting module that using <code>HighCharts</code> and <code>BrowserSync</code>. Just run your JS file normally when you plot (example below), and it will automatically pull up a browser showing you the charts; you can save them!</p>
 <p><strong>Demo</strong>: see <code>demo/demo.js</code> for magic.</p>
 <pre><code><span class="hljs-keyword">var</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;lomath&apos;</span>);
@@ -283,20 +290,17 @@ hc.plot(
     <span class="hljs-string">&quot;Title 2&quot;</span>
     )
 
+<span class="hljs-comment">//optionally you can use the original HighCharts plot options object by:</span>
+hc.advPlot(HighChartsOptions);
+
 <span class="hljs-comment">// Magic here! Finally, the command to render all the plots above.</span>
 <span class="hljs-comment">// Pulls up a browser (default to chrome for better support) with the charts.</span>
 <span class="hljs-comment">// calling hc.render(true) will autosave all plots to your downloads folder.</span>
 hc.render();
 </code></pre><h2 id="roadmap">Roadmap</h2>
 <ul>
-<li>Add a demo gif</li>
-<li>&#x2713;instruction for using plot</li>
 <li>add aliases</li>
-<li>&#x2713;sample usage</li>
-<li>&#x2713;docs</li>
-<li>&#x2713;tests</li>
 <li>performance benchmark</li>
-<li>&#x2713;data visualization</li>
 </ul>
 
       <h2>API documentation</h2>
@@ -1250,8 +1254,71 @@ _.seq(<span class="hljs-number">1</span>, <span class="hljs-number">9</span>, <s
 <div>
 <h2 id="-plotting-methods-"><code>&#x201C;plotting&#x201D; Methods</code></h2>
 <div>
+<h3 id="-a-id-advplot-a-advplot-options-"><a id="advPlot"></a><code>advPlot(options)</code></h3>
+<p><a href="#advPlot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2218" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Method of the constructed <code>hc</code> object.
+Advanced plotting for users familiar with HighCharts (see <a href="http://www.highcharts.com">http://www.highcharts.com</a>).
+This is a highcharts wrapper; takes in a complete HighCharts plot options object.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>options</code> <em>(Object)</em>: The HighCharts options object.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Object)</em>:  options The options passed, for reference.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js"><span class="hljs-comment">// Plots using the highcharts options</span>
+hc.advPlot(
+   chart: {
+        type: <span class="hljs-string">&apos;column&apos;</span>
+    },
+    title: {
+        text: <span class="hljs-string">&apos;Monthly Average Rainfall&apos;</span>
+    },
+    subtitle: {
+        text: <span class="hljs-string">&apos;Source: WorldClimate.com&apos;</span>
+    },
+    xAxis: {
+        categories: [<span class="hljs-string">&apos;Jan&apos;</span>, <span class="hljs-string">&apos;Feb&apos;</span>, <span class="hljs-string">&apos;Mar&apos;</span>, <span class="hljs-string">&apos;Apr&apos;</span>, <span class="hljs-string">&apos;May&apos;</span>, <span class="hljs-string">&apos;Jun&apos;</span>],
+        crosshair: <span class="hljs-literal">true</span>
+    },
+    yAxis: {
+        min: <span class="hljs-number">0</span>,
+        title: {
+            text: <span class="hljs-string">&apos;Rainfall (mm)&apos;</span>
+        }
+    },
+    plotOptions: {
+        column: {
+            pointPadding: <span class="hljs-number">0.2</span>,
+            borderWidth: <span class="hljs-number">0</span>
+        }
+    },
+    series: [{
+        name: <span class="hljs-string">&apos;Tokyo&apos;</span>,
+        data: [<span class="hljs-number">49.9</span>, <span class="hljs-number">71.5</span>, <span class="hljs-number">106.4</span>, <span class="hljs-number">129.2</span>, <span class="hljs-number">144.0</span>, <span class="hljs-number">176.0</span>]
+
+    }, {
+        name: <span class="hljs-string">&apos;New York&apos;</span>,
+        data: [<span class="hljs-number">83.6</span>, <span class="hljs-number">78.8</span>, <span class="hljs-number">98.5</span>, <span class="hljs-number">93.4</span>, <span class="hljs-number">106.0</span>, <span class="hljs-number">84.5</span>]
+
+    }, {
+        name: <span class="hljs-string">&apos;London&apos;</span>,
+        data: [<span class="hljs-number">48.9</span>, <span class="hljs-number">38.8</span>, <span class="hljs-number">39.3</span>, <span class="hljs-number">41.4</span>, <span class="hljs-number">47.0</span>, <span class="hljs-number">48.3</span>]
+
+    }, {
+        name: <span class="hljs-string">&apos;Berlin&apos;</span>,
+        data: [<span class="hljs-number">42.4</span>, <span class="hljs-number">33.2</span>, <span class="hljs-number">34.5</span>, <span class="hljs-number">39.7</span>, <span class="hljs-number">52.6</span>, <span class="hljs-number">75.5</span>]
+
+    }]
+       )
+<span class="hljs-comment">// renders the plot</span>
+hc.render()
+</code></pre>
+<hr>
+</div>
+<div>
 <h3 id="-a-id-hc-a-hc-"><a id="hc"></a><code>hc()</code></h3>
-<p><a href="#hc">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2037" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#hc">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2115" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>The plotting module constructor.
 Uses <code>HighCharts</code> to plot and <code>browserSync</code>. Pulls up browser directly showing your charts like magic!
 To use this, go into <code>node_modules/lomath</code> and do <code>npm install</code> there to install the dev dependencies.</p>
@@ -1296,6 +1363,48 @@ hc.plot(
 hc.render();
 
 <span class="hljs-comment">// Magical, eh?</span>
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-plot-a-plot-seriesarr-title-ylabel-xlabel-"><a id="plot"></a><code>plot(seriesArr, [title=&quot;&quot;], [yLabel=&quot;&quot;], [xLabel=&quot;&quot;])</code></h3>
+<p><a href="#plot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2156" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Method of the constructed <code>hc</code> object.
+A simplified wrapper of the HighCharts plot options object.
+Allows one to use simple data plot by specifying data sets in objects consisting of data name and data.
+The data specified can be array of y-values, or array of x-y values.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>seriesArr</code> <em>(Array)</em>: The array of data series, i.e. the series objects in the HighCharts options.</li>
+<li><code>[title=&quot;&quot;]</code> <em>(string)</em>: The title of this plot.</li>
+<li><code>[yLabel=&quot;&quot;]</code> <em>(string)</em>: The y-axis label.</li>
+<li><code>[xLabel=&quot;&quot;]</code> <em>(string)</em>: The x-axis label.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Object)</em>:  options The options passed, for reference.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js"><span class="hljs-comment">// Plots two data sets using y-values (x-values start from 0).</span>
+hc.plot(
+       [{
+           name: <span class="hljs-string">&quot;linear&quot;</span>,
+           data: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]
+       }, {
+           name: <span class="hljs-string">&quot;square&quot;</span>,
+           data: [<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">9</span>, <span class="hljs-number">16</span>, <span class="hljs-number">25</span>, <span class="hljs-number">36</span>]
+       }],
+       <span class="hljs-string">&quot;Title 1&quot;</span>
+       )
+
+<span class="hljs-comment">// Plots a data set using x-y values.</span>
+hc.plot(
+       [{
+           name: <span class="hljs-string">&quot;square&quot;</span>,
+           data: [[<span class="hljs-number">3</span>, <span class="hljs-number">9</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">16</span>], [<span class="hljs-number">5</span>, <span class="hljs-number">25</span>], [<span class="hljs-number">6</span>, <span class="hljs-number">36</span>]]
+       }],
+       <span class="hljs-string">&quot;Title 2&quot;</span>
+       )
+<span class="hljs-comment">// renders the plot</span>
+hc.render()
 </code></pre>
 <hr>
 </div>
@@ -1720,7 +1829,7 @@ _.inRange.bind(<span class="hljs-literal">null</span>, <span class="hljs-number"
 <h2 id="-statistics-methods-"><code>&#x201C;statistics&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-expgrate-a-expgrate-m_f-m_i-t-"><a id="expGRate"></a><code>expGRate(m_f, m_i, t)</code></h3>
-<p><a href="#expGRate">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1962" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#expGRate">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2040" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the rate of return r in % of an exponential growth, given final value m_f, initial value m_i, and time interval t.
 Formula: <code>100 * (Math.exp(Math.log(m_f / m_i) / t) - 1)</code></p>
 <h4 id="arguments">Arguments</h4>
@@ -1738,24 +1847,30 @@ Formula: <code>100 * (Math.exp(Math.log(m_f / m_i) / t) - 1)</code></p>
 <hr>
 </div>
 <div>
-<h3 id="-a-id-expval-a-expval-pv-xv-fn-identity-"><a id="expVal"></a><code>expVal(pV, xV, [fn=identity])</code></h3>
-<p><a href="#expVal">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1895" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
-<p>Returns the expectation value <code>E(fn(X))</code> of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).</p>
+<h3 id="-a-id-expval-a-expval-x-p-fn-"><a id="expVal"></a><code>expVal(X, [P], [fn])</code></h3>
+<p><a href="#expVal">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1901" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns the expectation value <code>E(fn(X))</code> of a random variable vector, optionally with the corresponding probability vector, using the random variable function (defaulted to identity).</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
-<li><code>pV</code> <em>(Array)</em>: The probability vector.</li>
-<li><code>xV</code> <em>(Array)</em>: The corresponding random variable vector.</li>
-<li><code>[fn=identity]</code> <em>(Function)</em>: The random variable function.</li>
+<li><code>X</code> <em>(Array)</em>: The random variable vector.</li>
+<li><code>[P]</code> <em>(Array)</em>: The corresponding probability vector.</li>
+<li><code>[fn]</code> <em>(Function)</em>: The random variable function.</li>
 </ol>
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  E(fn(X))</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> P = [<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.4</span>]
-<span class="hljs-keyword">var</span> X = [-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
-_.expVal(P, X) <span class="hljs-comment">// E(X)</span>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> X = [-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
+<span class="hljs-keyword">var</span> Y = [-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>]
+<span class="hljs-keyword">var</span> P = [<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.4</span>]
+
+_.expVal(Y) <span class="hljs-comment">// using a raw data array, E(X)</span>
+<span class="hljs-comment">// &#x2192; ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)</span>
+_.expVal(X, P) <span class="hljs-comment">// equivalent to Y, but using X and P: E(X)</span>
 <span class="hljs-comment">// &#x2192; ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)</span>
 
-_.expVal(P, X, _.square) <span class="hljs-comment">// E(X^2)</span>
+_.expVal(Y, _.square) <span class="hljs-comment">// using raw data array, E(X^2)</span>
+<span class="hljs-comment">// &#x2192; (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)</span>
+_.expVal(X, P, _.square) <span class="hljs-comment">// equivalent to Y, but using X and P: E(X^2)</span>
 <span class="hljs-comment">// &#x2192; (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)</span>
 </code></pre>
 <hr>
@@ -1780,32 +1895,38 @@ _.mean([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
 <hr>
 </div>
 <div>
-<h3 id="-a-id-stdev-a-stdev-pv-xv-fn-identity-"><a id="stdev"></a><code>stdev(pV, xV, [fn=identity])</code></h3>
-<p><a href="#stdev">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1944" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<h3 id="-a-id-stdev-a-stdev-x-p-fn-"><a id="stdev"></a><code>stdev(X, [P], [fn])</code></h3>
+<p><a href="#stdev">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1987" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the standard deviation <code>sigma(fn(X))</code> of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).
 Simply calles <code>_.variance</code> internally and returns its square root.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
-<li><code>pV</code> <em>(Array)</em>: The probability vector.</li>
-<li><code>xV</code> <em>(Array)</em>: The corresponding random variable vector.</li>
-<li><code>[fn=identity]</code> <em>(Function)</em>: The random variable function.</li>
+<li><code>X</code> <em>(Array)</em>: The corresponding random variable vector.</li>
+<li><code>[P]</code> <em>(Array)</em>: The corresponding probability vector.</li>
+<li><code>[fn]</code> <em>(Function)</em>: The random variable function.</li>
 </ol>
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  sigma(fn(X))</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> P = [<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.4</span>]
-<span class="hljs-keyword">var</span> X = [-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
-_.stdev(P, X) <span class="hljs-comment">// sigma(X)</span>
-<span class="hljs-comment">// &#x2192; 1</span>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> X = [-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
+<span class="hljs-keyword">var</span> Y = [-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>]
+<span class="hljs-keyword">var</span> P = [<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.4</span>]
 
-_.stdev(P, X, _.square) <span class="hljs-comment">// sigma(X^2)</span>
+_.stdev(Y) <span class="hljs-comment">// using a raw data array, sigma(X)</span>
+<span class="hljs-comment">// &#x2192; 1</span>
+_.stdev(X, P) <span class="hljs-comment">// equivalent to Y, but using X and P: sigma(X)</span>
+<span class="hljs-comment">// &#x2192; ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)</span>
+
+_.stdev(Y, _.square) <span class="hljs-comment">// using raw data array, sigma(X^2)</span>
+<span class="hljs-comment">// &#x2192; 1.673</span>
+_.stdev(X, P, _.square) <span class="hljs-comment">// equivalent to Y, but using X and P: sigma(X^2)</span>
 <span class="hljs-comment">// &#x2192; 1.673</span>
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-trailexpgrate-a-trailexpgrate-v-t-"><a id="trailExpGRate"></a><code>trailExpGRate(v, t)</code></h3>
-<p><a href="#trailExpGRate">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1985" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#trailExpGRate">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2063" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the trailing exponential rate of return in the last t years given a vector. Calls <code>_.expGRate</code> internally.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1828,24 +1949,30 @@ _.trailExpGRate(v, <span class="hljs-number">3</span>)
 <hr>
 </div>
 <div>
-<h3 id="-a-id-variance-a-variance-pv-xv-fn-identity-"><a id="variance"></a><code>variance(pV, xV, [fn=identity])</code></h3>
-<p><a href="#variance">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1919" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<h3 id="-a-id-variance-a-variance-x-p-fn-"><a id="variance"></a><code>variance(X, [P], [fn])</code></h3>
+<p><a href="#variance">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1948" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the variance <code>Var(fn(X))</code> of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
-<li><code>pV</code> <em>(Array)</em>: The probability vector.</li>
-<li><code>xV</code> <em>(Array)</em>: The corresponding random variable vector.</li>
-<li><code>[fn=identity]</code> <em>(Function)</em>: The random variable function.</li>
+<li><code>X</code> <em>(Array)</em>: The random variable vector.</li>
+<li><code>[P]</code> <em>(Array)</em>: The corresponding probability vector.</li>
+<li><code>[fn]</code> <em>(Function)</em>: The random variable function.</li>
 </ol>
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  Var(fn(X))</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> P = [<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.4</span>]
-<span class="hljs-keyword">var</span> X = [-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
-_.variance(P, X) <span class="hljs-comment">// Var(X)</span>
-<span class="hljs-comment">// &#x2192; 1</span>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> X = [-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
+<span class="hljs-keyword">var</span> Y = [-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>]
+<span class="hljs-keyword">var</span> P = [<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.4</span>]
 
-_.variance(P, X, _.square) <span class="hljs-comment">// Var(X^2)</span>
+_.variance(Y) <span class="hljs-comment">// using a raw data array, Var(X)</span>
+<span class="hljs-comment">// &#x2192; 1</span>
+_.variance(X, P) <span class="hljs-comment">// equivalent to Y, but using X and P: Var(X)</span>
+<span class="hljs-comment">// &#x2192; ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)</span>
+
+_.variance(Y, _.square) <span class="hljs-comment">// using raw data array, Var(X^2)</span>
+<span class="hljs-comment">// &#x2192; 2.8</span>
+_.variance(X, P, _.square) <span class="hljs-comment">// equivalent to Y, but using X and P: Var(X^2)</span>
 <span class="hljs-comment">// &#x2192; 2.8</span>
 </code></pre>
 <hr>
@@ -2270,6 +2397,35 @@ _.dot([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>],
 </div>
 <div>
 <h2 id="-methods-"><code>Methods</code></h2>
+<div>
+<h3 id="-a-id-histogram-a-histogram-data-fn-_-identity-"><a id="histogram"></a><code>histogram(data, [fn=_.identity])</code></h3>
+<p><a href="#histogram">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2016" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Returns a histogram/distribution from the data. This internally calls <code>_.countBy</code> to group data by bins, using the function if specified.
+Returns the object containing values, frequencies and probabilities as separate array for ease of using them with the statistics methods.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>data</code> <em>(Array)</em>: An array of data.</li>
+<li><code>[fn=_.identity]</code> <em>(Function)</em>: An optional function to group the data by.</li>
+</ol>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> hist = _.histogram([<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>]);
+hist.value
+<span class="hljs-comment">// &#x2192; [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;]</span>
+hist.freq
+<span class="hljs-comment">// &#x2192; [1, 2, 3, 4]</span>
+hist.prob <span class="hljs-comment">// normalized freq as probabiltiy distribution</span>
+<span class="hljs-comment">// &#x2192; [0.1, 0.2, 0.3, 0.4]</span>
+
+<span class="hljs-keyword">var</span> histfloor = _.histogram([<span class="hljs-number">1.1</span>, <span class="hljs-number">2.1</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">3.1</span>, <span class="hljs-number">3.2</span>, <span class="hljs-number">3.3</span>, <span class="hljs-number">4.1</span>, <span class="hljs-number">4.2</span>, <span class="hljs-number">4.3</span>, <span class="hljs-number">4.4</span>], <span class="hljs-built_in">Math</span>.floor);
+histfloor.value
+<span class="hljs-comment">// &#x2192; [ &apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos; ] // Note the keys from _.countBy are strings</span>
+hist.freq
+<span class="hljs-comment">// &#x2192; [1, 2, 3, 4]</span>
+histfloor.prob
+<span class="hljs-comment">// &#x2192; [0.1, 0.2, 0.3, 0.4]</span>
+</code></pre>
+<hr>
+</div>
 </div>
 <div>
 <h2 id="-properties-"><code>Properties</code></h2>

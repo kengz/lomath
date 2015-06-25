@@ -50,7 +50,7 @@ function p() {
     this.advPlot = function(opt) {
         var defer = q.defer();
         this.promises.push(defer.promise);
-        optArray.push(opt);
+        this.optArray.push(opt);
         defer.resolve();
 
         return opt;

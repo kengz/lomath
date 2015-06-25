@@ -2190,10 +2190,12 @@ var lomath = _.mixin({
    * Returns the object containing values, frequencies and probabilities as separate array for ease of using them with the statistics methods.
    *
    * @param {Array} data An array of data.
-   * @param {Function} [fn=_.identity] An optional function to group the data by.
-   * @return {Object} histogram {value, freq, prob}.
+   * @param {Function} [fn] An optional function to group the data by.
+   * @param {boolean} [pair] If true, will return an array of `[value, freq]`.
+   * @returns {Object|Array} histogram {value, freq, prob} or array of [value, freq].
    *
    * @example
+   * // called with data
    * var hist = _.histogram(['a', 'b', 'b', 'c', 'c', 'c', 'd', 'd', 'd', 'd']);
    * hist.value
    * // → ['a', 'b', 'c', 'd']
@@ -2202,6 +2204,11 @@ var lomath = _.mixin({
    * hist.prob // normalized freq as probabiltiy distribution
    * // → [0.1, 0.2, 0.3, 0.4]
    *
+   * // called with data and pair
+   * _.histogram(['a', 'b', 'b', 'c', 'c', 'c', 'd', 'd', 'd', 'd'], true);
+   * // → [['a',1], ['b',2], ['c',3], ['d',4]
+   * 
+   * // called with data and fn
    * var histfloor = _.histogram([1.1, 2.1, 2.2, 3.1, 3.2, 3.3, 4.1, 4.2, 4.3, 4.4], Math.floor);
    * histfloor.value
    * // → [ '1', '2', '3', '4' ] // Note the keys from _.countBy are strings
@@ -2210,11 +2217,20 @@ var lomath = _.mixin({
    * histfloor.prob
    * // → [0.1, 0.2, 0.3, 0.4]
    *
+   * // called with data, fn and pair
+   * _.histogram([1.1, 2.1, 2.2, 3.1, 3.2, 3.3, 4.1, 4.2, 4.3, 4.4], Math.floor, true);
+   * // → [['1',1], ['2',2], ['3',3], ['4',4] ]
+   *
+   * 
    */
-  histogram: function(data, fn) {
-    var bin = _.countBy(data, fn),
-    freq = _.values(bin);
-    return {
+  histogram: function(data, fn, pair) {
+    if (fn == true) // called with data, pair
+      return _.pairs(_.countBy(data));
+    var bin = _.countBy(data, fn);
+    if (pair == true) // called with data, fn, pair
+      return _.pairs(bin);
+    var freq = _.values(bin);
+    return { //called with data, [fn]
       value: _.keys(bin),
       freq: freq,
       prob: lomath.rescale(freq)
@@ -2373,7 +2389,7 @@ var lomath = _.mixin({
    *
    * @example
    * // Plots using the highcharts options
-   * hc.advPlot(
+   * hc.advPlot({
    chart: {
         type: 'column'
     },
@@ -2416,11 +2432,31 @@ var lomath = _.mixin({
         data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5]
 
     }]
-       )
+       })
    * // renders the plot
    * hc.render()
    */
   advPlot: function(options) {
+    console.log("Please call this method by _.hc.advPlot");
+    return 0;
+  },
+  /**
+   * Method of the constructed `hc` object.
+   * Renders the plots: Launches a browser with all the plots listed before this line. Uses a gulp task and browserSync.
+   * Pass argument `true` will auto save all the plots to downloads.
+   *
+   * @category plotting
+   * @param {boolean} [autosave] If true, will autosave all the plots to downloads.
+   * @returns {*} browser Pulls up a browser.
+   *
+   * @example
+   * hc.plot(...)
+   * // renders the plot in a browser
+   * hc.render()
+   *
+   * // hc.render(true) will autosave all plots.
+   */
+  render: function(autosave) {
     console.log("Please call this method by _.hc.advPlot");
     return 0;
   }

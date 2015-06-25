@@ -1556,16 +1556,32 @@ suite('statistical', function() {
   })
 
   //----------------------------------------------
-  suite('histogram(data, [fn])', function() {
+  suite('histogram(data, [fn], [pair])', function() {
     var fn;
     before(function() {
       fn = _.histogram
     })
-    test('rate of expGrowth return', function() {
+    test('called with data only', function() {
       var hist = fn(['a', 'b', 'b', 'c', 'c', 'c', 'd', 'd', 'd', 'd'])
       hist.value.should.deep.equal(['a', 'b', 'c', 'd'])
       hist.freq.should.deep.equal([1, 2, 3, 4])
       hist.prob.should.deep.equal([0.1, 0.2, 0.3, 0.4])
+    })
+    test('call with data, fn', function() {
+      var hist = fn(['a', 'b', 'b', 'c', 'c', 'c', 'd', 'd', 'd', 'd'], _.identity)
+      hist.value.should.deep.equal(['a', 'b', 'c', 'd'])
+      hist.freq.should.deep.equal([1, 2, 3, 4])
+      hist.prob.should.deep.equal([0.1, 0.2, 0.3, 0.4])
+    })
+    test('call with data, fn, pair', function() {
+      var hist = fn(['a', 'b', 'b', 'c', 'c', 'c', 'd', 'd', 'd', 'd'], _.identity, true)
+      hist.should.be.an.instanceof(Array)
+      hist.should.deep.equal([['a',1], ['b',2], ['c',3], ['d',4]])
+    })
+    test('call with data, pair', function() {
+      var hist = fn(['a', 'b', 'b', 'c', 'c', 'c', 'd', 'd', 'd', 'd'], true)
+      hist.should.be.an.instanceof(Array)
+      hist.should.deep.equal([['a',1], ['b',2], ['c',3], ['d',4]])
     })
   })
 
@@ -1605,5 +1621,8 @@ suite('plotter', function() {
   })
   test('call advPlot', function(){
     _.advPlot().should.equal(0)
+  })
+  test('call render', function(){
+    _.render().should.equal(0)
   })
 })

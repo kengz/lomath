@@ -107,4 +107,6 @@ hc.render();
 
 ## Roadmap
 - add aliases
+- add Randomjs engine
+- more stats methods: sample, multidim probs, covarience, distributions
 - performance benchmark

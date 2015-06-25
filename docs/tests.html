@@ -1159,13 +1159,26 @@ fn(1000, 1000).should.deep.equal(1)</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
-          <h1>histogram(data, [fn])</h1>
+          <h1>histogram(data, [fn], [pair])</h1>
           <dl>
-            <dt>rate of expGrowth return</dt>
+            <dt>called with data only</dt>
             <dd><pre><code>var hist = fn(['a', 'b', 'b', 'c', 'c', 'c', 'd', 'd', 'd', 'd'])
 hist.value.should.deep.equal(['a', 'b', 'c', 'd'])
 hist.freq.should.deep.equal([1, 2, 3, 4])
 hist.prob.should.deep.equal([0.1, 0.2, 0.3, 0.4])</code></pre></dd>
+            <dt>call with data, fn</dt>
+            <dd><pre><code>var hist = fn(['a', 'b', 'b', 'c', 'c', 'c', 'd', 'd', 'd', 'd'], _.identity)
+hist.value.should.deep.equal(['a', 'b', 'c', 'd'])
+hist.freq.should.deep.equal([1, 2, 3, 4])
+hist.prob.should.deep.equal([0.1, 0.2, 0.3, 0.4])</code></pre></dd>
+            <dt>call with data, fn, pair</dt>
+            <dd><pre><code>var hist = fn(['a', 'b', 'b', 'c', 'c', 'c', 'd', 'd', 'd', 'd'], _.identity, true)
+hist.should.be.an.instanceof(Array)
+hist.should.deep.equal([['a',1], ['b',2], ['c',3], ['d',4]])</code></pre></dd>
+            <dt>call with data, pair</dt>
+            <dd><pre><code>var hist = fn(['a', 'b', 'b', 'c', 'c', 'c', 'd', 'd', 'd', 'd'], true)
+hist.should.be.an.instanceof(Array)
+hist.should.deep.equal([['a',1], ['b',2], ['c',3], ['d',4]])</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
@@ -1197,6 +1210,9 @@ Please call this method by _.hc.plot
 Please call this method by _.hc.advPlot
         <dt>call advPlot</dt>
         <dd><pre><code>_.advPlot().should.equal(0)</code></pre></dd>
+Please call this method by _.hc.advPlot
+        <dt>call render</dt>
+        <dd><pre><code>_.render().should.equal(0)</code></pre></dd>
       </dl>
     </section>
 

@@ -2232,10 +2232,14 @@ alias Var</p>
             <div class="content"><div class='highlight'><pre>  stdev: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">X, P, fn</span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(lomath.variance(X, P, fn));
   },
-  histogram: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data, fn</span>) </span>{
-    <span class="hljs-keyword">var</span> bin = _.countBy(data, fn),
-    freq = _.values(bin);
-    <span class="hljs-keyword">return</span> {
+  histogram: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data, fn, pair</span>) </span>{
+    <span class="hljs-keyword">if</span> (fn == <span class="hljs-literal">true</span>) <span class="hljs-comment">// called with data, pair</span>
+      <span class="hljs-keyword">return</span> _.pairs(_.countBy(data));
+    <span class="hljs-keyword">var</span> bin = _.countBy(data, fn);
+    <span class="hljs-keyword">if</span> (pair == <span class="hljs-literal">true</span>) <span class="hljs-comment">// called with data, fn, pair</span>
+      <span class="hljs-keyword">return</span> _.pairs(bin);
+    <span class="hljs-keyword">var</span> freq = _.values(bin);
+    <span class="hljs-keyword">return</span> { <span class="hljs-comment">//called with data, [fn]</span>
       value: _.keys(bin),
       freq: freq,
       prob: lomath.rescale(freq)
@@ -2386,8 +2390,12 @@ Plotting modules: normal and dynamic //
         data: [<span class="hljs-number">42.4</span>, <span class="hljs-number">33.2</span>, <span class="hljs-number">34.5</span>, <span class="hljs-number">39.7</span>, <span class="hljs-number">52.6</span>, <span class="hljs-number">75.5</span>]
 
     }]
-       )
+       })
   advPlot: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Please call this method by _.hc.advPlot"</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  },
+  render: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">autosave</span>) </span>{
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Please call this method by _.hc.advPlot"</span>);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
   }

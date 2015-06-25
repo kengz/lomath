@@ -102,6 +102,7 @@
 <li><a href="#advPlot"><code>advPlot</code></a></li>
 <li><a href="#hc"><code>hc</code></a></li>
 <li><a href="#plot"><code>plot</code></a></li>
+<li><a href="#render"><code>render</code></a></li>
 </ul>
 </div>
 <div>
@@ -300,6 +301,8 @@ hc.render();
 </code></pre><h2 id="roadmap">Roadmap</h2>
 <ul>
 <li>add aliases</li>
+<li>add Randomjs engine</li>
+<li>more stats methods: sample, multidim probs, covarience, distributions</li>
 <li>performance benchmark</li>
 </ul>
 
@@ -1255,7 +1258,7 @@ _.seq(<span class="hljs-number">1</span>, <span class="hljs-number">9</span>, <s
 <h2 id="-plotting-methods-"><code>&#x201C;plotting&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-advplot-a-advplot-options-"><a id="advPlot"></a><code>advPlot(options)</code></h3>
-<p><a href="#advPlot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2218" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#advPlot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2234" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Method of the constructed <code>hc</code> object.
 Advanced plotting for users familiar with HighCharts (see <a href="http://www.highcharts.com">http://www.highcharts.com</a>).
 This is a highcharts wrapper; takes in a complete HighCharts plot options object.</p>
@@ -1267,7 +1270,7 @@ This is a highcharts wrapper; takes in a complete HighCharts plot options object
 <p><em>(Object)</em>:  options The options passed, for reference.</p>
 <h4 id="example">Example</h4>
 <pre><code class="lang-js"><span class="hljs-comment">// Plots using the highcharts options</span>
-hc.advPlot(
+hc.advPlot({
    chart: {
         type: <span class="hljs-string">&apos;column&apos;</span>
     },
@@ -1310,7 +1313,7 @@ hc.advPlot(
         data: [<span class="hljs-number">42.4</span>, <span class="hljs-number">33.2</span>, <span class="hljs-number">34.5</span>, <span class="hljs-number">39.7</span>, <span class="hljs-number">52.6</span>, <span class="hljs-number">75.5</span>]
 
     }]
-       )
+       })
 <span class="hljs-comment">// renders the plot</span>
 hc.render()
 </code></pre>
@@ -1318,7 +1321,7 @@ hc.render()
 </div>
 <div>
 <h3 id="-a-id-hc-a-hc-"><a id="hc"></a><code>hc()</code></h3>
-<p><a href="#hc">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2115" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#hc">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2131" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>The plotting module constructor.
 Uses <code>HighCharts</code> to plot and <code>browserSync</code>. Pulls up browser directly showing your charts like magic!
 To use this, go into <code>node_modules/lomath</code> and do <code>npm install</code> there to install the dev dependencies.</p>
@@ -1368,7 +1371,7 @@ hc.render();
 </div>
 <div>
 <h3 id="-a-id-plot-a-plot-seriesarr-title-ylabel-xlabel-"><a id="plot"></a><code>plot(seriesArr, [title=&quot;&quot;], [yLabel=&quot;&quot;], [xLabel=&quot;&quot;])</code></h3>
-<p><a href="#plot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2156" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#plot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2172" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Method of the constructed <code>hc</code> object.
 A simplified wrapper of the HighCharts plot options object.
 Allows one to use simple data plot by specifying data sets in objects consisting of data name and data.
@@ -1405,6 +1408,27 @@ hc.plot(
        )
 <span class="hljs-comment">// renders the plot</span>
 hc.render()
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-render-a-render-autosave-"><a id="render"></a><code>render([autosave])</code></h3>
+<p><a href="#render">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2254" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Method of the constructed <code>hc</code> object.
+Renders the plots: Launches a browser with all the plots listed before this line. Uses a gulp task and browserSync.
+Pass argument <code>true</code> will auto save all the plots to downloads.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>[autosave]</code> <em>(boolean)</em>: If true, will autosave all the plots to downloads.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(*)</em>:  browser Pulls up a browser.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">hc.plot(...)
+<span class="hljs-comment">// renders the plot in a browser</span>
+hc.render()
+
+<span class="hljs-comment">// hc.render(true) will autosave all plots.</span>
 </code></pre>
 <hr>
 </div>
@@ -1829,7 +1853,7 @@ _.inRange.bind(<span class="hljs-literal">null</span>, <span class="hljs-number"
 <h2 id="-statistics-methods-"><code>&#x201C;statistics&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-expgrate-a-expgrate-m_f-m_i-t-"><a id="expGRate"></a><code>expGRate(m_f, m_i, t)</code></h3>
-<p><a href="#expGRate">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2040" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#expGRate">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2056" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the rate of return r in % of an exponential growth, given final value m_f, initial value m_i, and time interval t.
 Formula: <code>100 * (Math.exp(Math.log(m_f / m_i) / t) - 1)</code></p>
 <h4 id="arguments">Arguments</h4>
@@ -1926,7 +1950,7 @@ _.stdev(X, P, _.square) <span class="hljs-comment">// equivalent to Y, but using
 </div>
 <div>
 <h3 id="-a-id-trailexpgrate-a-trailexpgrate-v-t-"><a id="trailExpGRate"></a><code>trailExpGRate(v, t)</code></h3>
-<p><a href="#trailExpGRate">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2063" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#trailExpGRate">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2079" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the trailing exponential rate of return in the last t years given a vector. Calls <code>_.expGRate</code> internally.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2398,17 +2422,21 @@ _.dot([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>],
 <div>
 <h2 id="-methods-"><code>Methods</code></h2>
 <div>
-<h3 id="-a-id-histogram-a-histogram-data-fn-_-identity-"><a id="histogram"></a><code>histogram(data, [fn=_.identity])</code></h3>
-<p><a href="#histogram">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2016" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<h3 id="-a-id-histogram-a-histogram-data-fn-pair-"><a id="histogram"></a><code>histogram(data, [fn], [pair])</code></h3>
+<p><a href="#histogram">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2028" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns a histogram/distribution from the data. This internally calls <code>_.countBy</code> to group data by bins, using the function if specified.
 Returns the object containing values, frequencies and probabilities as separate array for ease of using them with the statistics methods.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
 <li><code>data</code> <em>(Array)</em>: An array of data.</li>
-<li><code>[fn=_.identity]</code> <em>(Function)</em>: An optional function to group the data by.</li>
+<li><code>[fn]</code> <em>(Function)</em>: An optional function to group the data by.</li>
+<li><code>[pair]</code> <em>(boolean)</em>: If true, will return an array of <code>[value, freq]</code>.</li>
 </ol>
+<h4 id="returns">Returns</h4>
+<p><em>(Object|Array)</em>:  histogram {value, freq, prob} or array of [value, freq].</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> hist = _.histogram([<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>]);
+<pre><code class="lang-js"><span class="hljs-comment">// called with data</span>
+<span class="hljs-keyword">var</span> hist = _.histogram([<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>]);
 hist.value
 <span class="hljs-comment">// &#x2192; [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;]</span>
 hist.freq
@@ -2416,6 +2444,11 @@ hist.freq
 hist.prob <span class="hljs-comment">// normalized freq as probabiltiy distribution</span>
 <span class="hljs-comment">// &#x2192; [0.1, 0.2, 0.3, 0.4]</span>
 
+<span class="hljs-comment">// called with data and pair</span>
+_.histogram([<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>], <span class="hljs-literal">true</span>);
+<span class="hljs-comment">// &#x2192; [[&apos;a&apos;,1], [&apos;b&apos;,2], [&apos;c&apos;,3], [&apos;d&apos;,4]</span>
+
+<span class="hljs-comment">// called with data and fn</span>
 <span class="hljs-keyword">var</span> histfloor = _.histogram([<span class="hljs-number">1.1</span>, <span class="hljs-number">2.1</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">3.1</span>, <span class="hljs-number">3.2</span>, <span class="hljs-number">3.3</span>, <span class="hljs-number">4.1</span>, <span class="hljs-number">4.2</span>, <span class="hljs-number">4.3</span>, <span class="hljs-number">4.4</span>], <span class="hljs-built_in">Math</span>.floor);
 histfloor.value
 <span class="hljs-comment">// &#x2192; [ &apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos; ] // Note the keys from _.countBy are strings</span>
@@ -2423,6 +2456,10 @@ hist.freq
 <span class="hljs-comment">// &#x2192; [1, 2, 3, 4]</span>
 histfloor.prob
 <span class="hljs-comment">// &#x2192; [0.1, 0.2, 0.3, 0.4]</span>
+
+<span class="hljs-comment">// called with data, fn and pair</span>
+_.histogram([<span class="hljs-number">1.1</span>, <span class="hljs-number">2.1</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">3.1</span>, <span class="hljs-number">3.2</span>, <span class="hljs-number">3.3</span>, <span class="hljs-number">4.1</span>, <span class="hljs-number">4.2</span>, <span class="hljs-number">4.3</span>, <span class="hljs-number">4.4</span>], <span class="hljs-built_in">Math</span>.floor, <span class="hljs-literal">true</span>);
+<span class="hljs-comment">// &#x2192; [[&apos;1&apos;,1], [&apos;2&apos;,2], [&apos;3&apos;,3], [&apos;4&apos;,4] ]</span>
 </code></pre>
 <hr>
 </div>

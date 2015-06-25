@@ -92,6 +92,7 @@
 * <a href="#advPlot">`advPlot`</a>
 * <a href="#hc">`hc`</a>
 * <a href="#plot">`plot`</a>
+* <a href="#render">`render`</a>
 
 <!-- /div -->
 
@@ -1472,7 +1473,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="advPlot"></a>`advPlot(options)`
-<a href="#advPlot">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2218 "View in source") [&#x24C9;][1]
+<a href="#advPlot">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2234 "View in source") [&#x24C9;][1]
 
 Method of the constructed `hc` object.
 Advanced plotting for users familiar with HighCharts (see http://www.highcharts.com).
@@ -1487,7 +1488,7 @@ This is a highcharts wrapper; takes in a complete HighCharts plot options object
 #### Example
 ```js
 // Plots using the highcharts options
-hc.advPlot(
+hc.advPlot({
    chart: {
         type: 'column'
     },
@@ -1530,7 +1531,7 @@ hc.advPlot(
         data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5]
 
     }]
-       )
+       })
 // renders the plot
 hc.render()
 ```
@@ -1541,7 +1542,7 @@ hc.render()
 <!-- div -->
 
 ### <a id="hc"></a>`hc()`
-<a href="#hc">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2115 "View in source") [&#x24C9;][1]
+<a href="#hc">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2131 "View in source") [&#x24C9;][1]
 
 The plotting module constructor.
 Uses `HighCharts` to plot and `browserSync`. Pulls up browser directly showing your charts like magic!
@@ -1598,7 +1599,7 @@ hc.render();
 <!-- div -->
 
 ### <a id="plot"></a>`plot(seriesArr, [title=""], [yLabel=""], [xLabel=""])`
-<a href="#plot">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2156 "View in source") [&#x24C9;][1]
+<a href="#plot">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2172 "View in source") [&#x24C9;][1]
 
 Method of the constructed `hc` object.
 A simplified wrapper of the HighCharts plot options object.
@@ -1638,6 +1639,33 @@ hc.plot(
        )
 // renders the plot
 hc.render()
+```
+* * *
+
+<!-- /div -->
+
+<!-- div -->
+
+### <a id="render"></a>`render([autosave])`
+<a href="#render">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2254 "View in source") [&#x24C9;][1]
+
+Method of the constructed `hc` object.
+Renders the plots: Launches a browser with all the plots listed before this line. Uses a gulp task and browserSync.
+Pass argument `true` will auto save all the plots to downloads.
+
+#### Arguments
+1. `[autosave]` *(boolean)*: If true, will autosave all the plots to downloads.
+
+#### Returns
+*(&#42;)*:  browser Pulls up a browser.
+
+#### Example
+```js
+hc.plot(...)
+// renders the plot in a browser
+hc.render()
+
+// hc.render(true) will autosave all plots.
 ```
 * * *
 
@@ -2202,7 +2230,7 @@ _.sameSig([1, 2, 3], _.isPositive)
 <!-- div -->
 
 ### <a id="expGRate"></a>`expGRate(m_f, m_i, t)`
-<a href="#expGRate">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2040 "View in source") [&#x24C9;][1]
+<a href="#expGRate">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2056 "View in source") [&#x24C9;][1]
 
 Returns the rate of return r in % of an exponential growth, given final value m_f, initial value m_i, and time interval t.
 Formula: `100 * (Math.exp(Math.log(m_f / m_i) / t) - 1)`
@@ -2323,7 +2351,7 @@ _.stdev(X, P, _.square) // equivalent to Y, but using X and P: sigma(X^2)
 <!-- div -->
 
 ### <a id="trailExpGRate"></a>`trailExpGRate(v, t)`
-<a href="#trailExpGRate">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2063 "View in source") [&#x24C9;][1]
+<a href="#trailExpGRate">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2079 "View in source") [&#x24C9;][1]
 
 Returns the trailing exponential rate of return in the last t years given a vector. Calls `_.expGRate` internally.
 
@@ -2947,18 +2975,23 @@ _.rescale([3, 4])
 
 <!-- div -->
 
-### <a id="histogram"></a>`histogram(data, [fn=_.identity])`
-<a href="#histogram">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2016 "View in source") [&#x24C9;][1]
+### <a id="histogram"></a>`histogram(data, [fn], [pair])`
+<a href="#histogram">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2028 "View in source") [&#x24C9;][1]
 
 Returns a histogram/distribution from the data. This internally calls `_.countBy` to group data by bins, using the function if specified.
 Returns the object containing values, frequencies and probabilities as separate array for ease of using them with the statistics methods.
 
 #### Arguments
 1. `data` *(Array)*: An array of data.
-2. `[fn=_.identity]` *(Function)*: An optional function to group the data by.
+2. `[fn]` *(Function)*: An optional function to group the data by.
+3. `[pair]` *(boolean)*: If true, will return an array of `[value, freq]`.
+
+#### Returns
+*(Object|Array)*:  histogram {value, freq, prob} or array of &#91;value, freq&#93;.
 
 #### Example
 ```js
+// called with data
 var hist = _.histogram(['a', 'b', 'b', 'c', 'c', 'c', 'd', 'd', 'd', 'd']);
 hist.value
 // → ['a', 'b', 'c', 'd']
@@ -2967,6 +3000,11 @@ hist.freq
 hist.prob // normalized freq as probabiltiy distribution
 // → [0.1, 0.2, 0.3, 0.4]
 
+// called with data and pair
+_.histogram(['a', 'b', 'b', 'c', 'c', 'c', 'd', 'd', 'd', 'd'], true);
+// → [['a',1], ['b',2], ['c',3], ['d',4]
+
+// called with data and fn
 var histfloor = _.histogram([1.1, 2.1, 2.2, 3.1, 3.2, 3.3, 4.1, 4.2, 4.3, 4.4], Math.floor);
 histfloor.value
 // → [ '1', '2', '3', '4' ] // Note the keys from _.countBy are strings
@@ -2974,6 +3012,10 @@ hist.freq
 // → [1, 2, 3, 4]
 histfloor.prob
 // → [0.1, 0.2, 0.3, 0.4]
+
+// called with data, fn and pair
+_.histogram([1.1, 2.1, 2.2, 3.1, 3.2, 3.3, 4.1, 4.2, 4.3, 4.4], Math.floor, true);
+// → [['1',1], ['2',2], ['3',3], ['4',4] ]
 ```
 * * *
 

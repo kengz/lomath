@@ -14,6 +14,7 @@
     "github": "https://github.com/kengz/lomath/blob/master/index.js"
   },
   "mocha": {
+    "command": "mocha -u tdd --reporter doc",
     "test": "test/test.js",
     "path": "tests.html",
     "template": "templates/tests.ejs.html"

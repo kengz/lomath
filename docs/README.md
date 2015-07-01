@@ -129,6 +129,7 @@
 * <a href="#isInteger">`isInteger`</a>
 * <a href="#isNegative">`isNegative`</a>
 * <a href="#isPositive">`isPositive`</a>
+* <a href="#isZero">`isZero`</a>
 * <a href="#nonNegative">`nonNegative`</a>
 * <a href="#nonPositive">`nonPositive`</a>
 * <a href="#nonZero">`nonZero`</a>
@@ -494,7 +495,7 @@ _.sum(0, [1, 2, 3], [[1, 2], [3, 4])
 <!-- div -->
 
 ### <a id="combList"></a>`combList(n, r)`
-<a href="#combList">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1573 "View in source") [&#x24C9;][1]
+<a href="#combList">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1583 "View in source") [&#x24C9;][1]
 
 Generates the indices of n-choose-r. Calls `_.subset` internally, chooses the array with string length r, and converts to numbers.
 
@@ -517,7 +518,7 @@ _.combList(3, 2)
 <!-- div -->
 
 ### <a id="combination"></a>`combination(n, r)`
-<a href="#combination">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1677 "View in source") [&#x24C9;][1]
+<a href="#combination">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1687 "View in source") [&#x24C9;][1]
 
 Returns n-choose-r.
 
@@ -546,7 +547,7 @@ _.combination(1000, 500) // Inevitable overflow.
 <!-- div -->
 
 ### <a id="factorial"></a>`factorial(n)`
-<a href="#factorial">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1623 "View in source") [&#x24C9;][1]
+<a href="#factorial">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1633 "View in source") [&#x24C9;][1]
 
 Returns n!.
 
@@ -568,7 +569,7 @@ _.factorial(5)
 <!-- div -->
 
 ### <a id="genAry"></a>`genAry(length, N)`
-<a href="#genAry">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1448 "View in source") [&#x24C9;][1]
+<a href="#genAry">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1458 "View in source") [&#x24C9;][1]
 
 Generates all the strings of N-nary numbers up to length.
 
@@ -594,7 +595,7 @@ _.genAry(2, 3) // ternary, length 2
 <!-- div -->
 
 ### <a id="pSubset"></a>`pSubset(n)`
-<a href="#pSubset">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1495 "View in source") [&#x24C9;][1]
+<a href="#pSubset">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1505 "View in source") [&#x24C9;][1]
 
 Generates all the permutation subset indices of n items.
 
@@ -620,7 +621,7 @@ _.pSubset(3)
 <!-- div -->
 
 ### <a id="permList"></a>`permList(n, r)`
-<a href="#permList">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1557 "View in source") [&#x24C9;][1]
+<a href="#permList">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1567 "View in source") [&#x24C9;][1]
 
 Generates the indices of n-permute-r. Calls `_.pSubset` internally, chooses the array with string length r, and converts to numbers.
 
@@ -643,7 +644,7 @@ _.permList(3, 2)
 <!-- div -->
 
 ### <a id="permutation"></a>`permutation(n, r)`
-<a href="#permutation">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1648 "View in source") [&#x24C9;][1]
+<a href="#permutation">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1658 "View in source") [&#x24C9;][1]
 
 Returns n-permute-r.
 
@@ -669,7 +670,7 @@ _.permutation(1000, 1)
 <!-- div -->
 
 ### <a id="permute"></a>`permute(n)`
-<a href="#permute">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1595 "View in source") [&#x24C9;][1]
+<a href="#permute">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1605 "View in source") [&#x24C9;][1]
 
 Generates the permutation indices of n items in lexicographical order.
 
@@ -698,7 +699,7 @@ _.permute(3)
 <!-- div -->
 
 ### <a id="subset"></a>`subset(n)`
-<a href="#subset">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1528 "View in source") [&#x24C9;][1]
+<a href="#subset">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1538 "View in source") [&#x24C9;][1]
 
 Generates all the (combination) subset indices of n items.
 
@@ -724,7 +725,7 @@ _.subset(3)
 <!-- div -->
 
 ### <a id="toNumArr"></a>`toNumArr(strings)`
-<a href="#toNumArr">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1472 "View in source") [&#x24C9;][1]
+<a href="#toNumArr">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1482 "View in source") [&#x24C9;][1]
 
 Converts an array of strings to array of array of numbers.
 Used with `_.genAry` and related number/subset-generating functions.
@@ -992,7 +993,7 @@ _.op('a', 'b')
 <!-- div -->
 
 ### <a id="numeric"></a>`numeric(N, [val=0])`
-<a href="#numeric">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1020 "View in source") [&#x24C9;][1]
+<a href="#numeric">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1030 "View in source") [&#x24C9;][1]
 
 Returns an initialized array of length N filled with the value (defaulted to 0). Reminiscent of `numeric()` of `R`.
 
@@ -1018,7 +1019,7 @@ _.numeric(3, 'a')
 <!-- div -->
 
 ### <a id="seq"></a>`seq([start=0], end, [step=1])`
-<a href="#seq">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L990 "View in source") [&#x24C9;][1]
+<a href="#seq">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1000 "View in source") [&#x24C9;][1]
 
 Returns a sequence of numbers from start to end, with interval. Similar to lodash's `_.range` but the default starts from 1; this is for `R` users who are familiar with `seq()`.
 
@@ -1054,7 +1055,7 @@ _.seq(1, 9, 2)
 <!-- div -->
 
 ### <a id="abs"></a>`abs(T)`
-<a href="#abs">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L595 "View in source") [&#x24C9;][1]
+<a href="#abs">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L605 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1076,7 +1077,7 @@ _.abs([-1, -2, -3])
 <!-- div -->
 
 ### <a id="acos"></a>`acos(T)`
-<a href="#acos">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L604 "View in source") [&#x24C9;][1]
+<a href="#acos">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L614 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1093,7 +1094,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="acosh"></a>`acosh(T)`
-<a href="#acosh">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L613 "View in source") [&#x24C9;][1]
+<a href="#acosh">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L623 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1110,7 +1111,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="asin"></a>`asin(T)`
-<a href="#asin">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L622 "View in source") [&#x24C9;][1]
+<a href="#asin">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L632 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1127,7 +1128,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="asinh"></a>`asinh(T)`
-<a href="#asinh">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L631 "View in source") [&#x24C9;][1]
+<a href="#asinh">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L641 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1144,7 +1145,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="atan"></a>`atan(T)`
-<a href="#atan">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L640 "View in source") [&#x24C9;][1]
+<a href="#atan">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L650 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1161,7 +1162,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="atanh"></a>`atanh(T)`
-<a href="#atanh">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L649 "View in source") [&#x24C9;][1]
+<a href="#atanh">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L659 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1178,7 +1179,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="ceil"></a>`ceil(T)`
-<a href="#ceil">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L658 "View in source") [&#x24C9;][1]
+<a href="#ceil">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L668 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1195,7 +1196,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="cos"></a>`cos(T)`
-<a href="#cos">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L667 "View in source") [&#x24C9;][1]
+<a href="#cos">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L677 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1212,7 +1213,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="cosh"></a>`cosh(T)`
-<a href="#cosh">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L676 "View in source") [&#x24C9;][1]
+<a href="#cosh">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L686 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1229,7 +1230,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="exp"></a>`exp(T)`
-<a href="#exp">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L685 "View in source") [&#x24C9;][1]
+<a href="#exp">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L695 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1246,7 +1247,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="floor"></a>`floor(T)`
-<a href="#floor">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L694 "View in source") [&#x24C9;][1]
+<a href="#floor">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L704 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1263,7 +1264,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="log10"></a>`log10(T)`
-<a href="#log10">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L703 "View in source") [&#x24C9;][1]
+<a href="#log10">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L713 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1280,7 +1281,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="log1p"></a>`log1p(T)`
-<a href="#log1p">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L712 "View in source") [&#x24C9;][1]
+<a href="#log1p">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L722 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1297,7 +1298,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="log2"></a>`log2(T)`
-<a href="#log2">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L721 "View in source") [&#x24C9;][1]
+<a href="#log2">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L731 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1314,7 +1315,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="pow"></a>`pow(T)`
-<a href="#pow">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L739 "View in source") [&#x24C9;][1]
+<a href="#pow">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L749 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1331,7 +1332,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="round"></a>`round(T)`
-<a href="#round">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L730 "View in source") [&#x24C9;][1]
+<a href="#round">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L740 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1348,7 +1349,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="sign"></a>`sign(T)`
-<a href="#sign">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L748 "View in source") [&#x24C9;][1]
+<a href="#sign">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L758 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1365,7 +1366,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="sin"></a>`sin(T)`
-<a href="#sin">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L757 "View in source") [&#x24C9;][1]
+<a href="#sin">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L767 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1382,7 +1383,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="sinh"></a>`sinh(T)`
-<a href="#sinh">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L766 "View in source") [&#x24C9;][1]
+<a href="#sinh">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L776 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1399,7 +1400,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="sqrt"></a>`sqrt(T)`
-<a href="#sqrt">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L775 "View in source") [&#x24C9;][1]
+<a href="#sqrt">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L785 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1416,7 +1417,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="tan"></a>`tan(T)`
-<a href="#tan">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L784 "View in source") [&#x24C9;][1]
+<a href="#tan">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L794 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1433,7 +1434,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="tanh"></a>`tanh(T)`
-<a href="#tanh">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L793 "View in source") [&#x24C9;][1]
+<a href="#tanh">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L803 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1450,7 +1451,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="trunc"></a>`trunc(T)`
-<a href="#trunc">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L802 "View in source") [&#x24C9;][1]
+<a href="#trunc">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L812 "View in source") [&#x24C9;][1]
 
 Generalized JS Math applicable to tensor using function composition.
 
@@ -1473,7 +1474,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="advPlot"></a>`advPlot(options)`
-<a href="#advPlot">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2234 "View in source") [&#x24C9;][1]
+<a href="#advPlot">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2244 "View in source") [&#x24C9;][1]
 
 Method of the constructed `hc` object.
 Advanced plotting for users familiar with HighCharts (see http://www.highcharts.com).
@@ -1542,7 +1543,7 @@ hc.render()
 <!-- div -->
 
 ### <a id="hc"></a>`hc()`
-<a href="#hc">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2131 "View in source") [&#x24C9;][1]
+<a href="#hc">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2141 "View in source") [&#x24C9;][1]
 
 The plotting module constructor.
 Uses `HighCharts` to plot and `browserSync`. Pulls up browser directly showing your charts like magic!
@@ -1599,7 +1600,7 @@ hc.render();
 <!-- div -->
 
 ### <a id="plot"></a>`plot(seriesArr, [title=""], [yLabel=""], [xLabel=""])`
-<a href="#plot">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2172 "View in source") [&#x24C9;][1]
+<a href="#plot">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2182 "View in source") [&#x24C9;][1]
 
 Method of the constructed `hc` object.
 A simplified wrapper of the HighCharts plot options object.
@@ -1647,7 +1648,7 @@ hc.render()
 <!-- div -->
 
 ### <a id="render"></a>`render([autosave])`
-<a href="#render">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2254 "View in source") [&#x24C9;][1]
+<a href="#render">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2264 "View in source") [&#x24C9;][1]
 
 Method of the constructed `hc` object.
 Renders the plots: Launches a browser with all the plots listed before this line. Uses a gulp task and browserSync.
@@ -1680,7 +1681,7 @@ hc.render()
 <!-- div -->
 
 ### <a id="depth"></a>`depth(T)`
-<a href="#depth">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1044 "View in source") [&#x24C9;][1]
+<a href="#depth">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1054 "View in source") [&#x24C9;][1]
 
 Returns the depth of an (nested) array, i.e. the rank of a tensor.
 Scalar = rank-0, vector = rank-1, matrix = rank-2, ... so on.
@@ -1710,7 +1711,7 @@ _.depth([[1, 2], [3, 4]])
 <!-- div -->
 
 ### <a id="dim"></a>`dim(T)`
-<a href="#dim">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1101 "View in source") [&#x24C9;][1]
+<a href="#dim">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1111 "View in source") [&#x24C9;][1]
 
 Returns the "dimension" of a tensor.
 Note that a tensor has homogenous depth, that is, there cannot tensors of different ranks in the same vector, e.g. [1, [2,3], 4] is prohibited.
@@ -1745,7 +1746,7 @@ _.dim([
 <!-- div -->
 
 ### <a id="isFlat"></a>`isFlat(T)`
-<a href="#isFlat">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1128 "View in source") [&#x24C9;][1]
+<a href="#isFlat">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1138 "View in source") [&#x24C9;][1]
 
 Checks if a tensor is "flat", i.e. all entries are scalars.
 
@@ -1773,7 +1774,7 @@ _.isFlat([[1, 2], [3, 4]])
 <!-- div -->
 
 ### <a id="maxDeepestLength"></a>`maxDeepestLength(T)`
-<a href="#maxDeepestLength">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1156 "View in source") [&#x24C9;][1]
+<a href="#maxDeepestLength">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1166 "View in source") [&#x24C9;][1]
 
 Returns the maximum length of the deepest array in (non-scalar) tensor T.
 Useful for probing the data structure and ensuring tensor is rectangular.
@@ -1802,7 +1803,7 @@ _.maxDeepestLength([[1, 2], [3, 4]])
 <!-- div -->
 
 ### <a id="volume"></a>`volume(T)`
-<a href="#volume">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1072 "View in source") [&#x24C9;][1]
+<a href="#volume">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1082 "View in source") [&#x24C9;][1]
 
 Returns the "volume" of a tensor, i.e. the totaly number of scalars in it.
 
@@ -1836,7 +1837,7 @@ _.volume([[1, 2], [3, 4]])
 <!-- div -->
 
 ### <a id="reAnd"></a>`reAnd(regexs)`
-<a href="#reAnd">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L909 "View in source") [&#x24C9;][1]
+<a href="#reAnd">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L919 "View in source") [&#x24C9;][1]
 
 Returns a single regex as the "AND" conjunction of all input regexs. This picks up as MANY adjacent substrings that satisfy all the regexs in order.
 
@@ -1865,7 +1866,7 @@ _.reGet(reg2)('Mayfoo1995')
 <!-- div -->
 
 ### <a id="reAndMatch"></a>`reAndMatch(regexs)`
-<a href="#reAndMatch">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L927 "View in source") [&#x24C9;][1]
+<a href="#reAndMatch">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L937 "View in source") [&#x24C9;][1]
 
 Returns a boolean function that matches all the regexs conjuncted in the specified order.
 
@@ -1890,7 +1891,7 @@ _.reAndMatch(/\d+/, 'foo')('Mayfoo1995') // order matters
 <!-- div -->
 
 ### <a id="reGet"></a>`reGet(regex)`
-<a href="#reGet">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L868 "View in source") [&#x24C9;][1]
+<a href="#reGet">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L878 "View in source") [&#x24C9;][1]
 
 Returns a function that returns the first string portion matching the regex.
 
@@ -1919,7 +1920,7 @@ getNum('May')
 <!-- div -->
 
 ### <a id="reMatch"></a>`reMatch(regex)`
-<a href="#reMatch">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L822 "View in source") [&#x24C9;][1]
+<a href="#reMatch">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L832 "View in source") [&#x24C9;][1]
 
 Returns a boolean function that matches the regex.
 
@@ -1946,7 +1947,7 @@ matcher2('May 1995')
 <!-- div -->
 
 ### <a id="reNotMatch"></a>`reNotMatch(regex)`
-<a href="#reNotMatch">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L844 "View in source") [&#x24C9;][1]
+<a href="#reNotMatch">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L854 "View in source") [&#x24C9;][1]
 
 Returns a boolean function that dis-matches the regex.
 
@@ -1973,7 +1974,7 @@ matcher2('foobar')
 <!-- div -->
 
 ### <a id="reOr"></a>`reOr(regexs)`
-<a href="#reOr">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L948 "View in source") [&#x24C9;][1]
+<a href="#reOr">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L958 "View in source") [&#x24C9;][1]
 
 Returns a single regex as the "OR" union of all input regexs. This picks up the FIRST substring that satisfies any of the regexs in any order.
 
@@ -2002,7 +2003,7 @@ _.reGet(reg2)('Mayfoo1995')
 <!-- div -->
 
 ### <a id="reOrMatch"></a>`reOrMatch(regexs)`
-<a href="#reOrMatch">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L966 "View in source") [&#x24C9;][1]
+<a href="#reOrMatch">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L976 "View in source") [&#x24C9;][1]
 
 Returns a boolean function that matches any of the regexs in any order.
 
@@ -2027,7 +2028,7 @@ _.reOrMatch(\d+/, 'foo')('Mayfoo1995') // order doesn't matter
 <!-- div -->
 
 ### <a id="reWrap"></a>`reWrap(regex)`
-<a href="#reWrap">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L888 "View in source") [&#x24C9;][1]
+<a href="#reWrap">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L898 "View in source") [&#x24C9;][1]
 
 Wraps a regex into string for regex set operation.
 
@@ -2149,6 +2150,23 @@ Checks if `x > 0`.
 
 <!-- div -->
 
+### <a id="isZero"></a>`isZero(x)`
+<a href="#isZero">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L576 "View in source") [&#x24C9;][1]
+
+Checks if `x == 0`.
+
+#### Arguments
+1. `x` *(number)*: The value to check.
+
+#### Returns
+*(boolean)*:  true If so.
+
+* * *
+
+<!-- /div -->
+
+<!-- div -->
+
 ### <a id="nonNegative"></a>`nonNegative(x)`
 <a href="#nonNegative">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L556 "View in source") [&#x24C9;][1]
 
@@ -2201,7 +2219,7 @@ Checks if `x != 0`.
 <!-- div -->
 
 ### <a id="sameSig"></a>`sameSig(T, sigFn)`
-<a href="#sameSig">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L582 "View in source") [&#x24C9;][1]
+<a href="#sameSig">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L592 "View in source") [&#x24C9;][1]
 
 Checks if signature function is true for all scalars of a tensor.
 
@@ -2230,7 +2248,7 @@ _.sameSig([1, 2, 3], _.isPositive)
 <!-- div -->
 
 ### <a id="expGRate"></a>`expGRate(m_f, m_i, t)`
-<a href="#expGRate">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2056 "View in source") [&#x24C9;][1]
+<a href="#expGRate">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2066 "View in source") [&#x24C9;][1]
 
 Returns the rate of return r in % of an exponential growth, given final value m_f, initial value m_i, and time interval t.
 Formula: `100 * (Math.exp(Math.log(m_f / m_i) / t) - 1)`
@@ -2255,7 +2273,7 @@ _.expGRate(8, 2, 2) // 100% growth rate over 2 years
 <!-- div -->
 
 ### <a id="expVal"></a>`expVal(X, [P], [fn])`
-<a href="#expVal">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1901 "View in source") [&#x24C9;][1]
+<a href="#expVal">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1911 "View in source") [&#x24C9;][1]
 
 Returns the expectation value `E(fn(X))` of a random variable vector, optionally with the corresponding probability vector, using the random variable function (defaulted to identity).
 
@@ -2290,7 +2308,7 @@ _.expVal(X, P, _.square) // equivalent to Y, but using X and P: E(X^2)
 <!-- div -->
 
 ### <a id="mean"></a>`mean(T)`
-<a href="#mean">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1873 "View in source") [&#x24C9;][1]
+<a href="#mean">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1883 "View in source") [&#x24C9;][1]
 
 Returns the mean/average of a tensor.
 
@@ -2315,7 +2333,7 @@ _.mean([[1, 2], [3, 4]])
 <!-- div -->
 
 ### <a id="stdev"></a>`stdev(X, [P], [fn])`
-<a href="#stdev">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1987 "View in source") [&#x24C9;][1]
+<a href="#stdev">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1997 "View in source") [&#x24C9;][1]
 
 Returns the standard deviation `sigma(fn(X))` of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).
 Simply calles `_.variance` internally and returns its square root.
@@ -2351,7 +2369,7 @@ _.stdev(X, P, _.square) // equivalent to Y, but using X and P: sigma(X^2)
 <!-- div -->
 
 ### <a id="trailExpGRate"></a>`trailExpGRate(v, t)`
-<a href="#trailExpGRate">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2079 "View in source") [&#x24C9;][1]
+<a href="#trailExpGRate">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2089 "View in source") [&#x24C9;][1]
 
 Returns the trailing exponential rate of return in the last t years given a vector. Calls `_.expGRate` internally.
 
@@ -2381,7 +2399,7 @@ _.trailExpGRate(v, 3)
 <!-- div -->
 
 ### <a id="variance"></a>`variance(X, [P], [fn])`
-<a href="#variance">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1948 "View in source") [&#x24C9;][1]
+<a href="#variance">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1958 "View in source") [&#x24C9;][1]
 
 Returns the variance `Var(fn(X))` of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).
 
@@ -2422,7 +2440,7 @@ _.variance(X, P, _.square) // equivalent to Y, but using X and P: Var(X^2)
 <!-- div -->
 
 ### <a id="batchIndexOf"></a>`batchIndexOf(T, fields)`
-<a href="#batchIndexOf">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1265 "View in source") [&#x24C9;][1]
+<a href="#batchIndexOf">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1275 "View in source") [&#x24C9;][1]
 
 Searches the array in batch by applying `_.indexOf` in batch; returns the indices of the results in order.
 Useful for grabbing the headers in a data set.
@@ -2446,7 +2464,7 @@ _.batchIndexOf(['a','b','c','d','e','f'], [1, 'b', 'a', 'a'])
 <!-- div -->
 
 ### <a id="cbind"></a>`cbind(M, indArr)`
-<a href="#cbind">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1327 "View in source") [&#x24C9;][1]
+<a href="#cbind">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1337 "View in source") [&#x24C9;][1]
 
 Returns a new matrix with the selected columns from a matrix. Same as `cbind()` from `R`.
 Useful for picking columns from a data matrix/tensor with specified header indices.
@@ -2475,7 +2493,7 @@ _.cbind(M, _.batchIndexOf(titles, ['b', 'b', 'c']))
 <!-- div -->
 
 ### <a id="cbindByField"></a>`cbindByField(M, fields)`
-<a href="#cbindByField">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1351 "View in source") [&#x24C9;][1]
+<a href="#cbindByField">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1361 "View in source") [&#x24C9;][1]
 
 Returns a new matrix with the selected columns from a matrix. Short for `_.cbind(M, _.batchIndexOf())`
 Useful for picking columns from a data matrix by directly specifying the header titles.
@@ -2500,7 +2518,7 @@ _.cbindByField(M, ['b', 'b', 'c'])
 <!-- div -->
 
 ### <a id="extend"></a>`extend(T, toLen, [val=0])`
-<a href="#extend">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1242 "View in source") [&#x24C9;][1]
+<a href="#extend">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1252 "View in source") [&#x24C9;][1]
 
 Extends an array till `toLen` by prepending with `val`.
 Mutates the array.
@@ -2528,7 +2546,7 @@ _.extend([1, 2, 3], 6, 'a')
 <!-- div -->
 
 ### <a id="rbind"></a>`rbind(M, indArr)`
-<a href="#rbind">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1301 "View in source") [&#x24C9;][1]
+<a href="#rbind">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1311 "View in source") [&#x24C9;][1]
 
 Returns a new matrix with the selected rows from a matrix. Same as `rbind()` from `R`.
 Useful for picking certain rows from a matrix/tensor.
@@ -2552,7 +2570,7 @@ _.rbind([[1,2,3],[4,5,6],[7,8,9]], [1, 1, 2])
 <!-- div -->
 
 ### <a id="rectangularize"></a>`rectangularize(T)`
-<a href="#rectangularize">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1393 "View in source") [&#x24C9;][1]
+<a href="#rectangularize">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1403 "View in source") [&#x24C9;][1]
 
 Makes a tensor rectangular by filling with val (defaulted to 0).
 Mutates the tensor.
@@ -2584,7 +2602,7 @@ _.rectangularize([
 <!-- div -->
 
 ### <a id="reshape"></a>`reshape(A, dimArr)`
-<a href="#reshape">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1424 "View in source") [&#x24C9;][1]
+<a href="#reshape">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1434 "View in source") [&#x24C9;][1]
 
 Reshapes an array into a multi-dimensional tensor. Applies `_.chunk` using a dimension array in sequence.
 
@@ -2610,7 +2628,7 @@ _.reshape([1, 2, 3, 4], [2, 3])
 <!-- div -->
 
 ### <a id="reverse"></a>`reverse(T, [i=0], [j=T.length-1])`
-<a href="#reverse">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1215 "View in source") [&#x24C9;][1]
+<a href="#reverse">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1225 "View in source") [&#x24C9;][1]
 
 Returns a copy of the array reversed, optionally from index `i` to `j` inclusive.
 
@@ -2643,7 +2661,7 @@ _.reverse([0, 1, 2, 3, 4, 5], 2, 4) // reverse from index 2 to 4
 <!-- div -->
 
 ### <a id="swap"></a>`swap(T, i, j)`
-<a href="#swap">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1188 "View in source") [&#x24C9;][1]
+<a href="#swap">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1198 "View in source") [&#x24C9;][1]
 
 Swaps entries at indices `i,j`.
 Mutates the array.
@@ -2668,7 +2686,7 @@ _.swap([1, 2, 3], 0, 2)
 <!-- div -->
 
 ### <a id="transpose"></a>`transpose(M)`
-<a href="#transpose">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1368 "View in source") [&#x24C9;][1]
+<a href="#transpose">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1378 "View in source") [&#x24C9;][1]
 
 Returns a copy of a matrix transposed.
 
@@ -2690,7 +2708,7 @@ _.transpose([[1, 2], [3, 4]])
 <!-- div -->
 
 ### <a id="validInds"></a>`validInds(T, maxLen)`
-<a href="#validInds">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1284 "View in source") [&#x24C9;][1]
+<a href="#validInds">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1294 "View in source") [&#x24C9;][1]
 
 Filters out the invalid indices (negatives) in an array of indices. Basically keeps `x` where `0 ≤ x ≤ maxLen`.
 Used with `_.batchIndexOf`.
@@ -2720,7 +2738,7 @@ _.validInds([-2, 4, 0, 2, -1], 2)
 <!-- div -->
 
 ### <a id="decreasing"></a>`decreasing(T)`
-<a href="#decreasing">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1844 "View in source") [&#x24C9;][1]
+<a href="#decreasing">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1854 "View in source") [&#x24C9;][1]
 
 Shorthand for `_.stairsTrend`. Checks if a vector v is decreasing.
 
@@ -2737,7 +2755,7 @@ Shorthand for `_.stairsTrend`. Checks if a vector v is decreasing.
 <!-- div -->
 
 ### <a id="increasing"></a>`increasing(T)`
-<a href="#increasing">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1824 "View in source") [&#x24C9;][1]
+<a href="#increasing">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1834 "View in source") [&#x24C9;][1]
 
 Shorthand for `_.stairsTrend`. Checks if a vector v is increasing.
 
@@ -2754,7 +2772,7 @@ Shorthand for `_.stairsTrend`. Checks if a vector v is increasing.
 <!-- div -->
 
 ### <a id="nonDecreasing"></a>`nonDecreasing(T)`
-<a href="#nonDecreasing">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1834 "View in source") [&#x24C9;][1]
+<a href="#nonDecreasing">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1844 "View in source") [&#x24C9;][1]
 
 Shorthand for `_.stairsTrend`. Checks if a vector v is non-decreasing.
 
@@ -2771,7 +2789,7 @@ Shorthand for `_.stairsTrend`. Checks if a vector v is non-decreasing.
 <!-- div -->
 
 ### <a id="nonIncreasing"></a>`nonIncreasing(T)`
-<a href="#nonIncreasing">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1854 "View in source") [&#x24C9;][1]
+<a href="#nonIncreasing">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1864 "View in source") [&#x24C9;][1]
 
 Shorthand for `_.stairsTrend`. Checks if a vector v is non-increasing.
 
@@ -2788,7 +2806,7 @@ Shorthand for `_.stairsTrend`. Checks if a vector v is non-increasing.
 <!-- div -->
 
 ### <a id="stairs"></a>`stairs(T)`
-<a href="#stairs">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1793 "View in source") [&#x24C9;][1]
+<a href="#stairs">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1803 "View in source") [&#x24C9;][1]
 
 Returns the stair, i.e. the adjacent differences in the vector.
 
@@ -2810,7 +2828,7 @@ _.stairs([1, 2, 3, 5, 8])
 <!-- div -->
 
 ### <a id="stairsTrend"></a>`stairsTrend(T, sigFn)`
-<a href="#stairsTrend">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1814 "View in source") [&#x24C9;][1]
+<a href="#stairsTrend">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1824 "View in source") [&#x24C9;][1]
 
 Check the trend of the array using a signature function.
 Useful for checking if array entries are increasing.
@@ -2840,7 +2858,7 @@ _.stairsTrend([1, 2, 3, 4, 5], _.isPositive) // Array increasing
 <!-- div -->
 
 ### <a id="dot"></a>`dot(X, Y)`
-<a href="#dot">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1699 "View in source") [&#x24C9;][1]
+<a href="#dot">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1709 "View in source") [&#x24C9;][1]
 
 Returns the dot product between two vectors. If lengths mismatch, recycles the shorter vector.
 
@@ -2866,7 +2884,7 @@ _.dot([1, 2, 3, 4, 5, 6], [1, 2, 3]) // recycle
 <!-- div -->
 
 ### <a id="norm"></a>`norm(T, [n=2])`
-<a href="#norm">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1742 "View in source") [&#x24C9;][1]
+<a href="#norm">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1752 "View in source") [&#x24C9;][1]
 
 Returns the L-n norm of a vector, default to L-2 (Euclidean) metric.
 
@@ -2892,7 +2910,7 @@ _.norm([3, 4], 1) // taxicab metric
 <!-- div -->
 
 ### <a id="normalize"></a>`normalize(T, [n=2])`
-<a href="#normalize">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1762 "View in source") [&#x24C9;][1]
+<a href="#normalize">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1772 "View in source") [&#x24C9;][1]
 
 Returns a copy of the vector normalized using L-n metric (defaulted to L-2).
 
@@ -2918,7 +2936,7 @@ _.normalize([3, 4], 1) // taxicab metric
 <!-- div -->
 
 ### <a id="powSum"></a>`powSum(T, [n=2])`
-<a href="#powSum">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1722 "View in source") [&#x24C9;][1]
+<a href="#powSum">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1732 "View in source") [&#x24C9;][1]
 
 Returns the sums of n-powers (defaulted to 2) of a tensor, i.e. the square of the generalized hypotenuse of a tensor.
 Useful for doing sums of squares/other L-n metrics.
@@ -2948,7 +2966,7 @@ _.dot([[1, 2], [3, 4]], 3) // applicable to a tensor
 <!-- div -->
 
 ### <a id="rescale"></a>`rescale(T)`
-<a href="#rescale">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1777 "View in source") [&#x24C9;][1]
+<a href="#rescale">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1787 "View in source") [&#x24C9;][1]
 
 Returns a copy of the vector rescaled to unit length; is the shorthand for `_.normalize(v, 1)`.
 
@@ -2976,7 +2994,7 @@ _.rescale([3, 4])
 <!-- div -->
 
 ### <a id="histogram"></a>`histogram(data, [fn], [pair])`
-<a href="#histogram">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2028 "View in source") [&#x24C9;][1]
+<a href="#histogram">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2038 "View in source") [&#x24C9;][1]
 
 Returns a histogram/distribution from the data. This internally calls `_.countBy` to group data by bins, using the function if specified.
 Returns the object containing values, frequencies and probabilities as separate array for ease of using them with the statistics methods.

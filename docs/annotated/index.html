@@ -818,6 +818,9 @@ check if x is in range set by left, right</p>
   },
   nonZero: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">return</span> x != <span class="hljs-number">0</span>;
+  },
+  isZero: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">return</span> x == <span class="hljs-number">0</span>;
   },</pre></div></div>
             
         </li>
@@ -2097,7 +2100,7 @@ alias E</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length == <span class="hljs-number">1</span>) {
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (P == <span class="hljs-literal">undefined</span> &amp;&amp; fn == <span class="hljs-literal">undefined</span>) {
       <span class="hljs-keyword">var</span> hist = lomath.histogram(X);
       val = hist.value,
       prob = hist.prob;
@@ -2175,7 +2178,7 @@ alias Var</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length == <span class="hljs-number">1</span>) {
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (P == <span class="hljs-literal">undefined</span> &amp;&amp; fn == <span class="hljs-literal">undefined</span>) {
       <span class="hljs-keyword">return</span> lomath.expVal(X, lomath.a_square) - lomath.a_square(lomath.expVal(X))
     }</pre></div></div>
             

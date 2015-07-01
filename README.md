@@ -108,5 +108,7 @@ hc.render();
 ## Roadmap
 - add aliases
 - add Randomjs engine
+- higher dimensional math
+- JSON object methods
 - more stats methods: sample, multidim probs, covarience, distributions
 - performance benchmark

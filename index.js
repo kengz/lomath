@@ -639,6 +639,16 @@ var lomath = _.mixin({
     return x != 0;
   },
   /**
+   * Checks if `x == 0`.
+   *
+   * @category signature
+   * @param {number} x The value to check.
+   * @returns {boolean} true If so.
+   */
+  isZero: function(x) {
+    return x == 0;
+  },
+  /**
    * Checks if signature function is true for all scalars of a tensor.
    *
    * @category signature
@@ -2090,7 +2100,7 @@ var lomath = _.mixin({
   expVal: function(X, P, fn) {
     var val, prob, func;
     // if only X is specified
-    if (arguments.length == 1) {
+    if (P == undefined && fn == undefined) {
       var hist = lomath.histogram(X);
       val = hist.value,
       prob = hist.prob;
@@ -2141,7 +2151,7 @@ var lomath = _.mixin({
   // alias Var
   variance: function(X, P, fn) {
     // if only X is specified
-    if (arguments.length == 1) {
+    if (P == undefined && fn == undefined) {
       return lomath.expVal(X, lomath.a_square) - lomath.a_square(lomath.expVal(X))
     }
     // if X, P specified (maybe fn too)

@@ -690,6 +690,9 @@ suite('Simple signature checkers for tensors', function() {
     test('nonNegative', function() {
       fn([0, 1, 2], _.nonNegative).should.be.true
     })
+    test('isZero', function() {
+      fn([0,0,0], _.isZero).should.be.true
+    })
     test('nonZero', function() {
       fn(A.V, _.nonZero).should.be.true
     })

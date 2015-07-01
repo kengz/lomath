@@ -896,11 +896,11 @@ v.should.deep.equal(A.R)</code></pre></dd>
           <h1>flattenJSON(obj)</h1>
           <dl>
             <dt>remove nestedness</dt>
-            <dd><pre><code>fn(R).should.deep.equal({ 'update_id': '87654321',
-  'message[message_id]': '12345678',
-  'message[from][id]': '1234567',
+            <dd><pre><code>fn(R).should.deep.equal({ update_id: 87654321,
+  'message[message_id]': 12345678,
+  'message[from][array]': [ 1, [ 2 ], 3 ],
   'message[from][last_name]': 'kengz',
-  'message[chat][id]': '123454',
+  'message[chat][id]': 123454,
   'message[chat][last_name]': 'lomath' })</code></pre></dd>
           </dl>
         </section>

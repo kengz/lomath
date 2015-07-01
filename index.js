@@ -1585,7 +1585,7 @@ var lomath = _.mixin({
    *  message: {
    *      message_id: 12345678,
    *      from: {
-   *          id: 1234567,
+   *          array: [1,[2],3],
    *          last_name: 'kengz'
    *      },
    *      chat: {
@@ -1595,28 +1595,33 @@ var lomath = _.mixin({
    *  }
    *
    * _.flattenJSON(formData)
-   * // → { 'update_id': '87654321',
-   * // 'message[message_id]': '12345678',
-   * // 'message[from][id]': '1234567',
+   * // → { 'update_id': 87654321,
+   * // 'message[message_id]': 12345678,
+   * // 'message[from][array]': [ 1, [ 2 ], 3 ],
    * // 'message[from][last_name]': 'kengz',
-   * // 'message[chat][id]': '123454',
+   * // 'message[chat][id]': 123454,
    * // 'message[chat][last_name]': 'lomath' }
-   *
+   * // The deepest values are not flattened (not stringified)
    */
   // use chunk from inside to outside:
   flattenJSON: function(obj) {
+    // variable to keep the deepest vals traversed in proper order
+    var _vals = [];
     function _flattenJSON(ins, k) {
       return _.flatten(_.map(ins, function(val, key) {
         // if val is JSON object
         if (_.isObject(val) && !_.isArray(val))
           return _flattenJSON(ins[key], k + '[' + key + ']')
         // else if terminates
-        return k + '[' + key + ']:' + val
+        _vals.push(val);
+        return k + '[' + key + ']'
       }))
     }
-    return _.object(_.map(_flattenJSON(obj, ''), function(i){
-      return i.replace('[', '').replace(']', '').split(':')
-    }))
+    return _.object(
+      _.map(_flattenJSON(obj, ''), function(i){
+          return i.replace('[', '').replace(']', '')
+      })
+      , _vals)
   },
 
   ///////////////////////////////

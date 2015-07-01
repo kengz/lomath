@@ -1186,7 +1186,7 @@ suite('Tensor transformation', function() {
         message: {
           message_id: 12345678,
           from: {
-            id: 1234567,
+            array: [1,[2],3],
             last_name: 'kengz'
           },
           chat: {
@@ -1197,11 +1197,11 @@ suite('Tensor transformation', function() {
       }
     })
     test('remove nestedness', function() {
-      fn(R).should.deep.equal({ 'update_id': '87654321',
-        'message[message_id]': '12345678',
-        'message[from][id]': '1234567',
+      fn(R).should.deep.equal({ update_id: 87654321,
+        'message[message_id]': 12345678,
+        'message[from][array]': [ 1, [ 2 ], 3 ],
         'message[from][last_name]': 'kengz',
-        'message[chat][id]': '123454',
+        'message[chat][id]': 123454,
         'message[chat][last_name]': 'lomath' })
     })
   })

@@ -1572,6 +1572,52 @@ var lomath = _.mixin({
       tensor = _.chunk(tensor, dimArr[len]);
     return tensor;
   },
+  /**
+   * Flattens a JSON object (removes nestedness) and serialize it for sending over HTTP formData.
+   *
+   * @category transformation
+   * @param {JSON} obj The original JSON object.
+   * @returns {JSON} flat_obj The flattened (unnested) object.
+   *
+   * @example
+   * formData = {
+   *  update_id: 87654321,
+   *  message: {
+   *      message_id: 12345678,
+   *      from: {
+   *          id: 1234567,
+   *          last_name: 'kengz'
+   *      },
+   *      chat: {
+   *          id: 123454,
+   *          last_name: 'lomath'
+   *      }
+   *  }
+   *
+   * _.flattenJSON(formData)
+   * // → { 'update_id': '87654321',
+   * // 'message[message_id]': '12345678',
+   * // 'message[from][id]': '1234567',
+   * // 'message[from][last_name]': 'kengz',
+   * // 'message[chat][id]': '123454',
+   * // 'message[chat][last_name]': 'lomath' }
+   *
+   */
+  // use chunk from inside to outside:
+  flattenJSON: function(obj) {
+    function _flattenJSON(ins, k) {
+      return _.flatten(_.map(ins, function(val, key) {
+        // if val is JSON object
+        if (_.isObject(val) && !_.isArray(val))
+          return _flattenJSON(ins[key], k + '[' + key + ']')
+        // else if terminates
+        return k + '[' + key + ']:' + val
+      }))
+    }
+    return _.object(_.map(_flattenJSON(obj, ''), function(i){
+      return i.replace('[', '').replace(']', '').split(':')
+    }))
+  },
 
   ///////////////////////////////
   // Subsets and combinatorics //

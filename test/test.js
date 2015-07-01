@@ -1175,6 +1175,36 @@ suite('Tensor transformation', function() {
       ])
     })
   })
+
+  //----------------------------------------------
+  suite('flattenJSON(obj)', function() {
+    var fn, R;
+    before(function() {
+      fn = _.flattenJSON
+      R = {
+        update_id: 87654321,
+        message: {
+          message_id: 12345678,
+          from: {
+            id: 1234567,
+            last_name: 'kengz'
+          },
+          chat: {
+            id: 123454,
+            last_name: 'lomath'
+          }
+        }
+      }
+    })
+    test('remove nestedness', function() {
+      fn(R).should.deep.equal({ 'update_id': '87654321',
+        'message[message_id]': '12345678',
+        'message[from][id]': '1234567',
+        'message[from][last_name]': 'kengz',
+        'message[chat][id]': '123454',
+        'message[chat][last_name]': 'lomath' })
+    })
+  })
 })
 
 //==============================================

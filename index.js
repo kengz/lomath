@@ -965,7 +965,6 @@ var lomath = _.mixin({
     return function(str) {
       if (str != undefined) {
         var matched = str.match(regex);
-        console.log(matched)
         return matched == null ? null : matched[0];
       }
     }

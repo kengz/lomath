@@ -48,7 +48,7 @@ You can also extend `lomath` and define your own function that applies to tensor
 
 ## Plotting Module
 
-![Sample plot](./docs/demo.gif)
+<img src="./docs/demo.gif" alt="Sample plot" width="100%" style="display:inline-block" />
 
 `lomath` comes with a standalone plotting module that using `HighCharts` and `BrowserSync`. Just run your JS file normally when you plot (example below), and it will automatically pull up a browser showing you the charts; you can save them!
 

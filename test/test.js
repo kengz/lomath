@@ -641,6 +641,28 @@ suite('Simple functions generalized with assodist for tensor', function() {
       fn(A.V).should.deep.equal([_.a_root(1), _.a_root(2), _.a_root(3)])
     })
   })
+
+  //----------------------------------------------
+  suite('a_logistic(x)', function() {
+    var fn;
+    before(function() {
+      fn = _.a_logistic
+    })
+    test('atomic logistic', function() {
+      fn(0).should.equal(0.5);
+    })
+  })
+
+  //----------------------------------------------
+  suite('logistic(x)', function() {
+    var fn;
+    before(function() {
+      fn = _.logistic
+    })
+    test('atomic logistic', function() {
+      fn([0, 0]).should.deep.equal([0.5, 0.5]);
+    })
+  })
 })
 
 //==============================================
@@ -1109,6 +1131,28 @@ suite('Tensor transformation', function() {
         [1, 3, 5],
         [2, 4, 6]
       ])
+    })
+  })
+
+  //----------------------------------------------
+  suite('trace(M)', function() {
+    var fn;
+    before(function() {
+      fn = _.trace
+    })
+    test('square', function() {
+      fn(A.C).should.equal(15)
+    })
+  })
+
+  //----------------------------------------------
+  suite('matMultiply(A,B)', function() {
+    var fn;
+    before(function() {
+      fn = _.matMultiply
+    })
+    test('square', function() {
+      fn([[1,2],[3,4]], [[1,2],[3,4]]).should.deep.equal([[7, 10], [15, 22]])
     })
   })
 
@@ -1657,5 +1701,15 @@ suite('plotter', function() {
   })
   test('call render', function(){
     _.render().should.equal(0)
+  })
+})
+
+//==============================================
+suite('timer', function() {
+  test('tick', function(){
+    _.tick().should.be.a('number')
+  })
+  test('tock', function(){
+    _.tock().should.be.a('number')
   })
 })

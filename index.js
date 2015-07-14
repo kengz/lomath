@@ -536,6 +536,25 @@ var lomath = _.mixin({
   root: function(T, n) {
     return lomath.distribute(lomath.a_root, T, n);
   },
+  // atomic logistic
+  a_logistic: function(z) {
+    return 1/(1+Math.exp(-z))
+  },
+  /**
+   * Applies the logistic (sigmoid) function to tensor T element-wise.
+   *
+   * @category basics
+   * @param {tensor} T A tensor.
+   * @returns {tensor} A tensor.
+   *
+   * @example
+   * _.logistic([-10, 0, 10])
+   * // → [ 0.00004539786870243441, 0.5, 0.9999546021312976 ]
+   *
+   */
+  logistic: function(T) {
+    return lomath.distributeSingle(lomath.a_logistic, T);
+  },
 
   ////////////////////
   // Basic checkers //
@@ -1507,6 +1526,46 @@ var lomath = _.mixin({
   // transpose a matrix
   transpose: function(M) {
     return _.zip.apply(null, M);
+  },
+  /**
+   * Returns the trace of a square matrix.
+   *
+   * @category transformation
+   * @param {tensor} M The matrix.
+   * @returns {number} trM The trace of the matrix.
+   *
+   * @example
+   * _.trace([[1, 2], [3, 4]])
+   * // → 5
+   *
+   */
+  // trace a matrix
+  trace: function(M) {
+    var len = M.length,
+    sum = 0;
+    while(len--)
+      sum += M[len][len]
+    return sum;
+  },
+  /**
+   * Multiply two matrices.
+   *
+   * @category transformation
+   * @param {tensor} A The first matrix.
+   * @param {tensor} B The second matrix.
+   * @returns {tensor} AB The two matrices multiplied together.
+   *
+   * @example
+   * _.matMultiply([[1,2],[3,4]], [[1,2],[3,4]])
+   * // → [ [ 7, 10 ], [ 15, 22 ] ]
+   *
+   */
+  // multiply two matrices
+  matMultiply: function(A, B) {
+    var T = lomath.transpose(B);
+    return _.map(A, function(a){
+      return _.map(T, lomath.dot.bind(null, a))
+    })
   },
   /**
    * Makes a tensor rectangular by filling with val (defaulted to 0).
@@ -2519,7 +2578,39 @@ var lomath = _.mixin({
   render: function(autosave) {
     console.log("Please call this method by _.hc.advPlot");
     return 0;
+  },
+  // The time variables for tick tock
+  t_start: 0,
+  t_end: 0,
+  /**
+   * Starts a timer (unique to the whole _ object). Needs to be called before tock. If called again, will restart the timer.
+   *
+   * @category timing
+   * @returns {number} ms Result from _.now(), in milliseconds.
+   */
+  tick: function() {
+    lomath.t_start = _.now();
+    return lomath.t_start;
+  },
+  /**
+   * Ends a started timer (unique to the whole _ object). Needs to be called after tick. If called again, will give the next lap (starting from the last tick).
+   *
+   * @category timing
+   * @returns {number} ms Difference between now and the last _.tick() in milliseconds.
+   * @example
+   * _.tick()
+   * // ... run some functions here, use promise for better flow control.
+   * someTaskwithPromise().then(tock())
+   * // → Returns some time elapsed in ms.
+   * 
+   */
+  tock: function() {
+    lomath.t_end = _.now();
+    var diff = lomath.t_end - lomath.t_start;
+    console.log('Elapsed ms:', diff);
+    return diff;
   }
+
 })
 
 // Export lomath as _

@@ -4,9 +4,9 @@
 
 [**Lomath**](https://github.com/kengz/lomath) is the data analysts' module in `Node JS` - data analysis and visualization in `Node` is now possible with `lomath`.
 
-It is the mathematical extension of `lodash` with many high performance functions, generalized and applicable to tensors (multi-arrays). It comes with a standalone plotting module that using `HighCharts` and `BrowserSync`.
+It is the mathematical extension of [`lodash`](https://lodash.com) with many high performance functions, generalized and applicable to tensors (multi-arrays). It comes with a standalone plotting module that using `HighCharts` and `BrowserSync`.
 
-See the [API documentation](http://kengz.github.io/lomath/).
+See the [API documentation](http://kengz.github.io/lomath/). For the included functions, see the [lodash API documentation](https://lodash.com/docs).
 
 ## Community
 
@@ -31,9 +31,9 @@ npm install
 
 ## Usage
 
-See the [API documentation](http://kengz.github.io/lomath/) for example usage.
+See the [API documentation](http://kengz.github.io/lomath/) and [lodash API documentation](https://lodash.com/docs) for example usage.
 
-**Lomath** comes with the latest version of `lodash`, and more. Use it as you would normally use `lodash` or `underscore`, and it has many math functions familiar to users of the `R` language.
+**Lomath** comes with the latest version of [`lodash`](https://lodash.com), and more. Use it as you would normally use `lodash` or `underscore`, and it has many math functions familiar to users of the `R` language.
 
 For clearer terminology, we call `tensors` the generic data structures:
 
@@ -107,6 +107,7 @@ hc.render();
 
 ## Roadmap
 - add timer tick tock
+- Multivar methods for ML: special dot, matrix mult, sum of expression using index, trace, det, inverse, logistic fn.
 - add aliases
 - add Randomjs engine
 - higher dimensional math

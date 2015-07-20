@@ -60,7 +60,7 @@
   ['*1', '*2'],
   ['*3', '*4'],
   ['*5', '*6']
-])</code></pre></dd>
+  ])</code></pre></dd>
               </dl>
             </section>
             <section class="suite">
@@ -73,7 +73,7 @@
   ['1*a', '2*a'],
   ['3*a', '4*a'],
   ['5*a', '6*a']
-])</code></pre></dd>
+  ])</code></pre></dd>
               </dl>
             </section>
             <section class="suite">
@@ -86,7 +86,7 @@
   ['a*1', 'a*2'],
   ['a*3', 'a*4'],
   ['a*5', 'a*6']
-])</code></pre></dd>
+  ])</code></pre></dd>
               </dl>
             </section>
             <section class="suite">
@@ -99,13 +99,13 @@
   ['a*1', 'a*2'],
   ['b*3', 'b*4'],
   ['c*5', 'c*6']
-])</code></pre></dd>
+  ])</code></pre></dd>
                 <dt>matrix * matrix</dt>
                 <dd><pre><code>fn(A.pair, A.L, A.M).should.deep.equal([
   ['a*1', 'b*2'],
   ['c*3', 'd*4'],
   ['e*5', 'f*6']
-])</code></pre></dd>
+  ])</code></pre></dd>
                 <dt>non-commutative: order-preserving</dt>
                 <dd><pre><code>fn(A.pair, A.U, A.R).should.not.deep.equal(fn(A.pair, A.R, A.U))</code></pre></dd>
                 <dt>vector * longer vector</dt>
@@ -122,7 +122,7 @@
   ['d*1', 'd*2'],
   ['e*3', 'e*4'],
   ['f*5', 'f*6']
-])</code></pre></dd>
+  ])</code></pre></dd>
               </dl>
             </section>
             <section class="suite">
@@ -137,7 +137,7 @@
   ['a*1', 'a*2'],
   ['a*3', 'a*4'],
   ['a*5', 'a*6']
-])</code></pre></dd>
+  ])</code></pre></dd>
                 <dt>vector * vector</dt>
                 <dd><pre><code>fn(A.pair, A.U, A.R).should.deep.equal(['a*3', 'b*2', 'c*1'])</code></pre></dd>
                 <dt>vector * matrix</dt>
@@ -145,13 +145,13 @@
   ['a*1', 'a*2'],
   ['b*3', 'b*4'],
   ['c*5', 'c*6']
-])</code></pre></dd>
+  ])</code></pre></dd>
                 <dt>matrix * matrix</dt>
                 <dd><pre><code>fn(A.pair, A.L, A.M).should.deep.equal([
   ['a*1', 'b*2'],
   ['c*3', 'd*4'],
   ['e*5', 'f*6']
-])</code></pre></dd>
+  ])</code></pre></dd>
                 <dt>non-commutative: order-preserving</dt>
                 <dd><pre><code>fn(A.pair, A.U, A.R).should.not.deep.equal(fn(A.pair, A.R, A.U))</code></pre></dd>
                 <dt>vector * longer vector</dt>
@@ -164,7 +164,7 @@
   ['d*1', 'd*2'],
   ['e*3', 'e*4'],
   ['f*5', 'f*6']
-])</code></pre></dd>
+  ])</code></pre></dd>
               </dl>
             </section>
           </dl>
@@ -223,6 +223,15 @@
           </dl>
         </section>
         <section class="suite">
+          <h1>fsum()</h1>
+          <dl>
+            <dt>sum mult with index</dt>
+            <dd><pre><code>fn([1,1,1], function(T, i){
+  return T[i] * i
+}).should.equal(3)</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
           <h1>a_prod(T)</h1>
           <dl>
             <dt>atomic product single tensor</dt>
@@ -259,13 +268,13 @@
   [1 + 1, 1 + 2],
   [2 + 3, 2 + 4],
   [3 + 5, 3 + 6]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>matrix and matrix</dt>
             <dd><pre><code>fn(A.K, A.M).should.deep.equal([
   [0, 0],
   [0, 0],
   [0, 0]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>vectors of unequal lengths</dt>
             <dd><pre><code>fn(A.V, A.VV).should.deep.equal([1 + 1, 2 + 2, 3 + 3, 1 + 4, 2 + 5, 3 + 6])</code></pre></dd>
             <dt>tensors of unequal lengths</dt>
@@ -276,13 +285,13 @@
   [4 + 1, 4 + 2],
   [5 + 3, 5 + 4],
   [6 + 5, 6 + 6]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>multiple tensors</dt>
             <dd><pre><code>fn(A.V, A.M, A.R).should.deep.equal([
   [1 + 1 + 3, 1 + 2 + 3],
   [2 + 3 + 2, 2 + 4 + 2],
   [3 + 5 + 1, 3 + 6 + 1]
-])</code></pre></dd>
+  ])</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
@@ -308,13 +317,13 @@
   [1 - 1, 1 - 2],
   [2 - 3, 2 - 4],
   [3 - 5, 3 - 6]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>matrix and matrix</dt>
             <dd><pre><code>fn(A.M, A.M).should.deep.equal([
   [0, 0],
   [0, 0],
   [0, 0]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>vectors of unequal lengths</dt>
             <dd><pre><code>fn(A.V, A.VV).should.deep.equal([1 - 1, 2 - 2, 3 - 3, 1 - 4, 2 - 5, 3 - 6])</code></pre></dd>
             <dt>tensors of unequal lengths</dt>
@@ -325,13 +334,13 @@
   [4 - 1, 4 - 2],
   [5 - 3, 5 - 4],
   [6 - 5, 6 - 6]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>multiple tensors</dt>
             <dd><pre><code>fn(A.V, A.M, A.R).should.deep.equal([
   [1 - 1 - 3, 1 - 2 - 3],
   [2 - 3 - 2, 2 - 4 - 2],
   [3 - 5 - 1, 3 - 6 - 1]
-])</code></pre></dd>
+  ])</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
@@ -353,7 +362,7 @@
   [0, 0],
   [0, 0],
   [0, 0]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>vector and vector</dt>
             <dd><pre><code>fn(A.V, A.V).should.deep.equal([1 * 1, 2 * 2, 3 * 3])</code></pre></dd>
             <dt>vector and matrix</dt>
@@ -361,13 +370,13 @@
   [1 * 1, 1 * 2],
   [2 * 3, 2 * 4],
   [3 * 5, 3 * 6]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>matrix and matrix</dt>
             <dd><pre><code>fn(A.M, A.M).should.deep.equal([
   [1 * 1, 2 * 2],
   [3 * 3, 4 * 4],
   [5 * 5, 6 * 6]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>vectors of unequal lengths</dt>
             <dd><pre><code>fn(A.V, A.VV).should.deep.equal([1 * 1, 2 * 2, 3 * 3, 1 * 4, 2 * 5, 3 * 6])</code></pre></dd>
             <dt>tensors of unequal lengths</dt>
@@ -378,13 +387,13 @@
   [4 * 1, 4 * 2],
   [5 * 3, 5 * 4],
   [6 * 5, 6 * 6]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>multiple tensors</dt>
             <dd><pre><code>fn(A.V, A.M, A.R).should.deep.equal([
   [1 * 1 * 3, 1 * 2 * 3],
   [2 * 3 * 2, 2 * 4 * 2],
   [3 * 5 * 1, 3 * 6 * 1]
-])</code></pre></dd>
+  ])</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
@@ -406,7 +415,7 @@
   [0, 0],
   [0, 0],
   [0, 0]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>vector and vector</dt>
             <dd><pre><code>fn(A.V, A.V).should.deep.equal([1 / 1, 2 / 2, 3 / 3])</code></pre></dd>
             <dt>vector and matrix</dt>
@@ -414,13 +423,13 @@
   [1 / 1, 1 / 2],
   [2 / 3, 2 / 4],
   [3 / 5, 3 / 6]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>matrix and matrix</dt>
             <dd><pre><code>fn(A.M, A.M).should.deep.equal([
   [1 / 1, 2 / 2],
   [3 / 3, 4 / 4],
   [5 / 5, 6 / 6]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>vectors of unequal lengths</dt>
             <dd><pre><code>fn(A.V, A.VV).should.deep.equal([1 / 1, 2 / 2, 3 / 3, 1 / 4, 2 / 5, 3 / 6])</code></pre></dd>
             <dt>tensors of unequal lengths</dt>
@@ -431,13 +440,13 @@
   [4 / 1, 4 / 2],
   [5 / 3, 5 / 4],
   [6 / 5, 6 / 6]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>multiple tensors</dt>
             <dd><pre><code>fn(A.V, A.M, A.R).should.deep.equal([
   [1 / 1 / 3, 1 / 2 / 3],
   [2 / 3 / 2, 2 / 4 / 2],
   [3 / 5 / 1, 3 / 6 / 1]
-])</code></pre></dd>
+  ])</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
@@ -547,6 +556,22 @@
             <dd><pre><code>fn([0,0,0], _.isZero).should.be.true</code></pre></dd>
             <dt>nonZero</dt>
             <dd><pre><code>fn(A.V, _.nonZero).should.be.true</code></pre></dd>
+            <dt>parity</dt>
+            <dd><pre><code>_.parity(1).should.equal(-1)
+_.parity(2).should.equal(1)</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>deepEqual(T, S)</h1>
+          <dl>
+            <dt>matching vectors</dt>
+            <dd><pre><code>fn(A.V, A.V).should.be.true</code></pre></dd>
+            <dt>matching matrices and higher</dt>
+            <dd><pre><code>fn(A.M, A.M).should.be.true</code></pre></dd>
+            <dt>unmatching length vectors</dt>
+            <dd><pre><code>fn(A.U, A.UU).should.be.false</code></pre></dd>
+            <dt>unmatching length matrices</dt>
+            <dd><pre><code>fn(A.U, A.M).should.be.false</code></pre></dd>
           </dl>
         </section>
       </dl>
@@ -765,22 +790,22 @@ v.should.deep.equal(A.R)</code></pre></dd>
             <dd><pre><code>fn(A.C, [-1, 0, 1]).should.deep.equal([
   [1, 2, 3],
   [4, 5, 6]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>all valid</dt>
             <dd><pre><code>fn(A.C, [0, 1]).should.deep.equal([
   [1, 2, 3],
   [4, 5, 6]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>shuffled</dt>
             <dd><pre><code>fn(A.C, [1, 0]).should.deep.equal([
   [4, 5, 6],
   [1, 2, 3]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>repeated</dt>
             <dd><pre><code>fn(A.C, [1, 1]).should.deep.equal([
   [4, 5, 6],
   [4, 5, 6]
-])</code></pre></dd>
+  ])</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
@@ -793,25 +818,25 @@ v.should.deep.equal(A.R)</code></pre></dd>
   ['a'],
   [1],
   [-1]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>all valid</dt>
             <dd><pre><code>fn(A.D, [0, 2]).should.deep.equal([
   ['a', 'c'],
   [1, 3],
   [-1, -3]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>shuffled</dt>
             <dd><pre><code>fn(A.D, [2, 1, 0]).should.deep.equal([
   ['c', 'b', 'a'],
   [3, 2, 1],
   [-3, -2, -1]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>repeated</dt>
             <dd><pre><code>fn(A.D, [0, 0]).should.deep.equal([
   ['a', 'a'],
   [1, 1],
   [-1, -1]
-])</code></pre></dd>
+  ])</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
@@ -824,55 +849,25 @@ v.should.deep.equal(A.R)</code></pre></dd>
   ['a'],
   [1],
   [-1]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>all valid</dt>
             <dd><pre><code>fn(A.D, ['a', 'c']).should.deep.equal([
   ['a', 'c'],
   [1, 3],
   [-1, -3]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>shuffled</dt>
             <dd><pre><code>fn(A.D, ['c', 'b', 'a']).should.deep.equal([
   ['c', 'b', 'a'],
   [3, 2, 1],
   [-3, -2, -1]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>repeated</dt>
             <dd><pre><code>fn(A.D, ['a', 'a']).should.deep.equal([
   ['a', 'a'],
   [1, 1],
   [-1, -1]
-])</code></pre></dd>
-          </dl>
-        </section>
-        <section class="suite">
-          <h1>transpose(M)</h1>
-          <dl>
-            <dt>square</dt>
-            <dd><pre><code>fn(A.C).should.deep.equal([
-  [1, 4, 7],
-  [2, 5, 8],
-  [3, 6, 9]
-])</code></pre></dd>
-            <dt>non-square</dt>
-            <dd><pre><code>fn(A.M).should.deep.equal([
-  [1, 3, 5],
-  [2, 4, 6]
-])</code></pre></dd>
-          </dl>
-        </section>
-        <section class="suite">
-          <h1>trace(M)</h1>
-          <dl>
-            <dt>square</dt>
-            <dd><pre><code>fn(A.C).should.equal(15)</code></pre></dd>
-          </dl>
-        </section>
-        <section class="suite">
-          <h1>matMultiply(A,B)</h1>
-          <dl>
-            <dt>square</dt>
-            <dd><pre><code>fn([[1,2],[3,4]], [[1,2],[3,4]]).should.deep.equal([[7, 10], [15, 22]])</code></pre></dd>
+  ])</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
@@ -882,17 +877,17 @@ v.should.deep.equal(A.R)</code></pre></dd>
             <dd><pre><code>fn(Q).should.deep.equal([
   [1, 2, 3],
   [4, 0, 0]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>non-rectangular, val</dt>
             <dd><pre><code>fn(Q, -1).should.deep.equal([
   [1, 2, 3],
   [4, -1, -1]
-])</code></pre></dd>
+  ])</code></pre></dd>
             <dt>rectangular, no change</dt>
             <dd><pre><code>fn(R).should.deep.equal([
   [1, 2, 3],
   [4, 5, 6]
-])</code></pre></dd>
+  ])</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
@@ -905,16 +900,16 @@ v.should.deep.equal(A.R)</code></pre></dd>
             <dt>non-rectangular</dt>
             <dd><pre><code>fn(Q, [2, 3, 4]).should.deep.equal([
   [
-    [1, 1, 1, 1],
-    [2, 2, 2, 2],
-    [3, 3, 3, 3]
+  [1, 1, 1, 1],
+  [2, 2, 2, 2],
+  [3, 3, 3, 3]
   ],
   [
-    [4, 4, 4, 4],
-    [5, 5, 5, 5],
-    [6, 6]
+  [4, 4, 4, 4],
+  [5, 5, 5, 5],
+  [6, 6]
   ]
-])</code></pre></dd>
+  ])</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
@@ -932,6 +927,98 @@ v.should.deep.equal(A.R)</code></pre></dd>
       </dl>
     </section>
     <section class="suite">
+      <h1>Matrices</h1>
+      <dl>
+        <section class="suite">
+          <h1>transpose(M)</h1>
+          <dl>
+            <dt>square</dt>
+            <dd><pre><code>fn(A.C).should.deep.equal([
+  [1, 4, 7],
+  [2, 5, 8],
+  [3, 6, 9]
+  ])</code></pre></dd>
+            <dt>non-square</dt>
+            <dd><pre><code>fn(A.M).should.deep.equal([
+  [1, 3, 5],
+  [2, 4, 6]
+  ])</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>trace(M)</h1>
+          <dl>
+            <dt>square</dt>
+            <dd><pre><code>fn(A.C).should.equal(15)</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>matMultiply(A,B)</h1>
+          <dl>
+            <dt>square</dt>
+            <dd><pre><code>fn([[1,2],[3,4]], [[1,2],[3,4]]).should.deep.equal([[7, 10], [15, 22]])</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>coSubMatrix(M,r,c)</h1>
+          <dl>
+            <dt>default</dt>
+            <dd><pre><code>fn(A.C).should.deep.equal([[5, 6], [8, 9]])</code></pre></dd>
+            <dt>specified r,c</dt>
+            <dd><pre><code>fn(A.C, 0, 1).should.deep.equal([[4, 6], [7, 9]])</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>coMatrix(M)</h1>
+          <dl>
+            <dt>unambiguous case</dt>
+            <dd><pre><code>fn(mat).should.deep.equal([ [ 7, -2, -3 ], [ 5, -16, 9 ], [ -3, 6, -3 ] ])</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>adj(M)</h1>
+          <dl>
+            <dt>unambiguous case</dt>
+            <dd><pre><code>fn(mat).should.deep.equal([ [ 7, 5, -3 ], [ -2, -16, 6 ], [ -3, 9, -3 ] ])</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>detSum(M, i)</h1>
+          <dl>
+            <dt>sub determinant at index</dt>
+            <dd><pre><code>fn(mat, 0).should.equal(7)</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>det(M)</h1>
+          <dl>
+            <dt>scalar, just return</dt>
+            <dd><pre><code>fn(2).should.equal(2)</code></pre></dd>
+            <dt>1x1 matrix, just return</dt>
+            <dd><pre><code>fn([2]).should.equal(2)
+fn([[2]]).should.equal(2)</code></pre></dd>
+            <dt>2x2 matrix, basecase</dt>
+            <dd><pre><code>fn([[1,2],[3,4]]).should.equal(-2)</code></pre></dd>
+            <dt>3x3 matrix and above</dt>
+            <dd><pre><code>fn(mat).should.equal(-6)</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>inv(M)</h1>
+          <dl>
+            <dt>invertible</dt>
+            <dd><pre><code>fn(mat).should.deep.equal([
+  [ 5.625, -2.375, -2.5 ],
+  [ 4.75, -2.25, -2 ],
+  [ -3.375, 1.625, 1.5 ] 
+  ])</code></pre></dd>
+            <dt>non-invertible</dt>
+            <dd><pre><code>expect(fn([[1,1],[1,1]])).to.be.null</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
       <h1>Subsets and combinatorics</h1>
       <dl>
         <section class="suite">
@@ -942,7 +1029,7 @@ v.should.deep.equal(A.R)</code></pre></dd>
 fn(2, 2).should.deep.equal(['00', '01', '10', '11'])
 fn(3, 2).should.deep.equal(
   ['000', '001', '010', '011', '100', '101', '110', '111']
-)</code></pre></dd>
+  )</code></pre></dd>
             <dt>ternary</dt>
             <dd><pre><code>fn(2, 3).should.deep.equal(['00', '01', '02', '10', '11', '12', '20', '21', '22'])</code></pre></dd>
           </dl>
@@ -956,7 +1043,7 @@ fn(3, 2).should.deep.equal(
   [0, 1],
   [1, 0],
   [1, 1]
-])</code></pre></dd>
+  ])</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
@@ -967,7 +1054,7 @@ fn(3, 2).should.deep.equal(
   ['0', '1', '2'],
   ['01', '02', '10', '12', '20', '21'],
   ['012', '021', '102', '120', '201', '210']
-])</code></pre></dd>
+  ])</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
@@ -978,7 +1065,7 @@ fn(3, 2).should.deep.equal(
   ['0', '1', '2'],
   ['01', '02', '12'],
   ['012']
-])</code></pre></dd>
+  ])</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
@@ -1169,12 +1256,12 @@ fn(1000, 1000).should.deep.equal(1)</code></pre></dd>
             <dd><pre><code>fn(vv).should.equal(
   (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4) -
   _.a_square((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
-)</code></pre></dd>
+  )</code></pre></dd>
             <dt>if X, P specified; no fn</dt>
             <dd><pre><code>fn(v, p).should.equal(
   (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4) -
   _.a_square((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
-)</code></pre></dd>
+  )</code></pre></dd>
             <dt>if X, fn specified; no P</dt>
             <dd><pre><code>fn(vv, _.a_square).should.be.closeTo(
   (1 * 0.1 + 0 + 1 * 0.3 + 16 * 0.4) -
@@ -1193,8 +1280,8 @@ fn(1000, 1000).should.deep.equal(1)</code></pre></dd>
   Math.sqrt(
     (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4) -
     _.a_square((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
-  )
-)</code></pre></dd>
+    )
+  )</code></pre></dd>
           </dl>
         </section>
         <section class="suite">
@@ -1259,7 +1346,7 @@ Please call this method by _.hc.advPlot
       <dl>
         <dt>tick</dt>
         <dd><pre><code>_.tick().should.be.a('number')</code></pre></dd>
-Elapsed ms: 1
+Elapsed ms: 0
         <dt>tock</dt>
         <dd><pre><code>_.tock().should.be.a('number')</code></pre></dd>
       </dl>

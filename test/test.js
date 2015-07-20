@@ -43,7 +43,7 @@ suite('Function builder backend', function() {
           ['*1', '*2'],
           ['*3', '*4'],
           ['*5', '*6']
-        ])
+          ])
       })
     })
 
@@ -61,7 +61,7 @@ suite('Function builder backend', function() {
           ['1*a', '2*a'],
           ['3*a', '4*a'],
           ['5*a', '6*a']
-        ])
+          ])
       })
     })
 
@@ -79,7 +79,7 @@ suite('Function builder backend', function() {
           ['a*1', 'a*2'],
           ['a*3', 'a*4'],
           ['a*5', 'a*6']
-        ])
+          ])
       })
     })
 
@@ -97,14 +97,14 @@ suite('Function builder backend', function() {
           ['a*1', 'a*2'],
           ['b*3', 'b*4'],
           ['c*5', 'c*6']
-        ])
+          ])
       })
       test('matrix * matrix', function() {
         fn(A.pair, A.L, A.M).should.deep.equal([
           ['a*1', 'b*2'],
           ['c*3', 'd*4'],
           ['e*5', 'f*6']
-        ])
+          ])
       })
       test('non-commutative: order-preserving', function() {
         fn(A.pair, A.U, A.R).should.not.deep.equal(fn(A.pair, A.R, A.U))
@@ -125,7 +125,7 @@ suite('Function builder backend', function() {
           ['d*1', 'd*2'],
           ['e*3', 'e*4'],
           ['f*5', 'f*6']
-        ])
+          ])
       })
     })
 
@@ -146,7 +146,7 @@ suite('Function builder backend', function() {
           ['a*1', 'a*2'],
           ['a*3', 'a*4'],
           ['a*5', 'a*6']
-        ])
+          ])
       })
       test('vector * vector', function() {
         fn(A.pair, A.U, A.R).should.deep.equal(['a*3', 'b*2', 'c*1'])
@@ -156,14 +156,14 @@ suite('Function builder backend', function() {
           ['a*1', 'a*2'],
           ['b*3', 'b*4'],
           ['c*5', 'c*6']
-        ])
+          ])
       })
       test('matrix * matrix', function() {
         fn(A.pair, A.L, A.M).should.deep.equal([
           ['a*1', 'b*2'],
           ['c*3', 'd*4'],
           ['e*5', 'f*6']
-        ])
+          ])
       })
       test('non-commutative: order-preserving', function() {
         fn(A.pair, A.U, A.R).should.not.deep.equal(fn(A.pair, A.R, A.U))
@@ -179,10 +179,10 @@ suite('Function builder backend', function() {
           ['d*1', 'd*2'],
           ['e*3', 'e*4'],
           ['f*5', 'f*6']
-        ])
+          ])
       })
     })
-  })
+})
 
   //==============================================
   suite('Associate', function() {
@@ -266,6 +266,19 @@ suite('Simple functions generalized with assodist for tensor', function() {
   })
 
   //----------------------------------------------
+  suite('fsum()', function() {
+    var fn;
+    before(function() {
+      fn = _.fsum
+    })
+    test('sum mult with index', function() {
+      fn([1,1,1], function(T, i){
+        return T[i] * i
+      }).should.equal(3)
+    })
+  })
+
+  //----------------------------------------------
   suite('a_prod(T)', function() {
     var fn;
     before(function() {
@@ -321,14 +334,14 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [1 + 1, 1 + 2],
         [2 + 3, 2 + 4],
         [3 + 5, 3 + 6]
-      ])
+        ])
     })
     test('matrix and matrix', function() {
       fn(A.K, A.M).should.deep.equal([
         [0, 0],
         [0, 0],
         [0, 0]
-      ])
+        ])
     })
     test('vectors of unequal lengths', function() {
       fn(A.V, A.VV).should.deep.equal([1 + 1, 2 + 2, 3 + 3, 1 + 4, 2 + 5, 3 + 6])
@@ -341,14 +354,14 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [4 + 1, 4 + 2],
         [5 + 3, 5 + 4],
         [6 + 5, 6 + 6]
-      ])
+        ])
     })
     test('multiple tensors', function() {
       fn(A.V, A.M, A.R).should.deep.equal([
         [1 + 1 + 3, 1 + 2 + 3],
         [2 + 3 + 2, 2 + 4 + 2],
         [3 + 5 + 1, 3 + 6 + 1]
-      ])
+        ])
     })
   })
 
@@ -386,14 +399,14 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [1 - 1, 1 - 2],
         [2 - 3, 2 - 4],
         [3 - 5, 3 - 6]
-      ])
+        ])
     })
     test('matrix and matrix', function() {
       fn(A.M, A.M).should.deep.equal([
         [0, 0],
         [0, 0],
         [0, 0]
-      ])
+        ])
     })
     test('vectors of unequal lengths', function() {
       fn(A.V, A.VV).should.deep.equal([1 - 1, 2 - 2, 3 - 3, 1 - 4, 2 - 5, 3 - 6])
@@ -406,14 +419,14 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [4 - 1, 4 - 2],
         [5 - 3, 5 - 4],
         [6 - 5, 6 - 6]
-      ])
+        ])
     })
     test('multiple tensors', function() {
       fn(A.V, A.M, A.R).should.deep.equal([
         [1 - 1 - 3, 1 - 2 - 3],
         [2 - 3 - 2, 2 - 4 - 2],
         [3 - 5 - 1, 3 - 6 - 1]
-      ])
+        ])
     })
   })
 
@@ -445,7 +458,7 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [0, 0],
         [0, 0],
         [0, 0]
-      ])
+        ])
     })
     test('vector and vector', function() {
       fn(A.V, A.V).should.deep.equal([1 * 1, 2 * 2, 3 * 3])
@@ -455,14 +468,14 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [1 * 1, 1 * 2],
         [2 * 3, 2 * 4],
         [3 * 5, 3 * 6]
-      ])
+        ])
     })
     test('matrix and matrix', function() {
       fn(A.M, A.M).should.deep.equal([
         [1 * 1, 2 * 2],
         [3 * 3, 4 * 4],
         [5 * 5, 6 * 6]
-      ])
+        ])
     })
     test('vectors of unequal lengths', function() {
       fn(A.V, A.VV).should.deep.equal([1 * 1, 2 * 2, 3 * 3, 1 * 4, 2 * 5, 3 * 6])
@@ -475,14 +488,14 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [4 * 1, 4 * 2],
         [5 * 3, 5 * 4],
         [6 * 5, 6 * 6]
-      ])
+        ])
     })
     test('multiple tensors', function() {
       fn(A.V, A.M, A.R).should.deep.equal([
         [1 * 1 * 3, 1 * 2 * 3],
         [2 * 3 * 2, 2 * 4 * 2],
         [3 * 5 * 1, 3 * 6 * 1]
-      ])
+        ])
     })
   })
 
@@ -514,7 +527,7 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [0, 0],
         [0, 0],
         [0, 0]
-      ])
+        ])
     })
     test('vector and vector', function() {
       fn(A.V, A.V).should.deep.equal([1 / 1, 2 / 2, 3 / 3])
@@ -524,14 +537,14 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [1 / 1, 1 / 2],
         [2 / 3, 2 / 4],
         [3 / 5, 3 / 6]
-      ])
+        ])
     })
     test('matrix and matrix', function() {
       fn(A.M, A.M).should.deep.equal([
         [1 / 1, 2 / 2],
         [3 / 3, 4 / 4],
         [5 / 5, 6 / 6]
-      ])
+        ])
     })
     test('vectors of unequal lengths', function() {
       fn(A.V, A.VV).should.deep.equal([1 / 1, 2 / 2, 3 / 3, 1 / 4, 2 / 5, 3 / 6])
@@ -544,14 +557,14 @@ suite('Simple functions generalized with assodist for tensor', function() {
         [4 / 1, 4 / 2],
         [5 / 3, 5 / 4],
         [6 / 5, 6 / 6]
-      ])
+        ])
     })
     test('multiple tensors', function() {
       fn(A.V, A.M, A.R).should.deep.equal([
         [1 / 1 / 3, 1 / 2 / 3],
         [2 / 3 / 2, 2 / 4 / 2],
         [3 / 5 / 1, 3 / 6 / 1]
-      ])
+        ])
     })
   })
 
@@ -717,6 +730,30 @@ suite('Simple signature checkers for tensors', function() {
     })
     test('nonZero', function() {
       fn(A.V, _.nonZero).should.be.true
+    })
+    test('parity', function() {
+      _.parity(1).should.equal(-1)
+      _.parity(2).should.equal(1)
+    })
+  })
+
+  //----------------------------------------------
+  suite('deepEqual(T, S)', function() {
+    var fn;
+    before(function() {
+      fn = _.deepEqual
+    })
+    test('matching vectors', function() {
+      fn(A.V, A.V).should.be.true
+    })
+    test('matching matrices and higher', function() {
+      fn(A.M, A.M).should.be.true
+    })
+    test('unmatching length vectors', function() {
+      fn(A.U, A.UU).should.be.false
+    })
+    test('unmatching length matrices', function() {
+      fn(A.U, A.M).should.be.false
     })
   })
 })
@@ -1013,25 +1050,25 @@ suite('Tensor transformation', function() {
       fn(A.C, [-1, 0, 1]).should.deep.equal([
         [1, 2, 3],
         [4, 5, 6]
-      ])
+        ])
     })
     test('all valid', function() {
       fn(A.C, [0, 1]).should.deep.equal([
         [1, 2, 3],
         [4, 5, 6]
-      ])
+        ])
     })
     test('shuffled', function() {
       fn(A.C, [1, 0]).should.deep.equal([
         [4, 5, 6],
         [1, 2, 3]
-      ])
+        ])
     })
     test('repeated', function() {
       fn(A.C, [1, 1]).should.deep.equal([
         [4, 5, 6],
         [4, 5, 6]
-      ])
+        ])
     })
   })
 
@@ -1049,28 +1086,28 @@ suite('Tensor transformation', function() {
         ['a'],
         [1],
         [-1]
-      ])
+        ])
     })
     test('all valid', function() {
       fn(A.D, [0, 2]).should.deep.equal([
         ['a', 'c'],
         [1, 3],
         [-1, -3]
-      ])
+        ])
     })
     test('shuffled', function() {
       fn(A.D, [2, 1, 0]).should.deep.equal([
         ['c', 'b', 'a'],
         [3, 2, 1],
         [-3, -2, -1]
-      ])
+        ])
     })
     test('repeated', function() {
       fn(A.D, [0, 0]).should.deep.equal([
         ['a', 'a'],
         [1, 1],
         [-1, -1]
-      ])
+        ])
     })
   })
 
@@ -1088,71 +1125,28 @@ suite('Tensor transformation', function() {
         ['a'],
         [1],
         [-1]
-      ])
+        ])
     })
     test('all valid', function() {
       fn(A.D, ['a', 'c']).should.deep.equal([
         ['a', 'c'],
         [1, 3],
         [-1, -3]
-      ])
+        ])
     })
     test('shuffled', function() {
       fn(A.D, ['c', 'b', 'a']).should.deep.equal([
         ['c', 'b', 'a'],
         [3, 2, 1],
         [-3, -2, -1]
-      ])
+        ])
     })
     test('repeated', function() {
       fn(A.D, ['a', 'a']).should.deep.equal([
         ['a', 'a'],
         [1, 1],
         [-1, -1]
-      ])
-    })
-  })
-
-  //----------------------------------------------
-  suite('transpose(M)', function() {
-    var fn;
-    before(function() {
-      fn = _.transpose
-    })
-    test('square', function() {
-      fn(A.C).should.deep.equal([
-        [1, 4, 7],
-        [2, 5, 8],
-        [3, 6, 9]
-      ])
-    })
-    test('non-square', function() {
-      fn(A.M).should.deep.equal([
-        [1, 3, 5],
-        [2, 4, 6]
-      ])
-    })
-  })
-
-  //----------------------------------------------
-  suite('trace(M)', function() {
-    var fn;
-    before(function() {
-      fn = _.trace
-    })
-    test('square', function() {
-      fn(A.C).should.equal(15)
-    })
-  })
-
-  //----------------------------------------------
-  suite('matMultiply(A,B)', function() {
-    var fn;
-    before(function() {
-      fn = _.matMultiply
-    })
-    test('square', function() {
-      fn([[1,2],[3,4]], [[1,2],[3,4]]).should.deep.equal([[7, 10], [15, 22]])
+        ])
     })
   })
 
@@ -1162,31 +1156,31 @@ suite('Tensor transformation', function() {
     beforeEach(function() {
       fn = _.rectangularize
       Q = [
-        [1, 2, 3],
-        [4]
+      [1, 2, 3],
+      [4]
       ]
       R = [
-        [1, 2, 3],
-        [4, 5, 6]
+      [1, 2, 3],
+      [4, 5, 6]
       ]
     })
     test('non-rectangular, default', function() {
       fn(Q).should.deep.equal([
         [1, 2, 3],
         [4, 0, 0]
-      ])
+        ])
     })
     test('non-rectangular, val', function() {
       fn(Q, -1).should.deep.equal([
         [1, 2, 3],
         [4, -1, -1]
-      ])
+        ])
     })
     test('rectangular, no change', function() {
       fn(R).should.deep.equal([
         [1, 2, 3],
         [4, 5, 6]
-      ])
+        ])
     })
   })
 
@@ -1207,16 +1201,16 @@ suite('Tensor transformation', function() {
     test('non-rectangular', function() {
       fn(Q, [2, 3, 4]).should.deep.equal([
         [
-          [1, 1, 1, 1],
-          [2, 2, 2, 2],
-          [3, 3, 3, 3]
+        [1, 1, 1, 1],
+        [2, 2, 2, 2],
+        [3, 3, 3, 3]
         ],
         [
-          [4, 4, 4, 4],
-          [5, 5, 5, 5],
-          [6, 6]
+        [4, 4, 4, 4],
+        [5, 5, 5, 5],
+        [6, 6]
         ]
-      ])
+        ])
     })
   })
 
@@ -1252,6 +1246,144 @@ suite('Tensor transformation', function() {
 })
 
 //==============================================
+suite('Matrices', function() {
+
+  //----------------------------------------------
+  suite('transpose(M)', function() {
+    var fn;
+    before(function() {
+      fn = _.transpose
+    })
+    test('square', function() {
+      fn(A.C).should.deep.equal([
+        [1, 4, 7],
+        [2, 5, 8],
+        [3, 6, 9]
+        ])
+    })
+    test('non-square', function() {
+      fn(A.M).should.deep.equal([
+        [1, 3, 5],
+        [2, 4, 6]
+        ])
+    })
+  })
+
+  //----------------------------------------------
+  suite('trace(M)', function() {
+    var fn;
+    before(function() {
+      fn = _.trace
+    })
+    test('square', function() {
+      fn(A.C).should.equal(15)
+    })
+  })
+
+  //----------------------------------------------
+  suite('matMultiply(A,B)', function() {
+    var fn;
+    before(function() {
+      fn = _.matMultiply
+    })
+    test('square', function() {
+      fn([[1,2],[3,4]], [[1,2],[3,4]]).should.deep.equal([[7, 10], [15, 22]])
+    })
+  })
+
+  //----------------------------------------------
+  suite('coSubMatrix(M,r,c)', function() {
+    var fn;
+    before(function() {
+      fn = _.coSubMatrix
+    })
+    test('default', function() {
+      fn(A.C).should.deep.equal([[5, 6], [8, 9]])
+    })
+    test('specified r,c', function() {
+      fn(A.C, 0, 1).should.deep.equal([[4, 6], [7, 9]])
+    })
+  })
+
+  //----------------------------------------------
+  suite('coMatrix(M)', function() {
+    var fn, mat;
+    before(function() {
+      fn = _.coMatrix
+      mat = [[1,2,3],[4,5,6],[11,13,17]]
+    })
+    test('unambiguous case', function() {
+      fn(mat).should.deep.equal([ [ 7, -2, -3 ], [ 5, -16, 9 ], [ -3, 6, -3 ] ])
+    })
+  })
+
+  //----------------------------------------------
+  suite('adj(M)', function() {
+    var fn, mat;
+    before(function() {
+      fn = _.adj
+      mat = [[1,2,3],[4,5,6],[11,13,17]]
+    })
+    test('unambiguous case', function() {
+      fn(mat).should.deep.equal([ [ 7, 5, -3 ], [ -2, -16, 6 ], [ -3, 9, -3 ] ])
+    })
+  })
+
+  //----------------------------------------------
+  suite('detSum(M, i)', function() {
+    var fn, mat;
+    before(function() {
+      fn = _.detSum
+      mat = [[1,2,3],[4,5,6],[11,13,17]]
+    })
+    test('sub determinant at index', function() {
+      fn(mat, 0).should.equal(7)
+    })
+  })
+
+  //----------------------------------------------
+  suite('det(M)', function() {
+    var fn, mat;
+    before(function() {
+      fn = _.det
+      mat = [[1,2,3],[4,5,6],[11,13,17]]
+    })
+    test('scalar, just return', function() {
+      fn(2).should.equal(2)
+    })
+    test('1x1 matrix, just return', function() {
+      fn([2]).should.equal(2)
+      fn([[2]]).should.equal(2)
+    })
+    test('2x2 matrix, basecase', function() {
+      fn([[1,2],[3,4]]).should.equal(-2)
+    })
+    test('3x3 matrix and above', function() {
+      fn(mat).should.equal(-6)
+    })
+  })
+
+  //----------------------------------------------
+  suite('inv(M)', function() {
+    var fn, mat;
+    before(function() {
+      fn = _.inv
+      mat = [[1,4,7],[3,0,5],[-1,9,11]]
+    })
+    test('invertible', function() {
+      fn(mat).should.deep.equal([
+        [ 5.625, -2.375, -2.5 ],
+        [ 4.75, -2.25, -2 ],
+        [ -3.375, 1.625, 1.5 ] 
+        ])
+    })
+    test('non-invertible', function() {
+      expect(fn([[1,1],[1,1]])).to.be.null
+    })
+  })
+})
+
+//==============================================
 suite('Subsets and combinatorics', function() {
 
   //----------------------------------------------
@@ -1265,7 +1397,7 @@ suite('Subsets and combinatorics', function() {
       fn(2, 2).should.deep.equal(['00', '01', '10', '11'])
       fn(3, 2).should.deep.equal(
         ['000', '001', '010', '011', '100', '101', '110', '111']
-      )
+        )
     })
     test('ternary', function() {
       fn(2, 3).should.deep.equal(['00', '01', '02', '10', '11', '12', '20', '21', '22'])
@@ -1284,7 +1416,7 @@ suite('Subsets and combinatorics', function() {
         [0, 1],
         [1, 0],
         [1, 1]
-      ])
+        ])
     })
   })
 
@@ -1299,7 +1431,7 @@ suite('Subsets and combinatorics', function() {
         ['0', '1', '2'],
         ['01', '02', '10', '12', '20', '21'],
         ['012', '021', '102', '120', '201', '210']
-      ])
+        ])
     })
   })
 
@@ -1314,7 +1446,7 @@ suite('Subsets and combinatorics', function() {
         ['0', '1', '2'],
         ['01', '02', '12'],
         ['012']
-      ])
+        ])
     })
   })
 
@@ -1594,13 +1726,13 @@ suite('statistical', function() {
       fn(vv).should.equal(
         (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4) -
         _.a_square((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
-      )
+        )
     })
     test('if X, P specified; no fn', function() {
       fn(v, p).should.equal(
         (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4) -
         _.a_square((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
-      )
+        )
     })
     test('if X, fn specified; no P', function() {
       fn(vv, _.a_square).should.be.closeTo(
@@ -1627,8 +1759,8 @@ suite('statistical', function() {
         Math.sqrt(
           (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4) -
           _.a_square((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
+          )
         )
-      )
     })
   })
 

@@ -54,7 +54,7 @@ var lomath = _.mixin({
   distributeSingle: function(fn, Y) {
     if (!(Y instanceof Array)) return fn(Y);
     var len = Y.length,
-      res = Array(len);
+    res = Array(len);
     while (len--) res[len] = Y[len] instanceof Array ?
       lomath.distributeSingle(fn, Y[len]) : fn(Y[len])
     return res;
@@ -80,7 +80,7 @@ var lomath = _.mixin({
   // Distribute fn with left tensor X over right scalar y.
   distributeLeft: function(fn, X, y) {
     var len = X.length,
-      res = Array(len);
+    res = Array(len);
     while (len--) res[len] = X[len] instanceof Array ?
       lomath.distributeLeft(fn, X[len], y) : fn(X[len], y)
     return res;
@@ -106,7 +106,7 @@ var lomath = _.mixin({
   // Distribute fn with left scalar x over right tensor Y.
   distributeRight: function(fn, x, Y) {
     var len = Y.length,
-      res = Array(len);
+    res = Array(len);
     while (len--) res[len] = Y[len] instanceof Array ?
       lomath.distributeRight(fn, x, Y[len]) : fn(x, Y[len])
     return res;
@@ -137,7 +137,7 @@ var lomath = _.mixin({
   // If at any depth X and Y have different lengths, recycle if the mod of lengths is 0.
   distributeBoth: function(fn, X, Y) {
     var Xlen = X.length,
-      Ylen = Y.length;
+    Ylen = Y.length;
     if (Xlen % Ylen == 0 || Ylen % Xlen == 0) {
       var res;
       if (Xlen > Ylen) {
@@ -184,10 +184,10 @@ var lomath = _.mixin({
   distribute: function(fn, X, Y) {
     if (X instanceof Array)
       return Y instanceof Array ?
-        lomath.distributeBoth(fn, X, Y) : lomath.distributeLeft(fn, X, Y);
+    lomath.distributeBoth(fn, X, Y) : lomath.distributeLeft(fn, X, Y);
     else
       return Y instanceof Array ?
-        lomath.distributeRight(fn, X, Y) : fn(X, Y);
+    lomath.distributeRight(fn, X, Y) : fn(X, Y);
   },
   /**
    * Generic association: take the arguments object or array and apply atomic function (with scalar arguments) from left to right.
@@ -209,10 +209,10 @@ var lomath = _.mixin({
   // Generic associate: take the arguments object or array and apply atomic fn (non-tensor) from left to right
   asso: function(fn, argObj) {
     var len = argObj.length,
-      i = 0;
+    i = 0;
     // optimize arg form based on length or argObj
     var args = len < 3 ? argObj : _.toArray(argObj),
-      res = fn(args[i++], args[i++]);
+    res = fn(args[i++], args[i++]);
     while (i < len) res = fn(res, args[i++]);
     return res;
   },
@@ -244,10 +244,10 @@ var lomath = _.mixin({
   // Usage: for applying fn on tensors element-wise if they have matching dimensions.
   assodist: function(fn, argObj) {
     var len = argObj.length,
-      i = 0;
+    i = 0;
     // optimize arg form based on length or argObj
     var args = len < 3 ? argObj : _.toArray(argObj),
-      res = lomath.distribute(fn, args[i++], args[i++]);
+    res = lomath.distribute(fn, args[i++], args[i++]);
     while (i < len) res = lomath.distribute(fn, res, args[i++]);
     return res;
   },
@@ -287,10 +287,10 @@ var lomath = _.mixin({
   a_sum: function(T) {
     // actual function call; recurse if need to
     var total = 0,
-      len = T.length;
+    len = T.length;
     while (len--) total += (T[len] instanceof Array ?
       lomath.a_sum(T[len], 0) : T[len])
-    return total;
+      return total;
   },
   /**
    * Sums all scalars in all argument tensors.
@@ -313,16 +313,38 @@ var lomath = _.mixin({
     var len = arguments.length;
     while (len--) res += (arguments[len] instanceof Array ?
       lomath.a_sum(arguments[len]) : arguments[len])
-    return res;
+      return res;
+  },
+  /**
+   * Functional sum, Basically Sigma_i fn(T[i]) with fn(T, i), where T is a tensor, i is first level index.
+   *
+   * @category basics
+   * @param {tensor} T A tensor.
+   * @param {function} fn A function fn(T, i) applied to the i-th term of T for the sum. Note the function can access the whole T for any term i for greater generality.
+   * @returns {scalar} A scalar summed from all the terms from the mapped T fn(T, i).
+   *
+   * @example
+   * // sum of the elements multiplied by indices in a sequence, i.e. Sigma_i i*(x_i)
+   * _.fsum([1,1,1], function(T, i){
+   *   return T[i] * i;
+   * })
+   * // → 0+1+2
+   *
+   */
+   fsum: function(T, fn) {
+    var sum = 0;
+    for (var i = 0; i < T.length; i++)
+      sum += fn(T, i);
+    return sum;
   },
   // atomic prod, analogue to a_sum. Multiply all values in a tensor
   a_prod: function(T) {
     // actual function call; recurse if need to
     var total = 1,
-      len = T.length;
+    len = T.length;
     while (len--) total *= (T[len] instanceof Array ?
       lomath.a_prod(T[len], 1) : T[len])
-    return total;
+      return total;
   },
   /**
    * Multiplies together all scalars in all argument tensors.
@@ -345,10 +367,10 @@ var lomath = _.mixin({
   // product of all values in all arguments
   prod: function() {
     var res = 1,
-      len = arguments.length;
+    len = arguments.length;
     while (len--) res *= (arguments[len] instanceof Array ?
       lomath.a_prod(arguments[len]) : arguments[len])
-    return res;
+      return res;
   },
   // atomic add: add two scalars x, y.
   a_add: function(x, y) {
@@ -505,7 +527,7 @@ var lomath = _.mixin({
    * // → [1, 4]
    *
    */
-  square: function(T) {
+   square: function(T) {
     return lomath.distributeSingle(lomath.a_square, T);
   },
   // atomic root
@@ -515,7 +537,7 @@ var lomath = _.mixin({
       // if odd power
       Math.sign(x) * Math.pow(Math.abs(x), 1 / n) :
       Math.pow(x, 1 / n);
-  },
+    },
   /**
    * Takes the n-th root (defaulted to 2) of tensor T element-wise using `_.distribute`.
    *
@@ -552,7 +574,7 @@ var lomath = _.mixin({
    * // → [ 0.00004539786870243441, 0.5, 0.9999546021312976 ]
    *
    */
-  logistic: function(T) {
+   logistic: function(T) {
     return lomath.distributeSingle(lomath.a_logistic, T);
   },
 
@@ -648,24 +670,34 @@ var lomath = _.mixin({
     return !(x < 0);
   },
   /**
-   * Checks if `x != 0`.
-   *
-   * @category signature
-   * @param {number} x The value to check.
-   * @returns {boolean} true If so.
-   */
-  nonZero: function(x) {
-    return x != 0;
-  },
-  /**
    * Checks if `x == 0`.
    *
    * @category signature
    * @param {number} x The value to check.
    * @returns {boolean} true If so.
    */
-  isZero: function(x) {
+   isZero: function(x) {
     return x == 0;
+  },
+  /**
+   * Checks if `x != 0`.
+   *
+   * @category signature
+   * @param {number} x The value to check.
+   * @returns {boolean} true If so.
+   */
+   nonZero: function(x) {
+    return x != 0;
+  },
+  /**
+   * Checks the parity (even/odd) of x. Useful for when doing the sum with alternating sign.
+   *
+   * @category signature
+   * @param {number} x The value to check.
+   * @returns {number} n -1 if odd, +1 if even.
+   */
+   parity: function(x) {
+    return x % 2 ? -1 : 1;
   },
   /**
    * Checks if signature function is true for all scalars of a tensor.
@@ -684,6 +716,40 @@ var lomath = _.mixin({
   sameSig: function(T, sigFn) {
     return Boolean(lomath.prod(lomath.distributeSingle(sigFn, T)));
   },
+  /**
+   * Checks if two tensors have identifcal entries.
+   *
+   * @category signature
+   * @param {tensor} T A tensor
+   * @param {tensor} S Another tensor
+   * @returns {boolean} match True if tensors are identical, false otherwise.
+   *
+   * @example
+   * _.deepEqual([[1,2],[3,4]], [[1,2],[3,4]])
+   * // → true
+   * _.deepEqual([1,2,3], [1,2,3])
+   * // → true
+   * _.deepEqual([1,2,3], [1,2,3,4])
+   * // → false
+   * _.deepEqual([1,2,3], [1,2,0])
+   * // → false
+   *
+   */
+  // check if all tensor entries are of the same sign, with the specified sign function
+  deepEqual: function(T, S) {
+    if (T.length != S.length) return false;
+    var Left = T, Right = S;
+    if (!lomath.isFlat(T)) {
+      Left = _.flattenDeep(T);
+      Right = _.flattenDeep(S);
+    };
+    var Llen = Left.length,
+    Rlen = Right.length;
+    while(Llen--) {
+      if (Left[Llen] != Right[Llen]) return false;
+    }
+    return true;
+  },
 
   //////////////////////////////////////////
   // Unary functions from JS Math object, //
@@ -699,7 +765,7 @@ var lomath = _.mixin({
    * _.abs([-1, -2, -3])
    * // → [1, 2, 3]
    */
-  abs: function(T) {
+   abs: function(T) {
     return lomath.distributeSingle(Math.abs, T);
   },
   /**
@@ -708,7 +774,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  acos: function(T) {
+   acos: function(T) {
     return lomath.distributeSingle(Math.acos, T);
   },
   /**
@@ -717,7 +783,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  acosh: function(T) {
+   acosh: function(T) {
     return lomath.distributeSingle(Math.acosh, T);
   },
   /**
@@ -726,7 +792,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  asin: function(T) {
+   asin: function(T) {
     return lomath.distributeSingle(Math.asin, T);
   },
   /**
@@ -735,7 +801,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  asinh: function(T) {
+   asinh: function(T) {
     return lomath.distributeSingle(Math.asinh, T);
   },
   /**
@@ -744,7 +810,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  atan: function(T) {
+   atan: function(T) {
     return lomath.distributeSingle(Math.atan, T);
   },
   /**
@@ -753,7 +819,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  atanh: function(T) {
+   atanh: function(T) {
     return lomath.distributeSingle(Math.atanh, T);
   },
   /**
@@ -762,7 +828,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  ceil: function(T) {
+   ceil: function(T) {
     return lomath.distributeSingle(Math.ceil, T);
   },
   /**
@@ -771,7 +837,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  cos: function(T) {
+   cos: function(T) {
     return lomath.distributeSingle(Math.cos, T);
   },
   /**
@@ -780,7 +846,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  cosh: function(T) {
+   cosh: function(T) {
     return lomath.distributeSingle(Math.cosh, T);
   },
   /**
@@ -789,7 +855,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  exp: function(T) {
+   exp: function(T) {
     return lomath.distributeSingle(Math.exp, T);
   },
   /**
@@ -798,7 +864,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  floor: function(T) {
+   floor: function(T) {
     return lomath.distributeSingle(Math.floor, T);
   },
   /**
@@ -807,7 +873,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  log10: function(T) {
+   log10: function(T) {
     return lomath.distributeSingle(Math.log10, T);
   },
   /**
@@ -816,7 +882,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  log1p: function(T) {
+   log1p: function(T) {
     return lomath.distributeSingle(Math.log1p, T);
   },
   /**
@@ -825,7 +891,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  log2: function(T) {
+   log2: function(T) {
     return lomath.distributeSingle(Math.log2, T);
   },
   /**
@@ -834,7 +900,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  round: function(T) {
+   round: function(T) {
     return lomath.distributeSingle(Math.round, T);
   },
   /**
@@ -843,7 +909,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  pow: function(T, n) {
+   pow: function(T, n) {
     return lomath.distribute(Math.pow, T, n);
   },
   /**
@@ -852,7 +918,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  sign: function(T) {
+   sign: function(T) {
     return lomath.distributeSingle(Math.sign, T);
   },
   /**
@@ -861,7 +927,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  sin: function(T) {
+   sin: function(T) {
     return lomath.distributeSingle(Math.sin, T);
   },
   /**
@@ -870,7 +936,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  sinh: function(T) {
+   sinh: function(T) {
     return lomath.distributeSingle(Math.sinh, T);
   },
   /**
@@ -879,7 +945,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  sqrt: function(T) {
+   sqrt: function(T) {
     return lomath.distributeSingle(Math.sqrt, T);
   },
   /**
@@ -888,7 +954,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  tan: function(T) {
+   tan: function(T) {
     return lomath.distributeSingle(Math.tan, T);
   },
   /**
@@ -897,7 +963,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  tanh: function(T) {
+   tanh: function(T) {
     return lomath.distributeSingle(Math.tanh, T);
   },
   /**
@@ -906,7 +972,7 @@ var lomath = _.mixin({
    * @param {tensor} T A tensor.
    * @returns {tensor} T A tensor.
    */
-  trunc: function(T) {
+   trunc: function(T) {
     return lomath.distributeSingle(Math.trunc, T);
   },
 
@@ -1177,7 +1243,7 @@ var lomath = _.mixin({
   // return the depth (rank) of tensor, assuming homogeneity
   depth: function(T) {
     var t = T,
-      d = 0;
+    d = 0;
     while (t.length) {
       d++;
       t = t[0];
@@ -1237,7 +1303,7 @@ var lomath = _.mixin({
   // Get the dimension of a (non-scalar) tensor by _.flattenDeep, assume rectangular
   dim: function(T) {
     var dim = [],
-      ptr = T;
+    ptr = T;
     while (ptr.length) {
       dim.push(ptr.length);
       ptr = ptr[0];
@@ -1265,7 +1331,7 @@ var lomath = _.mixin({
   // check if a tensor is rank-1
   isFlat: function(T) {
     var flat = true,
-      len = T.length;
+    len = T.length;
     while (len--) {
       flat *= !(T[len] instanceof Array);
       if (!flat) break;
@@ -1295,19 +1361,19 @@ var lomath = _.mixin({
   maxDeepestLength: function(T) {
     if (!(T instanceof Array)) return 0;
     var stack = [],
-      sizes = [];
+    sizes = [];
     stack.push(T);
     while (stack.length) {
       var curr = stack.pop(),
-        len = curr.length;
+      len = curr.length;
       if (lomath.isFlat(curr))
         sizes.push(len);
       else
         while (len--)
           stack.push(curr[len]);
-    }
-    return _.max(sizes);
-  },
+      }
+      return _.max(sizes);
+    },
 
   ///////////////////////////
   // Tensor transformation //
@@ -1393,7 +1459,7 @@ var lomath = _.mixin({
   // Mutates the array
   extend: function(arr, toLen, val) {
     var lendiff = toLen - arr.length,
-      rePal = (val == undefined ? 0 : val);
+    rePal = (val == undefined ? 0 : val);
     if (lendiff < 0)
       throw new Error("Array longer than the length to extend to")
     while (lendiff--)
@@ -1508,64 +1574,8 @@ var lomath = _.mixin({
   cbindByField: function(M, fieldArr) {
     // assuming header is first row of matrix
     var header = M[0],
-      fieldInds = lomath.batchIndexOf(header, fieldArr);
+    fieldInds = lomath.batchIndexOf(header, fieldArr);
     return lomath.cbind(M, fieldInds);
-  },
-  /**
-   * Returns a copy of a matrix transposed.
-   *
-   * @category transformation
-   * @param {tensor} M The original matrix.
-   * @returns {tensor} M' The copy transposed matrix.
-   *
-   * @example
-   * _.transpose([[1, 2], [3, 4]])
-   * // → [[ 1, 3 ], [ 2, 4 ]]
-   *
-   */
-  // transpose a matrix
-  transpose: function(M) {
-    return _.zip.apply(null, M);
-  },
-  /**
-   * Returns the trace of a square matrix.
-   *
-   * @category transformation
-   * @param {tensor} M The matrix.
-   * @returns {number} trM The trace of the matrix.
-   *
-   * @example
-   * _.trace([[1, 2], [3, 4]])
-   * // → 5
-   *
-   */
-  // trace a matrix
-  trace: function(M) {
-    var len = M.length,
-    sum = 0;
-    while(len--)
-      sum += M[len][len]
-    return sum;
-  },
-  /**
-   * Multiply two matrices.
-   *
-   * @category transformation
-   * @param {tensor} A The first matrix.
-   * @param {tensor} B The second matrix.
-   * @returns {tensor} AB The two matrices multiplied together.
-   *
-   * @example
-   * _.matMultiply([[1,2],[3,4]], [[1,2],[3,4]])
-   * // → [ [ 7, 10 ], [ 15, 22 ] ]
-   *
-   */
-  // multiply two matrices
-  matMultiply: function(A, B) {
-    var T = lomath.transpose(B);
-    return _.map(A, function(a){
-      return _.map(T, lomath.dot.bind(null, a))
-    })
   },
   /**
    * Makes a tensor rectangular by filling with val (defaulted to 0).
@@ -1593,7 +1603,7 @@ var lomath = _.mixin({
   // mutates the tensor
   rectangularize: function(T, val) {
     var toLen = lomath.maxDeepestLength(T),
-      stack = [];
+    stack = [];
     stack.push(T);
     while (stack.length) {
       var curr = stack.pop();
@@ -1677,10 +1687,222 @@ var lomath = _.mixin({
     }
     return _.object(
       _.map(_flattenJSON(obj, ''), function(i){
-          return i.replace('[', '').replace(']', '')
+        return i.replace('[', '').replace(']', '')
       })
       , _vals)
   },
+
+  //////////////
+  // Matrices //
+  //////////////
+
+  /**
+   * Returns a copy of a matrix transposed.
+   *
+   * @category matrices
+   * @param {tensor} M The original matrix.
+   * @returns {tensor} M' The copy transposed matrix.
+   *
+   * @example
+   * _.transpose([[1, 2], [3, 4]])
+   * // → [[ 1, 3 ], [ 2, 4 ]]
+   *
+   */
+  // transpose a matrix
+  transpose: function(M) {
+    return _.zip.apply(null, M);
+  },
+  /**
+   * Returns the trace of a square matrix.
+   *
+   * @category matrices
+   * @param {tensor} M The matrix.
+   * @returns {number} trM The trace of the matrix.
+   *
+   * @example
+   * _.trace([[1, 2], [3, 4]])
+   * // → 5
+   *
+   */
+  // trace a matrix
+  trace: function(M) {
+    var len = M.length,
+    sum = 0;
+    while(len--)
+      sum += M[len][len]
+    return sum;
+  },
+  /**
+   * Multiply two matrices.
+   *
+   * @category matrices
+   * @param {tensor} A The first matrix.
+   * @param {tensor} B The second matrix.
+   * @returns {tensor} AB The two matrices multiplied together.
+   *
+   * @example
+   * _.matMultiply([[1,2],[3,4]], [[1,2],[3,4]])
+   * // → [ [ 7, 10 ], [ 15, 22 ] ]
+   *
+   */
+  // multiply two matrices
+  matMultiply: function(A, B) {
+    var T = lomath.transpose(B);
+    return _.map(A, function(a){
+      return _.map(T, lomath.dot.bind(null, a))
+    })
+  },
+  /**
+   * Returns the submatrix for calculating cofactor, i.e. by taking out row r, col c from M.
+   *
+   * @category matrices
+   * @param {tensor} M The original matrix.
+   * @param {number} [r=0] The cofactor row.
+   * @param {number} [c=0] The cofactor col.
+   * @returns {tensor} F The submatrix.
+   *
+   * @example
+   * _.coSubMatrix([[1,2,3],[4,5,6],[7,8,9]])
+   * // → [ [ 5, 6 ], [ 8, 9 ] ]
+   *
+   * _.coSubMatrix([[1,2,3],[4,5,6],[7,8,9]], 0, 1)
+   * // → [ [ 4, 6 ], [ 7, 9 ] ]
+   *
+   */
+   coSubMatrix: function(M, r, c) {
+    r = r || 0; c = c || 0;
+    var coSubMat = [];
+    for (var i = 0; i < M.length; i++) {
+      if (i != r) {
+        var row = M[i], coRow = [];
+        for (var j = 0; j < M.length; j++) {
+          if (j != c) coRow.push(row[j]);
+        }
+        coSubMat.push(coRow);
+      }
+    }
+    return coSubMat;
+  },
+  /**
+   * Returns the comatrix, i.e. the minor matrix or matrix of cofactors, of M.
+   *
+   * @category matrices
+   * @param {tensor} M The original matrix.
+   * @returns {tensor} C The comatrix.
+   *
+   * @example
+   * _.coMatrix([[1,2,3],[4,5,6],[11,13,17]])
+   * // → [ [ 7, -2, -3 ], [ 5, -16, 9 ], [ -3, 6, -3 ] ]
+   *
+   */
+   coMatrix: function(M) {
+    var coMat = [];
+    for (var i = 0; i < M.length; i++) {
+      var coRow = [];
+      for (var j = 0; j < M.length; j++) {
+        var subMat = lomath.coSubMatrix(M, i, j);
+        coRow.push(lomath.parity(i+j) * lomath.det(subMat));
+      }
+      coMat.push(coRow);
+    }
+    return coMat;
+  },
+  /**
+   * Returns the adjugate matrix, i.e. the transpose of the comatrix.
+   *
+   * @category matrices
+   * @param {tensor} M The original matrix.
+   * @returns {tensor} A The adj matrix.
+   *
+   * @example
+   * _.adj([[1,2,3],[4,5,6],[11,13,17]])
+   * // → [ [ 7, 5, -3 ], [ -2, -16, 6 ], [ -3, 9, -3 ] ]
+   *
+   */
+   adj: function(M) {
+    var adjMat = [];
+    for (var i = 0; i < M.length; i++) {
+      var adjRow = [];
+      for (var j = 0; j < M.length; j++) {
+        var subMat = lomath.coSubMatrix(M, j, i);
+        adjRow.push(lomath.parity(i+j) * lomath.det(subMat));
+      }
+      adjMat.push(adjRow);
+    }
+    return adjMat;
+  },
+  /**
+   * Helper function for determinant, used with _.fsum. Sums all the cofactors multiplied with the comatrices.
+   *
+   * @category matrices
+   * @param {tensor} M The original matrix.
+   * @param {number} i The index of cofactor, needed for parity.
+   * @returns {number} recursive-sub-determinant Parity * cofactor * det(coSubMatrix)
+   *
+   * @example
+   * _.detSum([[1,2,3],[4,5,6],[11,13,17]], 0)
+   * // → 7
+   * 
+   */
+   detSum: function(M, i) {
+    var sign = lomath.parity(i),
+    cofactor = M[0][i],
+    coSubMat = lomath.coSubMatrix(M, 0, i);
+    return sign * cofactor * lomath.det(coSubMat);
+  },
+  /**
+   * Returns the determinant of a matrix.
+   *
+   * @category matrices
+   * @param {tensor} M The matrix.
+   * @returns {number} det The determinant.
+   *
+   * @example
+   * _.det([[1,2,3],[4,5,6],[11,13,17]])
+   * // → -6
+   * 
+   */
+   det: function(M) {
+    var n = M.length;
+    var det = 0;
+    if (!n) {
+      det = M
+    } else if (n == 1) {
+      det = M[0][0] || M[0]
+    } else if (n == 2) {
+      det = M[0][0] * M[1][1] - M[1][0] * M[0][1]
+    } else {
+      var head = M[0];
+      det += lomath.fsum(M, lomath.detSum)
+    }
+    return det;
+  },
+  /**
+   * Returns the inverse of a matrix, or null if non-invertible.
+   *
+   * @category matrices
+   * @param {tensor} M The matrix.
+   * @returns {tensor} Inv The inverse matrix, or null.
+   *
+   * @example
+   * _.inv([[1,4,7],[3,0,5],[-1,9,11]])
+   * // → [ [ 5.625, -2.375, -2.5 ],
+   * // [ 4.75, -2.25, -2 ],
+   * // [ -3.375, 1.625, 1.5 ] ]
+   *
+   * _.inv([[1,1],[1,1]])
+   * // → null
+   * 
+   */
+   inv: function(M) {
+    var det = lomath.det(M);
+    if (det == 0) return null;
+    else
+      return lomath.multiply(1/det, lomath.adj(M))
+  },
+
+
+
 
   ///////////////////////////////
   // Subsets and combinatorics //
@@ -1706,7 +1928,7 @@ var lomath = _.mixin({
   genAry: function(length, n) {
     var range = _.map(_.range(n), String);
     var tmp = range,
-      it = length;
+    it = length;
     while (--it) {
       tmp = _.flattenDeep(_.map(range, function(x) {
         return lomath.distributeRight(lomath.a_add, x, tmp)
@@ -1754,8 +1976,8 @@ var lomath = _.mixin({
   // generate all permutation subset indices of n items
   pSubset: function(n) {
     var range = _.map(_.range(n), String),
-      res = [],
-      count = n;
+    res = [],
+    count = n;
     res.push(range); //init
     while (--count) {
       // the last batch to expand on
@@ -1765,7 +1987,7 @@ var lomath = _.mixin({
         for (var i = 0; i < n; i++)
           if (!_.contains(k.split(''), String(i)))
             batch.push(k + i);
-      })
+        })
       res.push(batch);
     }
     return res;
@@ -1789,8 +2011,8 @@ var lomath = _.mixin({
   // generate all subset indices of n items
   subset: function(n) {
     var range = _.map(_.range(n), String),
-      res = [],
-      count = n;
+    res = [],
+    count = n;
     res.push(range); //init
     while (--count) {
       // the last batch to expand on
@@ -1860,12 +2082,12 @@ var lomath = _.mixin({
   // generate all permutations of n items
   permute: function(n) {
     var range = _.range(n),
-      res = [],
-      diffs, k = 0;
+    res = [],
+    diffs, k = 0;
     while (k != -1) {
       res.push(range.slice(0));
       diffs = lomath.stairs(range),
-        k = _.findLastIndex(diffs, lomath.isPositive);
+      k = _.findLastIndex(diffs, lomath.isPositive);
       var l = _.findLastIndex(range, function(t) {
         return t > range[k];
       });
@@ -1891,8 +2113,8 @@ var lomath = _.mixin({
   factorial: function(n) {
     if (n == 0) return 1;
     if (n < 0) throw "Negative factorial not defined"
-    var count = n,
-      res = n;
+      var count = n,
+    res = n;
     while (--count)
       res *= count;
     return res;
@@ -1918,8 +2140,8 @@ var lomath = _.mixin({
   permutation: function(n, r) {
     if (r == 0) return 1;
     if (n < 0 || r < 0) throw "Negative permutation not defined"
-    var count = r,
-      term = n;
+      var count = r,
+    term = n;
     res = n;
     while (--count)
       res *= --term;
@@ -1949,7 +2171,7 @@ var lomath = _.mixin({
   combination: function(n, r) {
     var l = (r > n / 2) ? n - r : r;
     if (n < 0 || l < 0) throw "Negative combination not defined"
-    return lomath.permutation(n, l) / lomath.factorial(l);
+      return lomath.permutation(n, l) / lomath.factorial(l);
   },
 
   /////////////////////
@@ -2087,7 +2309,7 @@ var lomath = _.mixin({
   // return the stairs: adjacent difference in a vector
   stairs: function(v) {
     var dlen = v.length - 1,
-      st = Array(dlen);
+    st = Array(dlen);
     while (dlen--)
       st[dlen] = v[dlen + 1] - v[dlen];
     return st;
@@ -2266,8 +2488,8 @@ var lomath = _.mixin({
     // if X, P specified (maybe fn too)
     else if (typeof P === 'object') {
       return fn == undefined ?
-        lomath.expVal(X, P, lomath.a_square) - lomath.a_square(lomath.expVal(X, P)) :
-        lomath.expVal(X, P, _.flow(fn, lomath.a_square)) - lomath.a_square(lomath.expVal(X, P, fn));
+      lomath.expVal(X, P, lomath.a_square) - lomath.a_square(lomath.expVal(X, P)) :
+      lomath.expVal(X, P, _.flow(fn, lomath.a_square)) - lomath.a_square(lomath.expVal(X, P, fn));
     }
     // if X, fn specified
     else if (typeof P === 'function'){
@@ -2342,7 +2564,7 @@ var lomath = _.mixin({
    *
    * 
    */
-  histogram: function(data, fn, pair) {
+   histogram: function(data, fn, pair) {
     if (fn == true) // called with data, pair
       return _.pairs(_.countBy(data));
     var bin = _.countBy(data, fn);
@@ -2493,7 +2715,7 @@ var lomath = _.mixin({
    * // renders the plot
    * hc.render()
    */
-  plot: function(seriesArr, title, yLabel, xLabel) {
+   plot: function(seriesArr, title, yLabel, xLabel) {
     console.log("Please call this method by _.hc.plot");
     return 0;
   },
@@ -2555,7 +2777,7 @@ var lomath = _.mixin({
    * // renders the plot
    * hc.render()
    */
-  advPlot: function(options) {
+   advPlot: function(options) {
     console.log("Please call this method by _.hc.advPlot");
     return 0;
   },
@@ -2575,7 +2797,7 @@ var lomath = _.mixin({
    *
    * // hc.render(true) will autosave all plots.
    */
-  render: function(autosave) {
+   render: function(autosave) {
     console.log("Please call this method by _.hc.advPlot");
     return 0;
   },
@@ -2588,7 +2810,7 @@ var lomath = _.mixin({
    * @category timing
    * @returns {number} ms Result from _.now(), in milliseconds.
    */
-  tick: function() {
+   tick: function() {
     lomath.t_start = _.now();
     return lomath.t_start;
   },
@@ -2604,13 +2826,12 @@ var lomath = _.mixin({
    * // → Returns some time elapsed in ms.
    * 
    */
-  tock: function() {
+   tock: function() {
     lomath.t_end = _.now();
     var diff = lomath.t_end - lomath.t_start;
     console.log('Elapsed ms:', diff);
     return diff;
   }
-
 })
 
 // Export lomath as _

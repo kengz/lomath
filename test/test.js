@@ -1426,6 +1426,11 @@ suite('Subsets and combinatorics', function() {
     before(function() {
       fn = _.pSubset
     })
+    test('0 elements', function() {
+      fn(0).should.deep.equal([
+        []
+        ])
+    })
     test('3 elements', function() {
       fn(3).should.deep.equal([
         ['0', '1', '2'],
@@ -1440,6 +1445,11 @@ suite('Subsets and combinatorics', function() {
     var fn;
     before(function() {
       fn = _.subset
+    })
+    test('0 elements', function() {
+      fn(0).should.deep.equal([
+        []
+        ])
     })
     test('3 elements', function() {
       fn(3).should.deep.equal([

@@ -1979,6 +1979,7 @@ var lomath = _.mixin({
     res = [],
     count = n;
     res.push(range); //init
+    if (count == 0) return res;
     while (--count) {
       // the last batch to expand on
       var last = _.last(res);
@@ -2014,6 +2015,7 @@ var lomath = _.mixin({
     res = [],
     count = n;
     res.push(range); //init
+    if (count == 0) return res;
     while (--count) {
       // the last batch to expand on
       var last = _.last(res);

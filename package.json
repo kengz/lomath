@@ -1,7 +1,7 @@
 {
   "name": "lomath",
-  "version": "0.2.2",
-  "description": "Lomath is the data analysts’ module in Node JS - data analysis and visualization in Node is now possible with lomath.",
+  "version": "0.2.3",
+  "description": "Lomath is the data analysts’ module in node.js - data analysis and visualization in Node is now possible with lomath.",
   "main": "index.js",
   "scripts": {
     "start": "node demo/demo.js",

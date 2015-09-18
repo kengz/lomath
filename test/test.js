@@ -1855,3 +1855,10 @@ suite('timer', function() {
     _.tock().should.be.a('number')
   })
 })
+
+//==============================================
+suite('printer', function() {
+  test('p', function(){
+    _.p("Testing printer")
+  })
+})

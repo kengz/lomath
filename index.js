@@ -2833,6 +2833,21 @@ var lomath = _.mixin({
     var diff = lomath.t_end - lomath.t_start;
     console.log('Elapsed ms:', diff);
     return diff;
+  },
+  /**
+   * Ends a started timer (unique to the whole _ object). Needs to be called after tick. If called again, will give the next lap (starting from the last tick).
+   *
+   * @category timing
+   * @returns {number} ms Difference between now and the last _.tick() in milliseconds.
+   * @example
+   * _.tick()
+   * // ... run some functions here, use promise for better flow control.
+   * someTaskwithPromise().then(tock())
+   * // → Returns some time elapsed in ms.
+   * 
+   */
+   p: function() {
+    console.log.apply(null, arguments);
   }
 })
 

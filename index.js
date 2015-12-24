@@ -1691,6 +1691,53 @@ var lomath = _.mixin({
       })
       , _vals)
   },
+  /**
+   * Flattens a JSON object into depth 1, using an optional parameter.
+   *
+   * @category transformation
+   * @param {JSON} obj The original JSON object.
+   * @returns {JSON} flat_obj The flattened (unnested) object.
+   *
+   * @example
+   * formData = {
+   *  update_id: 87654321,
+   *  message: {
+   *      message_id: 12345678,
+   *      from: {
+   *          array: [1,[2],3],
+   *          last_name: 'kengz'
+   *      },
+   *      chat: {
+   *          id: 123454,
+   *          last_name: 'lomath'
+   *      }
+   *  }
+   *
+   * _.flattenObject(formData)
+   * // → { 'update_id': 87654321,
+   * // 'message[message_id]': 12345678,
+   * // 'message[from][array]': [ 1, [ 2 ], 3 ],
+   * // 'message[from][last_name]': 'kengz',
+   * // 'message[chat][id]': 123454,
+   * // 'message[chat][last_name]': 'lomath' }
+   * // The deepest values are not flattened (not stringified)
+   */
+  flattenObject: function(obj, delimiter) {
+    var delim = delimiter || '.'
+    var nobj = {}
+
+    _.each(obj, function(val, key){
+      if (_.isObject(val) && !_.isArray(val)) {
+        var strip = lomath.flattenObject(val, delim)
+        _.each(strip, function(v,k){
+          nobj[key+delim+k] = v
+        })
+      } else {
+        nobj[key] = val
+      }
+    })
+    return nobj
+  },
 
   //////////////
   // Matrices //

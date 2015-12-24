@@ -1243,6 +1243,35 @@ suite('Tensor transformation', function() {
         'message[chat][last_name]': 'lomath' })
     })
   })
+
+  //----------------------------------------------
+  suite('flattenObject(obj)', function() {
+    var fn, R;
+    before(function() {
+      fn = _.flattenObject
+      R = {
+        'level1': {
+          'level2': {
+            'level3': 0,
+            'level3b': 1
+          },
+          'level2b': {
+            'level3': [2,3,4]
+          }
+        }
+      }
+    })
+    test('default delimiter', function() {
+      fn(R).should.deep.equal({ 'level1.level2.level3': 0,
+        'level1.level2.level3b': 1,
+        'level1.level2b.level3': [ 2, 3, 4 ] })
+    })
+    test('custom delimiter', function() {
+      fn(R, '_').should.deep.equal({ 'level1_level2_level3': 0,
+        'level1_level2_level3b': 1,
+        'level1_level2b_level3': [ 2, 3, 4 ] })
+    })
+  })
 })
 
 //==============================================

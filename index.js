@@ -1641,57 +1641,6 @@ var lomath = _.mixin({
     return tensor;
   },
   /**
-   * Flattens a JSON object (removes nestedness) and serialize it for sending over HTTP formData.
-   *
-   * @category transformation
-   * @param {JSON} obj The original JSON object.
-   * @returns {JSON} flat_obj The flattened (unnested) object.
-   *
-   * @example
-   * formData = {
-   *  update_id: 87654321,
-   *  message: {
-   *      message_id: 12345678,
-   *      from: {
-   *          array: [1,[2],3],
-   *          last_name: 'kengz'
-   *      },
-   *      chat: {
-   *          id: 123454,
-   *          last_name: 'lomath'
-   *      }
-   *  }
-   *
-   * _.flattenJSON(formData)
-   * // → { 'update_id': 87654321,
-   * // 'message[message_id]': 12345678,
-   * // 'message[from][array]': [ 1, [ 2 ], 3 ],
-   * // 'message[from][last_name]': 'kengz',
-   * // 'message[chat][id]': 123454,
-   * // 'message[chat][last_name]': 'lomath' }
-   * // The deepest values are not flattened (not stringified)
-   */
-  // use chunk from inside to outside:
-  flattenJSON: function(obj) {
-    // variable to keep the deepest vals traversed in proper order
-    var _vals = [];
-    function _flattenJSON(ins, k) {
-      return _.flatten(_.map(ins, function(val, key) {
-        // if val is JSON object
-        if (_.isObject(val) && !_.isArray(val))
-          return _flattenJSON(ins[key], k + '[' + key + ']')
-        // else if terminates
-        _vals.push(val);
-        return k + '[' + key + ']'
-      }))
-    }
-    return _.object(
-      _.map(_flattenJSON(obj, ''), function(i){
-        return i.replace('[', '').replace(']', '')
-      })
-      , _vals)
-  },
-  /**
    * Flattens a JSON object into depth 1, using an optional parameter.
    *
    * @category transformation
@@ -1700,35 +1649,37 @@ var lomath = _.mixin({
    *
    * @example
    * formData = {
-   *  update_id: 87654321,
-   *  message: {
-   *      message_id: 12345678,
-   *      from: {
-   *          array: [1,[2],3],
-   *          last_name: 'kengz'
+   *    'level1': {
+   *      'level2': {
+   *        'level3': 0,
+   *        'level3b': 1
    *      },
-   *      chat: {
-   *          id: 123454,
-   *          last_name: 'lomath'
+   *      'level2b': {
+   *        'level3': [2,3,4]
    *      }
+   *    }
    *  }
    *
-   * _.flattenObject(formData)
-   * // → { 'update_id': 87654321,
-   * // 'message[message_id]': 12345678,
-   * // 'message[from][array]': [ 1, [ 2 ], 3 ],
-   * // 'message[from][last_name]': 'kengz',
-   * // 'message[chat][id]': 123454,
-   * // 'message[chat][last_name]': 'lomath' }
+   * _.flattenJSON(formData)
+   * // → { 'level1.level2.level3': 0,
+   * // 'level1.level2.level3b': 1,
+   * // 'level1.level2b.level3': [ 2, 3, 4 ] }
    * // The deepest values are not flattened (not stringified)
+   * 
+   * _.flattenJSON(formData, '_')
+   * // → { 'level1_level2_level3': 0,
+   * // 'level1_level2_level3b': 1,
+   * // 'level1_level2b_level3': [ 2, 3, 4 ] }
+   * // The deepest values are not flattened (not stringified)
+   * 
    */
-  flattenObject: function(obj, delimiter) {
+  flattenJSON: function(obj, delimiter) {
     var delim = delimiter || '.'
     var nobj = {}
 
     _.each(obj, function(val, key){
       if (_.isObject(val) && !_.isArray(val)) {
-        var strip = lomath.flattenObject(val, delim)
+        var strip = lomath.flattenJSON(val, delim)
         _.each(strip, function(v,k){
           nobj[key+delim+k] = v
         })
@@ -2033,7 +1984,7 @@ var lomath = _.mixin({
       var batch = [];
       _.each(last, function(k) {
         for (var i = 0; i < n; i++)
-          if (!_.contains(k.split(''), String(i)))
+          if (!_.includes(k.split(''), String(i)))
             batch.push(k + i);
         })
       res.push(batch);
@@ -2615,10 +2566,10 @@ var lomath = _.mixin({
    */
    histogram: function(data, fn, pair) {
     if (fn == true) // called with data, pair
-      return _.pairs(_.countBy(data));
+      return _.toPairs(_.countBy(data));
     var bin = _.countBy(data, fn);
     if (pair == true) // called with data, fn, pair
-      return _.pairs(bin);
+      return _.toPairs(bin);
     var freq = _.values(bin);
     return { //called with data, [fn]
       value: _.keys(bin),

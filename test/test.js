@@ -1220,36 +1220,6 @@ suite('Tensor transformation', function() {
     before(function() {
       fn = _.flattenJSON
       R = {
-        update_id: 87654321,
-        message: {
-          message_id: 12345678,
-          from: {
-            array: [1,[2],3],
-            last_name: 'kengz'
-          },
-          chat: {
-            id: 123454,
-            last_name: 'lomath'
-          }
-        }
-      }
-    })
-    test('remove nestedness', function() {
-      fn(R).should.deep.equal({ update_id: 87654321,
-        'message[message_id]': 12345678,
-        'message[from][array]': [ 1, [ 2 ], 3 ],
-        'message[from][last_name]': 'kengz',
-        'message[chat][id]': 123454,
-        'message[chat][last_name]': 'lomath' })
-    })
-  })
-
-  //----------------------------------------------
-  suite('flattenObject(obj)', function() {
-    var fn, R;
-    before(function() {
-      fn = _.flattenObject
-      R = {
         'level1': {
           'level2': {
             'level3': 0,

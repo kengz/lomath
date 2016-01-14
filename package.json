@@ -1,6 +1,6 @@
 {
   "name": "lomath",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Lomath is the data analysts’ module in node.js - data analysis and visualization in Node is now possible with lomath.",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "url": "https://github.com/kengz/lomath.git"
   },
   "dependencies": {
-    "lodash": "^3.9.3"
+    "lodash": "latest"
   },
   "devDependencies": {
     "browser-sync": "^2.7.12",

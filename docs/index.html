@@ -175,6 +175,7 @@
 <div>
 <h2 id="-timing-"><code>timing</code></h2>
 <ul>
+<li><a href="#p"><code>p</code></a></li>
 <li><a href="#tick"><code>tick</code></a></li>
 <li><a href="#tock"><code>tock</code></a></li>
 </ul>
@@ -231,7 +232,7 @@
     <div>
       
 <p><a href="http://badge.fury.io/js/lomath"><img src="https://badge.fury.io/js/lomath.svg" alt="npm version"></a> <a href="https://travis-ci.org/kengz/lomath"><img src="https://travis-ci.org/kengz/lomath.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/r/kengz/lomath?branch=master"><img src="https://coveralls.io/repos/kengz/lomath/badge.svg?branch=master" alt="Coverage Status"></a> <a href="https://gemnasium.com/kengz/lomath"><img src="https://gemnasium.com/kengz/lomath.svg" alt="Dependency Status"></a></p>
-<p><a href="https://github.com/kengz/lomath"><strong>Lomath</strong></a> is the data analysts&#x2019; module in <code>Node JS</code> - data analysis and visualization in <code>Node</code> is now possible with <code>lomath</code>.</p>
+<p><a href="https://github.com/kengz/lomath"><strong>Lomath</strong></a> is the data analysts&apos; module in <code>Node JS</code> - data analysis and visualization in <code>Node</code> is now possible with <code>lomath</code>.</p>
 <p>It is the mathematical extension of <a href="https://lodash.com"><code>lodash</code></a> with many high performance functions, generalized and applicable to tensors (multi-arrays). It comes with a standalone plotting module that using <code>HighCharts</code> and <code>BrowserSync</code>.</p>
 <p>See the <a href="http://kengz.github.io/lomath/">API documentation</a>. For the included functions, see the <a href="https://lodash.com/docs">lodash API documentation</a>.</p>
 <h2 id="community">Community</h2>
@@ -240,7 +241,7 @@
 <p><strong>Installation</strong>:</p>
 <pre><code>npm install lomath
 </code></pre><p>To use the plotting module, do:</p>
-<pre><code><span class="hljs-comment">// in the terminal at your project&apos;s root, do:</span>
+<pre><code>// in the terminal at your project&apos;s root, do:
 cd node_modules/lomath
 npm install
 </code></pre><h2 id="usage">Usage</h2>
@@ -268,7 +269,7 @@ npm install
 <td style="text-align:left">matrix = rank-2 tensor</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x2026;and so on</td>
+<td style="text-align:left">...and so on</td>
 <td style="text-align:left">rank-n tensor</td>
 </tr>
 </tbody>
@@ -278,51 +279,51 @@ npm install
 <p><img src="./docs/demo.gif" alt="Sample plot" width="100%" style="display:inline-block"></p>
 <p><code>lomath</code> comes with a standalone plotting module that using <code>HighCharts</code> and <code>BrowserSync</code>. Just run your JS file normally when you plot (example below), and it will automatically pull up a browser showing you the charts; you can save them!</p>
 <p><strong>Demo</strong>: see <code>demo/demo.js</code> for magic.</p>
-<pre><code><span class="hljs-keyword">var</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;lomath&apos;</span>);
+<pre><code>var _ = require(&apos;lomath&apos;);
 
-<span class="hljs-comment">// use lodash as usual</span>
-<span class="hljs-keyword">var</span> v = _.range(<span class="hljs-number">10</span>);
+// use lodash as usual
+var v = _.range(10);
 
-<span class="hljs-comment">// lomath: generalized math functions applicable to multi-array</span>
-<span class="hljs-keyword">var</span> vv = _.square(v);
+// lomath: generalized math functions applicable to multi-array
+var vv = _.square(v);
 
-<span class="hljs-built_in">console</span>.log(v);
-<span class="hljs-built_in">console</span>.log(vv);
+console.log(v);
+console.log(vv);
 
-<span class="hljs-comment">// prints all the functions in lomath</span>
-<span class="hljs-comment">// console.log(_.functions(_));</span>
+// prints all the functions in lomath
+// console.log(_.functions(_));
 
 
-<span class="hljs-comment">// data visualization: highcharts plotter</span>
-<span class="hljs-comment">// call contructor of highcharts plotter. Note the ()</span>
-<span class="hljs-keyword">var</span> hc = _.hc();
+// data visualization: highcharts plotter
+// call contructor of highcharts plotter. Note the ()
+var hc = _.hc();
 
-<span class="hljs-comment">// first, list all you wish to plot.</span>
+// first, list all you wish to plot.
 hc.plot(
     [{
-        name: <span class="hljs-string">&quot;linear&quot;</span>,
+        name: &quot;linear&quot;,
         data: v
     }, {
-        name: <span class="hljs-string">&quot;square&quot;</span>,
+        name: &quot;square&quot;,
         data: vv
     }],
-    <span class="hljs-string">&quot;Title 1&quot;</span>
+    &quot;Title 1&quot;
     )
 
 hc.plot(
     [{
-        name: <span class="hljs-string">&quot;log&quot;</span>,
+        name: &quot;log&quot;,
         data: _.log(v)
     }],
-    <span class="hljs-string">&quot;Title 2&quot;</span>
+    &quot;Title 2&quot;
     )
 
-<span class="hljs-comment">//optionally you can use the original HighCharts plot options object by:</span>
+//optionally you can use the original HighCharts plot options object by:
 hc.advPlot(HighChartsOptions);
 
-<span class="hljs-comment">// Magic here! Finally, the command to render all the plots above.</span>
-<span class="hljs-comment">// Pulls up a browser (default to chrome for better support) with the charts.</span>
-<span class="hljs-comment">// calling hc.render(true) will autosave all plots to your downloads folder.</span>
+// Magic here! Finally, the command to render all the plots above.
+// Pulls up a browser (default to chrome for better support) with the charts.
+// calling hc.render(true) will autosave all plots to your downloads folder.
 hc.render();
 </code></pre><h2 id="roadmap">Roadmap</h2>
 <ul>
@@ -346,22 +347,22 @@ hc.render();
 <p>Adds tensors using <code>_.assodist</code>.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
-<li><code>[...X]</code> <em>(&#x2026;tensors)</em>: tensors.</li>
+<li><code>[...X]</code> <em>(...tensors)</em>: tensors.</li>
 </ol>
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  A tensor.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.add(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
-<span class="hljs-comment">// &#x2192; 6</span>
+<pre><code class="lang-js">_.add(1, 2, 3)
+// &#x2192; 6
 
-_.add(<span class="hljs-number">1</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
-<span class="hljs-comment">// &#x2192; [2, 3, 4]</span>
+_.add(1, [1, 2, 3])
+// &#x2192; [2, 3, 4]
 
-_.add(<span class="hljs-number">1</span>, [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; [[2, 3], [4, 5]]</span>
+_.add(1, [[1, 2], [3, 4]])
+// &#x2192; [[2, 3], [4, 5]]
 
-_.add([<span class="hljs-number">10</span>, <span class="hljs-number">20</span>], [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; [[11, 12], [23, 24]]</span>
+_.add([10, 20], [[1, 2], [3, 4]])
+// &#x2192; [[11, 12], [23, 24]]
 </code></pre>
 <hr>
 </div>
@@ -371,19 +372,19 @@ _.add([<span class="hljs-number">10</span>, <span class="hljs-number">20</span>]
 <p>Concatenates all arguments into single vector by <code>_.flattenDeep</code>.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
-<li><code>[...X]</code> <em>(&#x2026;tensors)</em>: tensors.</li>
+<li><code>[...X]</code> <em>(...tensors)</em>: tensors.</li>
 </ol>
 <h4 id="returns">Returns</h4>
 <p><em>(vector)</em>:  A vector with the scalars from all tensors.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.c(<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>)
-<span class="hljs-comment">// &#x2192; [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]</span>
+<pre><code class="lang-js">_.c(&apos;a&apos;, &apos;b&apos;, &apos;c&apos;)
+// &#x2192; [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]
 
-_.c(<span class="hljs-number">1</span>, [<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>], <span class="hljs-number">2</span>)
-<span class="hljs-comment">// &#x2192; [1, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, 2]</span>
+_.c(1, [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], 2)
+// &#x2192; [1, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, 2]
 
-_.c([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
-<span class="hljs-comment">// &#x2192; [1, 2, 3, 4]</span>
+_.c([[1, 2], [3, 4])
+// &#x2192; [1, 2, 3, 4]
 </code></pre>
 <hr>
 </div>
@@ -393,22 +394,22 @@ _.c([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [
 <p>Divides tensors using <code>_.assodist</code>.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
-<li><code>[...X]</code> <em>(&#x2026;tensors)</em>: tensors.</li>
+<li><code>[...X]</code> <em>(...tensors)</em>: tensors.</li>
 </ol>
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  A tensor.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.divide(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>)
-<span class="hljs-comment">// &#x2192; 1.5</span>
+<pre><code class="lang-js">_.divide(3, 2, 1)
+// &#x2192; 1.5
 
-_.divide([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <span class="hljs-number">2</span>)
-<span class="hljs-comment">// &#x2192; [0.5, 1, 1.5]</span>
+_.divide([1, 2, 3], 2)
+// &#x2192; [0.5, 1, 1.5]
 
-_.divide([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]], <span class="hljs-number">2</span>)
-<span class="hljs-comment">// &#x2192; [[0.5, 1], [1.5, 2]]</span>
+_.divide([[1, 2], [3, 4]], 2)
+// &#x2192; [[0.5, 1], [1.5, 2]]
 
-_.divide([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>])
-<span class="hljs-comment">// &#x2192; [[1, 2], [1.5, 2]]</span>
+_.divide([[1, 2], [3, 4]], [1, 2])
+// &#x2192; [[1, 2], [1.5, 2]]
 </code></pre>
 <hr>
 </div>
@@ -424,11 +425,11 @@ _.divide([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span
 <h4 id="returns">Returns</h4>
 <p><em>(scalar)</em>:  A scalar summed from all the terms from the mapped T fn(T, i).</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-comment">// sum of the elements multiplied by indices in a sequence, i.e. Sigma_i i*(x_i)</span>
-_.fsum([<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>], <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T, i</span>)</span>{
-  <span class="hljs-keyword">return</span> T[i] * i;
+<pre><code class="lang-js">// sum of the elements multiplied by indices in a sequence, i.e. Sigma_i i*(x_i)
+_.fsum([1,1,1], function(T, i){
+  return T[i] * i;
 })
-<span class="hljs-comment">// &#x2192; 0+1+2</span>
+// &#x2192; 0+1+2
 </code></pre>
 <hr>
 </div>
@@ -444,8 +445,8 @@ _.fsum([<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<s
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  A tensor.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.log([<span class="hljs-number">1</span>, <span class="hljs-built_in">Math</span>.E])
-<span class="hljs-comment">// &#x2192; [0, 1]</span>
+<pre><code class="lang-js">_.log([1, Math.E])
+// &#x2192; [0, 1]
 </code></pre>
 <hr>
 </div>
@@ -460,8 +461,8 @@ _.fsum([<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<s
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  A tensor.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.logistic([-<span class="hljs-number">10</span>, <span class="hljs-number">0</span>, <span class="hljs-number">10</span>])
-<span class="hljs-comment">// &#x2192; [ 0.00004539786870243441, 0.5, 0.9999546021312976 ]</span>
+<pre><code class="lang-js">_.logistic([-10, 0, 10])
+// &#x2192; [ 0.00004539786870243441, 0.5, 0.9999546021312976 ]
 </code></pre>
 <hr>
 </div>
@@ -471,22 +472,22 @@ _.fsum([<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<s
 <p>Multiplies tensors using <code>_.assodist</code>.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
-<li><code>[...X]</code> <em>(&#x2026;tensors)</em>: tensors.</li>
+<li><code>[...X]</code> <em>(...tensors)</em>: tensors.</li>
 </ol>
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  A tensor.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.multiply(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
-<span class="hljs-comment">// &#x2192; 6</span>
+<pre><code class="lang-js">_.multiply(1, 2, 3)
+// &#x2192; 6
 
-_.multiply(<span class="hljs-number">1</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
-<span class="hljs-comment">// &#x2192; [1, 2, 3]</span>
+_.multiply(1, [1, 2, 3])
+// &#x2192; [1, 2, 3]
 
-_.multiply(<span class="hljs-number">1</span>, [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; [[1, 2], [3, 4]]</span>
+_.multiply(1, [[1, 2], [3, 4]])
+// &#x2192; [[1, 2], [3, 4]]
 
-_.multiply([<span class="hljs-number">10</span>, <span class="hljs-number">20</span>], [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; [[10, 20], [60, 80]]</span>
+_.multiply([10, 20], [[1, 2], [3, 4]])
+// &#x2192; [[10, 20], [60, 80]]
 </code></pre>
 <hr>
 </div>
@@ -496,19 +497,19 @@ _.multiply([<span class="hljs-number">10</span>, <span class="hljs-number">20</s
 <p>Multiplies together all scalars in all argument tensors.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
-<li><code>[...X]</code> <em>(&#x2026;tensors)</em>: tensors.</li>
+<li><code>[...X]</code> <em>(...tensors)</em>: tensors.</li>
 </ol>
 <h4 id="returns">Returns</h4>
 <p><em>(scalar)</em>:  A product scalar from all scalars in the tensors.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.prod(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
-<span class="hljs-comment">// &#x2192; 6</span>
+<pre><code class="lang-js">_.prod(1, 2, 3)
+// &#x2192; 6
 
-_.prod([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
-<span class="hljs-comment">// &#x2192; 6</span>
+_.prod([1, 2, 3])
+// &#x2192; 6
 
-_.prod(<span class="hljs-number">1</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; 144</span>
+_.prod(1, [1, 2, 3], [[1, 2], [3, 4]])
+// &#x2192; 144
 </code></pre>
 <hr>
 </div>
@@ -524,11 +525,11 @@ _.prod(<span class="hljs-number">1</span>, [<span class="hljs-number">1</span>, 
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  A tensor.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.root([<span class="hljs-number">1</span>, <span class="hljs-number">4</span>])
-<span class="hljs-comment">// &#x2192; [1, 2]</span>
+<pre><code class="lang-js">_.root([1, 4])
+// &#x2192; [1, 2]
 
-_.root([-<span class="hljs-number">1</span>, -<span class="hljs-number">8</span>], <span class="hljs-number">3</span>)
-<span class="hljs-comment">// &#x2192; [-1, -2]</span>
+_.root([-1, -8], 3)
+// &#x2192; [-1, -2]
 </code></pre>
 <hr>
 </div>
@@ -543,8 +544,8 @@ _.root([-<span class="hljs-number">1</span>, -<span class="hljs-number">8</span>
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  A tensor.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.square([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>])
-<span class="hljs-comment">// &#x2192; [1, 4]</span>
+<pre><code class="lang-js">_.square([1, 2])
+// &#x2192; [1, 4]
 </code></pre>
 <hr>
 </div>
@@ -554,22 +555,22 @@ _.root([-<span class="hljs-number">1</span>, -<span class="hljs-number">8</span>
 <p>Subtracts tensors using <code>_.assodist</code>.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
-<li><code>[...X]</code> <em>(&#x2026;tensors)</em>: tensors.</li>
+<li><code>[...X]</code> <em>(...tensors)</em>: tensors.</li>
 </ol>
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  A tensor.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.subtract(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
-<span class="hljs-comment">// &#x2192; -5</span>
+<pre><code class="lang-js">_.subtract(1, 2, 3)
+// &#x2192; -5
 
-_.subtract(<span class="hljs-number">1</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
-<span class="hljs-comment">// &#x2192; [0, -1, -2]</span>
+_.subtract(1, [1, 2, 3])
+// &#x2192; [0, -1, -2]
 
-_.subtract(<span class="hljs-number">1</span>, [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; [[0, -1], [-2, -3]]</span>
+_.subtract(1, [[1, 2], [3, 4]])
+// &#x2192; [[0, -1], [-2, -3]]
 
-_.subtract([<span class="hljs-number">10</span>, <span class="hljs-number">20</span>], [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; [[9, 8], [17, 16]]</span>
+_.subtract([10, 20], [[1, 2], [3, 4]])
+// &#x2192; [[9, 8], [17, 16]]
 </code></pre>
 <hr>
 </div>
@@ -579,16 +580,16 @@ _.subtract([<span class="hljs-number">10</span>, <span class="hljs-number">20</s
 <p>Sums all scalars in all argument tensors.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
-<li><code>[...X]</code> <em>(&#x2026;tensors)</em>: tensors.</li>
+<li><code>[...X]</code> <em>(...tensors)</em>: tensors.</li>
 </ol>
 <h4 id="returns">Returns</h4>
 <p><em>(scalar)</em>:  A scalar summed from all scalars in the tensors.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.sum(<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>)
-<span class="hljs-comment">// &#x2192; &apos;abc&apos;</span>
+<pre><code class="lang-js">_.sum(&apos;a&apos;, &apos;b&apos;, &apos;c&apos;)
+// &#x2192; &apos;abc&apos;
 
-_.sum(<span class="hljs-number">0</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
-<span class="hljs-comment">// &#x2192; 16</span>
+_.sum(0, [1, 2, 3], [[1, 2], [3, 4])
+// &#x2192; 16
 </code></pre>
 <hr>
 </div>
@@ -597,7 +598,7 @@ _.sum(<span class="hljs-number">0</span>, [<span class="hljs-number">1</span>, <
 <h2 id="-combinatorics-methods-"><code>&#x201C;combinatorics&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-comblist-a-comblist-n-r-"><a id="combList"></a><code>combList(n, r)</code></h3>
-<p><a href="#combList">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1899" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#combList">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1903" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Generates the indices of n-choose-r. Calls <code>_.subset</code> internally, chooses the array with string length r, and converts to numbers.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -607,14 +608,14 @@ _.sum(<span class="hljs-number">0</span>, [<span class="hljs-number">1</span>, <
 <h4 id="returns">Returns</h4>
 <p><em>(Array)</em>:  T The array of index arrays specifying the subset indices.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.combList(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>)
-<span class="hljs-comment">// &#x2192; [ [ 0, 1 ], [ 0, 2 ], [ 1, 2 ] ]</span>
+<pre><code class="lang-js">_.combList(3, 2)
+// &#x2192; [ [ 0, 1 ], [ 0, 2 ], [ 1, 2 ] ]
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-combination-a-combination-n-r-"><a id="combination"></a><code>combination(n, r)</code></h3>
-<p><a href="#combination">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2003" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#combination">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2007" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns n-choose-r.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -624,20 +625,20 @@ _.sum(<span class="hljs-number">0</span>, [<span class="hljs-number">1</span>, <
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  nCr</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.combination(<span class="hljs-number">1000</span>, <span class="hljs-number">1</span>)
-<span class="hljs-comment">// &#x2192; 1000</span>
+<pre><code class="lang-js">_.combination(1000, 1)
+// &#x2192; 1000
 
-_.combination(<span class="hljs-number">1000</span>, <span class="hljs-number">1000</span>) <span class="hljs-comment">// No integer overflow; uses symmetry.</span>
-<span class="hljs-comment">// &#x2192; 1</span>
+_.combination(1000, 1000) // No integer overflow; uses symmetry.
+// &#x2192; 1
 
-_.combination(<span class="hljs-number">1000</span>, <span class="hljs-number">500</span>) <span class="hljs-comment">// Inevitable overflow.</span>
-<span class="hljs-comment">// &#x2192; NaN</span>
+_.combination(1000, 500) // Inevitable overflow.
+// &#x2192; NaN
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-factorial-a-factorial-n-"><a id="factorial"></a><code>factorial(n)</code></h3>
-<p><a href="#factorial">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1949" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#factorial">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1953" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns n!.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -646,14 +647,14 @@ _.combination(<span class="hljs-number">1000</span>, <span class="hljs-number">5
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  n!</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.factorial(<span class="hljs-number">5</span>)
-<span class="hljs-comment">// &#x2192; 120</span>
+<pre><code class="lang-js">_.factorial(5)
+// &#x2192; 120
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-genary-a-genary-length-n-"><a id="genAry"></a><code>genAry(length, N)</code></h3>
-<p><a href="#genAry">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1774" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#genAry">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1776" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Generates all the strings of N-nary numbers up to length.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -663,17 +664,17 @@ _.combination(<span class="hljs-number">1000</span>, <span class="hljs-number">5
 <h4 id="returns">Returns</h4>
 <p><em>(Array)</em>:  T The array of strings of the N-nary numbers.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.genAry(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>) <span class="hljs-comment">// binary, length 3</span>
-<span class="hljs-comment">// &#x2192; [&apos;000&apos;, &apos;001&apos;, &apos;010&apos;, &apos;011&apos;, &apos;100&apos;, &apos;101&apos;, &apos;110&apos;, &apos;111&apos;]</span>
+<pre><code class="lang-js">_.genAry(3, 2) // binary, length 3
+// &#x2192; [&apos;000&apos;, &apos;001&apos;, &apos;010&apos;, &apos;011&apos;, &apos;100&apos;, &apos;101&apos;, &apos;110&apos;, &apos;111&apos;]
 
-_.genAry(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// ternary, length 2</span>
-<span class="hljs-comment">// &#x2192; [&apos;00&apos;, &apos;01&apos;, &apos;02&apos;, &apos;10&apos;, &apos;11&apos;, &apos;12&apos;, &apos;20&apos;, &apos;21&apos;, &apos;22&apos;]</span>
+_.genAry(2, 3) // ternary, length 2
+// &#x2192; [&apos;00&apos;, &apos;01&apos;, &apos;02&apos;, &apos;10&apos;, &apos;11&apos;, &apos;12&apos;, &apos;20&apos;, &apos;21&apos;, &apos;22&apos;]
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-psubset-a-psubset-n-"><a id="pSubset"></a><code>pSubset(n)</code></h3>
-<p><a href="#pSubset">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1821" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#pSubset">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1823" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Generates all the permutation subset indices of n items.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -682,18 +683,18 @@ _.genAry(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
 <h4 id="returns">Returns</h4>
 <p><em>(Array)</em>:  T The array of strings of length n, specifying the permutation indices.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.pSubset(<span class="hljs-number">3</span>)
-<span class="hljs-comment">// &#x2192; [</span>
-<span class="hljs-comment">// [&apos;0&apos;, &apos;1&apos;, &apos;2&apos;],</span>
-<span class="hljs-comment">// [&apos;01&apos;, &apos;02&apos;, &apos;10&apos;, &apos;12&apos;, &apos;20&apos;, &apos;21&apos;],</span>
-<span class="hljs-comment">// [&apos;012&apos;, &apos;021&apos;, &apos;102&apos;, &apos;120&apos;, &apos;201&apos;, &apos;210&apos;]</span>
-<span class="hljs-comment">// ]</span>
+<pre><code class="lang-js">_.pSubset(3)
+// &#x2192; [
+// [&apos;0&apos;, &apos;1&apos;, &apos;2&apos;],
+// [&apos;01&apos;, &apos;02&apos;, &apos;10&apos;, &apos;12&apos;, &apos;20&apos;, &apos;21&apos;],
+// [&apos;012&apos;, &apos;021&apos;, &apos;102&apos;, &apos;120&apos;, &apos;201&apos;, &apos;210&apos;]
+// ]
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-permlist-a-permlist-n-r-"><a id="permList"></a><code>permList(n, r)</code></h3>
-<p><a href="#permList">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1883" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#permList">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1887" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Generates the indices of n-permute-r. Calls <code>_.pSubset</code> internally, chooses the array with string length r, and converts to numbers.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -703,14 +704,14 @@ _.genAry(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
 <h4 id="returns">Returns</h4>
 <p><em>(Array)</em>:  T The array of index arrays specifying the permutation indices.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.permList(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>)
-<span class="hljs-comment">// &#x2192; [ [ 0, 1 ], [ 0, 2 ], [ 1, 0 ], [ 1, 2 ], [ 2, 0 ], [ 2, 1 ] ]</span>
+<pre><code class="lang-js">_.permList(3, 2)
+// &#x2192; [ [ 0, 1 ], [ 0, 2 ], [ 1, 0 ], [ 1, 2 ], [ 2, 0 ], [ 2, 1 ] ]
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-permutation-a-permutation-n-r-"><a id="permutation"></a><code>permutation(n, r)</code></h3>
-<p><a href="#permutation">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1974" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#permutation">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1978" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns n-permute-r.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -720,17 +721,17 @@ _.genAry(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  nPr</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.permutation(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>)
-<span class="hljs-comment">// &#x2192; 120</span>
+<pre><code class="lang-js">_.permutation(5, 5)
+// &#x2192; 120
 
-_.permutation(<span class="hljs-number">1000</span>, <span class="hljs-number">1</span>)
-<span class="hljs-comment">// &#x2192; 1000</span>
+_.permutation(1000, 1)
+// &#x2192; 1000
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-permute-a-permute-n-"><a id="permute"></a><code>permute(n)</code></h3>
-<p><a href="#permute">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1921" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#permute">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1925" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Generates the permutation indices of n items in lexicographical order.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -739,21 +740,21 @@ _.permutation(<span class="hljs-number">1000</span>, <span class="hljs-number">1
 <h4 id="returns">Returns</h4>
 <p><em>(Array)</em>:  T The array of index arrays specifying the permutation indices.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.permute(<span class="hljs-number">3</span>)
-<span class="hljs-comment">// &#x2192; [</span>
-<span class="hljs-comment">// [ 0, 1, 2 ],</span>
-<span class="hljs-comment">// [ 0, 2, 1 ],</span>
-<span class="hljs-comment">// [ 1, 0, 2 ],</span>
-<span class="hljs-comment">// [ 1, 2, 0 ],</span>
-<span class="hljs-comment">// [ 2, 0, 1 ],</span>
-<span class="hljs-comment">// [ 2, 1, 0 ]</span>
-<span class="hljs-comment">// ]</span>
+<pre><code class="lang-js">_.permute(3)
+// &#x2192; [
+// [ 0, 1, 2 ],
+// [ 0, 2, 1 ],
+// [ 1, 0, 2 ],
+// [ 1, 2, 0 ],
+// [ 2, 0, 1 ],
+// [ 2, 1, 0 ]
+// ]
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-subset-a-subset-n-"><a id="subset"></a><code>subset(n)</code></h3>
-<p><a href="#subset">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1854" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#subset">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1857" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Generates all the (combination) subset indices of n items.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -762,18 +763,18 @@ _.permutation(<span class="hljs-number">1000</span>, <span class="hljs-number">1
 <h4 id="returns">Returns</h4>
 <p><em>(Array)</em>:  T The array of strings of length n, specifying the subset indices.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.subset(<span class="hljs-number">3</span>)
-<span class="hljs-comment">// &#x2192; [</span>
-<span class="hljs-comment">// [&apos;0&apos;, &apos;1&apos;, &apos;2&apos;],</span>
-<span class="hljs-comment">// [&apos;01&apos;, &apos;02&apos;, &apos;12&apos;],</span>
-<span class="hljs-comment">// [&apos;012&apos;]</span>
-<span class="hljs-comment">// ]</span>
+<pre><code class="lang-js">_.subset(3)
+// &#x2192; [
+// [&apos;0&apos;, &apos;1&apos;, &apos;2&apos;],
+// [&apos;01&apos;, &apos;02&apos;, &apos;12&apos;],
+// [&apos;012&apos;]
+// ]
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-tonumarr-a-tonumarr-strings-"><a id="toNumArr"></a><code>toNumArr(strings)</code></h3>
-<p><a href="#toNumArr">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1798" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#toNumArr">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1800" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Converts an array of strings to array of array of numbers.
 Used with <code>_.genAry</code> and related number/subset-generating functions.</p>
 <h4 id="arguments">Arguments</h4>
@@ -783,8 +784,8 @@ Used with <code>_.genAry</code> and related number/subset-generating functions.<
 <h4 id="returns">Returns</h4>
 <p><em>(Array)</em>:  T The array of array of numbers from the strings.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.toNumArr([<span class="hljs-string">&apos;00&apos;</span>, <span class="hljs-string">&apos;01&apos;</span>, <span class="hljs-string">&apos;10&apos;</span>, <span class="hljs-string">&apos;11&apos;</span>]) <span class="hljs-comment">// binary, length 2</span>
-<span class="hljs-comment">// &#x2192; [[0, 0], [0, 1], [1, 0], [1, 1]]</span>
+<pre><code class="lang-js">_.toNumArr([&apos;00&apos;, &apos;01&apos;, &apos;10&apos;, &apos;11&apos;]) // binary, length 2
+// &#x2192; [[0, 0], [0, 1], [1, 0], [1, 1]]
 </code></pre>
 <hr>
 </div>
@@ -798,17 +799,17 @@ Used with <code>_.genAry</code> and related number/subset-generating functions.<
 <h4 id="arguments">Arguments</h4>
 <ol>
 <li><code>fn</code> <em>(Function)</em>: An atomic binary function <em>(both arguments must be scalars)</em>.</li>
-<li><code>[...x]</code> <em>(&#x2026;number)</em>: Scalars; can be grouped in a single array.</li>
+<li><code>[...x]</code> <em>(...number)</em>: Scalars; can be grouped in a single array.</li>
 </ol>
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  A scalar from the function applied to all arguments in order.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.asso(_.op, <span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>)
-<span class="hljs-comment">// where _.op is used to show the order of composition</span>
-<span class="hljs-comment">// &#x2192; &apos;a*b*c&apos;</span>
+<pre><code class="lang-js">_.asso(_.op, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;)
+// where _.op is used to show the order of composition
+// &#x2192; &apos;a*b*c&apos;
 
-_.asso(_.op, [<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>])
-<span class="hljs-comment">// &#x2192; &apos;a*b*c&apos;</span>
+_.asso(_.op, [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;])
+// &#x2192; &apos;a*b*c&apos;
 </code></pre>
 <hr>
 </div>
@@ -820,23 +821,23 @@ Usage: for applying fn on tensors element-wise if they have compatible dimension
 <h4 id="arguments">Arguments</h4>
 <ol>
 <li><code>fn</code> <em>(Function)</em>: An atomic binary function <em>(both arguments must be scalars)</em>.</li>
-<li><code>[...X]</code> <em>(&#x2026;tensors)</em>: tensors.</li>
+<li><code>[...X]</code> <em>(...tensors)</em>: tensors.</li>
 </ol>
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  A tensor from the function applied to all arguments in order.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.assodist(_.op, <span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>)
-<span class="hljs-comment">// where _.op is used to show the order of composition</span>
-<span class="hljs-comment">// &#x2192; &apos;a*b*c&apos;</span>
+<pre><code class="lang-js">_.assodist(_.op, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;)
+// where _.op is used to show the order of composition
+// &#x2192; &apos;a*b*c&apos;
 
-_.assodist(_.op, <span class="hljs-string">&apos;a&apos;</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <span class="hljs-string">&apos;b&apos;</span>)
-<span class="hljs-comment">// &#x2192; [&apos;a*1*b&apos;, &apos;a*2*b&apos;, &apos;a*3*b&apos;]</span>
+_.assodist(_.op, &apos;a&apos;, [1, 2, 3], &apos;b&apos;)
+// &#x2192; [&apos;a*1*b&apos;, &apos;a*2*b&apos;, &apos;a*3*b&apos;]
 
-_.assodist(_.op, <span class="hljs-string">&apos;a&apos;</span>, [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; [[&apos;a*1&apos;, &apos;a*2&apos;], [&apos;a*3&apos;, &apos;a*4&apos;]]</span>
+_.assodist(_.op, &apos;a&apos;, [[1, 2], [3, 4]])
+// &#x2192; [[&apos;a*1&apos;, &apos;a*2&apos;], [&apos;a*3&apos;, &apos;a*4&apos;]]
 
-_.assodist(_.op, [<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>], [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; [[&apos;a*1&apos;, &apos;a*2&apos;], [&apos;b*3&apos;, &apos;b*4&apos;]]</span>
+_.assodist(_.op, [&apos;a&apos;, &apos;b&apos;], [[1, 2], [3, 4]])
+// &#x2192; [[&apos;a*1&apos;, &apos;a*2&apos;], [&apos;b*3&apos;, &apos;b*4&apos;]]
 </code></pre>
 <hr>
 </div>
@@ -854,21 +855,21 @@ Pairs up the tensors term-wise while descending down the depths recursively usin
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  A tensor from the function applied element-wise between X and Y.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.distribute(_.op, <span class="hljs-string">&apos;a&apos;</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
-<span class="hljs-comment">// where _.op is used to show the order of composition</span>
-<span class="hljs-comment">// &#x2192; [&apos;a*1&apos;, &apos;a*2&apos;, &apos;a*3&apos;]</span>
+<pre><code class="lang-js">_.distribute(_.op, &apos;a&apos;, [1, 2, 3])
+// where _.op is used to show the order of composition
+// &#x2192; [&apos;a*1&apos;, &apos;a*2&apos;, &apos;a*3&apos;]
 
-_.distribute(_.op, <span class="hljs-string">&apos;a&apos;</span>, [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
-<span class="hljs-comment">// &#x2192; [ [ &apos;a*1&apos;, &apos;a*2&apos; ], [ &apos;a*3&apos;, &apos;a*4&apos; ] ]</span>
+_.distribute(_.op, &apos;a&apos;, [[1, 2], [3, 4])
+// &#x2192; [ [ &apos;a*1&apos;, &apos;a*2&apos; ], [ &apos;a*3&apos;, &apos;a*4&apos; ] ]
 
-_.distribute(_.op, [<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
-<span class="hljs-comment">// &#x2192; [ &apos;a*1&apos;, &apos;b*2&apos;, &apos;c*3&apos; ]</span>
+_.distribute(_.op, [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], [1, 2, 3])
+// &#x2192; [ &apos;a*1&apos;, &apos;b*2&apos;, &apos;c*3&apos; ]
 
-_.distribute(_.op, [<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>])
-<span class="hljs-comment">// &#x2192; [ &apos;a*1&apos;, &apos;b*2&apos;, &apos;c*3&apos; , &apos;a*4&apos;, &apos;b*5&apos;, &apos;c*6&apos;]</span>
+_.distribute(_.op, [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], [1, 2, 3, 4, 5, 6])
+// &#x2192; [ &apos;a*1&apos;, &apos;b*2&apos;, &apos;c*3&apos; , &apos;a*4&apos;, &apos;b*5&apos;, &apos;c*6&apos;]
 
-_.distribute(_.op, [<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>], [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>], [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>]])
-<span class="hljs-comment">// &#x2192; [ [ &apos;a*1&apos;, &apos;a*2&apos; ], [ &apos;b*3&apos;, &apos;b*4&apos; ], [ &apos;c*5&apos;, &apos;c*6&apos; ] ]</span>
+_.distribute(_.op, [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], [[1, 2], [3, 4], [5, 6]])
+// &#x2192; [ [ &apos;a*1&apos;, &apos;a*2&apos; ], [ &apos;b*3&apos;, &apos;b*4&apos; ], [ &apos;c*5&apos;, &apos;c*6&apos; ] ]
 </code></pre>
 <hr>
 </div>
@@ -886,15 +887,15 @@ If at any depth X and Y have different lengths, recycle if the mod of lengths is
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  A tensor from the function applied element-wise between X and Y.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.distributeBoth(_.op, [<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
-<span class="hljs-comment">// where _.op is used to show the order of composition</span>
-<span class="hljs-comment">// &#x2192; [ &apos;a*1&apos;, &apos;b*2&apos;, &apos;c*3&apos; ]</span>
+<pre><code class="lang-js">_.distributeBoth(_.op, [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], [1, 2, 3])
+// where _.op is used to show the order of composition
+// &#x2192; [ &apos;a*1&apos;, &apos;b*2&apos;, &apos;c*3&apos; ]
 
-_.distributeBoth(_.op, [<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>])
-<span class="hljs-comment">// &#x2192; [ &apos;a*1&apos;, &apos;b*2&apos;, &apos;c*3&apos; , &apos;a*4&apos;, &apos;b*5&apos;, &apos;c*6&apos;]</span>
+_.distributeBoth(_.op, [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], [1, 2, 3, 4, 5, 6])
+// &#x2192; [ &apos;a*1&apos;, &apos;b*2&apos;, &apos;c*3&apos; , &apos;a*4&apos;, &apos;b*5&apos;, &apos;c*6&apos;]
 
-_.distributeBoth(_.op, [<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>], [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>], [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>]])
-<span class="hljs-comment">// &#x2192; [ [ &apos;a*1&apos;, &apos;a*2&apos; ], [ &apos;b*3&apos;, &apos;b*4&apos; ], [ &apos;c*5&apos;, &apos;c*6&apos; ] ]</span>
+_.distributeBoth(_.op, [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], [[1, 2], [3, 4], [5, 6]])
+// &#x2192; [ [ &apos;a*1&apos;, &apos;a*2&apos; ], [ &apos;b*3&apos;, &apos;b*4&apos; ], [ &apos;c*5&apos;, &apos;c*6&apos; ] ]
 </code></pre>
 <hr>
 </div>
@@ -911,12 +912,12 @@ _.distributeBoth(_.op, [<span class="hljs-string">&apos;a&apos;</span>, <span cl
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  A tensor from the function applied element-wise between X and y.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.distributeLeft(_.op([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], <span class="hljs-number">5</span>))
-<span class="hljs-comment">// where _.op is used to show the order of composition</span>
-<span class="hljs-comment">// &#x2192; [ &apos;1*5&apos;, &apos;2*5&apos;, &apos;3*5&apos;, &apos;4*5&apos; ]</span>
+<pre><code class="lang-js">_.distributeLeft(_.op([1, 2, 3, 4], 5))
+// where _.op is used to show the order of composition
+// &#x2192; [ &apos;1*5&apos;, &apos;2*5&apos;, &apos;3*5&apos;, &apos;4*5&apos; ]
 
-_.distributeLeft(_.op, [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]], <span class="hljs-number">5</span>)
-<span class="hljs-comment">// &#x2192; [ [ &apos;1*5&apos;, &apos;2*5&apos; ], [ &apos;3*5&apos;, &apos;4*5&apos; ] ]</span>
+_.distributeLeft(_.op, [[1, 2], [3, 4]], 5)
+// &#x2192; [ [ &apos;1*5&apos;, &apos;2*5&apos; ], [ &apos;3*5&apos;, &apos;4*5&apos; ] ]
 </code></pre>
 <hr>
 </div>
@@ -933,12 +934,12 @@ _.distributeLeft(_.op, [[<span class="hljs-number">1</span>, <span class="hljs-n
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  A tensor from the function applied element-wise between x and Y.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.distributeRight(_.op, <span class="hljs-number">5</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
-<span class="hljs-comment">// where _.op is used to show the order of composition</span>
-<span class="hljs-comment">// &#x2192; [ &apos;5*1&apos;, &apos;5*2&apos;, &apos;5*3&apos;, &apos;5*4&apos; ]</span>
+<pre><code class="lang-js">_.distributeRight(_.op, 5, [1, 2, 3, 4])
+// where _.op is used to show the order of composition
+// &#x2192; [ &apos;5*1&apos;, &apos;5*2&apos;, &apos;5*3&apos;, &apos;5*4&apos; ]
 
-_.distributeRight(_.op, <span class="hljs-number">5</span>, [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; [ [ &apos;5*1&apos;, &apos;5*2&apos; ], [ &apos;5*3&apos;, &apos;5*4&apos; ] ]</span>
+_.distributeRight(_.op, 5, [[1, 2], [3, 4]])
+// &#x2192; [ [ &apos;5*1&apos;, &apos;5*2&apos; ], [ &apos;5*3&apos;, &apos;5*4&apos; ] ]
 </code></pre>
 <hr>
 </div>
@@ -954,11 +955,11 @@ _.distributeRight(_.op, <span class="hljs-number">5</span>, [[<span class="hljs-
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  A tensor from the function applied element-wise to Y.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.distributeSingle(_.square, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
-<span class="hljs-comment">// &#x2192; [ 1, 4, 9, 16 ]</span>
+<pre><code class="lang-js">_.distributeSingle(_.square, [1, 2, 3, 4])
+// &#x2192; [ 1, 4, 9, 16 ]
 
-_.distributeSingle(_.square, [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; [ [ 1, 4 ], [ 9, 16 ] ]</span>
+_.distributeSingle(_.square, [[1, 2], [3, 4]])
+// &#x2192; [ [ 1, 4 ], [ 9, 16 ] ]
 </code></pre>
 <hr>
 </div>
@@ -972,8 +973,8 @@ _.distributeSingle(_.square, [[<span class="hljs-number">1</span>, <span class="
 <li><code>y</code> <em>(*)</em>: An argument.</li>
 </ol>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.op(<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>)
-<span class="hljs-comment">// &#x2192; &apos;a*b&apos;</span>
+<pre><code class="lang-js">_.op(&apos;a&apos;, &apos;b&apos;)
+// &#x2192; &apos;a*b&apos;
 </code></pre>
 <hr>
 </div>
@@ -992,18 +993,18 @@ _.distributeSingle(_.square, [[<span class="hljs-number">1</span>, <span class="
 <h4 id="returns">Returns</h4>
 <p><em>(Array)</em>:  filled An array initialized to the value.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.numeric(<span class="hljs-number">3</span>)
-<span class="hljs-comment">// &#x2192; [0, 0, 0]</span>
+<pre><code class="lang-js">_.numeric(3)
+// &#x2192; [0, 0, 0]
 
-_.numeric(<span class="hljs-number">3</span>, <span class="hljs-string">&apos;a&apos;</span>)
-<span class="hljs-comment">// &#x2192; [&apos;a&apos;, &apos;a&apos;, &apos;a&apos;]</span>
+_.numeric(3, &apos;a&apos;)
+// &#x2192; [&apos;a&apos;, &apos;a&apos;, &apos;a&apos;]
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-seq-a-seq-start-0-end-step-1-"><a id="seq"></a><code>seq([start=0], end, [step=1])</code></h3>
 <p><a href="#seq">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1082" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
-<p>Returns a sequence of numbers from start to end, with interval. Similar to lodash&#x2019;s <code>_.range</code> but the default starts from 1; this is for <code>R</code> users who are familiar with <code>seq()</code>.</p>
+<p>Returns a sequence of numbers from start to end, with interval. Similar to lodash&apos;s <code>_.range</code> but the default starts from 1; this is for <code>R</code> users who are familiar with <code>seq()</code>.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
 <li><code>[start=0]</code> <em>(number)</em>: The start value.</li>
@@ -1013,14 +1014,14 @@ _.numeric(<span class="hljs-number">3</span>, <span class="hljs-string">&apos;a&
 <h4 id="returns">Returns</h4>
 <p><em>(Array)</em>:  seq An array initialized to the sequence.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.seq(<span class="hljs-number">3</span>)
-<span class="hljs-comment">// &#x2192; [1, 2, 3]</span>
+<pre><code class="lang-js">_.seq(3)
+// &#x2192; [1, 2, 3]
 
-_.seq(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>)
-<span class="hljs-comment">// &#x2192; [2, 3, 4]</span>
+_.seq(2, 4)
+// &#x2192; [2, 3, 4]
 
-_.seq(<span class="hljs-number">1</span>, <span class="hljs-number">9</span>, <span class="hljs-number">2</span>)
-[ <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span> ]
+_.seq(1, 9, 2)
+[ 1, 3, 5, 7, 9 ]
 </code></pre>
 <hr>
 </div>
@@ -1029,7 +1030,7 @@ _.seq(<span class="hljs-number">1</span>, <span class="hljs-number">9</span>, <s
 <h2 id="-matrices-methods-"><code>&#x201C;matrices&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-adj-a-adj-m-"><a id="adj"></a><code>adj(M)</code></h3>
-<p><a href="#adj">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1676" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#adj">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1678" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the adjugate matrix, i.e. the transpose of the comatrix.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1038,14 +1039,14 @@ _.seq(<span class="hljs-number">1</span>, <span class="hljs-number">9</span>, <s
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  A The adj matrix.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.adj([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>],[<span class="hljs-number">11</span>,<span class="hljs-number">13</span>,<span class="hljs-number">17</span>]])
-<span class="hljs-comment">// &#x2192; [ [ 7, 5, -3 ], [ -2, -16, 6 ], [ -3, 9, -3 ] ]</span>
+<pre><code class="lang-js">_.adj([[1,2,3],[4,5,6],[11,13,17]])
+// &#x2192; [ [ 7, 5, -3 ], [ -2, -16, 6 ], [ -3, 9, -3 ] ]
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-comatrix-a-comatrix-m-"><a id="coMatrix"></a><code>coMatrix(M)</code></h3>
-<p><a href="#coMatrix">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1652" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#coMatrix">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1654" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the comatrix, i.e. the minor matrix or matrix of cofactors, of M.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1054,14 +1055,14 @@ _.seq(<span class="hljs-number">1</span>, <span class="hljs-number">9</span>, <s
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  C The comatrix.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.coMatrix([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>],[<span class="hljs-number">11</span>,<span class="hljs-number">13</span>,<span class="hljs-number">17</span>]])
-<span class="hljs-comment">// &#x2192; [ [ 7, -2, -3 ], [ 5, -16, 9 ], [ -3, 6, -3 ] ]</span>
+<pre><code class="lang-js">_.coMatrix([[1,2,3],[4,5,6],[11,13,17]])
+// &#x2192; [ [ 7, -2, -3 ], [ 5, -16, 9 ], [ -3, 6, -3 ] ]
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-cosubmatrix-a-cosubmatrix-m-r-0-c-0-"><a id="coSubMatrix"></a><code>coSubMatrix(M, [r=0], [c=0])</code></h3>
-<p><a href="#coSubMatrix">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1626" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#coSubMatrix">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1628" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the submatrix for calculating cofactor, i.e. by taking out row r, col c from M.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1072,17 +1073,17 @@ _.seq(<span class="hljs-number">1</span>, <span class="hljs-number">9</span>, <s
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  F The submatrix.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.coSubMatrix([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>],[<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>]])
-<span class="hljs-comment">// &#x2192; [ [ 5, 6 ], [ 8, 9 ] ]</span>
+<pre><code class="lang-js">_.coSubMatrix([[1,2,3],[4,5,6],[7,8,9]])
+// &#x2192; [ [ 5, 6 ], [ 8, 9 ] ]
 
-_.coSubMatrix([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>],[<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>]], <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
-<span class="hljs-comment">// &#x2192; [ [ 4, 6 ], [ 7, 9 ] ]</span>
+_.coSubMatrix([[1,2,3],[4,5,6],[7,8,9]], 0, 1)
+// &#x2192; [ [ 4, 6 ], [ 7, 9 ] ]
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-det-a-det-m-"><a id="det"></a><code>det(M)</code></h3>
-<p><a href="#det">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1719" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#det">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1721" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the determinant of a matrix.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1091,14 +1092,14 @@ _.coSubMatrix([[<span class="hljs-number">1</span>,<span class="hljs-number">2</
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  det The determinant.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.det([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>],[<span class="hljs-number">11</span>,<span class="hljs-number">13</span>,<span class="hljs-number">17</span>]])
-<span class="hljs-comment">// &#x2192; -6</span>
+<pre><code class="lang-js">_.det([[1,2,3],[4,5,6],[11,13,17]])
+// &#x2192; -6
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-detsum-a-detsum-m-i-"><a id="detSum"></a><code>detSum(M, i)</code></h3>
-<p><a href="#detSum">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1701" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#detSum">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1703" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Helper function for determinant, used with _.fsum. Sums all the cofactors multiplied with the comatrices.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1108,14 +1109,14 @@ _.coSubMatrix([[<span class="hljs-number">1</span>,<span class="hljs-number">2</
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  recursive-sub-determinant Parity * cofactor * det(coSubMatrix)</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.detSum([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>],[<span class="hljs-number">11</span>,<span class="hljs-number">13</span>,<span class="hljs-number">17</span>]], <span class="hljs-number">0</span>)
-<span class="hljs-comment">// &#x2192; 7</span>
+<pre><code class="lang-js">_.detSum([[1,2,3],[4,5,6],[11,13,17]], 0)
+// &#x2192; 7
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-inv-a-inv-m-"><a id="inv"></a><code>inv(M)</code></h3>
-<p><a href="#inv">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1751" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#inv">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1753" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the inverse of a matrix, or null if non-invertible.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1124,19 +1125,19 @@ _.coSubMatrix([[<span class="hljs-number">1</span>,<span class="hljs-number">2</
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  Inv The inverse matrix, or null.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.inv([[<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">7</span>],[<span class="hljs-number">3</span>,<span class="hljs-number">0</span>,<span class="hljs-number">5</span>],[-<span class="hljs-number">1</span>,<span class="hljs-number">9</span>,<span class="hljs-number">11</span>]])
-<span class="hljs-comment">// &#x2192; [ [ 5.625, -2.375, -2.5 ],</span>
-<span class="hljs-comment">// [ 4.75, -2.25, -2 ],</span>
-<span class="hljs-comment">// [ -3.375, 1.625, 1.5 ] ]</span>
+<pre><code class="lang-js">_.inv([[1,4,7],[3,0,5],[-1,9,11]])
+// &#x2192; [ [ 5.625, -2.375, -2.5 ],
+// [ 4.75, -2.25, -2 ],
+// [ -3.375, 1.625, 1.5 ] ]
 
-_.inv([[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]])
-<span class="hljs-comment">// &#x2192; null</span>
+_.inv([[1,1],[1,1]])
+// &#x2192; null
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-matmultiply-a-matmultiply-a-b-"><a id="matMultiply"></a><code>matMultiply(A, B)</code></h3>
-<p><a href="#matMultiply">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1603" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#matMultiply">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1605" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Multiply two matrices.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1146,14 +1147,14 @@ _.inv([[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>],[
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  AB The two matrices multiplied together.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.matMultiply([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>],[<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]], [[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>],[<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; [ [ 7, 10 ], [ 15, 22 ] ]</span>
+<pre><code class="lang-js">_.matMultiply([[1,2],[3,4]], [[1,2],[3,4]])
+// &#x2192; [ [ 7, 10 ], [ 15, 22 ] ]
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-trace-a-trace-m-"><a id="trace"></a><code>trace(M)</code></h3>
-<p><a href="#trace">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1583" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#trace">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1585" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the trace of a square matrix.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1162,24 +1163,24 @@ _.inv([[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>],[
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  trM The trace of the matrix.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.trace([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; 5</span>
+<pre><code class="lang-js">_.trace([[1, 2], [3, 4]])
+// &#x2192; 5
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-transpose-a-transpose-m-"><a id="transpose"></a><code>transpose(M)</code></h3>
-<p><a href="#transpose">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1568" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#transpose">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1570" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns a copy of a matrix transposed.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
 <li><code>M</code> <em>(tensor)</em>: The original matrix.</li>
 </ol>
 <h4 id="returns">Returns</h4>
-<p><em>(tensor)</em>:  M&#x2019; The copy transposed matrix.</p>
+<p><em>(tensor)</em>:  M&apos; The copy transposed matrix.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.transpose([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; [[ 1, 3 ], [ 2, 4 ]]</span>
+<pre><code class="lang-js">_.transpose([[1, 2], [3, 4]])
+// &#x2192; [[ 1, 3 ], [ 2, 4 ]]
 </code></pre>
 <hr>
 </div>
@@ -1197,8 +1198,8 @@ _.inv([[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>],[
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  T A tensor.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.abs([-<span class="hljs-number">1</span>, -<span class="hljs-number">2</span>, -<span class="hljs-number">3</span>])
-<span class="hljs-comment">// &#x2192; [1, 2, 3]</span>
+<pre><code class="lang-js">_.abs([-1, -2, -3])
+// &#x2192; [1, 2, 3]
 </code></pre>
 <hr>
 </div>
@@ -1483,7 +1484,7 @@ _.inv([[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>],[
 <h2 id="-plotting-methods-"><code>&#x201C;plotting&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-advplot-a-advplot-options-"><a id="advPlot"></a><code>advPlot(options)</code></h3>
-<p><a href="#advPlot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2560" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#advPlot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2564" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Method of the constructed <code>hc</code> object.
 Advanced plotting for users familiar with HighCharts (see <a href="http://www.highcharts.com">http://www.highcharts.com</a>).
 This is a highcharts wrapper; takes in a complete HighCharts plot options object.</p>
@@ -1494,109 +1495,109 @@ This is a highcharts wrapper; takes in a complete HighCharts plot options object
 <h4 id="returns">Returns</h4>
 <p><em>(Object)</em>:  options The options passed, for reference.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-comment">// Plots using the highcharts options</span>
+<pre><code class="lang-js">// Plots using the highcharts options
 hc.advPlot({
    chart: {
-        type: <span class="hljs-string">&apos;column&apos;</span>
+        type: &apos;column&apos;
     },
     title: {
-        text: <span class="hljs-string">&apos;Monthly Average Rainfall&apos;</span>
+        text: &apos;Monthly Average Rainfall&apos;
     },
     subtitle: {
-        text: <span class="hljs-string">&apos;Source: WorldClimate.com&apos;</span>
+        text: &apos;Source: WorldClimate.com&apos;
     },
     xAxis: {
-        categories: [<span class="hljs-string">&apos;Jan&apos;</span>, <span class="hljs-string">&apos;Feb&apos;</span>, <span class="hljs-string">&apos;Mar&apos;</span>, <span class="hljs-string">&apos;Apr&apos;</span>, <span class="hljs-string">&apos;May&apos;</span>, <span class="hljs-string">&apos;Jun&apos;</span>],
-        crosshair: <span class="hljs-literal">true</span>
+        categories: [&apos;Jan&apos;, &apos;Feb&apos;, &apos;Mar&apos;, &apos;Apr&apos;, &apos;May&apos;, &apos;Jun&apos;],
+        crosshair: true
     },
     yAxis: {
-        min: <span class="hljs-number">0</span>,
+        min: 0,
         title: {
-            text: <span class="hljs-string">&apos;Rainfall (mm)&apos;</span>
+            text: &apos;Rainfall (mm)&apos;
         }
     },
     plotOptions: {
         column: {
-            pointPadding: <span class="hljs-number">0.2</span>,
-            borderWidth: <span class="hljs-number">0</span>
+            pointPadding: 0.2,
+            borderWidth: 0
         }
     },
     series: [{
-        name: <span class="hljs-string">&apos;Tokyo&apos;</span>,
-        data: [<span class="hljs-number">49.9</span>, <span class="hljs-number">71.5</span>, <span class="hljs-number">106.4</span>, <span class="hljs-number">129.2</span>, <span class="hljs-number">144.0</span>, <span class="hljs-number">176.0</span>]
+        name: &apos;Tokyo&apos;,
+        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0]
 
     }, {
-        name: <span class="hljs-string">&apos;New York&apos;</span>,
-        data: [<span class="hljs-number">83.6</span>, <span class="hljs-number">78.8</span>, <span class="hljs-number">98.5</span>, <span class="hljs-number">93.4</span>, <span class="hljs-number">106.0</span>, <span class="hljs-number">84.5</span>]
+        name: &apos;New York&apos;,
+        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5]
 
     }, {
-        name: <span class="hljs-string">&apos;London&apos;</span>,
-        data: [<span class="hljs-number">48.9</span>, <span class="hljs-number">38.8</span>, <span class="hljs-number">39.3</span>, <span class="hljs-number">41.4</span>, <span class="hljs-number">47.0</span>, <span class="hljs-number">48.3</span>]
+        name: &apos;London&apos;,
+        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3]
 
     }, {
-        name: <span class="hljs-string">&apos;Berlin&apos;</span>,
-        data: [<span class="hljs-number">42.4</span>, <span class="hljs-number">33.2</span>, <span class="hljs-number">34.5</span>, <span class="hljs-number">39.7</span>, <span class="hljs-number">52.6</span>, <span class="hljs-number">75.5</span>]
+        name: &apos;Berlin&apos;,
+        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5]
 
     }]
        })
-<span class="hljs-comment">// renders the plot</span>
+// renders the plot
 hc.render()
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-hc-a-hc-"><a id="hc"></a><code>hc()</code></h3>
-<p><a href="#hc">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2457" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#hc">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2461" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>The plotting module constructor.
 Uses <code>HighCharts</code> to plot and <code>browserSync</code>. Pulls up browser directly showing your charts like magic!
 To use this, go into <code>node_modules/lomath</code> and do <code>npm install</code> there to install the dev dependencies.</p>
 <h4 id="returns">Returns</h4>
 <p><em>(Object)</em>:  hc The plotting module of lomath.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-comment">// in the terminal at your project&apos;s root, do:</span>
+<pre><code class="lang-js">// in the terminal at your project&apos;s root, do:
 cd node_modules/lomath
 npm install
 
-<span class="hljs-comment">// Go back to your project .js file</span>
-<span class="hljs-keyword">var</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;lomath&apos;</span>);
+// Go back to your project .js file
+var _ = require(&apos;lomath&apos;);
 
-<span class="hljs-keyword">var</span> v = _.range(<span class="hljs-number">10</span>);
-<span class="hljs-keyword">var</span> vv = _.square(v);
+var v = _.range(10);
+var vv = _.square(v);
 
-<span class="hljs-comment">// Construct the plotting modules</span>
-<span class="hljs-keyword">var</span> hc = _.hc();
+// Construct the plotting modules
+var hc = _.hc();
 
-<span class="hljs-comment">// first, list all you wish to plot.</span>
+// first, list all you wish to plot.
 hc.plot(
        [{
-           name: <span class="hljs-string">&quot;linear&quot;</span>,
+           name: &quot;linear&quot;,
            data: v
        }, {
-           name: <span class="hljs-string">&quot;square&quot;</span>,
+           name: &quot;square&quot;,
            data: vv
        }],
-       <span class="hljs-string">&quot;Title 1&quot;</span>
+       &quot;Title 1&quot;
        )
 hc.plot(
        [{
-           name: <span class="hljs-string">&quot;log&quot;</span>,
+           name: &quot;log&quot;,
            data: _.log(v)
        }],
-       <span class="hljs-string">&quot;Title 2&quot;</span>
+       &quot;Title 2&quot;
        )
 
-<span class="hljs-comment">// Finally, the command to render all the plots above.</span>
-<span class="hljs-comment">// Pulls up a browser (default to chrome for better support) with the charts.</span>
-<span class="hljs-comment">// calling hc.render(true) will autosave all plots to your downloads folder.</span>
+// Finally, the command to render all the plots above.
+// Pulls up a browser (default to chrome for better support) with the charts.
+// calling hc.render(true) will autosave all plots to your downloads folder.
 hc.render();
 
-<span class="hljs-comment">// Magical, eh?</span>
+// Magical, eh?
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-plot-a-plot-seriesarr-title-ylabel-xlabel-"><a id="plot"></a><code>plot(seriesArr, [title=&quot;&quot;], [yLabel=&quot;&quot;], [xLabel=&quot;&quot;])</code></h3>
-<p><a href="#plot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2498" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#plot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2502" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Method of the constructed <code>hc</code> object.
 A simplified wrapper of the HighCharts plot options object.
 Allows one to use simple data plot by specifying data sets in objects consisting of data name and data.
@@ -1611,34 +1612,34 @@ The data specified can be array of y-values, or array of x-y values.</p>
 <h4 id="returns">Returns</h4>
 <p><em>(Object)</em>:  options The options passed, for reference.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-comment">// Plots two data sets using y-values (x-values start from 0).</span>
+<pre><code class="lang-js">// Plots two data sets using y-values (x-values start from 0).
 hc.plot(
        [{
-           name: <span class="hljs-string">&quot;linear&quot;</span>,
-           data: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]
+           name: &quot;linear&quot;,
+           data: [1, 2, 3, 4, 5, 6]
        }, {
-           name: <span class="hljs-string">&quot;square&quot;</span>,
-           data: [<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">9</span>, <span class="hljs-number">16</span>, <span class="hljs-number">25</span>, <span class="hljs-number">36</span>]
+           name: &quot;square&quot;,
+           data: [1, 4, 9, 16, 25, 36]
        }],
-       <span class="hljs-string">&quot;Title 1&quot;</span>
+       &quot;Title 1&quot;
        )
 
-<span class="hljs-comment">// Plots a data set using x-y values.</span>
+// Plots a data set using x-y values.
 hc.plot(
        [{
-           name: <span class="hljs-string">&quot;square&quot;</span>,
-           data: [[<span class="hljs-number">3</span>, <span class="hljs-number">9</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">16</span>], [<span class="hljs-number">5</span>, <span class="hljs-number">25</span>], [<span class="hljs-number">6</span>, <span class="hljs-number">36</span>]]
+           name: &quot;square&quot;,
+           data: [[3, 9], [4, 16], [5, 25], [6, 36]]
        }],
-       <span class="hljs-string">&quot;Title 2&quot;</span>
+       &quot;Title 2&quot;
        )
-<span class="hljs-comment">// renders the plot</span>
+// renders the plot
 hc.render()
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-render-a-render-autosave-"><a id="render"></a><code>render([autosave])</code></h3>
-<p><a href="#render">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2580" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#render">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2584" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Method of the constructed <code>hc</code> object.
 Renders the plots: Launches a browser with all the plots listed before this line. Uses a gulp task and browserSync.
 Pass argument <code>true</code> will auto save all the plots to downloads.</p>
@@ -1650,10 +1651,10 @@ Pass argument <code>true</code> will auto save all the plots to downloads.</p>
 <p><em>(*)</em>:  browser Pulls up a browser.</p>
 <h4 id="example">Example</h4>
 <pre><code class="lang-js">hc.plot(...)
-<span class="hljs-comment">// renders the plot in a browser</span>
+// renders the plot in a browser
 hc.render()
 
-<span class="hljs-comment">// hc.render(true) will autosave all plots.</span>
+// hc.render(true) will autosave all plots.
 </code></pre>
 <hr>
 </div>
@@ -1664,7 +1665,7 @@ hc.render()
 <h3 id="-a-id-depth-a-depth-t-"><a id="depth"></a><code>depth(T)</code></h3>
 <p><a href="#depth">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1136" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the depth of an (nested) array, i.e. the rank of a tensor.
-Scalar = rank-0, vector = rank-1, matrix = rank-2, &#x2026; so on.
+Scalar = rank-0, vector = rank-1, matrix = rank-2, ... so on.
 Note that a tensor has homogenous depth, that is, there cannot tensors of different ranks in the same vector, e.g. [1, [2,3], 4] is prohibited.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1673,21 +1674,21 @@ Note that a tensor has homogenous depth, that is, there cannot tensors of differ
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  depth The depth of the array.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.depth(<span class="hljs-number">0</span>)
-<span class="hljs-comment">// &#x2192; 0</span>
+<pre><code class="lang-js">_.depth(0)
+// &#x2192; 0
 
-_.depth([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
-<span class="hljs-comment">// &#x2192; 1</span>
+_.depth([1, 2, 3])
+// &#x2192; 1
 
-_.depth([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; 2</span>
+_.depth([[1, 2], [3, 4]])
+// &#x2192; 2
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-dim-a-dim-t-"><a id="dim"></a><code>dim(T)</code></h3>
 <p><a href="#dim">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1193" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
-<p>Returns the &#x201C;dimension&#x201D; of a tensor.
+<p>Returns the &quot;dimension&quot; of a tensor.
 Note that a tensor has homogenous depth, that is, there cannot tensors of different ranks in the same vector, e.g. [1, [2,3], 4] is prohibited.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1696,27 +1697,27 @@ Note that a tensor has homogenous depth, that is, there cannot tensors of differ
 <h4 id="returns">Returns</h4>
 <p><em>(Array)</em>:  dim The dimension the tensor.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.dim(<span class="hljs-number">0</span>)
-<span class="hljs-comment">// &#x2192; []</span>
+<pre><code class="lang-js">_.dim(0)
+// &#x2192; []
 
-_.dim([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
-<span class="hljs-comment">// &#x2192; [3]</span>
+_.dim([1, 2, 3])
+// &#x2192; [3]
 
-_.dim([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]])
-<span class="hljs-comment">// &#x2192; [2, 3]</span>
+_.dim([[1, 2, 3], [4, 5, 6]])
+// &#x2192; [2, 3]
 
 _.dim([
-     [[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>],[<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>],[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>]],
-     [[<span class="hljs-number">4</span>,<span class="hljs-number">4</span>,<span class="hljs-number">4</span>,<span class="hljs-number">4</span>],[<span class="hljs-number">5</span>,<span class="hljs-number">5</span>,<span class="hljs-number">5</span>,<span class="hljs-number">5</span>],[<span class="hljs-number">6</span>,<span class="hljs-number">6</span>,<span class="hljs-number">6</span>,<span class="hljs-number">6</span>]]
+     [[1,1,1,1],[2,2,2,2],[3,3,3,3]],
+     [[4,4,4,4],[5,5,5,5],[6,6,6,6]]
    ])
-<span class="hljs-comment">// &#x2192; [2, 3, 4]</span>
+// &#x2192; [2, 3, 4]
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-isflat-a-isflat-t-"><a id="isFlat"></a><code>isFlat(T)</code></h3>
 <p><a href="#isFlat">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1220" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
-<p>Checks if a tensor is &#x201C;flat&#x201D;, i.e. all entries are scalars.</p>
+<p>Checks if a tensor is &quot;flat&quot;, i.e. all entries are scalars.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
 <li><code>T</code> <em>(tensor)</em>: The tensor.</li>
@@ -1724,14 +1725,14 @@ _.dim([
 <h4 id="returns">Returns</h4>
 <p><em>(boolean)</em>:  true If tensor is flat.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.isFlat(<span class="hljs-number">0</span>)
-<span class="hljs-comment">// &#x2192; true</span>
+<pre><code class="lang-js">_.isFlat(0)
+// &#x2192; true
 
-_.isFlat([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
-<span class="hljs-comment">// &#x2192; true</span>
+_.isFlat([1, 2, 3])
+// &#x2192; true
 
-_.isFlat([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; false</span>
+_.isFlat([[1, 2], [3, 4]])
+// &#x2192; false
 </code></pre>
 <hr>
 </div>
@@ -1747,21 +1748,21 @@ Useful for probing the data structure and ensuring tensor is rectangular.</p>
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  length The maximum length of the deepest array in T.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.maxDeepestLength(<span class="hljs-number">0</span>)
-<span class="hljs-comment">// &#x2192; 0</span>
+<pre><code class="lang-js">_.maxDeepestLength(0)
+// &#x2192; 0
 
-_.maxDeepestLength([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
-<span class="hljs-comment">// &#x2192; 3</span>
+_.maxDeepestLength([1, 2, 3])
+// &#x2192; 3
 
-_.maxDeepestLength([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; 2</span>
+_.maxDeepestLength([[1, 2], [3, 4]])
+// &#x2192; 2
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-volume-a-volume-t-"><a id="volume"></a><code>volume(T)</code></h3>
 <p><a href="#volume">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1164" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
-<p>Returns the &#x201C;volume&#x201D; of a tensor, i.e. the totaly number of scalars in it.</p>
+<p>Returns the &quot;volume&quot; of a tensor, i.e. the totaly number of scalars in it.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
 <li><code>T</code> <em>(tensor)</em>: The tensor.</li>
@@ -1769,14 +1770,14 @@ _.maxDeepestLength([[<span class="hljs-number">1</span>, <span class="hljs-numbe
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  volume The number of scalar entries in the tensor.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.volume(<span class="hljs-number">0</span>)
-<span class="hljs-comment">// &#x2192; 0</span>
+<pre><code class="lang-js">_.volume(0)
+// &#x2192; 0
 
-_.volume([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
-<span class="hljs-comment">// &#x2192; 3</span>
+_.volume([1, 2, 3])
+// &#x2192; 3
 
-_.volume([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; 4</span>
+_.volume([[1, 2], [3, 4]])
+// &#x2192; 4
 </code></pre>
 <hr>
 </div>
@@ -1786,23 +1787,23 @@ _.volume([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span
 <div>
 <h3 id="-a-id-reand-a-reand-regexs-"><a id="reAnd"></a><code>reAnd(regexs)</code></h3>
 <p><a href="#reAnd">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1001" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
-<p>Returns a single regex as the &#x201C;AND&#x201D; conjunction of all input regexs. This picks up as MANY adjacent substrings that satisfy all the regexs in order.</p>
+<p>Returns a single regex as the &quot;AND&quot; conjunction of all input regexs. This picks up as MANY adjacent substrings that satisfy all the regexs in order.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
-<li><code>regexs</code> <em>(&#x2026;RegExp)</em>: All the regexs to conjunct together.</li>
+<li><code>regexs</code> <em>(...RegExp)</em>: All the regexs to conjunct together.</li>
 </ol>
 <h4 id="returns">Returns</h4>
 <p><em>(RegExp)</em>:  regex The conjuncted regex of the form <code>(?:re1)...(?:reN)</code></p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> reg1 = _.reAnd(<span class="hljs-string">&apos;foo&apos;</span>, <span class="hljs-regexp">/\d+/</span>)
-<span class="hljs-comment">// &#x2192; /(?:foo)(?:\d+)/</span>
-_.reGet(reg1)(<span class="hljs-string">&apos;Mayfoo1995&apos;</span>)
-<span class="hljs-comment">// &#x2192; &apos;foo1995&apos;</span>
+<pre><code class="lang-js">var reg1 = _.reAnd(&apos;foo&apos;, /\d+/)
+// &#x2192; /(?:foo)(?:\d+)/
+_.reGet(reg1)(&apos;Mayfoo1995&apos;)
+// &#x2192; &apos;foo1995&apos;
 
-<span class="hljs-keyword">var</span> reg2 = _.reAnd(<span class="hljs-regexp">/\d+/</span>, <span class="hljs-string">&apos;foo&apos;</span>) <span class="hljs-comment">// order matters here</span>
-<span class="hljs-comment">// &#x2192; /(?:\d+)(?:foo)/</span>
-_.reGet(reg2)(<span class="hljs-string">&apos;Mayfoo1995&apos;</span>)
-<span class="hljs-comment">// &#x2192; null</span>
+var reg2 = _.reAnd(/\d+/, &apos;foo&apos;) // order matters here
+// &#x2192; /(?:\d+)(?:foo)/
+_.reGet(reg2)(&apos;Mayfoo1995&apos;)
+// &#x2192; null
 </code></pre>
 <hr>
 </div>
@@ -1812,16 +1813,16 @@ _.reGet(reg2)(<span class="hljs-string">&apos;Mayfoo1995&apos;</span>)
 <p>Returns a boolean function that matches all the regexs conjuncted in the specified order.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
-<li><code>regexs</code> <em>(&#x2026;RegExp)</em>: All the regexs to conjunct together.</li>
+<li><code>regexs</code> <em>(...RegExp)</em>: All the regexs to conjunct together.</li>
 </ol>
 <h4 id="returns">Returns</h4>
 <p><em>(Function)</em>:  fn A boolean function used for matching the conjuncted regexs.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.reAndMatch(<span class="hljs-string">&apos;foo&apos;</span>, <span class="hljs-regexp">/\d+/</span>)(<span class="hljs-string">&apos;Mayfoo1995&apos;</span>)
-<span class="hljs-comment">// &#x2192; true</span>
+<pre><code class="lang-js">_.reAndMatch(&apos;foo&apos;, /\d+/)(&apos;Mayfoo1995&apos;)
+// &#x2192; true
 
-_.reAndMatch(<span class="hljs-regexp">/\d+/</span>, <span class="hljs-string">&apos;foo&apos;</span>)(<span class="hljs-string">&apos;Mayfoo1995&apos;</span>) <span class="hljs-comment">// order matters</span>
-<span class="hljs-comment">// &#x2192; false</span>
+_.reAndMatch(/\d+/, &apos;foo&apos;)(&apos;Mayfoo1995&apos;) // order matters
+// &#x2192; false
 </code></pre>
 <hr>
 </div>
@@ -1836,15 +1837,15 @@ _.reAndMatch(<span class="hljs-regexp">/\d+/</span>, <span class="hljs-string">&
 <h4 id="returns">Returns</h4>
 <p><em>(Function)</em>:  fn A function that returns the string matching the regex.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> getBar = _.reGet(<span class="hljs-string">&apos;bar&apos;</span>) <span class="hljs-comment">// using a string</span>
-getBar(<span class="hljs-string">&apos;foobarbaz&apos;</span>)
-<span class="hljs-comment">// &#x2192; &apos;bar&apos;</span>
+<pre><code class="lang-js">var getBar = _.reGet(&apos;bar&apos;) // using a string
+getBar(&apos;foobarbaz&apos;)
+// &#x2192; &apos;bar&apos;
 
-<span class="hljs-keyword">var</span> getNum = _.reGet(<span class="hljs-regexp">/\d+/</span>) <span class="hljs-comment">// using a regex</span>
-getNum(<span class="hljs-string">&apos;May 1995&apos;</span>)
-<span class="hljs-comment">// &#x2192; &apos;1995&apos;</span>
-getNum(<span class="hljs-string">&apos;May&apos;</span>)
-<span class="hljs-comment">// &#x2192; null</span>
+var getNum = _.reGet(/\d+/) // using a regex
+getNum(&apos;May 1995&apos;)
+// &#x2192; &apos;1995&apos;
+getNum(&apos;May&apos;)
+// &#x2192; null
 </code></pre>
 <hr>
 </div>
@@ -1859,13 +1860,13 @@ getNum(<span class="hljs-string">&apos;May&apos;</span>)
 <h4 id="returns">Returns</h4>
 <p><em>(Function)</em>:  fn A boolean function used for matching the regex.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> matcher1 = _.reMatch(<span class="hljs-string">&apos;foo&apos;</span>) <span class="hljs-comment">// using a string</span>
-matcher1(<span class="hljs-string">&apos;foobarbaz&apos;</span>)
-<span class="hljs-comment">// &#x2192; true</span>
+<pre><code class="lang-js">var matcher1 = _.reMatch(&apos;foo&apos;) // using a string
+matcher1(&apos;foobarbaz&apos;)
+// &#x2192; true
 
-<span class="hljs-keyword">var</span> matcher2 = _.reMatch(<span class="hljs-regexp">/\d+/</span>) <span class="hljs-comment">// using a regexp</span>
-matcher2(<span class="hljs-string">&apos;May 1995&apos;</span>)
-<span class="hljs-comment">// &#x2192; true</span>
+var matcher2 = _.reMatch(/\d+/) // using a regexp
+matcher2(&apos;May 1995&apos;)
+// &#x2192; true
 </code></pre>
 <hr>
 </div>
@@ -1880,36 +1881,36 @@ matcher2(<span class="hljs-string">&apos;May 1995&apos;</span>)
 <h4 id="returns">Returns</h4>
 <p><em>(Function)</em>:  fn A boolean function used for dis-matching the regex.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> matcher1 = _.reNotMatch(<span class="hljs-string">&apos;foo&apos;</span>) <span class="hljs-comment">// using a string</span>
-matcher1(<span class="hljs-string">&apos;barbaz&apos;</span>)
-<span class="hljs-comment">// &#x2192; true</span>
+<pre><code class="lang-js">var matcher1 = _.reNotMatch(&apos;foo&apos;) // using a string
+matcher1(&apos;barbaz&apos;)
+// &#x2192; true
 
-<span class="hljs-keyword">var</span> matcher2 = _.reNotMatch(<span class="hljs-regexp">/\d+/</span>) <span class="hljs-comment">// using a regexp</span>
-matcher2(<span class="hljs-string">&apos;foobar&apos;</span>)
-<span class="hljs-comment">// &#x2192; true</span>
+var matcher2 = _.reNotMatch(/\d+/) // using a regexp
+matcher2(&apos;foobar&apos;)
+// &#x2192; true
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-reor-a-reor-regexs-"><a id="reOr"></a><code>reOr(regexs)</code></h3>
 <p><a href="#reOr">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1040" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
-<p>Returns a single regex as the &#x201C;OR&#x201D; union of all input regexs. This picks up the FIRST substring that satisfies any of the regexs in any order.</p>
+<p>Returns a single regex as the &quot;OR&quot; union of all input regexs. This picks up the FIRST substring that satisfies any of the regexs in any order.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
-<li><code>regexs</code> <em>(&#x2026;RegExp)</em>: All the regexs to union together.</li>
+<li><code>regexs</code> <em>(...RegExp)</em>: All the regexs to union together.</li>
 </ol>
 <h4 id="returns">Returns</h4>
 <p><em>(RegExp)</em>:  regex The unioned regex of the form <code>(?:re1)|...|(?:reN)</code></p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> reg1 = _.reOr(<span class="hljs-string">&apos;foo&apos;</span>, <span class="hljs-regexp">/\d+/</span>)
-<span class="hljs-comment">// &#x2192; /(?:foo)|(?:\d+)/</span>
-_.reGet(reg1)(<span class="hljs-string">&apos;Mayfoo1995&apos;</span>)
-<span class="hljs-comment">// &#x2192; &apos;foo&apos;</span>
+<pre><code class="lang-js">var reg1 = _.reOr(&apos;foo&apos;, /\d+/)
+// &#x2192; /(?:foo)|(?:\d+)/
+_.reGet(reg1)(&apos;Mayfoo1995&apos;)
+// &#x2192; &apos;foo&apos;
 
-<span class="hljs-keyword">var</span> reg2 = _.reOr(<span class="hljs-regexp">/\d+/</span>, <span class="hljs-string">&apos;foo&apos;</span>) <span class="hljs-comment">// order doesn&apos;t matter here</span>
-<span class="hljs-comment">// &#x2192; /(?:\d+)|(?:foo)/</span>
-_.reGet(reg2)(<span class="hljs-string">&apos;Mayfoo1995&apos;</span>)
-<span class="hljs-comment">// &#x2192; &apos;foo&apos;</span>
+var reg2 = _.reOr(/\d+/, &apos;foo&apos;) // order doesn&apos;t matter here
+// &#x2192; /(?:\d+)|(?:foo)/
+_.reGet(reg2)(&apos;Mayfoo1995&apos;)
+// &#x2192; &apos;foo&apos;
 </code></pre>
 <hr>
 </div>
@@ -1919,7 +1920,7 @@ _.reGet(reg2)(<span class="hljs-string">&apos;Mayfoo1995&apos;</span>)
 <p>Returns a boolean function that matches any of the regexs in any order.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
-<li><code>regexs</code> <em>(&#x2026;RegExp)</em>: All the regexs to try to match.</li>
+<li><code>regexs</code> <em>(...RegExp)</em>: All the regexs to try to match.</li>
 </ol>
 <h4 id="returns">Returns</h4>
 <p><em>(Function)</em>:  fn A boolean function used for matching the regexs.</p>
@@ -1943,8 +1944,8 @@ _.reOrMatch(\d+/, &apos;foo&apos;)(&apos;Mayfoo1995&apos;) // order doesn&apos;t
 <h4 id="returns">Returns</h4>
 <p><em>(string)</em>:  wrapped The regex wrapped into the form <code>(?:regex)</code></p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.reWrap(<span class="hljs-string">&apos;foo&apos;</span>)
-<span class="hljs-comment">// &#x2192; &apos;(?:foo)&apos;</span>
+<pre><code class="lang-js">_.reWrap(&apos;foo&apos;)
+// &#x2192; &apos;(?:foo)&apos;
 </code></pre>
 <hr>
 </div>
@@ -1963,14 +1964,14 @@ _.reOrMatch(\d+/, &apos;foo&apos;)(&apos;Mayfoo1995&apos;) // order doesn&apos;t
 <h4 id="returns">Returns</h4>
 <p><em>(boolean)</em>:  match True if tensors are identical, false otherwise.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.deepEqual([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>],[<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]], [[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>],[<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; true</span>
-_.deepEqual([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])
-<span class="hljs-comment">// &#x2192; true</span>
-_.deepEqual([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>])
-<span class="hljs-comment">// &#x2192; false</span>
-_.deepEqual([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">0</span>])
-<span class="hljs-comment">// &#x2192; false</span>
+<pre><code class="lang-js">_.deepEqual([[1,2],[3,4]], [[1,2],[3,4]])
+// &#x2192; true
+_.deepEqual([1,2,3], [1,2,3])
+// &#x2192; true
+_.deepEqual([1,2,3], [1,2,3,4])
+// &#x2192; false
+_.deepEqual([1,2,3], [1,2,0])
+// &#x2192; false
 </code></pre>
 <hr>
 </div>
@@ -1987,11 +1988,11 @@ _.deepEqual([<span class="hljs-number">1</span>,<span class="hljs-number">2</spa
 <h4 id="returns">Returns</h4>
 <p><em>(boolean)</em>:  true If <code>x</code> is in range.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.inRange(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>)
-<span class="hljs-comment">// &#x2192; true</span>
+<pre><code class="lang-js">_.inRange(0, 3, 3)
+// &#x2192; true
 
-_.inRange.bind(<span class="hljs-literal">null</span>, <span class="hljs-number">0</span>, <span class="hljs-number">3</span>)(<span class="hljs-number">3</span>)
-<span class="hljs-comment">// &#x2192; true</span>
+_.inRange.bind(null, 0, 3)(3)
+// &#x2192; true
 </code></pre>
 <hr>
 </div>
@@ -2115,8 +2116,8 @@ _.inRange.bind(<span class="hljs-literal">null</span>, <span class="hljs-number"
 <h4 id="returns">Returns</h4>
 <p><em>(boolean)</em>:  true If all scalars of the tensor return true.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.sameSig([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], _.isPositive)
-<span class="hljs-comment">// &#x2192; true</span>
+<pre><code class="lang-js">_.sameSig([1, 2, 3], _.isPositive)
+// &#x2192; true
 </code></pre>
 <hr>
 </div>
@@ -2125,7 +2126,7 @@ _.inRange.bind(<span class="hljs-literal">null</span>, <span class="hljs-number"
 <h2 id="-statistics-methods-"><code>&#x201C;statistics&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-expgrate-a-expgrate-m_f-m_i-t-"><a id="expGRate"></a><code>expGRate(m_f, m_i, t)</code></h3>
-<p><a href="#expGRate">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2382" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#expGRate">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2386" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the rate of return r in % of an exponential growth, given final value m_f, initial value m_i, and time interval t.
 Formula: <code>100 * (Math.exp(Math.log(m_f / m_i) / t) - 1)</code></p>
 <h4 id="arguments">Arguments</h4>
@@ -2137,14 +2138,14 @@ Formula: <code>100 * (Math.exp(Math.log(m_f / m_i) / t) - 1)</code></p>
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  r The growth rate in %.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.expGRate(<span class="hljs-number">8</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>) <span class="hljs-comment">// 100% growth rate over 2 years</span>
-<span class="hljs-comment">// &#x2192; 100</span>
+<pre><code class="lang-js">_.expGRate(8, 2, 2) // 100% growth rate over 2 years
+// &#x2192; 100
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-expval-a-expval-x-p-fn-"><a id="expVal"></a><code>expVal(X, [P], [fn])</code></h3>
-<p><a href="#expVal">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2227" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#expVal">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2231" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the expectation value <code>E(fn(X))</code> of a random variable vector, optionally with the corresponding probability vector, using the random variable function (defaulted to identity).</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2155,25 +2156,25 @@ Formula: <code>100 * (Math.exp(Math.log(m_f / m_i) / t) - 1)</code></p>
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  E(fn(X))</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> X = [-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
-<span class="hljs-keyword">var</span> Y = [-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>]
-<span class="hljs-keyword">var</span> P = [<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.4</span>]
+<pre><code class="lang-js">var X = [-1, 0, 1, 2]
+var Y = [-1,0,0,1,1,1,2,2,2,2]
+var P = [0.1, 0.2, 0.3, 0.4]
 
-_.expVal(Y) <span class="hljs-comment">// using a raw data array, E(X)</span>
-<span class="hljs-comment">// &#x2192; ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)</span>
-_.expVal(X, P) <span class="hljs-comment">// equivalent to Y, but using X and P: E(X)</span>
-<span class="hljs-comment">// &#x2192; ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)</span>
+_.expVal(Y) // using a raw data array, E(X)
+// &#x2192; ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
+_.expVal(X, P) // equivalent to Y, but using X and P: E(X)
+// &#x2192; ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
 
-_.expVal(Y, _.square) <span class="hljs-comment">// using raw data array, E(X^2)</span>
-<span class="hljs-comment">// &#x2192; (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)</span>
-_.expVal(X, P, _.square) <span class="hljs-comment">// equivalent to Y, but using X and P: E(X^2)</span>
-<span class="hljs-comment">// &#x2192; (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)</span>
+_.expVal(Y, _.square) // using raw data array, E(X^2)
+// &#x2192; (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)
+_.expVal(X, P, _.square) // equivalent to Y, but using X and P: E(X^2)
+// &#x2192; (1 * 0.1 + 0 + 1 * 0.3 + 4 * 0.4)
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-mean-a-mean-t-"><a id="mean"></a><code>mean(T)</code></h3>
-<p><a href="#mean">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2199" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#mean">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2203" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the mean/average of a tensor.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2182,17 +2183,17 @@ _.expVal(X, P, _.square) <span class="hljs-comment">// equivalent to Y, but usin
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  mean</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.mean([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
-<span class="hljs-comment">// &#x2192; 2</span>
+<pre><code class="lang-js">_.mean([1, 2, 3])
+// &#x2192; 2
 
-_.mean([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
-<span class="hljs-comment">// &#x2192; 5</span>
+_.mean([[1, 2], [3, 4]])
+// &#x2192; 5
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-stdev-a-stdev-x-p-fn-"><a id="stdev"></a><code>stdev(X, [P], [fn])</code></h3>
-<p><a href="#stdev">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2313" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#stdev">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2317" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the standard deviation <code>sigma(fn(X))</code> of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).
 Simply calles <code>_.variance</code> internally and returns its square root.</p>
 <h4 id="arguments">Arguments</h4>
@@ -2204,25 +2205,25 @@ Simply calles <code>_.variance</code> internally and returns its square root.</p
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  sigma(fn(X))</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> X = [-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
-<span class="hljs-keyword">var</span> Y = [-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>]
-<span class="hljs-keyword">var</span> P = [<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.4</span>]
+<pre><code class="lang-js">var X = [-1, 0, 1, 2]
+var Y = [-1,0,0,1,1,1,2,2,2,2]
+var P = [0.1, 0.2, 0.3, 0.4]
 
-_.stdev(Y) <span class="hljs-comment">// using a raw data array, sigma(X)</span>
-<span class="hljs-comment">// &#x2192; 1</span>
-_.stdev(X, P) <span class="hljs-comment">// equivalent to Y, but using X and P: sigma(X)</span>
-<span class="hljs-comment">// &#x2192; ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)</span>
+_.stdev(Y) // using a raw data array, sigma(X)
+// &#x2192; 1
+_.stdev(X, P) // equivalent to Y, but using X and P: sigma(X)
+// &#x2192; ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
 
-_.stdev(Y, _.square) <span class="hljs-comment">// using raw data array, sigma(X^2)</span>
-<span class="hljs-comment">// &#x2192; 1.673</span>
-_.stdev(X, P, _.square) <span class="hljs-comment">// equivalent to Y, but using X and P: sigma(X^2)</span>
-<span class="hljs-comment">// &#x2192; 1.673</span>
+_.stdev(Y, _.square) // using raw data array, sigma(X^2)
+// &#x2192; 1.673
+_.stdev(X, P, _.square) // equivalent to Y, but using X and P: sigma(X^2)
+// &#x2192; 1.673
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-trailexpgrate-a-trailexpgrate-v-t-"><a id="trailExpGRate"></a><code>trailExpGRate(v, t)</code></h3>
-<p><a href="#trailExpGRate">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2405" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#trailExpGRate">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2409" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the trailing exponential rate of return in the last t years given a vector. Calls <code>_.expGRate</code> internally.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2232,21 +2233,21 @@ _.stdev(X, P, _.square) <span class="hljs-comment">// equivalent to Y, but using
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  r The growth rate in %.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> v = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">8</span>]
-_.trailExpGRate(v, <span class="hljs-number">1</span>)
-<span class="hljs-comment">// &#x2192; 100</span>
+<pre><code class="lang-js">var v = [1, 2, 4, 8]
+_.trailExpGRate(v, 1)
+// &#x2192; 100
 
-_.trailExpGRate(v, <span class="hljs-number">2</span>)
-<span class="hljs-comment">// &#x2192; 100</span>
+_.trailExpGRate(v, 2)
+// &#x2192; 100
 
-_.trailExpGRate(v, <span class="hljs-number">3</span>)
-<span class="hljs-comment">// &#x2192; 100</span>
+_.trailExpGRate(v, 3)
+// &#x2192; 100
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-variance-a-variance-x-p-fn-"><a id="variance"></a><code>variance(X, [P], [fn])</code></h3>
-<p><a href="#variance">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2274" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#variance">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2278" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the variance <code>Var(fn(X))</code> of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2257,19 +2258,19 @@ _.trailExpGRate(v, <span class="hljs-number">3</span>)
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  Var(fn(X))</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> X = [-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
-<span class="hljs-keyword">var</span> Y = [-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>]
-<span class="hljs-keyword">var</span> P = [<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.4</span>]
+<pre><code class="lang-js">var X = [-1, 0, 1, 2]
+var Y = [-1,0,0,1,1,1,2,2,2,2]
+var P = [0.1, 0.2, 0.3, 0.4]
 
-_.variance(Y) <span class="hljs-comment">// using a raw data array, Var(X)</span>
-<span class="hljs-comment">// &#x2192; 1</span>
-_.variance(X, P) <span class="hljs-comment">// equivalent to Y, but using X and P: Var(X)</span>
-<span class="hljs-comment">// &#x2192; ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)</span>
+_.variance(Y) // using a raw data array, Var(X)
+// &#x2192; 1
+_.variance(X, P) // equivalent to Y, but using X and P: Var(X)
+// &#x2192; ((-1) * 0.1 + 0 + 1 * 0.3 + 2 * 0.4)
 
-_.variance(Y, _.square) <span class="hljs-comment">// using raw data array, Var(X^2)</span>
-<span class="hljs-comment">// &#x2192; 2.8</span>
-_.variance(X, P, _.square) <span class="hljs-comment">// equivalent to Y, but using X and P: Var(X^2)</span>
-<span class="hljs-comment">// &#x2192; 2.8</span>
+_.variance(Y, _.square) // using raw data array, Var(X^2)
+// &#x2192; 2.8
+_.variance(X, P, _.square) // equivalent to Y, but using X and P: Var(X^2)
+// &#x2192; 2.8
 </code></pre>
 <hr>
 </div>
@@ -2277,8 +2278,22 @@ _.variance(X, P, _.square) <span class="hljs-comment">// equivalent to Y, but us
 <div>
 <h2 id="-timing-methods-"><code>&#x201C;timing&#x201D; Methods</code></h2>
 <div>
+<h3 id="-a-id-p-a-p-"><a id="p"></a><code>p()</code></h3>
+<p><a href="#p">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2630" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Ends a started timer (unique to the whole _ object). Needs to be called after tick. If called again, will give the next lap (starting from the last tick).</p>
+<h4 id="returns">Returns</h4>
+<p><em>(number)</em>:  ms Difference between now and the last _.tick() in milliseconds.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">_.tick()
+// ... run some functions here, use promise for better flow control.
+someTaskwithPromise().then(tock())
+// &#x2192; Returns some time elapsed in ms.
+</code></pre>
+<hr>
+</div>
+<div>
 <h3 id="-a-id-tick-a-tick-"><a id="tick"></a><code>tick()</code></h3>
-<p><a href="#tick">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2592" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#tick">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2596" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Starts a timer (unique to the whole _ object). Needs to be called before tock. If called again, will restart the timer.</p>
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  ms Result from _.now(), in milliseconds.</p>
@@ -2286,15 +2301,15 @@ _.variance(X, P, _.square) <span class="hljs-comment">// equivalent to Y, but us
 </div>
 <div>
 <h3 id="-a-id-tock-a-tock-"><a id="tock"></a><code>tock()</code></h3>
-<p><a href="#tock">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2608" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#tock">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2612" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Ends a started timer (unique to the whole _ object). Needs to be called after tick. If called again, will give the next lap (starting from the last tick).</p>
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  ms Difference between now and the last _.tick() in milliseconds.</p>
 <h4 id="example">Example</h4>
 <pre><code class="lang-js">_.tick()
-<span class="hljs-comment">// ... run some functions here, use promise for better flow control.</span>
+// ... run some functions here, use promise for better flow control.
 someTaskwithPromise().then(tock())
-<span class="hljs-comment">// &#x2192; Returns some time elapsed in ms.</span>
+// &#x2192; Returns some time elapsed in ms.
 </code></pre>
 <hr>
 </div>
@@ -2314,8 +2329,8 @@ Useful for grabbing the headers in a data set.</p>
 <h4 id="returns">Returns</h4>
 <p><em>(Array)</em>:  inds The indices returned by applying <code>_.indexOf</code> to fields.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.batchIndexOf([<span class="hljs-string">&apos;a&apos;</span>,<span class="hljs-string">&apos;b&apos;</span>,<span class="hljs-string">&apos;c&apos;</span>,<span class="hljs-string">&apos;d&apos;</span>,<span class="hljs-string">&apos;e&apos;</span>,<span class="hljs-string">&apos;f&apos;</span>], [<span class="hljs-number">1</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;a&apos;</span>])
-<span class="hljs-comment">// &#x2192; [-1, 1, 0, 0]</span>
+<pre><code class="lang-js">_.batchIndexOf([&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;e&apos;,&apos;f&apos;], [1, &apos;b&apos;, &apos;a&apos;, &apos;a&apos;])
+// &#x2192; [-1, 1, 0, 0]
 </code></pre>
 <hr>
 </div>
@@ -2330,15 +2345,15 @@ Useful for picking columns from a data matrix/tensor with specified header indic
 <li><code>indArr</code> <em>(Array)</em>: The array of indices specifying the columns of M to pick.</li>
 </ol>
 <h4 id="returns">Returns</h4>
-<p><em>(tensor)</em>:  M&#x2019; The matrix with the selected columns from the indices.</p>
+<p><em>(tensor)</em>:  M&apos; The matrix with the selected columns from the indices.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.cbind([[<span class="hljs-string">&apos;a&apos;</span>,<span class="hljs-string">&apos;b&apos;</span>,<span class="hljs-string">&apos;c&apos;</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[-<span class="hljs-number">1</span>,-<span class="hljs-number">2</span>,-<span class="hljs-number">3</span>]], [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>])
-<span class="hljs-comment">// &#x2192; [ [ &apos;b&apos;, &apos;b&apos;, &apos;c&apos; ], [ 2, 2, 3 ], [ -2, -2, -3 ] ]</span>
+<pre><code class="lang-js">_.cbind([[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;],[1,2,3],[-1,-2,-3]], [1, 1, 2])
+// &#x2192; [ [ &apos;b&apos;, &apos;b&apos;, &apos;c&apos; ], [ 2, 2, 3 ], [ -2, -2, -3 ] ]
 
-<span class="hljs-keyword">var</span> M = [[<span class="hljs-string">&apos;a&apos;</span>,<span class="hljs-string">&apos;b&apos;</span>,<span class="hljs-string">&apos;c&apos;</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[-<span class="hljs-number">1</span>,-<span class="hljs-number">2</span>,-<span class="hljs-number">3</span>]]; <span class="hljs-comment">// using on a dataset</span>
-<span class="hljs-keyword">var</span> titles = M[<span class="hljs-number">0</span>];
-_.cbind(M, _.batchIndexOf(titles, [<span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>]))
-<span class="hljs-comment">// &#x2192; [ [ &apos;b&apos;, &apos;b&apos;, &apos;c&apos; ], [ 2, 2, 3 ], [ -2, -2, -3 ] ]</span>
+var M = [[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;],[1,2,3],[-1,-2,-3]]; // using on a dataset
+var titles = M[0];
+_.cbind(M, _.batchIndexOf(titles, [&apos;b&apos;, &apos;b&apos;, &apos;c&apos;]))
+// &#x2192; [ [ &apos;b&apos;, &apos;b&apos;, &apos;c&apos; ], [ 2, 2, 3 ], [ -2, -2, -3 ] ]
 </code></pre>
 <hr>
 </div>
@@ -2353,11 +2368,11 @@ Useful for picking columns from a data matrix by directly specifying the header 
 <li><code>fields</code> <em>(Array)</em>: The array of fields of the columns of M to pick.</li>
 </ol>
 <h4 id="returns">Returns</h4>
-<p><em>(tensor)</em>:  M&#x2019; The matrix with the selected columns from the fields.</p>
+<p><em>(tensor)</em>:  M&apos; The matrix with the selected columns from the fields.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> M = [[<span class="hljs-string">&apos;a&apos;</span>,<span class="hljs-string">&apos;b&apos;</span>,<span class="hljs-string">&apos;c&apos;</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[-<span class="hljs-number">1</span>,-<span class="hljs-number">2</span>,-<span class="hljs-number">3</span>]]; <span class="hljs-comment">// using on a dataset</span>
-_.cbindByField(M, [<span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>])
-<span class="hljs-comment">// &#x2192; [ [ &apos;b&apos;, &apos;b&apos;, &apos;c&apos; ], [ 2, 2, 3 ], [ -2, -2, -3 ] ]</span>
+<pre><code class="lang-js">var M = [[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;],[1,2,3],[-1,-2,-3]]; // using on a dataset
+_.cbindByField(M, [&apos;b&apos;, &apos;b&apos;, &apos;c&apos;])
+// &#x2192; [ [ &apos;b&apos;, &apos;b&apos;, &apos;c&apos; ], [ 2, 2, 3 ], [ -2, -2, -3 ] ]
 </code></pre>
 <hr>
 </div>
@@ -2375,18 +2390,18 @@ Mutates the array.</p>
 <h4 id="returns">Returns</h4>
 <p><em>(Array)</em>:  T The mutated array after extending.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.extend([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <span class="hljs-number">6</span>)
-<span class="hljs-comment">// &#x2192; [1, 2, 3, 0, 0, 0]</span>
+<pre><code class="lang-js">_.extend([1, 2, 3], 6)
+// &#x2192; [1, 2, 3, 0, 0, 0]
 
-_.extend([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <span class="hljs-number">6</span>, <span class="hljs-string">&apos;a&apos;</span>)
-<span class="hljs-comment">// &#x2192; [1, 2, 3, &apos;a&apos;, &apos;a&apos;, &apos;a&apos;]</span>
+_.extend([1, 2, 3], 6, &apos;a&apos;)
+// &#x2192; [1, 2, 3, &apos;a&apos;, &apos;a&apos;, &apos;a&apos;]
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-flattenjson-a-flattenjson-obj-"><a id="flattenJSON"></a><code>flattenJSON(obj)</code></h3>
-<p><a href="#flattenJSON">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1539" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
-<p>Flattens a JSON object (removes nestedness) and serialize it for sending over HTTP formData.</p>
+<p><a href="#flattenJSON">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1541" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Flattens a JSON object into depth 1, using an optional parameter.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
 <li><code>obj</code> <em>(JSON)</em>: The original JSON object.</li>
@@ -2395,27 +2410,28 @@ _.extend([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>
 <p><em>(JSON)</em>:  flat_obj The flattened <em>(unnested)</em> object.</p>
 <h4 id="example">Example</h4>
 <pre><code class="lang-js">formData = {
- update_id: <span class="hljs-number">87654321</span>,
- message: {
-     message_id: <span class="hljs-number">12345678</span>,
-     from: {
-         array: [<span class="hljs-number">1</span>,[<span class="hljs-number">2</span>],<span class="hljs-number">3</span>],
-         last_name: <span class="hljs-string">&apos;kengz&apos;</span>
+   &apos;level1&apos;: {
+     &apos;level2&apos;: {
+       &apos;level3&apos;: 0,
+       &apos;level3b&apos;: 1
      },
-     chat: {
-         id: <span class="hljs-number">123454</span>,
-         last_name: <span class="hljs-string">&apos;lomath&apos;</span>
+     &apos;level2b&apos;: {
+       &apos;level3&apos;: [2,3,4]
      }
+   }
  }
 
 _.flattenJSON(formData)
-<span class="hljs-comment">// &#x2192; { &apos;update_id&apos;: 87654321,</span>
-<span class="hljs-comment">// &apos;message[message_id]&apos;: 12345678,</span>
-<span class="hljs-comment">// &apos;message[from][array]&apos;: [ 1, [ 2 ], 3 ],</span>
-<span class="hljs-comment">// &apos;message[from][last_name]&apos;: &apos;kengz&apos;,</span>
-<span class="hljs-comment">// &apos;message[chat][id]&apos;: 123454,</span>
-<span class="hljs-comment">// &apos;message[chat][last_name]&apos;: &apos;lomath&apos; }</span>
-<span class="hljs-comment">// The deepest values are not flattened (not stringified)</span>
+// &#x2192; { &apos;level1.level2.level3&apos;: 0,
+// &apos;level1.level2.level3b&apos;: 1,
+// &apos;level1.level2b.level3&apos;: [ 2, 3, 4 ] }
+// The deepest values are not flattened (not stringified)
+
+_.flattenJSON(formData, &apos;_&apos;)
+// &#x2192; { &apos;level1_level2_level3&apos;: 0,
+// &apos;level1_level2_level3b&apos;: 1,
+// &apos;level1_level2b_level3&apos;: [ 2, 3, 4 ] }
+// The deepest values are not flattened (not stringified)
 </code></pre>
 <hr>
 </div>
@@ -2430,10 +2446,10 @@ Useful for picking certain rows from a matrix/tensor.</p>
 <li><code>indArr</code> <em>(Array)</em>: The array of indices specifying the rows of M to pick.</li>
 </ol>
 <h4 id="returns">Returns</h4>
-<p><em>(tensor)</em>:  M&#x2019; The matrix with the selected rows from the indices.</p>
+<p><em>(tensor)</em>:  M&apos; The matrix with the selected rows from the indices.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.rbind([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>],[<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>]], [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>])
-<span class="hljs-comment">// &#x2192; [[4, 5, 6], [4, 5, 6], [7, 8, 9]]</span>
+<pre><code class="lang-js">_.rbind([[1,2,3],[4,5,6],[7,8,9]], [1, 1, 2])
+// &#x2192; [[4, 5, 6], [4, 5, 6], [7, 8, 9]]
 </code></pre>
 <hr>
 </div>
@@ -2450,16 +2466,16 @@ Mutates the tensor.</p>
 <p><em>(tensor)</em>:  T The mutated tensor that is now rectangular.</p>
 <h4 id="example">Example</h4>
 <pre><code class="lang-js">_.rectangularize([
-     [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
-     [<span class="hljs-number">4</span>]
+     [1, 2, 3],
+     [4]
    ])
-<span class="hljs-comment">// &#x2192; [[ 1, 2, 3 ], [ 4, 0, 0 ]]</span>
+// &#x2192; [[ 1, 2, 3 ], [ 4, 0, 0 ]]
 
 _.rectangularize([
-     [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
-     [<span class="hljs-number">4</span>]
-   ], <span class="hljs-string">&apos;a&apos;</span>)
-<span class="hljs-comment">// &#x2192; [[ 1, 2, 3 ], [ 4, &apos;a&apos;, &apos;a&apos; ]]</span>
+     [1, 2, 3],
+     [4]
+   ], &apos;a&apos;)
+// &#x2192; [[ 1, 2, 3 ], [ 4, &apos;a&apos;, &apos;a&apos; ]]
 </code></pre>
 <hr>
 </div>
@@ -2475,11 +2491,11 @@ _.rectangularize([
 <h4 id="returns">Returns</h4>
 <p><em>(tensor)</em>:  T The tensor reshaped from the copied array.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.reshape([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>], [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
-<span class="hljs-comment">// &#x2192; [[ 1, 2, 3 ], [ 4, 5, 6 ]]</span>
+<pre><code class="lang-js">_.reshape([1, 2, 3, 4, 5, 6], [2, 3])
+// &#x2192; [[ 1, 2, 3 ], [ 4, 5, 6 ]]
 
-_.reshape([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
-<span class="hljs-comment">// &#x2192; [[ 1, 2, 3 ], [ 4 ]]</span>
+_.reshape([1, 2, 3, 4], [2, 3])
+// &#x2192; [[ 1, 2, 3 ], [ 4 ]]
 </code></pre>
 <hr>
 </div>
@@ -2496,17 +2512,17 @@ _.reshape([<span class="hljs-number">1</span>, <span class="hljs-number">2</span
 <h4 id="returns">Returns</h4>
 <p><em>(Array)</em>:  R The reversed copy of the array.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.reverse([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>])
-<span class="hljs-comment">// &#x2192; [5, 4, 3, 2, 1, 0]</span>
+<pre><code class="lang-js">_.reverse([0, 1, 2, 3, 4, 5])
+// &#x2192; [5, 4, 3, 2, 1, 0]
 
-_.reverse([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>], <span class="hljs-number">2</span>) <span class="hljs-comment">// reverse from index 2</span>
-<span class="hljs-comment">// &#x2192; [0, 1, 5, 4, 3, 2]</span>
+_.reverse([0, 1, 2, 3, 4, 5], 2) // reverse from index 2
+// &#x2192; [0, 1, 5, 4, 3, 2]
 
-_.reverse([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>], <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>) <span class="hljs-comment">// reverse to index 2</span>
-<span class="hljs-comment">// &#x2192; [2, 1, 0, 3, 4, 5]</span>
+_.reverse([0, 1, 2, 3, 4, 5], null, 2) // reverse to index 2
+// &#x2192; [2, 1, 0, 3, 4, 5]
 
-_.reverse([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>], <span class="hljs-number">2</span>, <span class="hljs-number">4</span>) <span class="hljs-comment">// reverse from index 2 to 4</span>
-<span class="hljs-comment">// &#x2192; [0, 1, 4, 3, 2, 5]</span>
+_.reverse([0, 1, 2, 3, 4, 5], 2, 4) // reverse from index 2 to 4
+// &#x2192; [0, 1, 4, 3, 2, 5]
 </code></pre>
 <hr>
 </div>
@@ -2524,8 +2540,8 @@ Mutates the array.</p>
 <h4 id="returns">Returns</h4>
 <p><em>(Array)</em>:  T The mutated array after swapping.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.swap([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <span class="hljs-number">0</span>, <span class="hljs-number">2</span>)
-<span class="hljs-comment">// &#x2192; [3, 2, 1]</span>
+<pre><code class="lang-js">_.swap([1, 2, 3], 0, 2)
+// &#x2192; [3, 2, 1]
 </code></pre>
 <hr>
 </div>
@@ -2542,8 +2558,8 @@ Used with <code>_.batchIndexOf</code>.</p>
 <h4 id="returns">Returns</h4>
 <p><em>(Array)</em>:  inds A copy of the array with only valid indices.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.validInds([-<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, -<span class="hljs-number">1</span>], <span class="hljs-number">2</span>)
-<span class="hljs-comment">// &#x2192; [0, 2]</span>
+<pre><code class="lang-js">_.validInds([-2, 4, 0, 2, -1], 2)
+// &#x2192; [0, 2]
 </code></pre>
 <hr>
 </div>
@@ -2552,7 +2568,7 @@ Used with <code>_.batchIndexOf</code>.</p>
 <h2 id="-trend-methods-"><code>&#x201C;trend&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-decreasing-a-decreasing-t-"><a id="decreasing"></a><code>decreasing(T)</code></h3>
-<p><a href="#decreasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2170" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#decreasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2174" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Shorthand for <code>_.stairsTrend</code>. Checks if a vector v is decreasing.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2564,7 +2580,7 @@ Used with <code>_.batchIndexOf</code>.</p>
 </div>
 <div>
 <h3 id="-a-id-increasing-a-increasing-t-"><a id="increasing"></a><code>increasing(T)</code></h3>
-<p><a href="#increasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2150" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#increasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2154" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Shorthand for <code>_.stairsTrend</code>. Checks if a vector v is increasing.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2576,7 +2592,7 @@ Used with <code>_.batchIndexOf</code>.</p>
 </div>
 <div>
 <h3 id="-a-id-nondecreasing-a-nondecreasing-t-"><a id="nonDecreasing"></a><code>nonDecreasing(T)</code></h3>
-<p><a href="#nonDecreasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2160" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#nonDecreasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2164" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Shorthand for <code>_.stairsTrend</code>. Checks if a vector v is non-decreasing.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2588,7 +2604,7 @@ Used with <code>_.batchIndexOf</code>.</p>
 </div>
 <div>
 <h3 id="-a-id-nonincreasing-a-nonincreasing-t-"><a id="nonIncreasing"></a><code>nonIncreasing(T)</code></h3>
-<p><a href="#nonIncreasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2180" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#nonIncreasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2184" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Shorthand for <code>_.stairsTrend</code>. Checks if a vector v is non-increasing.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2600,7 +2616,7 @@ Used with <code>_.batchIndexOf</code>.</p>
 </div>
 <div>
 <h3 id="-a-id-stairs-a-stairs-t-"><a id="stairs"></a><code>stairs(T)</code></h3>
-<p><a href="#stairs">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2119" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#stairs">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2123" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the stair, i.e. the adjacent differences in the vector.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2609,14 +2625,14 @@ Used with <code>_.batchIndexOf</code>.</p>
 <h4 id="returns">Returns</h4>
 <p><em>(Array)</em>:  S The array showing adjacent differences.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.stairs([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>])
-<span class="hljs-comment">// &#x2192; [1, 1, 2, 3]</span>
+<pre><code class="lang-js">_.stairs([1, 2, 3, 5, 8])
+// &#x2192; [1, 1, 2, 3]
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-stairstrend-a-stairstrend-t-sigfn-"><a id="stairsTrend"></a><code>stairsTrend(T, sigFn)</code></h3>
-<p><a href="#stairsTrend">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2140" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#stairsTrend">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2144" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Check the trend of the array using a signature function.
 Useful for checking if array entries are increasing.</p>
 <h4 id="arguments">Arguments</h4>
@@ -2627,8 +2643,8 @@ Useful for checking if array entries are increasing.</p>
 <h4 id="returns">Returns</h4>
 <p><em>(boolean)</em>:  true If stairs of T match the sigFn.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.stairsTrend([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>], _.isPositive) <span class="hljs-comment">// Array increasing</span>
-<span class="hljs-comment">// &#x2192; true</span>
+<pre><code class="lang-js">_.stairsTrend([1, 2, 3, 4, 5], _.isPositive) // Array increasing
+// &#x2192; true
 </code></pre>
 <hr>
 </div>
@@ -2637,7 +2653,7 @@ Useful for checking if array entries are increasing.</p>
 <h2 id="-vector-methods-"><code>&#x201C;vector&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-dot-a-dot-x-y-"><a id="dot"></a><code>dot(X, Y)</code></h3>
-<p><a href="#dot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2025" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#dot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2029" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the dot product between two vectors. If lengths mismatch, recycles the shorter vector.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2647,17 +2663,17 @@ Useful for checking if array entries are increasing.</p>
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  X.Y The dot product.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.dot([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
-<span class="hljs-comment">// &#x2192; 14</span>
+<pre><code class="lang-js">_.dot([1, 2, 3], [1, 2, 3])
+// &#x2192; 14
 
-_.dot([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]) <span class="hljs-comment">// recycle</span>
-<span class="hljs-comment">// &#x2192; 46</span>
+_.dot([1, 2, 3, 4, 5, 6], [1, 2, 3]) // recycle
+// &#x2192; 46
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-norm-a-norm-t-n-2-"><a id="norm"></a><code>norm(T, [n=2])</code></h3>
-<p><a href="#norm">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2068" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#norm">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2072" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the L-n norm of a vector, default to L-2 (Euclidean) metric.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2667,17 +2683,17 @@ _.dot([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  num The norm in L-n metric space.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.norm([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]) <span class="hljs-comment">// Euclidean triangle</span>
-<span class="hljs-comment">// &#x2192; 5</span>
+<pre><code class="lang-js">_.norm([3, 4]) // Euclidean triangle
+// &#x2192; 5
 
-_.norm([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>], <span class="hljs-number">1</span>) <span class="hljs-comment">// taxicab metric</span>
-<span class="hljs-comment">// &#x2192; 7</span>
+_.norm([3, 4], 1) // taxicab metric
+// &#x2192; 7
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-normalize-a-normalize-t-n-2-"><a id="normalize"></a><code>normalize(T, [n=2])</code></h3>
-<p><a href="#normalize">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2088" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#normalize">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2092" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns a copy of the vector normalized using L-n metric (defaulted to L-2).</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2685,19 +2701,19 @@ _.norm([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>],
 <li><code>[n=2]</code> <em>(number)</em>: The metric.</li>
 </ol>
 <h4 id="returns">Returns</h4>
-<p><em>(tensor)</em>:  T&#x2019; The normalized tensor.</p>
+<p><em>(tensor)</em>:  T&apos; The normalized tensor.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.normalize([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]) <span class="hljs-comment">// Euclidean triangle</span>
-<span class="hljs-comment">// &#x2192; [0.6, 0.8]</span>
+<pre><code class="lang-js">_.normalize([3, 4]) // Euclidean triangle
+// &#x2192; [0.6, 0.8]
 
-_.normalize([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>], <span class="hljs-number">1</span>) <span class="hljs-comment">// taxicab metric</span>
-<span class="hljs-comment">// &#x2192; [3/7, 4/7]</span>
+_.normalize([3, 4], 1) // taxicab metric
+// &#x2192; [3/7, 4/7]
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-powsum-a-powsum-t-n-2-"><a id="powSum"></a><code>powSum(T, [n=2])</code></h3>
-<p><a href="#powSum">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2048" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#powSum">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2052" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the sums of n-powers (defaulted to 2) of a tensor, i.e. the square of the generalized hypotenuse of a tensor.
 Useful for doing sums of squares/other L-n metrics.</p>
 <h4 id="arguments">Arguments</h4>
@@ -2708,30 +2724,30 @@ Useful for doing sums of squares/other L-n metrics.</p>
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  num The power sum.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.powSum([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
-<span class="hljs-comment">// &#x2192; 14</span>
+<pre><code class="lang-js">_.powSum([1, 2, 3])
+// &#x2192; 14
 
-_.powSum([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <span class="hljs-number">3</span>)
-<span class="hljs-comment">// &#x2192; 36</span>
+_.powSum([1, 2, 3], 3)
+// &#x2192; 36
 
-_.dot([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]], <span class="hljs-number">3</span>) <span class="hljs-comment">// applicable to a tensor</span>
-<span class="hljs-comment">// &#x2192; 100</span>
+_.dot([[1, 2], [3, 4]], 3) // applicable to a tensor
+// &#x2192; 100
 </code></pre>
 <hr>
 </div>
 <div>
 <h3 id="-a-id-rescale-a-rescale-t-"><a id="rescale"></a><code>rescale(T)</code></h3>
-<p><a href="#rescale">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2103" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#rescale">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2107" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns a copy of the vector rescaled to unit length; is the shorthand for <code>_.normalize(v, 1)</code>.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
 <li><code>T</code> <em>(tensor)</em>: A tensor.</li>
 </ol>
 <h4 id="returns">Returns</h4>
-<p><em>(tensor)</em>:  T&#x2019; The rescaled tensor.</p>
+<p><em>(tensor)</em>:  T&apos; The rescaled tensor.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">_.rescale([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
-<span class="hljs-comment">// &#x2192; [3/7, 4/7]</span>
+<pre><code class="lang-js">_.rescale([3, 4])
+// &#x2192; [3/7, 4/7]
 </code></pre>
 <hr>
 </div>
@@ -2740,7 +2756,7 @@ _.dot([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>],
 <h2 id="-methods-"><code>Methods</code></h2>
 <div>
 <h3 id="-a-id-histogram-a-histogram-data-fn-pair-"><a id="histogram"></a><code>histogram(data, [fn], [pair])</code></h3>
-<p><a href="#histogram">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2354" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#histogram">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2358" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns a histogram/distribution from the data. This internally calls <code>_.countBy</code> to group data by bins, using the function if specified.
 Returns the object containing values, frequencies and probabilities as separate array for ease of using them with the statistics methods.</p>
 <h4 id="arguments">Arguments</h4>
@@ -2752,31 +2768,31 @@ Returns the object containing values, frequencies and probabilities as separate 
 <h4 id="returns">Returns</h4>
 <p><em>(Object|Array)</em>:  histogram {value, freq, prob} or array of [value, freq].</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="hljs-comment">// called with data</span>
-<span class="hljs-keyword">var</span> hist = _.histogram([<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>]);
+<pre><code class="lang-js">// called with data
+var hist = _.histogram([&apos;a&apos;, &apos;b&apos;, &apos;b&apos;, &apos;c&apos;, &apos;c&apos;, &apos;c&apos;, &apos;d&apos;, &apos;d&apos;, &apos;d&apos;, &apos;d&apos;]);
 hist.value
-<span class="hljs-comment">// &#x2192; [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;]</span>
+// &#x2192; [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;]
 hist.freq
-<span class="hljs-comment">// &#x2192; [1, 2, 3, 4]</span>
-hist.prob <span class="hljs-comment">// normalized freq as probabiltiy distribution</span>
-<span class="hljs-comment">// &#x2192; [0.1, 0.2, 0.3, 0.4]</span>
+// &#x2192; [1, 2, 3, 4]
+hist.prob // normalized freq as probabiltiy distribution
+// &#x2192; [0.1, 0.2, 0.3, 0.4]
 
-<span class="hljs-comment">// called with data and pair</span>
-_.histogram([<span class="hljs-string">&apos;a&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>, <span class="hljs-string">&apos;d&apos;</span>], <span class="hljs-literal">true</span>);
-<span class="hljs-comment">// &#x2192; [[&apos;a&apos;,1], [&apos;b&apos;,2], [&apos;c&apos;,3], [&apos;d&apos;,4]</span>
+// called with data and pair
+_.histogram([&apos;a&apos;, &apos;b&apos;, &apos;b&apos;, &apos;c&apos;, &apos;c&apos;, &apos;c&apos;, &apos;d&apos;, &apos;d&apos;, &apos;d&apos;, &apos;d&apos;], true);
+// &#x2192; [[&apos;a&apos;,1], [&apos;b&apos;,2], [&apos;c&apos;,3], [&apos;d&apos;,4]
 
-<span class="hljs-comment">// called with data and fn</span>
-<span class="hljs-keyword">var</span> histfloor = _.histogram([<span class="hljs-number">1.1</span>, <span class="hljs-number">2.1</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">3.1</span>, <span class="hljs-number">3.2</span>, <span class="hljs-number">3.3</span>, <span class="hljs-number">4.1</span>, <span class="hljs-number">4.2</span>, <span class="hljs-number">4.3</span>, <span class="hljs-number">4.4</span>], <span class="hljs-built_in">Math</span>.floor);
+// called with data and fn
+var histfloor = _.histogram([1.1, 2.1, 2.2, 3.1, 3.2, 3.3, 4.1, 4.2, 4.3, 4.4], Math.floor);
 histfloor.value
-<span class="hljs-comment">// &#x2192; [ &apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos; ] // Note the keys from _.countBy are strings</span>
+// &#x2192; [ &apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos; ] // Note the keys from _.countBy are strings
 hist.freq
-<span class="hljs-comment">// &#x2192; [1, 2, 3, 4]</span>
+// &#x2192; [1, 2, 3, 4]
 histfloor.prob
-<span class="hljs-comment">// &#x2192; [0.1, 0.2, 0.3, 0.4]</span>
+// &#x2192; [0.1, 0.2, 0.3, 0.4]
 
-<span class="hljs-comment">// called with data, fn and pair</span>
-_.histogram([<span class="hljs-number">1.1</span>, <span class="hljs-number">2.1</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">3.1</span>, <span class="hljs-number">3.2</span>, <span class="hljs-number">3.3</span>, <span class="hljs-number">4.1</span>, <span class="hljs-number">4.2</span>, <span class="hljs-number">4.3</span>, <span class="hljs-number">4.4</span>], <span class="hljs-built_in">Math</span>.floor, <span class="hljs-literal">true</span>);
-<span class="hljs-comment">// &#x2192; [[&apos;1&apos;,1], [&apos;2&apos;,2], [&apos;3&apos;,3], [&apos;4&apos;,4] ]</span>
+// called with data, fn and pair
+_.histogram([1.1, 2.1, 2.2, 3.1, 3.2, 3.3, 4.1, 4.2, 4.3, 4.4], Math.floor, true);
+// &#x2192; [[&apos;1&apos;,1], [&apos;2&apos;,2], [&apos;3&apos;,3], [&apos;4&apos;,4] ]
 </code></pre>
 <hr>
 </div>

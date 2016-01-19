@@ -641,6 +641,8 @@ _.reOr(A.reWord, A.reNum).should.deep.equal(/(?:[a-zA-Z]+)|(?:[0-9]+)/)</code></
         <dd><pre><code>_.reOrMatch(A.reWord, A.reNum)(A.str).should.be.true
 _.reOrMatch(A.reWord, A.reNum)(A.strWord).should.be.true
 _.reOrMatch(A.reWord, A.reNum)(A.strNum).should.be.true</code></pre></dd>
+        <dt>reString()</dt>
+        <dd><pre><code>_.reString(A.reWord).should.equal(A.reWord.toString().replace(/^\/|\/.*$/g, ''))</code></pre></dd>
       </dl>
     </section>
     <section class="suite">
@@ -1355,7 +1357,7 @@ Please call this method by _.hc.advPlot
       <dl>
         <dt>tick</dt>
         <dd><pre><code>_.tick().should.be.a('number')</code></pre></dd>
-Elapsed ms: 2
+Elapsed ms: 1
         <dt>tock</dt>
         <dd><pre><code>_.tock().should.be.a('number')</code></pre></dd>
       </dl>

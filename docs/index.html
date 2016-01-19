@@ -141,6 +141,7 @@
 <li><a href="#reNotMatch"><code>reNotMatch</code></a></li>
 <li><a href="#reOr"><code>reOr</code></a></li>
 <li><a href="#reOrMatch"><code>reOrMatch</code></a></li>
+<li><a href="#reString"><code>reString</code></a></li>
 <li><a href="#reWrap"><code>reWrap</code></a></li>
 </ul>
 </div>
@@ -598,7 +599,7 @@ _.sum(0, [1, 2, 3], [[1, 2], [3, 4])
 <h2 id="-combinatorics-methods-"><code>&#x201C;combinatorics&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-comblist-a-comblist-n-r-"><a id="combList"></a><code>combList(n, r)</code></h3>
-<p><a href="#combList">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1903" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#combList">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1921" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Generates the indices of n-choose-r. Calls <code>_.subset</code> internally, chooses the array with string length r, and converts to numbers.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -615,7 +616,7 @@ _.sum(0, [1, 2, 3], [[1, 2], [3, 4])
 </div>
 <div>
 <h3 id="-a-id-combination-a-combination-n-r-"><a id="combination"></a><code>combination(n, r)</code></h3>
-<p><a href="#combination">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2007" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#combination">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2025" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns n-choose-r.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -638,7 +639,7 @@ _.combination(1000, 500) // Inevitable overflow.
 </div>
 <div>
 <h3 id="-a-id-factorial-a-factorial-n-"><a id="factorial"></a><code>factorial(n)</code></h3>
-<p><a href="#factorial">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1953" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#factorial">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1971" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns n!.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -654,7 +655,7 @@ _.combination(1000, 500) // Inevitable overflow.
 </div>
 <div>
 <h3 id="-a-id-genary-a-genary-length-n-"><a id="genAry"></a><code>genAry(length, N)</code></h3>
-<p><a href="#genAry">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1776" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#genAry">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1794" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Generates all the strings of N-nary numbers up to length.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -674,7 +675,7 @@ _.genAry(2, 3) // ternary, length 2
 </div>
 <div>
 <h3 id="-a-id-psubset-a-psubset-n-"><a id="pSubset"></a><code>pSubset(n)</code></h3>
-<p><a href="#pSubset">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1823" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#pSubset">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1841" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Generates all the permutation subset indices of n items.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -694,7 +695,7 @@ _.genAry(2, 3) // ternary, length 2
 </div>
 <div>
 <h3 id="-a-id-permlist-a-permlist-n-r-"><a id="permList"></a><code>permList(n, r)</code></h3>
-<p><a href="#permList">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1887" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#permList">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1905" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Generates the indices of n-permute-r. Calls <code>_.pSubset</code> internally, chooses the array with string length r, and converts to numbers.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -711,7 +712,7 @@ _.genAry(2, 3) // ternary, length 2
 </div>
 <div>
 <h3 id="-a-id-permutation-a-permutation-n-r-"><a id="permutation"></a><code>permutation(n, r)</code></h3>
-<p><a href="#permutation">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1978" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#permutation">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1996" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns n-permute-r.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -731,7 +732,7 @@ _.permutation(1000, 1)
 </div>
 <div>
 <h3 id="-a-id-permute-a-permute-n-"><a id="permute"></a><code>permute(n)</code></h3>
-<p><a href="#permute">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1925" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#permute">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1943" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Generates the permutation indices of n items in lexicographical order.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -754,7 +755,7 @@ _.permutation(1000, 1)
 </div>
 <div>
 <h3 id="-a-id-subset-a-subset-n-"><a id="subset"></a><code>subset(n)</code></h3>
-<p><a href="#subset">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1857" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#subset">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1875" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Generates all the (combination) subset indices of n items.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -774,7 +775,7 @@ _.permutation(1000, 1)
 </div>
 <div>
 <h3 id="-a-id-tonumarr-a-tonumarr-strings-"><a id="toNumArr"></a><code>toNumArr(strings)</code></h3>
-<p><a href="#toNumArr">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1800" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#toNumArr">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1818" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Converts an array of strings to array of array of numbers.
 Used with <code>_.genAry</code> and related number/subset-generating functions.</p>
 <h4 id="arguments">Arguments</h4>
@@ -983,7 +984,7 @@ _.distributeSingle(_.square, [[1, 2], [3, 4]])
 <h2 id="-initialization-methods-"><code>&#x201C;initialization&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-numeric-a-numeric-n-val-0-"><a id="numeric"></a><code>numeric(N, [val=0])</code></h3>
-<p><a href="#numeric">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1112" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#numeric">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1130" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns an initialized array of length N filled with the value (defaulted to 0). Reminiscent of <code>numeric()</code> of <code>R</code>.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1003,7 +1004,7 @@ _.numeric(3, &apos;a&apos;)
 </div>
 <div>
 <h3 id="-a-id-seq-a-seq-start-0-end-step-1-"><a id="seq"></a><code>seq([start=0], end, [step=1])</code></h3>
-<p><a href="#seq">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1082" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#seq">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1100" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns a sequence of numbers from start to end, with interval. Similar to lodash&apos;s <code>_.range</code> but the default starts from 1; this is for <code>R</code> users who are familiar with <code>seq()</code>.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1030,7 +1031,7 @@ _.seq(1, 9, 2)
 <h2 id="-matrices-methods-"><code>&#x201C;matrices&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-adj-a-adj-m-"><a id="adj"></a><code>adj(M)</code></h3>
-<p><a href="#adj">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1678" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#adj">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1696" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the adjugate matrix, i.e. the transpose of the comatrix.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1046,7 +1047,7 @@ _.seq(1, 9, 2)
 </div>
 <div>
 <h3 id="-a-id-comatrix-a-comatrix-m-"><a id="coMatrix"></a><code>coMatrix(M)</code></h3>
-<p><a href="#coMatrix">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1654" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#coMatrix">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1672" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the comatrix, i.e. the minor matrix or matrix of cofactors, of M.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1062,7 +1063,7 @@ _.seq(1, 9, 2)
 </div>
 <div>
 <h3 id="-a-id-cosubmatrix-a-cosubmatrix-m-r-0-c-0-"><a id="coSubMatrix"></a><code>coSubMatrix(M, [r=0], [c=0])</code></h3>
-<p><a href="#coSubMatrix">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1628" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#coSubMatrix">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1646" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the submatrix for calculating cofactor, i.e. by taking out row r, col c from M.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1083,7 +1084,7 @@ _.coSubMatrix([[1,2,3],[4,5,6],[7,8,9]], 0, 1)
 </div>
 <div>
 <h3 id="-a-id-det-a-det-m-"><a id="det"></a><code>det(M)</code></h3>
-<p><a href="#det">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1721" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#det">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1739" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the determinant of a matrix.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1099,7 +1100,7 @@ _.coSubMatrix([[1,2,3],[4,5,6],[7,8,9]], 0, 1)
 </div>
 <div>
 <h3 id="-a-id-detsum-a-detsum-m-i-"><a id="detSum"></a><code>detSum(M, i)</code></h3>
-<p><a href="#detSum">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1703" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#detSum">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1721" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Helper function for determinant, used with _.fsum. Sums all the cofactors multiplied with the comatrices.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1116,7 +1117,7 @@ _.coSubMatrix([[1,2,3],[4,5,6],[7,8,9]], 0, 1)
 </div>
 <div>
 <h3 id="-a-id-inv-a-inv-m-"><a id="inv"></a><code>inv(M)</code></h3>
-<p><a href="#inv">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1753" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#inv">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1771" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the inverse of a matrix, or null if non-invertible.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1137,7 +1138,7 @@ _.inv([[1,1],[1,1]])
 </div>
 <div>
 <h3 id="-a-id-matmultiply-a-matmultiply-a-b-"><a id="matMultiply"></a><code>matMultiply(A, B)</code></h3>
-<p><a href="#matMultiply">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1605" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#matMultiply">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1623" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Multiply two matrices.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1154,7 +1155,7 @@ _.inv([[1,1],[1,1]])
 </div>
 <div>
 <h3 id="-a-id-trace-a-trace-m-"><a id="trace"></a><code>trace(M)</code></h3>
-<p><a href="#trace">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1585" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#trace">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1603" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the trace of a square matrix.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1170,7 +1171,7 @@ _.inv([[1,1],[1,1]])
 </div>
 <div>
 <h3 id="-a-id-transpose-a-transpose-m-"><a id="transpose"></a><code>transpose(M)</code></h3>
-<p><a href="#transpose">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1570" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#transpose">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1588" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns a copy of a matrix transposed.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1484,7 +1485,7 @@ _.inv([[1,1],[1,1]])
 <h2 id="-plotting-methods-"><code>&#x201C;plotting&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-advplot-a-advplot-options-"><a id="advPlot"></a><code>advPlot(options)</code></h3>
-<p><a href="#advPlot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2564" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#advPlot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2582" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Method of the constructed <code>hc</code> object.
 Advanced plotting for users familiar with HighCharts (see <a href="http://www.highcharts.com">http://www.highcharts.com</a>).
 This is a highcharts wrapper; takes in a complete HighCharts plot options object.</p>
@@ -1547,7 +1548,7 @@ hc.render()
 </div>
 <div>
 <h3 id="-a-id-hc-a-hc-"><a id="hc"></a><code>hc()</code></h3>
-<p><a href="#hc">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2461" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#hc">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2479" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>The plotting module constructor.
 Uses <code>HighCharts</code> to plot and <code>browserSync</code>. Pulls up browser directly showing your charts like magic!
 To use this, go into <code>node_modules/lomath</code> and do <code>npm install</code> there to install the dev dependencies.</p>
@@ -1597,7 +1598,7 @@ hc.render();
 </div>
 <div>
 <h3 id="-a-id-plot-a-plot-seriesarr-title-ylabel-xlabel-"><a id="plot"></a><code>plot(seriesArr, [title=&quot;&quot;], [yLabel=&quot;&quot;], [xLabel=&quot;&quot;])</code></h3>
-<p><a href="#plot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2502" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#plot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2520" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Method of the constructed <code>hc</code> object.
 A simplified wrapper of the HighCharts plot options object.
 Allows one to use simple data plot by specifying data sets in objects consisting of data name and data.
@@ -1639,7 +1640,7 @@ hc.render()
 </div>
 <div>
 <h3 id="-a-id-render-a-render-autosave-"><a id="render"></a><code>render([autosave])</code></h3>
-<p><a href="#render">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2584" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#render">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2602" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Method of the constructed <code>hc</code> object.
 Renders the plots: Launches a browser with all the plots listed before this line. Uses a gulp task and browserSync.
 Pass argument <code>true</code> will auto save all the plots to downloads.</p>
@@ -1663,7 +1664,7 @@ hc.render()
 <h2 id="-properties-methods-"><code>&#x201C;properties&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-depth-a-depth-t-"><a id="depth"></a><code>depth(T)</code></h3>
-<p><a href="#depth">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1136" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#depth">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1154" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the depth of an (nested) array, i.e. the rank of a tensor.
 Scalar = rank-0, vector = rank-1, matrix = rank-2, ... so on.
 Note that a tensor has homogenous depth, that is, there cannot tensors of different ranks in the same vector, e.g. [1, [2,3], 4] is prohibited.</p>
@@ -1687,7 +1688,7 @@ _.depth([[1, 2], [3, 4]])
 </div>
 <div>
 <h3 id="-a-id-dim-a-dim-t-"><a id="dim"></a><code>dim(T)</code></h3>
-<p><a href="#dim">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1193" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#dim">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1211" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the &quot;dimension&quot; of a tensor.
 Note that a tensor has homogenous depth, that is, there cannot tensors of different ranks in the same vector, e.g. [1, [2,3], 4] is prohibited.</p>
 <h4 id="arguments">Arguments</h4>
@@ -1716,7 +1717,7 @@ _.dim([
 </div>
 <div>
 <h3 id="-a-id-isflat-a-isflat-t-"><a id="isFlat"></a><code>isFlat(T)</code></h3>
-<p><a href="#isFlat">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1220" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#isFlat">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1238" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Checks if a tensor is &quot;flat&quot;, i.e. all entries are scalars.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1738,7 +1739,7 @@ _.isFlat([[1, 2], [3, 4]])
 </div>
 <div>
 <h3 id="-a-id-maxdeepestlength-a-maxdeepestlength-t-"><a id="maxDeepestLength"></a><code>maxDeepestLength(T)</code></h3>
-<p><a href="#maxDeepestLength">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1248" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#maxDeepestLength">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1266" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the maximum length of the deepest array in (non-scalar) tensor T.
 Useful for probing the data structure and ensuring tensor is rectangular.</p>
 <h4 id="arguments">Arguments</h4>
@@ -1761,7 +1762,7 @@ _.maxDeepestLength([[1, 2], [3, 4]])
 </div>
 <div>
 <h3 id="-a-id-volume-a-volume-t-"><a id="volume"></a><code>volume(T)</code></h3>
-<p><a href="#volume">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1164" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#volume">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1182" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the &quot;volume&quot; of a tensor, i.e. the totaly number of scalars in it.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -1930,6 +1931,25 @@ _.reGet(reg2)(&apos;Mayfoo1995&apos;)
 
 _.reOrMatch(\d+/, &apos;foo&apos;)(&apos;Mayfoo1995&apos;) // order doesn&apos;t matter
 // &#x2192; true
+</code></pre>
+<hr>
+</div>
+<div>
+<h3 id="-a-id-restring-a-restring-regexp-"><a id="reString"></a><code>reString(regexp)</code></h3>
+<p><a href="#reString">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1076" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p>Converts a regexp into a string that can be used to reconstruct the same regex from &apos;new RegExp()&apos;. This is a way to store a regexp as string. Note that the flags are excluded, and thus must be provided during regexp reconstruction.</p>
+<h4 id="arguments">Arguments</h4>
+<ol>
+<li><code>regexp</code> <em>(RegExp)</em>: To be stored as string.</li>
+</ol>
+<h4 id="returns">Returns</h4>
+<p><em>(string)</em>:  reStr The regex as string, to be used in the RegExp() constructor with a supplied flag.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">var reStr = _.reString(/\d+|\s+/ig)
+// &#x2192; &apos;\d+|\s+&apos;
+
+new RegExp(reStr, &quot;gi&quot;)
+// &#x2192; /\d+|\s+/gi
 </code></pre>
 <hr>
 </div>
@@ -2126,7 +2146,7 @@ _.inRange.bind(null, 0, 3)(3)
 <h2 id="-statistics-methods-"><code>&#x201C;statistics&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-expgrate-a-expgrate-m_f-m_i-t-"><a id="expGRate"></a><code>expGRate(m_f, m_i, t)</code></h3>
-<p><a href="#expGRate">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2386" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#expGRate">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2404" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the rate of return r in % of an exponential growth, given final value m_f, initial value m_i, and time interval t.
 Formula: <code>100 * (Math.exp(Math.log(m_f / m_i) / t) - 1)</code></p>
 <h4 id="arguments">Arguments</h4>
@@ -2145,7 +2165,7 @@ Formula: <code>100 * (Math.exp(Math.log(m_f / m_i) / t) - 1)</code></p>
 </div>
 <div>
 <h3 id="-a-id-expval-a-expval-x-p-fn-"><a id="expVal"></a><code>expVal(X, [P], [fn])</code></h3>
-<p><a href="#expVal">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2231" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#expVal">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2249" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the expectation value <code>E(fn(X))</code> of a random variable vector, optionally with the corresponding probability vector, using the random variable function (defaulted to identity).</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2174,7 +2194,7 @@ _.expVal(X, P, _.square) // equivalent to Y, but using X and P: E(X^2)
 </div>
 <div>
 <h3 id="-a-id-mean-a-mean-t-"><a id="mean"></a><code>mean(T)</code></h3>
-<p><a href="#mean">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2203" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#mean">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2221" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the mean/average of a tensor.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2193,7 +2213,7 @@ _.mean([[1, 2], [3, 4]])
 </div>
 <div>
 <h3 id="-a-id-stdev-a-stdev-x-p-fn-"><a id="stdev"></a><code>stdev(X, [P], [fn])</code></h3>
-<p><a href="#stdev">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2317" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#stdev">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2335" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the standard deviation <code>sigma(fn(X))</code> of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).
 Simply calles <code>_.variance</code> internally and returns its square root.</p>
 <h4 id="arguments">Arguments</h4>
@@ -2223,7 +2243,7 @@ _.stdev(X, P, _.square) // equivalent to Y, but using X and P: sigma(X^2)
 </div>
 <div>
 <h3 id="-a-id-trailexpgrate-a-trailexpgrate-v-t-"><a id="trailExpGRate"></a><code>trailExpGRate(v, t)</code></h3>
-<p><a href="#trailExpGRate">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2409" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#trailExpGRate">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2427" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the trailing exponential rate of return in the last t years given a vector. Calls <code>_.expGRate</code> internally.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2247,7 +2267,7 @@ _.trailExpGRate(v, 3)
 </div>
 <div>
 <h3 id="-a-id-variance-a-variance-x-p-fn-"><a id="variance"></a><code>variance(X, [P], [fn])</code></h3>
-<p><a href="#variance">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2278" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#variance">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2296" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the variance <code>Var(fn(X))</code> of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2279,7 +2299,7 @@ _.variance(X, P, _.square) // equivalent to Y, but using X and P: Var(X^2)
 <h2 id="-timing-methods-"><code>&#x201C;timing&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-p-a-p-"><a id="p"></a><code>p()</code></h3>
-<p><a href="#p">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2630" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#p">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2648" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Ends a started timer (unique to the whole _ object). Needs to be called after tick. If called again, will give the next lap (starting from the last tick).</p>
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  ms Difference between now and the last _.tick() in milliseconds.</p>
@@ -2293,7 +2313,7 @@ someTaskwithPromise().then(tock())
 </div>
 <div>
 <h3 id="-a-id-tick-a-tick-"><a id="tick"></a><code>tick()</code></h3>
-<p><a href="#tick">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2596" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#tick">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2614" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Starts a timer (unique to the whole _ object). Needs to be called before tock. If called again, will restart the timer.</p>
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  ms Result from _.now(), in milliseconds.</p>
@@ -2301,7 +2321,7 @@ someTaskwithPromise().then(tock())
 </div>
 <div>
 <h3 id="-a-id-tock-a-tock-"><a id="tock"></a><code>tock()</code></h3>
-<p><a href="#tock">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2612" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#tock">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2630" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Ends a started timer (unique to the whole _ object). Needs to be called after tick. If called again, will give the next lap (starting from the last tick).</p>
 <h4 id="returns">Returns</h4>
 <p><em>(number)</em>:  ms Difference between now and the last _.tick() in milliseconds.</p>
@@ -2318,7 +2338,7 @@ someTaskwithPromise().then(tock())
 <h2 id="-transformation-methods-"><code>&#x201C;transformation&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-batchindexof-a-batchindexof-t-fields-"><a id="batchIndexOf"></a><code>batchIndexOf(T, fields)</code></h3>
-<p><a href="#batchIndexOf">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1357" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#batchIndexOf">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1375" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Searches the array in batch by applying <code>_.indexOf</code> in batch; returns the indices of the results in order.
 Useful for grabbing the headers in a data set.</p>
 <h4 id="arguments">Arguments</h4>
@@ -2336,7 +2356,7 @@ Useful for grabbing the headers in a data set.</p>
 </div>
 <div>
 <h3 id="-a-id-cbind-a-cbind-m-indarr-"><a id="cbind"></a><code>cbind(M, indArr)</code></h3>
-<p><a href="#cbind">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1419" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#cbind">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1437" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns a new matrix with the selected columns from a matrix. Same as <code>cbind()</code> from <code>R</code>.
 Useful for picking columns from a data matrix/tensor with specified header indices.</p>
 <h4 id="arguments">Arguments</h4>
@@ -2359,7 +2379,7 @@ _.cbind(M, _.batchIndexOf(titles, [&apos;b&apos;, &apos;b&apos;, &apos;c&apos;])
 </div>
 <div>
 <h3 id="-a-id-cbindbyfield-a-cbindbyfield-m-fields-"><a id="cbindByField"></a><code>cbindByField(M, fields)</code></h3>
-<p><a href="#cbindByField">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1443" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#cbindByField">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1461" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns a new matrix with the selected columns from a matrix. Short for <code>_.cbind(M, _.batchIndexOf())</code>
 Useful for picking columns from a data matrix by directly specifying the header titles.</p>
 <h4 id="arguments">Arguments</h4>
@@ -2378,7 +2398,7 @@ _.cbindByField(M, [&apos;b&apos;, &apos;b&apos;, &apos;c&apos;])
 </div>
 <div>
 <h3 id="-a-id-extend-a-extend-t-tolen-val-0-"><a id="extend"></a><code>extend(T, toLen, [val=0])</code></h3>
-<p><a href="#extend">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1334" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#extend">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1352" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Extends an array till <code>toLen</code> by prepending with <code>val</code>.
 Mutates the array.</p>
 <h4 id="arguments">Arguments</h4>
@@ -2400,7 +2420,7 @@ _.extend([1, 2, 3], 6, &apos;a&apos;)
 </div>
 <div>
 <h3 id="-a-id-flattenjson-a-flattenjson-obj-"><a id="flattenJSON"></a><code>flattenJSON(obj)</code></h3>
-<p><a href="#flattenJSON">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1541" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#flattenJSON">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1559" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Flattens a JSON object into depth 1, using an optional parameter.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2437,7 +2457,7 @@ _.flattenJSON(formData, &apos;_&apos;)
 </div>
 <div>
 <h3 id="-a-id-rbind-a-rbind-m-indarr-"><a id="rbind"></a><code>rbind(M, indArr)</code></h3>
-<p><a href="#rbind">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1393" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#rbind">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1411" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns a new matrix with the selected rows from a matrix. Same as <code>rbind()</code> from <code>R</code>.
 Useful for picking certain rows from a matrix/tensor.</p>
 <h4 id="arguments">Arguments</h4>
@@ -2455,7 +2475,7 @@ Useful for picking certain rows from a matrix/tensor.</p>
 </div>
 <div>
 <h3 id="-a-id-rectangularize-a-rectangularize-t-"><a id="rectangularize"></a><code>rectangularize(T)</code></h3>
-<p><a href="#rectangularize">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1470" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#rectangularize">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1488" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Makes a tensor rectangular by filling with val (defaulted to 0).
 Mutates the tensor.</p>
 <h4 id="arguments">Arguments</h4>
@@ -2481,7 +2501,7 @@ _.rectangularize([
 </div>
 <div>
 <h3 id="-a-id-reshape-a-reshape-a-dimarr-"><a id="reshape"></a><code>reshape(A, dimArr)</code></h3>
-<p><a href="#reshape">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1501" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#reshape">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1519" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Reshapes an array into a multi-dimensional tensor. Applies <code>_.chunk</code> using a dimension array in sequence.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2501,7 +2521,7 @@ _.reshape([1, 2, 3, 4], [2, 3])
 </div>
 <div>
 <h3 id="-a-id-reverse-a-reverse-t-i-0-j-t-length-1-"><a id="reverse"></a><code>reverse(T, [i=0], [j=T.length-1])</code></h3>
-<p><a href="#reverse">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1307" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#reverse">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1325" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns a copy of the array reversed, optionally from index <code>i</code> to <code>j</code> inclusive.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2528,7 +2548,7 @@ _.reverse([0, 1, 2, 3, 4, 5], 2, 4) // reverse from index 2 to 4
 </div>
 <div>
 <h3 id="-a-id-swap-a-swap-t-i-j-"><a id="swap"></a><code>swap(T, i, j)</code></h3>
-<p><a href="#swap">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1280" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#swap">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1298" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Swaps entries at indices <code>i,j</code>.
 Mutates the array.</p>
 <h4 id="arguments">Arguments</h4>
@@ -2547,7 +2567,7 @@ Mutates the array.</p>
 </div>
 <div>
 <h3 id="-a-id-validinds-a-validinds-t-maxlen-"><a id="validInds"></a><code>validInds(T, maxLen)</code></h3>
-<p><a href="#validInds">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1376" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#validInds">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L1394" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Filters out the invalid indices (negatives) in an array of indices. Basically keeps <code>x</code> where <code>0 &#x2264; x &#x2264; maxLen</code>.
 Used with <code>_.batchIndexOf</code>.</p>
 <h4 id="arguments">Arguments</h4>
@@ -2568,7 +2588,7 @@ Used with <code>_.batchIndexOf</code>.</p>
 <h2 id="-trend-methods-"><code>&#x201C;trend&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-decreasing-a-decreasing-t-"><a id="decreasing"></a><code>decreasing(T)</code></h3>
-<p><a href="#decreasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2174" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#decreasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2192" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Shorthand for <code>_.stairsTrend</code>. Checks if a vector v is decreasing.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2580,7 +2600,7 @@ Used with <code>_.batchIndexOf</code>.</p>
 </div>
 <div>
 <h3 id="-a-id-increasing-a-increasing-t-"><a id="increasing"></a><code>increasing(T)</code></h3>
-<p><a href="#increasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2154" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#increasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2172" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Shorthand for <code>_.stairsTrend</code>. Checks if a vector v is increasing.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2592,7 +2612,7 @@ Used with <code>_.batchIndexOf</code>.</p>
 </div>
 <div>
 <h3 id="-a-id-nondecreasing-a-nondecreasing-t-"><a id="nonDecreasing"></a><code>nonDecreasing(T)</code></h3>
-<p><a href="#nonDecreasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2164" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#nonDecreasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2182" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Shorthand for <code>_.stairsTrend</code>. Checks if a vector v is non-decreasing.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2604,7 +2624,7 @@ Used with <code>_.batchIndexOf</code>.</p>
 </div>
 <div>
 <h3 id="-a-id-nonincreasing-a-nonincreasing-t-"><a id="nonIncreasing"></a><code>nonIncreasing(T)</code></h3>
-<p><a href="#nonIncreasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2184" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#nonIncreasing">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2202" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Shorthand for <code>_.stairsTrend</code>. Checks if a vector v is non-increasing.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2616,7 +2636,7 @@ Used with <code>_.batchIndexOf</code>.</p>
 </div>
 <div>
 <h3 id="-a-id-stairs-a-stairs-t-"><a id="stairs"></a><code>stairs(T)</code></h3>
-<p><a href="#stairs">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2123" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#stairs">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2141" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the stair, i.e. the adjacent differences in the vector.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2632,7 +2652,7 @@ Used with <code>_.batchIndexOf</code>.</p>
 </div>
 <div>
 <h3 id="-a-id-stairstrend-a-stairstrend-t-sigfn-"><a id="stairsTrend"></a><code>stairsTrend(T, sigFn)</code></h3>
-<p><a href="#stairsTrend">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2144" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#stairsTrend">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2162" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Check the trend of the array using a signature function.
 Useful for checking if array entries are increasing.</p>
 <h4 id="arguments">Arguments</h4>
@@ -2653,7 +2673,7 @@ Useful for checking if array entries are increasing.</p>
 <h2 id="-vector-methods-"><code>&#x201C;vector&#x201D; Methods</code></h2>
 <div>
 <h3 id="-a-id-dot-a-dot-x-y-"><a id="dot"></a><code>dot(X, Y)</code></h3>
-<p><a href="#dot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2029" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#dot">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2047" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the dot product between two vectors. If lengths mismatch, recycles the shorter vector.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2673,7 +2693,7 @@ _.dot([1, 2, 3, 4, 5, 6], [1, 2, 3]) // recycle
 </div>
 <div>
 <h3 id="-a-id-norm-a-norm-t-n-2-"><a id="norm"></a><code>norm(T, [n=2])</code></h3>
-<p><a href="#norm">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2072" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#norm">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2090" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the L-n norm of a vector, default to L-2 (Euclidean) metric.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2693,7 +2713,7 @@ _.norm([3, 4], 1) // taxicab metric
 </div>
 <div>
 <h3 id="-a-id-normalize-a-normalize-t-n-2-"><a id="normalize"></a><code>normalize(T, [n=2])</code></h3>
-<p><a href="#normalize">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2092" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#normalize">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2110" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns a copy of the vector normalized using L-n metric (defaulted to L-2).</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2713,7 +2733,7 @@ _.normalize([3, 4], 1) // taxicab metric
 </div>
 <div>
 <h3 id="-a-id-powsum-a-powsum-t-n-2-"><a id="powSum"></a><code>powSum(T, [n=2])</code></h3>
-<p><a href="#powSum">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2052" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#powSum">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2070" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns the sums of n-powers (defaulted to 2) of a tensor, i.e. the square of the generalized hypotenuse of a tensor.
 Useful for doing sums of squares/other L-n metrics.</p>
 <h4 id="arguments">Arguments</h4>
@@ -2737,7 +2757,7 @@ _.dot([[1, 2], [3, 4]], 3) // applicable to a tensor
 </div>
 <div>
 <h3 id="-a-id-rescale-a-rescale-t-"><a id="rescale"></a><code>rescale(T)</code></h3>
-<p><a href="#rescale">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2107" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#rescale">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2125" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns a copy of the vector rescaled to unit length; is the shorthand for <code>_.normalize(v, 1)</code>.</p>
 <h4 id="arguments">Arguments</h4>
 <ol>
@@ -2756,7 +2776,7 @@ _.dot([[1, 2], [3, 4]], 3) // applicable to a tensor
 <h2 id="-methods-"><code>Methods</code></h2>
 <div>
 <h3 id="-a-id-histogram-a-histogram-data-fn-pair-"><a id="histogram"></a><code>histogram(data, [fn], [pair])</code></h3>
-<p><a href="#histogram">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2358" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
+<p><a href="#histogram">#</a> <a href="https://github.com/kengz/lomath/blob/master/index.js#L2376" title="View in source">&#x24C8;</a> <a href="#basics" title="Jump back to the TOC.">&#x24C9;</a></p>
 <p>Returns a histogram/distribution from the data. This internally calls <code>_.countBy</code> to group data by bins, using the function if specified.
 Returns the object containing values, frequencies and probabilities as separate array for ease of using them with the statistics methods.</p>
 <h4 id="arguments">Arguments</h4>

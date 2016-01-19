@@ -1135,6 +1135,9 @@ e.g. matchRegex(/red/)(‘red Apple’) returns true</p>
             
             <div class="content"><div class='highlight'><pre>  reOrMatch: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">return</span> lomath.reMatch(lomath.reOr.apply(<span class="hljs-literal">null</span>, <span class="hljs-built_in">arguments</span>));
+  },
+  reString: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">regexp</span>) </span>{
+    <span class="hljs-keyword">return</span> regexp.toString().replace(<span class="hljs-regexp">/^\/|\/.*$/g</span>, <span class="hljs-string">''</span>)
   },</pre></div></div>
             
         </li>

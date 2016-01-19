@@ -834,6 +834,9 @@ suite('Regex functions', function() {
     _.reOrMatch(A.reWord, A.reNum)(A.strWord).should.be.true
     _.reOrMatch(A.reWord, A.reNum)(A.strNum).should.be.true
   })
+  test('reString()', function() {
+    _.reString(A.reWord).should.equal(A.reWord.toString().replace(/^\/|\/.*$/g, ''))
+  })
 })
 
 //==============================================

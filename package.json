@@ -1,7 +1,7 @@
 {
   "name": "lomath",
-  "version": "0.2.6",
-  "description": "Lomath is the data analysts’ module in node.js - data analysis and visualization in Node is now possible with lomath.",
+  "version": "0.2.7",
+  "description": "Lomath is a tensorial math library extended from lodash.",
   "main": "index.js",
   "scripts": {
     "start": "node demo/demo.js",

@@ -1151,6 +1151,24 @@ var lomath = _.mixin({
   reOrMatch: function() {
     return lomath.reMatch(lomath.reOr.apply(null, arguments));
   },
+  /**
+   * Converts a regexp into a string that can be used to reconstruct the same regex from 'new RegExp()'. This is a way to store a regexp as string. Note that the flags are excluded, and thus must be provided during regexp reconstruction.
+   *
+   * @category regexp
+   * @param {RegExp} regexp To be stored as string.
+   * @returns {string} reStr The regex as string, to be used in the RegExp() constructor with a supplied flag.
+   *
+   * @example
+   * var reStr = _.reString(/\d+|\s+/ig)
+   * // → '\d+|\s+'
+   *
+   * new RegExp(reStr, "gi")
+   * // → /\d+|\s+/gi
+   *
+   */
+  reString: function(regexp) {
+    return regexp.toString().replace(/^\/|\/.*$/g, '')
+  },
 
   ////////////////////
   // Array creation //

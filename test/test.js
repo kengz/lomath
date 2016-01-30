@@ -1245,6 +1245,31 @@ suite('Tensor transformation', function() {
         'level1_level2b_level3': [ 2, 3, 4 ] })
     })
   })
+
+  //----------------------------------------------
+  suite('unflattenJSON(obj)', function() {
+    var fn, R;
+    before(function() {
+      fn = _.unflattenJSON
+      R = {
+        'level1': {
+          'level2': {
+            'level3': 0,
+            'level3b': 1
+          },
+          'level2b': {
+            'level3': [2,3,4]
+          }
+        }
+      }
+    })
+    test('default delimiter', function() {
+      fn(_.flattenJSON(R)).should.deep.equal(R)
+    })
+    test('custom delimiter', function() {
+      fn(_.flattenJSON(R, '_'), '_').should.deep.equal(R)
+    })
+  })
 })
 
 //==============================================

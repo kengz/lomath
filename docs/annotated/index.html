@@ -63,7 +63,7 @@ lomath //
             
             <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> lomath = _.mixin({
   AUTHOR: <span class="hljs-string">"kengz"</span>,
-  VERSION: <span class="hljs-string">"0.0.8"</span>,</pre></div></div>
+  VERSION: <span class="hljs-string">"0.2.8"</span>,</pre></div></div>
             
         </li>
         
@@ -116,7 +116,7 @@ sample operation to demonstrate function composition</p>
             <div class="content"><div class='highlight'><pre>  distributeSingle: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fn, Y</span>) </span>{
     <span class="hljs-keyword">if</span> (!(Y <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span>)) <span class="hljs-keyword">return</span> fn(Y);
     <span class="hljs-keyword">var</span> len = Y.length,
-    res = <span class="hljs-built_in">Array</span>(len);
+      res = <span class="hljs-built_in">Array</span>(len);
     <span class="hljs-keyword">while</span> (len--) res[len] = Y[len] <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span> ?
       lomath.distributeSingle(fn, Y[len]) : fn(Y[len])
     <span class="hljs-keyword">return</span> res;
@@ -137,7 +137,7 @@ sample operation to demonstrate function composition</p>
             
             <div class="content"><div class='highlight'><pre>  distributeLeft: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fn, X, y</span>) </span>{
     <span class="hljs-keyword">var</span> len = X.length,
-    res = <span class="hljs-built_in">Array</span>(len);
+      res = <span class="hljs-built_in">Array</span>(len);
     <span class="hljs-keyword">while</span> (len--) res[len] = X[len] <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span> ?
       lomath.distributeLeft(fn, X[len], y) : fn(X[len], y)
     <span class="hljs-keyword">return</span> res;
@@ -158,7 +158,7 @@ sample operation to demonstrate function composition</p>
             
             <div class="content"><div class='highlight'><pre>  distributeRight: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fn, x, Y</span>) </span>{
     <span class="hljs-keyword">var</span> len = Y.length,
-    res = <span class="hljs-built_in">Array</span>(len);
+      res = <span class="hljs-built_in">Array</span>(len);
     <span class="hljs-keyword">while</span> (len--) res[len] = Y[len] <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span> ?
       lomath.distributeRight(fn, x, Y[len]) : fn(x, Y[len])
     <span class="hljs-keyword">return</span> res;
@@ -180,7 +180,7 @@ If at any depth X and Y have different lengths, recycle if the mod of lengths is
             
             <div class="content"><div class='highlight'><pre>  distributeBoth: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fn, X, Y</span>) </span>{
     <span class="hljs-keyword">var</span> Xlen = X.length,
-    Ylen = Y.length;
+      Ylen = Y.length;
     <span class="hljs-keyword">if</span> (Xlen % Ylen == <span class="hljs-number">0</span> || Ylen % Xlen == <span class="hljs-number">0</span>) {
       <span class="hljs-keyword">var</span> res;
       <span class="hljs-keyword">if</span> (Xlen &gt; Ylen) {
@@ -212,10 +212,10 @@ Method is at its fastest, and assuming the data depth isn’t too deep (otherwis
             <div class="content"><div class='highlight'><pre>  distribute: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fn, X, Y</span>) </span>{
     <span class="hljs-keyword">if</span> (X <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span>)
       <span class="hljs-keyword">return</span> Y <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span> ?
-    lomath.distributeBoth(fn, X, Y) : lomath.distributeLeft(fn, X, Y);
+        lomath.distributeBoth(fn, X, Y) : lomath.distributeLeft(fn, X, Y);
     <span class="hljs-keyword">else</span>
       <span class="hljs-keyword">return</span> Y <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span> ?
-    lomath.distributeRight(fn, X, Y) : fn(X, Y);
+        lomath.distributeRight(fn, X, Y) : fn(X, Y);
   },</pre></div></div>
             
         </li>
@@ -233,7 +233,7 @@ Method is at its fastest, and assuming the data depth isn’t too deep (otherwis
             
             <div class="content"><div class='highlight'><pre>  asso: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fn, argObj</span>) </span>{
     <span class="hljs-keyword">var</span> len = argObj.length,
-    i = <span class="hljs-number">0</span>;</pre></div></div>
+      i = <span class="hljs-number">0</span>;</pre></div></div>
             
         </li>
         
@@ -249,7 +249,7 @@ Method is at its fastest, and assuming the data depth isn’t too deep (otherwis
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> args = len &lt; <span class="hljs-number">3</span> ? argObj : _.toArray(argObj),
-    res = fn(args[i++], args[i++]);
+      res = fn(args[i++], args[i++]);
     <span class="hljs-keyword">while</span> (i &lt; len) res = fn(res, args[i++]);
     <span class="hljs-keyword">return</span> res;
   },</pre></div></div>
@@ -270,7 +270,7 @@ Usage: for applying fn on tensors element-wise if they have matching dimensions.
             
             <div class="content"><div class='highlight'><pre>  assodist: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fn, argObj</span>) </span>{
     <span class="hljs-keyword">var</span> len = argObj.length,
-    i = <span class="hljs-number">0</span>;</pre></div></div>
+      i = <span class="hljs-number">0</span>;</pre></div></div>
             
         </li>
         
@@ -286,7 +286,7 @@ Usage: for applying fn on tensors element-wise if they have matching dimensions.
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> args = len &lt; <span class="hljs-number">3</span> ? argObj : _.toArray(argObj),
-    res = lomath.distribute(fn, args[i++], args[i++]);
+      res = lomath.distribute(fn, args[i++], args[i++]);
     <span class="hljs-keyword">while</span> (i &lt; len) res = lomath.distribute(fn, res, args[i++]);
     <span class="hljs-keyword">return</span> res;
   },</pre></div></div>
@@ -356,10 +356,10 @@ Concat all arguments into single vector by _.flattenDeep</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> total = <span class="hljs-number">0</span>,
-    len = T.length;
+      len = T.length;
     <span class="hljs-keyword">while</span> (len--) total += (T[len] <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span> ?
       lomath.a_sum(T[len], <span class="hljs-number">0</span>) : T[len])
-      <span class="hljs-keyword">return</span> total;
+    <span class="hljs-keyword">return</span> total;
   },</pre></div></div>
             
         </li>
@@ -380,9 +380,9 @@ Concat all arguments into single vector by _.flattenDeep</p>
     <span class="hljs-keyword">var</span> len = <span class="hljs-built_in">arguments</span>.length;
     <span class="hljs-keyword">while</span> (len--) res += (<span class="hljs-built_in">arguments</span>[len] <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span> ?
       lomath.a_sum(<span class="hljs-built_in">arguments</span>[len]) : <span class="hljs-built_in">arguments</span>[len])
-      <span class="hljs-keyword">return</span> res;
+    <span class="hljs-keyword">return</span> res;
   },
-   fsum: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T, fn</span>) </span>{
+  fsum: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T, fn</span>) </span>{
     <span class="hljs-keyword">var</span> sum = <span class="hljs-number">0</span>;
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; T.length; i++)
       sum += fn(T, i);
@@ -418,10 +418,10 @@ Concat all arguments into single vector by _.flattenDeep</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> total = <span class="hljs-number">1</span>,
-    len = T.length;
+      len = T.length;
     <span class="hljs-keyword">while</span> (len--) total *= (T[len] <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span> ?
       lomath.a_prod(T[len], <span class="hljs-number">1</span>) : T[len])
-      <span class="hljs-keyword">return</span> total;
+    <span class="hljs-keyword">return</span> total;
   },</pre></div></div>
             
         </li>
@@ -439,10 +439,10 @@ Concat all arguments into single vector by _.flattenDeep</p>
             
             <div class="content"><div class='highlight'><pre>  prod: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">var</span> res = <span class="hljs-number">1</span>,
-    len = <span class="hljs-built_in">arguments</span>.length;
+      len = <span class="hljs-built_in">arguments</span>.length;
     <span class="hljs-keyword">while</span> (len--) res *= (<span class="hljs-built_in">arguments</span>[len] <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span> ?
       lomath.a_prod(<span class="hljs-built_in">arguments</span>[len]) : <span class="hljs-built_in">arguments</span>[len])
-      <span class="hljs-keyword">return</span> res;
+    <span class="hljs-keyword">return</span> res;
   },</pre></div></div>
             
         </li>
@@ -646,7 +646,7 @@ Note: lomath is generic; is different from matrix multiplication</p>
             <div class="content"><div class='highlight'><pre>  a_square: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">return</span> x * x;
   },
-   square: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  square: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(lomath.a_square, T);
   },</pre></div></div>
             
@@ -682,7 +682,7 @@ Note: lomath is generic; is different from matrix multiplication</p>
             
             <div class="content"><div class='highlight'><pre>      <span class="hljs-built_in">Math</span>.sign(x) * <span class="hljs-built_in">Math</span>.pow(<span class="hljs-built_in">Math</span>.abs(x), <span class="hljs-number">1</span> / n) :
       <span class="hljs-built_in">Math</span>.pow(x, <span class="hljs-number">1</span> / n);
-    },</pre></div></div>
+  },</pre></div></div>
             
         </li>
         
@@ -715,9 +715,9 @@ Note: lomath is generic; is different from matrix multiplication</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>  a_logistic: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">z</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>/(<span class="hljs-number">1</span>+<span class="hljs-built_in">Math</span>.exp(-z))
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> / (<span class="hljs-number">1</span> + <span class="hljs-built_in">Math</span>.exp(-z))
   },
-   logistic: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  logistic: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(lomath.a_logistic, T);
   },</pre></div></div>
             
@@ -842,13 +842,13 @@ check if x is in range set by left, right</p>
             <div class="content"><div class='highlight'><pre>  nonNegative: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">return</span> !(x &lt; <span class="hljs-number">0</span>);
   },
-   isZero: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  isZero: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">return</span> x == <span class="hljs-number">0</span>;
   },
-   nonZero: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  nonZero: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">return</span> x != <span class="hljs-number">0</span>;
   },
-   parity: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  parity: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
     <span class="hljs-keyword">return</span> x % <span class="hljs-number">2</span> ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>;
   },</pre></div></div>
             
@@ -884,14 +884,15 @@ check if x is in range set by left, right</p>
             
             <div class="content"><div class='highlight'><pre>  deepEqual: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T, S</span>) </span>{
     <span class="hljs-keyword">if</span> (T.length != S.length) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-    <span class="hljs-keyword">var</span> Left = T, Right = S;
+    <span class="hljs-keyword">var</span> Left = T,
+      Right = S;
     <span class="hljs-keyword">if</span> (!lomath.isFlat(T)) {
       Left = _.flattenDeep(T);
       Right = _.flattenDeep(S);
     };
     <span class="hljs-keyword">var</span> Llen = Left.length,
-    Rlen = Right.length;
-    <span class="hljs-keyword">while</span>(Llen--) {
+      Rlen = Right.length;
+    <span class="hljs-keyword">while</span> (Llen--) {
       <span class="hljs-keyword">if</span> (Left[Llen] != Right[Llen]) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
     }
     <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
@@ -913,76 +914,76 @@ wrapped to function with generic tensor</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>   abs: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+            <div class="content"><div class='highlight'><pre>  abs: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.abs, T);
   },
-   acos: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  acos: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.acos, T);
   },
-   acosh: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  acosh: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.acosh, T);
   },
-   asin: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  asin: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.asin, T);
   },
-   asinh: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  asinh: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.asinh, T);
   },
-   atan: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  atan: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.atan, T);
   },
-   atanh: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  atanh: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.atanh, T);
   },
-   ceil: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  ceil: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.ceil, T);
   },
-   cos: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  cos: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.cos, T);
   },
-   cosh: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  cosh: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.cosh, T);
   },
-   exp: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  exp: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.exp, T);
   },
-   floor: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  floor: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.floor, T);
   },
-   log10: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  log10: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.log10, T);
   },
-   log1p: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  log1p: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.log1p, T);
   },
-   log2: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  log2: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.log2, T);
   },
-   round: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  round: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.round, T);
   },
-   pow: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T, n</span>) </span>{
+  pow: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T, n</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distribute(<span class="hljs-built_in">Math</span>.pow, T, n);
   },
-   sign: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  sign: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.sign, T);
   },
-   sin: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  sin: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.sin, T);
   },
-   sinh: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  sinh: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.sinh, T);
   },
-   sqrt: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  sqrt: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.sqrt, T);
   },
-   tan: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  tan: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.tan, T);
   },
-   tanh: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  tanh: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.tanh, T);
   },
-   trunc: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
+  trunc: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">return</span> lomath.distributeSingle(<span class="hljs-built_in">Math</span>.trunc, T);
   },</pre></div></div>
             
@@ -1231,7 +1232,7 @@ return the depth (rank) of tensor, assuming homogeneity</p>
             
             <div class="content"><div class='highlight'><pre>  depth: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">var</span> t = T,
-    d = <span class="hljs-number">0</span>;
+      d = <span class="hljs-number">0</span>;
     <span class="hljs-keyword">while</span> (t.length) {
       d++;
       t = t[<span class="hljs-number">0</span>];
@@ -1275,7 +1276,7 @@ return 0 for scalar</p>
             
             <div class="content"><div class='highlight'><pre>  dim: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">var</span> dim = [],
-    ptr = T;
+      ptr = T;
     <span class="hljs-keyword">while</span> (ptr.length) {
       dim.push(ptr.length);
       ptr = ptr[<span class="hljs-number">0</span>];
@@ -1298,7 +1299,7 @@ return 0 for scalar</p>
             
             <div class="content"><div class='highlight'><pre>  isFlat: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">var</span> flat = <span class="hljs-literal">true</span>,
-    len = T.length;
+      len = T.length;
     <span class="hljs-keyword">while</span> (len--) {
       flat *= !(T[len] <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span>);
       <span class="hljs-keyword">if</span> (!flat) <span class="hljs-keyword">break</span>;
@@ -1322,19 +1323,19 @@ return 0 for scalar</p>
             <div class="content"><div class='highlight'><pre>  maxDeepestLength: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T</span>) </span>{
     <span class="hljs-keyword">if</span> (!(T <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span>)) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
     <span class="hljs-keyword">var</span> stack = [],
-    sizes = [];
+      sizes = [];
     stack.push(T);
     <span class="hljs-keyword">while</span> (stack.length) {
       <span class="hljs-keyword">var</span> curr = stack.pop(),
-      len = curr.length;
+        len = curr.length;
       <span class="hljs-keyword">if</span> (lomath.isFlat(curr))
         sizes.push(len);
       <span class="hljs-keyword">else</span>
         <span class="hljs-keyword">while</span> (len--)
           stack.push(curr[len]);
-      }
-      <span class="hljs-keyword">return</span> _.max(sizes);
-    },</pre></div></div>
+    }
+    <span class="hljs-keyword">return</span> _.max(sizes);
+  },</pre></div></div>
             
         </li>
         
@@ -1412,7 +1413,7 @@ Mutates the array</p>
             
             <div class="content"><div class='highlight'><pre>  extend: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">arr, toLen, val</span>) </span>{
     <span class="hljs-keyword">var</span> lendiff = toLen - arr.length,
-    rePal = (val == <span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : val);
+      rePal = (val == <span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : val);
     <span class="hljs-keyword">if</span> (lendiff &lt; <span class="hljs-number">0</span>)
       <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Array longer than the length to extend to"</span>)
     <span class="hljs-keyword">while</span> (lendiff--)
@@ -1529,7 +1530,7 @@ Mutates the array</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> header = M[<span class="hljs-number">0</span>],
-    fieldInds = lomath.batchIndexOf(header, fieldArr);
+      fieldInds = lomath.batchIndexOf(header, fieldArr);
     <span class="hljs-keyword">return</span> lomath.cbind(M, fieldInds);
   },
      [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
@@ -1555,7 +1556,7 @@ mutates the tensor</p>
             
             <div class="content"><div class='highlight'><pre>  rectangularize: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T, val</span>) </span>{
     <span class="hljs-keyword">var</span> toLen = lomath.maxDeepestLength(T),
-    stack = [];
+      stack = [];
     stack.push(T);
     <span class="hljs-keyword">while</span> (stack.length) {
       <span class="hljs-keyword">var</span> curr = stack.pop();
@@ -1593,18 +1594,20 @@ mutates the tensor</p>
     <span class="hljs-keyword">var</span> delim = delimiter || <span class="hljs-string">'.'</span>
     <span class="hljs-keyword">var</span> nobj = {}
 
-    _.each(obj, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">val, key</span>)</span>{
+    _.each(obj, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">val, key</span>) </span>{
       <span class="hljs-keyword">if</span> (_.isObject(val) &amp;&amp; !_.isArray(val)) {
         <span class="hljs-keyword">var</span> strip = lomath.flattenJSON(val, delim)
-        _.each(strip, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">v,k</span>)</span>{
-          nobj[key+delim+k] = v
+        _.each(strip, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">v, k</span>) </span>{
+          nobj[key + delim + k] = v
         })
       } <span class="hljs-keyword">else</span> {
         nobj[key] = val
       }
     })
     <span class="hljs-keyword">return</span> nobj
-  },</pre></div></div>
+  },
+  unflattenJSON: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">obj, delimiter</span>) </span>{
+    <span class="hljs-keyword">var</span> delim = delimiter || <span class="hljs-string">'.'</span>;</pre></div></div>
             
         </li>
         
@@ -1614,6 +1617,161 @@ mutates the tensor</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-78">&#182;</a>
+              </div>
+              <p>cache deep keys for deletion later</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> deepKeys = [];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-79">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-79">&#182;</a>
+              </div>
+              <p>iterate over each key-val pair breath first</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    _.each(obj, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">val, key</span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-80">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-80">&#182;</a>
+              </div>
+              <p>if can be delimiter-splitted</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (_.includes(key, delim)) {
+        <span class="hljs-keyword">var</span> ind = key.lastIndexOf(delim)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-81">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-81">&#182;</a>
+              </div>
+              <p>new key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> v0 = key.slice(<span class="hljs-number">0</span>, ind);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-82">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-82">&#182;</a>
+              </div>
+              <p>the tail as new key now</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> v1 = key.slice(ind + delim.length);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-83">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-83">&#182;</a>
+              </div>
+              <p>guard, if sibling didn’t already create it</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (!obj[v0]) {
+          obj[v0] = {}
+        };
+        obj[v0][v1] = val;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-84">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-84">&#182;</a>
+              </div>
+              <p>push for deletion</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        deepKeys.push(key)
+      }
+    });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-85">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-85">&#182;</a>
+              </div>
+              <p>delete the old deepkeys</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    _.map(deepKeys, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">dkey</span>) </span>{
+      <span class="hljs-keyword">delete</span> obj[dkey]
+    });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-86">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-86">&#182;</a>
+              </div>
+              <p>check if should go down further if still has delim</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> goDown = <span class="hljs-literal">false</span>;
+    _.each(_.keys(obj), <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">k</span>) </span>{
+      <span class="hljs-keyword">if</span> (k.lastIndexOf(delim) != <span class="hljs-number">-1</span>) {
+        goDown = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+      };
+    })
+    <span class="hljs-keyword">if</span> (goDown) {
+      <span class="hljs-keyword">return</span> lomath.unflattenJSON(obj, delim)
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">return</span> obj
+    }
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-87">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-87">&#182;</a>
               </div>
               <p>////////////
 Matrices //
@@ -1629,11 +1787,11 @@ transpose a matrix</p>
         </li>
         
         
-        <li id="section-79">
+        <li id="section-88">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-79">&#182;</a>
+                <a class="pilcrow" href="#section-88">&#182;</a>
               </div>
               <p>trace a matrix</p>
 
@@ -1641,8 +1799,8 @@ transpose a matrix</p>
             
             <div class="content"><div class='highlight'><pre>  trace: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">M</span>) </span>{
     <span class="hljs-keyword">var</span> len = M.length,
-    sum = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">while</span>(len--)
+      sum = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> (len--)
       sum += M[len][len]
     <span class="hljs-keyword">return</span> sum;
   },</pre></div></div>
@@ -1650,11 +1808,11 @@ transpose a matrix</p>
         </li>
         
         
-        <li id="section-80">
+        <li id="section-89">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-80">&#182;</a>
+                <a class="pilcrow" href="#section-89">&#182;</a>
               </div>
               <p>multiply two matrices</p>
 
@@ -1662,16 +1820,18 @@ transpose a matrix</p>
             
             <div class="content"><div class='highlight'><pre>  matMultiply: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">A, B</span>) </span>{
     <span class="hljs-keyword">var</span> T = lomath.transpose(B);
-    <span class="hljs-keyword">return</span> _.map(A, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a</span>)</span>{
+    <span class="hljs-keyword">return</span> _.map(A, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a</span>) </span>{
       <span class="hljs-keyword">return</span> _.map(T, lomath.dot.bind(<span class="hljs-literal">null</span>, a))
     })
   },
-   coSubMatrix: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">M, r, c</span>) </span>{
-    r = r || <span class="hljs-number">0</span>; c = c || <span class="hljs-number">0</span>;
+  coSubMatrix: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">M, r, c</span>) </span>{
+    r = r || <span class="hljs-number">0</span>;
+    c = c || <span class="hljs-number">0</span>;
     <span class="hljs-keyword">var</span> coSubMat = [];
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; M.length; i++) {
       <span class="hljs-keyword">if</span> (i != r) {
-        <span class="hljs-keyword">var</span> row = M[i], coRow = [];
+        <span class="hljs-keyword">var</span> row = M[i],
+          coRow = [];
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; M.length; j++) {
           <span class="hljs-keyword">if</span> (j != c) coRow.push(row[j]);
         }
@@ -1680,37 +1840,37 @@ transpose a matrix</p>
     }
     <span class="hljs-keyword">return</span> coSubMat;
   },
-   coMatrix: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">M</span>) </span>{
+  coMatrix: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">M</span>) </span>{
     <span class="hljs-keyword">var</span> coMat = [];
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; M.length; i++) {
       <span class="hljs-keyword">var</span> coRow = [];
       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; M.length; j++) {
         <span class="hljs-keyword">var</span> subMat = lomath.coSubMatrix(M, i, j);
-        coRow.push(lomath.parity(i+j) * lomath.det(subMat));
+        coRow.push(lomath.parity(i + j) * lomath.det(subMat));
       }
       coMat.push(coRow);
     }
     <span class="hljs-keyword">return</span> coMat;
   },
-   adj: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">M</span>) </span>{
+  adj: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">M</span>) </span>{
     <span class="hljs-keyword">var</span> adjMat = [];
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; M.length; i++) {
       <span class="hljs-keyword">var</span> adjRow = [];
       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; M.length; j++) {
         <span class="hljs-keyword">var</span> subMat = lomath.coSubMatrix(M, j, i);
-        adjRow.push(lomath.parity(i+j) * lomath.det(subMat));
+        adjRow.push(lomath.parity(i + j) * lomath.det(subMat));
       }
       adjMat.push(adjRow);
     }
     <span class="hljs-keyword">return</span> adjMat;
   },
-   detSum: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">M, i</span>) </span>{
+  detSum: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">M, i</span>) </span>{
     <span class="hljs-keyword">var</span> sign = lomath.parity(i),
-    cofactor = M[<span class="hljs-number">0</span>][i],
-    coSubMat = lomath.coSubMatrix(M, <span class="hljs-number">0</span>, i);
+      cofactor = M[<span class="hljs-number">0</span>][i],
+      coSubMat = lomath.coSubMatrix(M, <span class="hljs-number">0</span>, i);
     <span class="hljs-keyword">return</span> sign * cofactor * lomath.det(coSubMat);
   },
-   det: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">M</span>) </span>{
+  det: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">M</span>) </span>{
     <span class="hljs-keyword">var</span> n = M.length;
     <span class="hljs-keyword">var</span> det = <span class="hljs-number">0</span>;
     <span class="hljs-keyword">if</span> (!n) {
@@ -1725,21 +1885,21 @@ transpose a matrix</p>
     }
     <span class="hljs-keyword">return</span> det;
   },
-   inv: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">M</span>) </span>{
+  inv: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">M</span>) </span>{
     <span class="hljs-keyword">var</span> det = lomath.det(M);
     <span class="hljs-keyword">if</span> (det == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">else</span>
-      <span class="hljs-keyword">return</span> lomath.multiply(<span class="hljs-number">1</span>/det, lomath.adj(M))
+      <span class="hljs-keyword">return</span> lomath.multiply(<span class="hljs-number">1</span> / det, lomath.adj(M))
   },</pre></div></div>
             
         </li>
         
         
-        <li id="section-81">
+        <li id="section-90">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-81">&#182;</a>
+                <a class="pilcrow" href="#section-90">&#182;</a>
               </div>
               <p>/////////////////////////////
 Subsets and combinatorics //
@@ -1751,7 +1911,7 @@ generate n-nary number of length</p>
             <div class="content"><div class='highlight'><pre>  genAry: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">length, n</span>) </span>{
     <span class="hljs-keyword">var</span> range = _.map(_.range(n), <span class="hljs-built_in">String</span>);
     <span class="hljs-keyword">var</span> tmp = range,
-    it = length;
+      it = length;
     <span class="hljs-keyword">while</span> (--it) {
       tmp = _.flattenDeep(_.map(range, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
         <span class="hljs-keyword">return</span> lomath.distributeRight(lomath.a_add, x, tmp)
@@ -1763,11 +1923,11 @@ generate n-nary number of length</p>
         </li>
         
         
-        <li id="section-82">
+        <li id="section-91">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-82">&#182;</a>
+                <a class="pilcrow" href="#section-91">&#182;</a>
               </div>
               <p>convert array of strings to array of array of numbers</p>
 
@@ -1784,11 +1944,11 @@ generate n-nary number of length</p>
         </li>
         
         
-        <li id="section-83">
+        <li id="section-92">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-83">&#182;</a>
+                <a class="pilcrow" href="#section-92">&#182;</a>
               </div>
               <p>generate all permutation subset indices of n items</p>
 
@@ -1796,8 +1956,8 @@ generate n-nary number of length</p>
             
             <div class="content"><div class='highlight'><pre>  pSubset: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>{
     <span class="hljs-keyword">var</span> range = _.map(_.range(n), <span class="hljs-built_in">String</span>),
-    res = [],
-    count = n;
+      res = [],
+      count = n;
     res.push(range); <span class="hljs-comment">//init</span>
     <span class="hljs-keyword">if</span> (count == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> res;
     <span class="hljs-keyword">while</span> (--count) {</pre></div></div>
@@ -1805,11 +1965,11 @@ generate n-nary number of length</p>
         </li>
         
         
-        <li id="section-84">
+        <li id="section-93">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-84">&#182;</a>
+                <a class="pilcrow" href="#section-93">&#182;</a>
               </div>
               <p>the last batch to expand on</p>
 
@@ -1821,7 +1981,7 @@ generate n-nary number of length</p>
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)
           <span class="hljs-keyword">if</span> (!_.includes(k.split(<span class="hljs-string">''</span>), <span class="hljs-built_in">String</span>(i)))
             batch.push(k + i);
-        })
+      })
       res.push(batch);
     }
     <span class="hljs-keyword">return</span> res;
@@ -1830,11 +1990,11 @@ generate n-nary number of length</p>
         </li>
         
         
-        <li id="section-85">
+        <li id="section-94">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-85">&#182;</a>
+                <a class="pilcrow" href="#section-94">&#182;</a>
               </div>
               <p>generate all subset indices of n items</p>
 
@@ -1842,8 +2002,8 @@ generate n-nary number of length</p>
             
             <div class="content"><div class='highlight'><pre>  subset: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>{
     <span class="hljs-keyword">var</span> range = _.map(_.range(n), <span class="hljs-built_in">String</span>),
-    res = [],
-    count = n;
+      res = [],
+      count = n;
     res.push(range); <span class="hljs-comment">//init</span>
     <span class="hljs-keyword">if</span> (count == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> res;
     <span class="hljs-keyword">while</span> (--count) {</pre></div></div>
@@ -1851,11 +2011,11 @@ generate n-nary number of length</p>
         </li>
         
         
-        <li id="section-86">
+        <li id="section-95">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-86">&#182;</a>
+                <a class="pilcrow" href="#section-95">&#182;</a>
               </div>
               <p>the last batch to expand on</p>
 
@@ -1875,11 +2035,11 @@ generate n-nary number of length</p>
         </li>
         
         
-        <li id="section-87">
+        <li id="section-96">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-87">&#182;</a>
+                <a class="pilcrow" href="#section-96">&#182;</a>
               </div>
               <p>generate the indices of n-perm-r</p>
 
@@ -1892,11 +2052,11 @@ generate n-nary number of length</p>
         </li>
         
         
-        <li id="section-88">
+        <li id="section-97">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-88">&#182;</a>
+                <a class="pilcrow" href="#section-97">&#182;</a>
               </div>
               <p>generate the indices of n-choose-r</p>
 
@@ -1909,11 +2069,11 @@ generate n-nary number of length</p>
         </li>
         
         
-        <li id="section-89">
+        <li id="section-98">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-89">&#182;</a>
+                <a class="pilcrow" href="#section-98">&#182;</a>
               </div>
               <p>generate all permutations of n items</p>
 
@@ -1921,12 +2081,12 @@ generate n-nary number of length</p>
             
             <div class="content"><div class='highlight'><pre>  permute: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>{
     <span class="hljs-keyword">var</span> range = _.range(n),
-    res = [],
-    diffs, k = <span class="hljs-number">0</span>;
+      res = [],
+      diffs, k = <span class="hljs-number">0</span>;
     <span class="hljs-keyword">while</span> (k != <span class="hljs-number">-1</span>) {
       res.push(range.slice(<span class="hljs-number">0</span>));
       diffs = lomath.stairs(range),
-      k = _.findLastIndex(diffs, lomath.isPositive);
+        k = _.findLastIndex(diffs, lomath.isPositive);
       <span class="hljs-keyword">var</span> l = _.findLastIndex(range, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">t</span>) </span>{
         <span class="hljs-keyword">return</span> t &gt; range[k];
       });
@@ -1939,11 +2099,11 @@ generate n-nary number of length</p>
         </li>
         
         
-        <li id="section-90">
+        <li id="section-99">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-90">&#182;</a>
+                <a class="pilcrow" href="#section-99">&#182;</a>
               </div>
               <p>return factorial(n)
 alias: fact</p>
@@ -1953,8 +2113,8 @@ alias: fact</p>
             <div class="content"><div class='highlight'><pre>  factorial: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>{
     <span class="hljs-keyword">if</span> (n == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
     <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">throw</span> <span class="hljs-string">"Negative factorial not defined"</span>
-      <span class="hljs-keyword">var</span> count = n,
-    res = n;
+    <span class="hljs-keyword">var</span> count = n,
+      res = n;
     <span class="hljs-keyword">while</span> (--count)
       res *= count;
     <span class="hljs-keyword">return</span> res;
@@ -1963,11 +2123,11 @@ alias: fact</p>
         </li>
         
         
-        <li id="section-91">
+        <li id="section-100">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-91">&#182;</a>
+                <a class="pilcrow" href="#section-100">&#182;</a>
               </div>
               <p>return n-permute-r
 alias: perm</p>
@@ -1977,8 +2137,8 @@ alias: perm</p>
             <div class="content"><div class='highlight'><pre>  permutation: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n, r</span>) </span>{
     <span class="hljs-keyword">if</span> (r == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
     <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">0</span> || r &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">throw</span> <span class="hljs-string">"Negative permutation not defined"</span>
-      <span class="hljs-keyword">var</span> count = r,
-    term = n;
+    <span class="hljs-keyword">var</span> count = r,
+      term = n;
     res = n;
     <span class="hljs-keyword">while</span> (--count)
       res *= --term;
@@ -1988,11 +2148,11 @@ alias: perm</p>
         </li>
         
         
-        <li id="section-92">
+        <li id="section-101">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-92">&#182;</a>
+                <a class="pilcrow" href="#section-101">&#182;</a>
               </div>
               <p>return n-choose-r
 alias: comb</p>
@@ -2002,17 +2162,17 @@ alias: comb</p>
             <div class="content"><div class='highlight'><pre>  combination: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n, r</span>) </span>{
     <span class="hljs-keyword">var</span> l = (r &gt; n / <span class="hljs-number">2</span>) ? n - r : r;
     <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">0</span> || l &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">throw</span> <span class="hljs-string">"Negative combination not defined"</span>
-      <span class="hljs-keyword">return</span> lomath.permutation(n, l) / lomath.factorial(l);
+    <span class="hljs-keyword">return</span> lomath.permutation(n, l) / lomath.factorial(l);
   },</pre></div></div>
             
         </li>
         
         
-        <li id="section-93">
+        <li id="section-102">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-93">&#182;</a>
+                <a class="pilcrow" href="#section-102">&#182;</a>
               </div>
               <p>///////////////////
 Handy vectorial //
@@ -2029,11 +2189,11 @@ recyle if lengths mismatch</p>
         </li>
         
         
-        <li id="section-94">
+        <li id="section-103">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-94">&#182;</a>
+                <a class="pilcrow" href="#section-103">&#182;</a>
               </div>
               <p>return the sum of n-powers of a tensor, default to n = 2</p>
 
@@ -2047,11 +2207,11 @@ recyle if lengths mismatch</p>
         </li>
         
         
-        <li id="section-95">
+        <li id="section-104">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-95">&#182;</a>
+                <a class="pilcrow" href="#section-104">&#182;</a>
               </div>
               <p>return the L-n norm of a vector, default to L-2</p>
 
@@ -2065,11 +2225,11 @@ recyle if lengths mismatch</p>
         </li>
         
         
-        <li id="section-96">
+        <li id="section-105">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-96">&#182;</a>
+                <a class="pilcrow" href="#section-105">&#182;</a>
               </div>
               <p>normalize a vector(tensor) by L-n norm, default to n=2</p>
 
@@ -2082,11 +2242,11 @@ recyle if lengths mismatch</p>
         </li>
         
         
-        <li id="section-97">
+        <li id="section-106">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-97">&#182;</a>
+                <a class="pilcrow" href="#section-106">&#182;</a>
               </div>
               <p>rescale a vector to unit length</p>
 
@@ -2099,11 +2259,11 @@ recyle if lengths mismatch</p>
         </li>
         
         
-        <li id="section-98">
+        <li id="section-107">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-98">&#182;</a>
+                <a class="pilcrow" href="#section-107">&#182;</a>
               </div>
               <p>////////////////
 handy Matrix //
@@ -2114,11 +2274,11 @@ handy Matrix //
         </li>
         
         
-        <li id="section-99">
+        <li id="section-108">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-99">&#182;</a>
+                <a class="pilcrow" href="#section-108">&#182;</a>
               </div>
               <p>Matrix ops
 Matrix ops
@@ -2129,11 +2289,11 @@ Matrix ops</p>
         </li>
         
         
-        <li id="section-100">
+        <li id="section-109">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-100">&#182;</a>
+                <a class="pilcrow" href="#section-109">&#182;</a>
               </div>
               <p>///////////////
 Handy trend //
@@ -2144,7 +2304,7 @@ return the stairs: adjacent difference in a vector</p>
             
             <div class="content"><div class='highlight'><pre>  stairs: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">v</span>) </span>{
     <span class="hljs-keyword">var</span> dlen = v.length - <span class="hljs-number">1</span>,
-    st = <span class="hljs-built_in">Array</span>(dlen);
+      st = <span class="hljs-built_in">Array</span>(dlen);
     <span class="hljs-keyword">while</span> (dlen--)
       st[dlen] = v[dlen + <span class="hljs-number">1</span>] - v[dlen];
     <span class="hljs-keyword">return</span> st;
@@ -2153,11 +2313,11 @@ return the stairs: adjacent difference in a vector</p>
         </li>
         
         
-        <li id="section-101">
+        <li id="section-110">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-101">&#182;</a>
+                <a class="pilcrow" href="#section-110">&#182;</a>
               </div>
               <p>check the trend of vector v using sign-function</p>
 
@@ -2170,11 +2330,11 @@ return the stairs: adjacent difference in a vector</p>
         </li>
         
         
-        <li id="section-102">
+        <li id="section-111">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-102">&#182;</a>
+                <a class="pilcrow" href="#section-111">&#182;</a>
               </div>
               <p>check if vector v is increasing</p>
 
@@ -2187,11 +2347,11 @@ return the stairs: adjacent difference in a vector</p>
         </li>
         
         
-        <li id="section-103">
+        <li id="section-112">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-103">&#182;</a>
+                <a class="pilcrow" href="#section-112">&#182;</a>
               </div>
               <p>check is vector v is non-decreasing</p>
 
@@ -2204,11 +2364,11 @@ return the stairs: adjacent difference in a vector</p>
         </li>
         
         
-        <li id="section-104">
+        <li id="section-113">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-104">&#182;</a>
+                <a class="pilcrow" href="#section-113">&#182;</a>
               </div>
               <p>check is vector v is decreasing</p>
 
@@ -2221,11 +2381,11 @@ return the stairs: adjacent difference in a vector</p>
         </li>
         
         
-        <li id="section-105">
+        <li id="section-114">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-105">&#182;</a>
+                <a class="pilcrow" href="#section-114">&#182;</a>
               </div>
               <p>check is vector v is non-increasing</p>
 
@@ -2238,11 +2398,11 @@ return the stairs: adjacent difference in a vector</p>
         </li>
         
         
-        <li id="section-106">
+        <li id="section-115">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-106">&#182;</a>
+                <a class="pilcrow" href="#section-115">&#182;</a>
               </div>
               <p>/////////////////////
 Handy statistical //
@@ -2258,11 +2418,11 @@ return the average of a vector</p>
         </li>
         
         
-        <li id="section-107">
+        <li id="section-116">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-107">&#182;</a>
+                <a class="pilcrow" href="#section-116">&#182;</a>
               </div>
               <p>return the expectation value E(fn(x)), given probability and value vectors, and an optional atomic fn, defaulted to identity E(x).
 Note: fn must be atomic
@@ -2276,11 +2436,11 @@ alias E</p>
         </li>
         
         
-        <li id="section-108">
+        <li id="section-117">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-108">&#182;</a>
+                <a class="pilcrow" href="#section-117">&#182;</a>
               </div>
               <p>if only X is specified</p>
 
@@ -2289,17 +2449,17 @@ alias E</p>
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (P == <span class="hljs-literal">undefined</span> &amp;&amp; fn == <span class="hljs-literal">undefined</span>) {
       <span class="hljs-keyword">var</span> hist = lomath.histogram(X);
       val = hist.value,
-      prob = hist.prob;
+        prob = hist.prob;
     }</pre></div></div>
             
         </li>
         
         
-        <li id="section-109">
+        <li id="section-118">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-109">&#182;</a>
+                <a class="pilcrow" href="#section-118">&#182;</a>
               </div>
               <p>if X, P specified (maybe fn too)</p>
 
@@ -2314,20 +2474,20 @@ alias E</p>
         </li>
         
         
-        <li id="section-110">
+        <li id="section-119">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-110">&#182;</a>
+                <a class="pilcrow" href="#section-119">&#182;</a>
               </div>
               <p>if X, fn specified</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> P === <span class="hljs-string">'function'</span>){
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> P === <span class="hljs-string">'function'</span>) {
       <span class="hljs-keyword">var</span> hist = lomath.histogram(X);
       val = hist.value,
-      prob = hist.prob;
+        prob = hist.prob;
       func = P;
     }
     <span class="hljs-keyword">if</span> (func != <span class="hljs-literal">undefined</span>)
@@ -2338,11 +2498,11 @@ alias E</p>
         </li>
         
         
-        <li id="section-111">
+        <li id="section-120">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-111">&#182;</a>
+                <a class="pilcrow" href="#section-120">&#182;</a>
               </div>
               <p>return the variance, given probability and value vectors
 alias Var</p>
@@ -2354,11 +2514,11 @@ alias Var</p>
         </li>
         
         
-        <li id="section-112">
+        <li id="section-121">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-112">&#182;</a>
+                <a class="pilcrow" href="#section-121">&#182;</a>
               </div>
               <p>if only X is specified</p>
 
@@ -2371,11 +2531,11 @@ alias Var</p>
         </li>
         
         
-        <li id="section-113">
+        <li id="section-122">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-113">&#182;</a>
+                <a class="pilcrow" href="#section-122">&#182;</a>
               </div>
               <p>if X, P specified (maybe fn too)</p>
 
@@ -2383,24 +2543,24 @@ alias Var</p>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> P === <span class="hljs-string">'object'</span>) {
       <span class="hljs-keyword">return</span> fn == <span class="hljs-literal">undefined</span> ?
-      lomath.expVal(X, P, lomath.a_square) - lomath.a_square(lomath.expVal(X, P)) :
-      lomath.expVal(X, P, _.flow(fn, lomath.a_square)) - lomath.a_square(lomath.expVal(X, P, fn));
+        lomath.expVal(X, P, lomath.a_square) - lomath.a_square(lomath.expVal(X, P)) :
+        lomath.expVal(X, P, _.flow(fn, lomath.a_square)) - lomath.a_square(lomath.expVal(X, P, fn));
     }</pre></div></div>
             
         </li>
         
         
-        <li id="section-114">
+        <li id="section-123">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-114">&#182;</a>
+                <a class="pilcrow" href="#section-123">&#182;</a>
               </div>
               <p>if X, fn specified</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> P === <span class="hljs-string">'function'</span>){
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> P === <span class="hljs-string">'function'</span>) {
       <span class="hljs-keyword">return</span> lomath.expVal(X, _.flow(P, lomath.a_square)) - lomath.a_square(lomath.expVal(X, P));
     }
   },</pre></div></div>
@@ -2408,11 +2568,11 @@ alias Var</p>
         </li>
         
         
-        <li id="section-115">
+        <li id="section-124">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-115">&#182;</a>
+                <a class="pilcrow" href="#section-124">&#182;</a>
               </div>
               <p>return the variance, given probability and value vectors</p>
 
@@ -2421,7 +2581,7 @@ alias Var</p>
             <div class="content"><div class='highlight'><pre>  stdev: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">X, P, fn</span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(lomath.variance(X, P, fn));
   },
-   histogram: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data, fn, pair</span>) </span>{
+  histogram: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data, fn, pair</span>) </span>{
     <span class="hljs-keyword">if</span> (fn == <span class="hljs-literal">true</span>) <span class="hljs-comment">// called with data, pair</span>
       <span class="hljs-keyword">return</span> _.toPairs(_.countBy(data));
     <span class="hljs-keyword">var</span> bin = _.countBy(data, fn);
@@ -2438,11 +2598,11 @@ alias Var</p>
         </li>
         
         
-        <li id="section-116">
+        <li id="section-125">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-116">&#182;</a>
+                <a class="pilcrow" href="#section-125">&#182;</a>
               </div>
               <p>Calculate the rate of return r in % of an exp growth, given final value m_f, initial value m_i, and time interval t</p>
 
@@ -2455,11 +2615,11 @@ alias Var</p>
         </li>
         
         
-        <li id="section-117">
+        <li id="section-126">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-117">&#182;</a>
+                <a class="pilcrow" href="#section-126">&#182;</a>
               </div>
               <p>Calculate the trailing exp rate of return in the last t years given a vector v</p>
 
@@ -2473,11 +2633,11 @@ alias Var</p>
         </li>
         
         
-        <li id="section-118">
+        <li id="section-127">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-118">&#182;</a>
+                <a class="pilcrow" href="#section-127">&#182;</a>
               </div>
               <p>////////////////////////////////////////
 Plotting modules: normal and dynamic //
@@ -2504,11 +2664,11 @@ Plotting modules: normal and dynamic //
         </li>
         
         
-        <li id="section-119">
+        <li id="section-128">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-119">&#182;</a>
+                <a class="pilcrow" href="#section-128">&#182;</a>
               </div>
               <p>hc: require(__dirname+’/chart/plot.js’).hc</p>
 
@@ -2533,7 +2693,7 @@ Plotting modules: normal and dynamic //
        }],
        <span class="hljs-string">"Title 2"</span>
        )
-   plot: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">seriesArr, title, yLabel, xLabel</span>) </span>{
+  plot: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">seriesArr, title, yLabel, xLabel</span>) </span>{
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Please call this method by _.hc.plot"</span>);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
   },
@@ -2580,11 +2740,11 @@ Plotting modules: normal and dynamic //
 
     }]
        })
-   advPlot: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) </span>{
+  advPlot: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) </span>{
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Please call this method by _.hc.advPlot"</span>);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
   },
-   render: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">autosave</span>) </span>{
+  render: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">autosave</span>) </span>{
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Please call this method by _.hc.advPlot"</span>);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
   },</pre></div></div>
@@ -2592,11 +2752,11 @@ Plotting modules: normal and dynamic //
         </li>
         
         
-        <li id="section-120">
+        <li id="section-129">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-120">&#182;</a>
+                <a class="pilcrow" href="#section-129">&#182;</a>
               </div>
               <p>The time variables for tick tock</p>
 
@@ -2604,17 +2764,17 @@ Plotting modules: normal and dynamic //
             
             <div class="content"><div class='highlight'><pre>  t_start: <span class="hljs-number">0</span>,
   t_end: <span class="hljs-number">0</span>,
-   tick: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  tick: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     lomath.t_start = _.now();
     <span class="hljs-keyword">return</span> lomath.t_start;
   },
-   tock: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  tock: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     lomath.t_end = _.now();
     <span class="hljs-keyword">var</span> diff = lomath.t_end - lomath.t_start;
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Elapsed ms:'</span>, diff);
     <span class="hljs-keyword">return</span> diff;
   },
-   p: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  p: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-built_in">console</span>.log.apply(<span class="hljs-literal">null</span>, <span class="hljs-built_in">arguments</span>);
   }
 })</pre></div></div>
@@ -2622,11 +2782,11 @@ Plotting modules: normal and dynamic //
         </li>
         
         
-        <li id="section-121">
+        <li id="section-130">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-121">&#182;</a>
+                <a class="pilcrow" href="#section-130">&#182;</a>
               </div>
               <p>Export lomath as _</p>
 

@@ -927,6 +927,15 @@ v.should.deep.equal(A.R)</code></pre></dd>
   'level1_level2b_level3': [ 2, 3, 4 ] })</code></pre></dd>
           </dl>
         </section>
+        <section class="suite">
+          <h1>unflattenJSON(obj)</h1>
+          <dl>
+            <dt>default delimiter</dt>
+            <dd><pre><code>fn(_.flattenJSON(R)).should.deep.equal(R)</code></pre></dd>
+            <dt>custom delimiter</dt>
+            <dd><pre><code>fn(_.flattenJSON(R, '_'), '_').should.deep.equal(R)</code></pre></dd>
+          </dl>
+        </section>
       </dl>
     </section>
     <section class="suite">
@@ -1357,7 +1366,7 @@ Please call this method by _.hc.advPlot
       <dl>
         <dt>tick</dt>
         <dd><pre><code>_.tick().should.be.a('number')</code></pre></dd>
-Elapsed ms: 1
+Elapsed ms: 0
         <dt>tock</dt>
         <dd><pre><code>_.tock().should.be.a('number')</code></pre></dd>
       </dl>

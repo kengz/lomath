@@ -1,6 +1,6 @@
 {
   "name": "lomath",
-  "version": "0.2.9",
+  "version": "0.3.0",
   "description": "Lomath is a tensorial math library extended from lodash.",
   "main": "index.js",
   "scripts": {

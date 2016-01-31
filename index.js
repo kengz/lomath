@@ -8,7 +8,7 @@ var _ = require('lodash').runInContext();
 // the module: lodash extended with math mixins
 var lomath = _.mixin({
   AUTHOR: "kengz",
-  VERSION: "0.2.8",
+  VERSION: "0.2.9",
 
   //////////////////////////////
   // Function builder backend //
@@ -1702,10 +1702,17 @@ var lomath = _.mixin({
     var nobj = {}
 
     _.each(obj, function(val, key) {
-      if (_.isObject(val) && !_.isArray(val)) {
+      if (_.isPlainObject(val) && !_.isEmpty(val)) {
         var strip = lomath.flattenJSON(val, delim)
         _.each(strip, function(v, k) {
           nobj[key + delim + k] = v
+        })
+      } else if (_.isArray(val) && !_.isEmpty(val)) {
+        _.each(val, function(v, index) {
+          nobj[key + delim + index] = v
+          if (_.isObject(v)) {
+            nobj = lomath.flattenJSON(nobj, delim)
+          };
         })
       } else {
         nobj[key] = val
@@ -1743,9 +1750,22 @@ var lomath = _.mixin({
    * 
    */
   unflattenJSON: function(obj, delimiter) {
+    return lomath.unobjectifyArray(lomath.unflattenJSON_objectifyArray(obj, delimiter))
+  },
+
+  /**
+   * Helper for unflattenJSON. Unflattens a JSON object into depth, using an optional delimiter. Numerical indices will be expanded into object keys first, then the plainObject will be rechecked and those with numerical keys will be composed into arrays.
+   *
+   * @private
+   * @category transformation
+   * @param {JSON} obj The original JSON object.
+   * @returns {JSON} unflat_obj The unflattened (nested) object.
+   */
+  unflattenJSON_objectifyArray: function(obj, delimiter) {
     var delim = delimiter || '.';
     // cache deep keys for deletion later
     var deepKeys = [];
+
     // iterate over each key-val pair breath first
     _.each(obj, function(val, key) {
       // if can be delimiter-splitted
@@ -1778,10 +1798,47 @@ var lomath = _.mixin({
       };
     })
     if (goDown) {
-      return lomath.unflattenJSON(obj, delim)
+      return lomath.unflattenJSON_objectifyArray(obj, delim)
     } else {
       return obj
     }
+  },
+
+  /**
+   * Helper for unflattenJSON. Numerical indices will be expanded into object keys first with unflattenJSON_objectifyArray, then the plainObject will be rechecked and those with numerical keys will be composed into arrays by this method
+   *
+   * @private
+   * @category transformation
+   * @param {JSON} obj The original with possible arrays casted as object with numeric keys.
+   * @returns {JSON} unflat_obj The proper object with arrays.
+   */
+  unobjectifyArray: function(obj) {
+    var index = 0;
+    var arr = [];
+    var isIndex = true;
+    if (_.isEmpty(obj)) {
+      isIndex = false;
+    };
+    // iterate through and see if all keys indeed form a numeric sequence
+    // sort keys. Sort since iteration order is not guaranteed.
+    var sortedKeys = _.keys(obj).sort()
+    _.each(sortedKeys, function(k) {
+      // add the value while keys still behaving like numeric
+      if (parseInt(k) == index++) {
+        arr.push(obj[k])
+      } else {
+        isIndex = false
+        return false
+      }
+    })
+    var res = isIndex ? arr : obj
+      // recurse down the val if it's not primitive type
+    _.each(res, function(v, k) {
+      if (_.isObject(v)) {
+        res[k] = lomath.unobjectifyArray(v)
+      }
+    })
+    return res
   },
 
 

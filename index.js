@@ -1686,14 +1686,18 @@ var lomath = _.mixin({
    *
    * _.flattenJSON(formData)
    * // → { 'level1.level2.level3': 0,
-   * // 'level1.level2.level3b': 1,
-   * // 'level1.level2b.level3': [ 2, 3, 4 ] }
+   * //  'level1.level2.level3b': 1,
+   * //  'level1.level2b.level3.0': 2,
+   * //  'level1.level2b.level3.1': 3,
+   * //  'level1.level2b.level3.2': 4 }
    * // The deepest values are not flattened (not stringified)
    * 
    * _.flattenJSON(formData, '_')
-   * // → { 'level1_level2_level3': 0,
-   * // 'level1_level2_level3b': 1,
-   * // 'level1_level2b_level3': [ 2, 3, 4 ] }
+   * // → { level1_level2_level3: 0,
+   * //  level1_level2_level3b: 1,
+   * //  level1_level2b_level3_0: 2,
+   * //  level1_level2b_level3_1: 3,
+   * //  level1_level2b_level3_2: 4 }
    * // The deepest values are not flattened (not stringified)
    * 
    */
@@ -1741,7 +1745,17 @@ var lomath = _.mixin({
    *  }
    *
    * _.unflattenJSON(_.flattenJSON(formData))
-   * // → (formData)
+   * // → {
+   * //   'level1': {
+   * //     'level2': {
+   * //       'level3': 0,
+   * //       'level3b': 1
+   * //     },
+   * //     'level2b': {
+   * //       'level3': [2,3,4]
+   * //     }
+   * //   }
+   * // }
    * // JSON is restored
    * 
    * _.unflattenJSON(_.flattenJSON(formData, '_'), '_')

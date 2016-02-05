@@ -573,7 +573,7 @@ _.sum(0, [1, 2, 3], [[1, 2], [3, 4])
 <!-- div -->
 
 ### <a id="combList"></a>`combList(n, r)`
-<a href="#combList">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2042 "View in source") [&#x24C9;][1]
+<a href="#combList">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2056 "View in source") [&#x24C9;][1]
 
 Generates the indices of n-choose-r. Calls `_.subset` internally, chooses the array with string length r, and converts to numbers.
 
@@ -596,7 +596,7 @@ _.combList(3, 2)
 <!-- div -->
 
 ### <a id="combination"></a>`combination(n, r)`
-<a href="#combination">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2146 "View in source") [&#x24C9;][1]
+<a href="#combination">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2160 "View in source") [&#x24C9;][1]
 
 Returns n-choose-r.
 
@@ -625,7 +625,7 @@ _.combination(1000, 500) // Inevitable overflow.
 <!-- div -->
 
 ### <a id="factorial"></a>`factorial(n)`
-<a href="#factorial">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2092 "View in source") [&#x24C9;][1]
+<a href="#factorial">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2106 "View in source") [&#x24C9;][1]
 
 Returns n!.
 
@@ -647,7 +647,7 @@ _.factorial(5)
 <!-- div -->
 
 ### <a id="genAry"></a>`genAry(length, N)`
-<a href="#genAry">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1915 "View in source") [&#x24C9;][1]
+<a href="#genAry">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1929 "View in source") [&#x24C9;][1]
 
 Generates all the strings of N-nary numbers up to length.
 
@@ -673,7 +673,7 @@ _.genAry(2, 3) // ternary, length 2
 <!-- div -->
 
 ### <a id="pSubset"></a>`pSubset(n)`
-<a href="#pSubset">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1962 "View in source") [&#x24C9;][1]
+<a href="#pSubset">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1976 "View in source") [&#x24C9;][1]
 
 Generates all the permutation subset indices of n items.
 
@@ -699,7 +699,7 @@ _.pSubset(3)
 <!-- div -->
 
 ### <a id="permList"></a>`permList(n, r)`
-<a href="#permList">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2026 "View in source") [&#x24C9;][1]
+<a href="#permList">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2040 "View in source") [&#x24C9;][1]
 
 Generates the indices of n-permute-r. Calls `_.pSubset` internally, chooses the array with string length r, and converts to numbers.
 
@@ -722,7 +722,7 @@ _.permList(3, 2)
 <!-- div -->
 
 ### <a id="permutation"></a>`permutation(n, r)`
-<a href="#permutation">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2117 "View in source") [&#x24C9;][1]
+<a href="#permutation">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2131 "View in source") [&#x24C9;][1]
 
 Returns n-permute-r.
 
@@ -748,7 +748,7 @@ _.permutation(1000, 1)
 <!-- div -->
 
 ### <a id="permute"></a>`permute(n)`
-<a href="#permute">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2064 "View in source") [&#x24C9;][1]
+<a href="#permute">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2078 "View in source") [&#x24C9;][1]
 
 Generates the permutation indices of n items in lexicographical order.
 
@@ -777,7 +777,7 @@ _.permute(3)
 <!-- div -->
 
 ### <a id="subset"></a>`subset(n)`
-<a href="#subset">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1996 "View in source") [&#x24C9;][1]
+<a href="#subset">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2010 "View in source") [&#x24C9;][1]
 
 Generates all the (combination) subset indices of n items.
 
@@ -803,7 +803,7 @@ _.subset(3)
 <!-- div -->
 
 ### <a id="toNumArr"></a>`toNumArr(strings)`
-<a href="#toNumArr">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1939 "View in source") [&#x24C9;][1]
+<a href="#toNumArr">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1953 "View in source") [&#x24C9;][1]
 
 Converts an array of strings to array of array of numbers.
 Used with `_.genAry` and related number/subset-generating functions.
@@ -1133,7 +1133,7 @@ _.seq(1, 9, 2)
 <!-- div -->
 
 ### <a id="adj"></a>`adj(M)`
-<a href="#adj">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1817 "View in source") [&#x24C9;][1]
+<a href="#adj">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1831 "View in source") [&#x24C9;][1]
 
 Returns the adjugate matrix, i.e. the transpose of the comatrix.
 
@@ -1155,7 +1155,7 @@ _.adj([[1,2,3],[4,5,6],[11,13,17]])
 <!-- div -->
 
 ### <a id="coMatrix"></a>`coMatrix(M)`
-<a href="#coMatrix">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1793 "View in source") [&#x24C9;][1]
+<a href="#coMatrix">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1807 "View in source") [&#x24C9;][1]
 
 Returns the comatrix, i.e. the minor matrix or matrix of cofactors, of M.
 
@@ -1177,7 +1177,7 @@ _.coMatrix([[1,2,3],[4,5,6],[11,13,17]])
 <!-- div -->
 
 ### <a id="coSubMatrix"></a>`coSubMatrix(M, [r=0], [c=0])`
-<a href="#coSubMatrix">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1765 "View in source") [&#x24C9;][1]
+<a href="#coSubMatrix">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1779 "View in source") [&#x24C9;][1]
 
 Returns the submatrix for calculating cofactor, i.e. by taking out row r, col c from M.
 
@@ -1204,7 +1204,7 @@ _.coSubMatrix([[1,2,3],[4,5,6],[7,8,9]], 0, 1)
 <!-- div -->
 
 ### <a id="det"></a>`det(M)`
-<a href="#det">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1860 "View in source") [&#x24C9;][1]
+<a href="#det">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1874 "View in source") [&#x24C9;][1]
 
 Returns the determinant of a matrix.
 
@@ -1226,7 +1226,7 @@ _.det([[1,2,3],[4,5,6],[11,13,17]])
 <!-- div -->
 
 ### <a id="detSum"></a>`detSum(M, i)`
-<a href="#detSum">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1842 "View in source") [&#x24C9;][1]
+<a href="#detSum">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1856 "View in source") [&#x24C9;][1]
 
 Helper function for determinant, used with _.fsum. Sums all the cofactors multiplied with the comatrices.
 
@@ -1249,7 +1249,7 @@ _.detSum([[1,2,3],[4,5,6],[11,13,17]], 0)
 <!-- div -->
 
 ### <a id="inv"></a>`inv(M)`
-<a href="#inv">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1892 "View in source") [&#x24C9;][1]
+<a href="#inv">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1906 "View in source") [&#x24C9;][1]
 
 Returns the inverse of a matrix, or null if non-invertible.
 
@@ -1276,7 +1276,7 @@ _.inv([[1,1],[1,1]])
 <!-- div -->
 
 ### <a id="matMultiply"></a>`matMultiply(A, B)`
-<a href="#matMultiply">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1742 "View in source") [&#x24C9;][1]
+<a href="#matMultiply">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1756 "View in source") [&#x24C9;][1]
 
 Multiply two matrices.
 
@@ -1299,7 +1299,7 @@ _.matMultiply([[1,2],[3,4]], [[1,2],[3,4]])
 <!-- div -->
 
 ### <a id="trace"></a>`trace(M)`
-<a href="#trace">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1722 "View in source") [&#x24C9;][1]
+<a href="#trace">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1736 "View in source") [&#x24C9;][1]
 
 Returns the trace of a square matrix.
 
@@ -1321,7 +1321,7 @@ _.trace([[1, 2], [3, 4]])
 <!-- div -->
 
 ### <a id="transpose"></a>`transpose(M)`
-<a href="#transpose">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1707 "View in source") [&#x24C9;][1]
+<a href="#transpose">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1721 "View in source") [&#x24C9;][1]
 
 Returns a copy of a matrix transposed.
 
@@ -1768,7 +1768,7 @@ Generalized JS Math applicable to tensor using function composition.
 <!-- div -->
 
 ### <a id="advPlot"></a>`advPlot(options)`
-<a href="#advPlot">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2705 "View in source") [&#x24C9;][1]
+<a href="#advPlot">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2719 "View in source") [&#x24C9;][1]
 
 Method of the constructed `hc` object.
 Advanced plotting for users familiar with HighCharts (see http://www.highcharts.com).
@@ -1837,7 +1837,7 @@ hc.render()
 <!-- div -->
 
 ### <a id="hc"></a>`hc()`
-<a href="#hc">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2602 "View in source") [&#x24C9;][1]
+<a href="#hc">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2616 "View in source") [&#x24C9;][1]
 
 The plotting module constructor.
 Uses `HighCharts` to plot and `browserSync`. Pulls up browser directly showing your charts like magic!
@@ -1894,7 +1894,7 @@ hc.render();
 <!-- div -->
 
 ### <a id="plot"></a>`plot(seriesArr, [title=""], [yLabel=""], [xLabel=""])`
-<a href="#plot">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2643 "View in source") [&#x24C9;][1]
+<a href="#plot">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2657 "View in source") [&#x24C9;][1]
 
 Method of the constructed `hc` object.
 A simplified wrapper of the HighCharts plot options object.
@@ -1942,7 +1942,7 @@ hc.render()
 <!-- div -->
 
 ### <a id="render"></a>`render([autosave])`
-<a href="#render">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2725 "View in source") [&#x24C9;][1]
+<a href="#render">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2739 "View in source") [&#x24C9;][1]
 
 Method of the constructed `hc` object.
 Renders the plots: Launches a browser with all the plots listed before this line. Uses a gulp task and browserSync.
@@ -2613,7 +2613,7 @@ _.sameSig([1, 2, 3], _.isPositive)
 <!-- div -->
 
 ### <a id="expGRate"></a>`expGRate(m_f, m_i, t)`
-<a href="#expGRate">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2527 "View in source") [&#x24C9;][1]
+<a href="#expGRate">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2541 "View in source") [&#x24C9;][1]
 
 Returns the rate of return r in % of an exponential growth, given final value m_f, initial value m_i, and time interval t.
 Formula: `100 * (Math.exp(Math.log(m_f / m_i) / t) - 1)`
@@ -2638,7 +2638,7 @@ _.expGRate(8, 2, 2) // 100% growth rate over 2 years
 <!-- div -->
 
 ### <a id="expVal"></a>`expVal(X, [P], [fn])`
-<a href="#expVal">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2370 "View in source") [&#x24C9;][1]
+<a href="#expVal">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2384 "View in source") [&#x24C9;][1]
 
 Returns the expectation value `E(fn(X))` of a random variable vector, optionally with the corresponding probability vector, using the random variable function (defaulted to identity).
 
@@ -2673,7 +2673,7 @@ _.expVal(X, P, _.square) // equivalent to Y, but using X and P: E(X^2)
 <!-- div -->
 
 ### <a id="mean"></a>`mean(T)`
-<a href="#mean">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2342 "View in source") [&#x24C9;][1]
+<a href="#mean">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2356 "View in source") [&#x24C9;][1]
 
 Returns the mean/average of a tensor.
 
@@ -2698,7 +2698,7 @@ _.mean([[1, 2], [3, 4]])
 <!-- div -->
 
 ### <a id="stdev"></a>`stdev(X, [P], [fn])`
-<a href="#stdev">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2458 "View in source") [&#x24C9;][1]
+<a href="#stdev">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2472 "View in source") [&#x24C9;][1]
 
 Returns the standard deviation `sigma(fn(X))` of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).
 Simply calles `_.variance` internally and returns its square root.
@@ -2734,7 +2734,7 @@ _.stdev(X, P, _.square) // equivalent to Y, but using X and P: sigma(X^2)
 <!-- div -->
 
 ### <a id="trailExpGRate"></a>`trailExpGRate(v, t)`
-<a href="#trailExpGRate">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2550 "View in source") [&#x24C9;][1]
+<a href="#trailExpGRate">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2564 "View in source") [&#x24C9;][1]
 
 Returns the trailing exponential rate of return in the last t years given a vector. Calls `_.expGRate` internally.
 
@@ -2764,7 +2764,7 @@ _.trailExpGRate(v, 3)
 <!-- div -->
 
 ### <a id="variance"></a>`variance(X, [P], [fn])`
-<a href="#variance">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2418 "View in source") [&#x24C9;][1]
+<a href="#variance">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2432 "View in source") [&#x24C9;][1]
 
 Returns the variance `Var(fn(X))` of a random variable vector, with the corresponding probability vector, using the random variable function (defaulted to identity).
 
@@ -2805,7 +2805,7 @@ _.variance(X, P, _.square) // equivalent to Y, but using X and P: Var(X^2)
 <!-- div -->
 
 ### <a id="p"></a>`p()`
-<a href="#p">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2771 "View in source") [&#x24C9;][1]
+<a href="#p">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2785 "View in source") [&#x24C9;][1]
 
 Ends a started timer (unique to the whole _ object). Needs to be called after tick. If called again, will give the next lap (starting from the last tick).
 
@@ -2826,7 +2826,7 @@ someTaskwithPromise().then(tock())
 <!-- div -->
 
 ### <a id="tick"></a>`tick()`
-<a href="#tick">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2737 "View in source") [&#x24C9;][1]
+<a href="#tick">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2751 "View in source") [&#x24C9;][1]
 
 Starts a timer (unique to the whole _ object). Needs to be called before tock. If called again, will restart the timer.
 
@@ -2840,7 +2840,7 @@ Starts a timer (unique to the whole _ object). Needs to be called before tock. I
 <!-- div -->
 
 ### <a id="tock"></a>`tock()`
-<a href="#tock">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2753 "View in source") [&#x24C9;][1]
+<a href="#tock">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2767 "View in source") [&#x24C9;][1]
 
 Ends a started timer (unique to the whole _ object). Needs to be called after tick. If called again, will give the next lap (starting from the last tick).
 
@@ -2973,7 +2973,7 @@ _.extend([1, 2, 3], 6, 'a')
 <!-- div -->
 
 ### <a id="flattenJSON"></a>`flattenJSON(obj)`
-<a href="#flattenJSON">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1565 "View in source") [&#x24C9;][1]
+<a href="#flattenJSON">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1569 "View in source") [&#x24C9;][1]
 
 Flattens a JSON object into depth 1, using an optional delimiter.
 
@@ -2999,14 +2999,18 @@ formData = {
 
 _.flattenJSON(formData)
 // → { 'level1.level2.level3': 0,
-// 'level1.level2.level3b': 1,
-// 'level1.level2b.level3': [ 2, 3, 4 ] }
+//  'level1.level2.level3b': 1,
+//  'level1.level2b.level3.0': 2,
+//  'level1.level2b.level3.1': 3,
+//  'level1.level2b.level3.2': 4 }
 // The deepest values are not flattened (not stringified)
 
 _.flattenJSON(formData, '_')
-// → { 'level1_level2_level3': 0,
-// 'level1_level2_level3b': 1,
-// 'level1_level2b_level3': [ 2, 3, 4 ] }
+// → { level1_level2_level3: 0,
+//  level1_level2_level3b: 1,
+//  level1_level2b_level3_0: 2,
+//  level1_level2b_level3_1: 3,
+//  level1_level2b_level3_2: 4 }
 // The deepest values are not flattened (not stringified)
 ```
 * * *
@@ -3156,7 +3160,7 @@ _.swap([1, 2, 3], 0, 2)
 <!-- div -->
 
 ### <a id="unflattenJSON"></a>`unflattenJSON(obj)`
-<a href="#unflattenJSON">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1617 "View in source") [&#x24C9;][1]
+<a href="#unflattenJSON">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L1631 "View in source") [&#x24C9;][1]
 
 Unflattens a JSON object into depth, using an optional delimiter. The inverse of flattenJSON.
 
@@ -3181,7 +3185,17 @@ formData = {
  }
 
 _.unflattenJSON(_.flattenJSON(formData))
-// → (formData)
+// → {
+//   'level1': {
+//     'level2': {
+//       'level3': 0,
+//       'level3b': 1
+//     },
+//     'level2b': {
+//       'level3': [2,3,4]
+//     }
+//   }
+// }
 // JSON is restored
 
 _.unflattenJSON(_.flattenJSON(formData, '_'), '_')
@@ -3225,7 +3239,7 @@ _.validInds([-2, 4, 0, 2, -1], 2)
 <!-- div -->
 
 ### <a id="decreasing"></a>`decreasing(T)`
-<a href="#decreasing">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2313 "View in source") [&#x24C9;][1]
+<a href="#decreasing">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2327 "View in source") [&#x24C9;][1]
 
 Shorthand for `_.stairsTrend`. Checks if a vector v is decreasing.
 
@@ -3242,7 +3256,7 @@ Shorthand for `_.stairsTrend`. Checks if a vector v is decreasing.
 <!-- div -->
 
 ### <a id="increasing"></a>`increasing(T)`
-<a href="#increasing">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2293 "View in source") [&#x24C9;][1]
+<a href="#increasing">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2307 "View in source") [&#x24C9;][1]
 
 Shorthand for `_.stairsTrend`. Checks if a vector v is increasing.
 
@@ -3259,7 +3273,7 @@ Shorthand for `_.stairsTrend`. Checks if a vector v is increasing.
 <!-- div -->
 
 ### <a id="nonDecreasing"></a>`nonDecreasing(T)`
-<a href="#nonDecreasing">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2303 "View in source") [&#x24C9;][1]
+<a href="#nonDecreasing">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2317 "View in source") [&#x24C9;][1]
 
 Shorthand for `_.stairsTrend`. Checks if a vector v is non-decreasing.
 
@@ -3276,7 +3290,7 @@ Shorthand for `_.stairsTrend`. Checks if a vector v is non-decreasing.
 <!-- div -->
 
 ### <a id="nonIncreasing"></a>`nonIncreasing(T)`
-<a href="#nonIncreasing">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2323 "View in source") [&#x24C9;][1]
+<a href="#nonIncreasing">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2337 "View in source") [&#x24C9;][1]
 
 Shorthand for `_.stairsTrend`. Checks if a vector v is non-increasing.
 
@@ -3293,7 +3307,7 @@ Shorthand for `_.stairsTrend`. Checks if a vector v is non-increasing.
 <!-- div -->
 
 ### <a id="stairs"></a>`stairs(T)`
-<a href="#stairs">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2262 "View in source") [&#x24C9;][1]
+<a href="#stairs">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2276 "View in source") [&#x24C9;][1]
 
 Returns the stair, i.e. the adjacent differences in the vector.
 
@@ -3315,7 +3329,7 @@ _.stairs([1, 2, 3, 5, 8])
 <!-- div -->
 
 ### <a id="stairsTrend"></a>`stairsTrend(T, sigFn)`
-<a href="#stairsTrend">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2283 "View in source") [&#x24C9;][1]
+<a href="#stairsTrend">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2297 "View in source") [&#x24C9;][1]
 
 Check the trend of the array using a signature function.
 Useful for checking if array entries are increasing.
@@ -3345,7 +3359,7 @@ _.stairsTrend([1, 2, 3, 4, 5], _.isPositive) // Array increasing
 <!-- div -->
 
 ### <a id="dot"></a>`dot(X, Y)`
-<a href="#dot">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2168 "View in source") [&#x24C9;][1]
+<a href="#dot">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2182 "View in source") [&#x24C9;][1]
 
 Returns the dot product between two vectors. If lengths mismatch, recycles the shorter vector.
 
@@ -3371,7 +3385,7 @@ _.dot([1, 2, 3, 4, 5, 6], [1, 2, 3]) // recycle
 <!-- div -->
 
 ### <a id="norm"></a>`norm(T, [n=2])`
-<a href="#norm">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2211 "View in source") [&#x24C9;][1]
+<a href="#norm">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2225 "View in source") [&#x24C9;][1]
 
 Returns the L-n norm of a vector, default to L-2 (Euclidean) metric.
 
@@ -3397,7 +3411,7 @@ _.norm([3, 4], 1) // taxicab metric
 <!-- div -->
 
 ### <a id="normalize"></a>`normalize(T, [n=2])`
-<a href="#normalize">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2231 "View in source") [&#x24C9;][1]
+<a href="#normalize">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2245 "View in source") [&#x24C9;][1]
 
 Returns a copy of the vector normalized using L-n metric (defaulted to L-2).
 
@@ -3423,7 +3437,7 @@ _.normalize([3, 4], 1) // taxicab metric
 <!-- div -->
 
 ### <a id="powSum"></a>`powSum(T, [n=2])`
-<a href="#powSum">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2191 "View in source") [&#x24C9;][1]
+<a href="#powSum">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2205 "View in source") [&#x24C9;][1]
 
 Returns the sums of n-powers (defaulted to 2) of a tensor, i.e. the square of the generalized hypotenuse of a tensor.
 Useful for doing sums of squares/other L-n metrics.
@@ -3453,7 +3467,7 @@ _.dot([[1, 2], [3, 4]], 3) // applicable to a tensor
 <!-- div -->
 
 ### <a id="rescale"></a>`rescale(T)`
-<a href="#rescale">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2246 "View in source") [&#x24C9;][1]
+<a href="#rescale">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2260 "View in source") [&#x24C9;][1]
 
 Returns a copy of the vector rescaled to unit length; is the shorthand for `_.normalize(v, 1)`.
 
@@ -3481,7 +3495,7 @@ _.rescale([3, 4])
 <!-- div -->
 
 ### <a id="histogram"></a>`histogram(data, [fn], [pair])`
-<a href="#histogram">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2499 "View in source") [&#x24C9;][1]
+<a href="#histogram">#</a> [&#x24C8;](https://github.com/kengz/lomath/blob/master/index.js#L2513 "View in source") [&#x24C9;][1]
 
 Returns a histogram/distribution from the data. This internally calls `_.countBy` to group data by bins, using the function if specified.
 Returns the object containing values, frequencies and probabilities as separate array for ease of using them with the statistics methods.
